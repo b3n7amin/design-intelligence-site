@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEURA Robotics — Brand Architecture Diagnostic · Reasonant</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:         #111110;
+  --void:        #1C1C1A;
+  --charcoal:    #252523;
+  --ghost:       #2E2E2C;
+  --parchment:   #F7F6F3;
+  --bone:        #F0EEE9;
+  --sand:        #E8E2D9;
+  --white:       #FFFFFF;
+  --border-dark: #2E2E2C;
+  --border-light:#E2E0DB;
+  --border-pale: #EDEAE4;
+  --text-ink:    #111110;
+  --text-mid:    #5C5C58;
+  --text-pale:   #9A9993;
+  --text-white:      #F7F6F3;
+  --text-white-mid:  rgba(247,246,243,0.55);
+  --text-white-pale: rgba(247,246,243,0.30);
+  --gold:        #C8A96E;
+  --gold-pale:   #EAD9B8;
+  --gold-dark:   #A88A50;
+  --gold-bg:     rgba(200,169,110,0.09);
+  --steel:       #8A9BAE;
+  --steel-bg:    rgba(138,155,174,0.09);
+  --steel-dark:  #4A6278;
+  --dusk:        #6B6E7E;
+  --good:        #1D9E75;
+  --good-bg:     rgba(29,158,117,0.08);
+  --warn-bg:     rgba(200,169,110,0.12);
+  --risk:        #C04040;
+  --risk-bg:     rgba(192,64,64,0.07);
+  --font-sans:   'DM Sans', system-ui, sans-serif;
+  --font-mono:   'DM Mono', 'Courier New', monospace;
+  --font-head:   'Inter', system-ui, sans-serif;
+  --r:           8px;
+  --rl:          12px;
+  --max:         920px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); background: var(--parchment); color: var(--text-ink); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+/* ── NAV ─────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(28,28,26,0.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid var(--border-dark);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 52px;
+}
+.nav-brand { font-family: var(--font-head); font-size: 13px; font-weight: 600; color: var(--text-white); text-decoration: none; letter-spacing: -0.01em; }
+.nav-brand em { color: var(--gold); font-style: normal; }
+.nav-links { display: flex; gap: 2px; list-style: none; overflow-x: auto; }
+.nav-links a { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--text-white-pale); text-decoration: none; padding: 5px 10px; border-radius: 4px; white-space: nowrap; transition: color .15s, background .15s; }
+.nav-links a:hover { color: var(--text-white); background: var(--ghost); }
+
+/* ── COVER ───────────────────────────────────── */
+.cover {
+  background: var(--void);
+  color: var(--text-white);
+  min-height: 52vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 0 64px;
+  position: relative; overflow: hidden;
+}
+.cover-grain {
+  position: absolute; inset: 0; pointer-events: none; opacity: .03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.cover-line {
+  position: absolute; top: 48px; left: 40px; right: 40px;
+  height: 0.5px; background: var(--gold); opacity: 0.5;
+}
+.cover-kicker {
+  position: absolute; top: 28px; left: 40px;
+  font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.16em; color: var(--gold); text-transform: uppercase;
+}
+.cover-inner { max-width: var(--max); margin: 0 auto; padding: 0 40px; width: 100%; }
+.cover-title {
+  font-family: var(--font-head);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--text-white);
+  margin-bottom: 20px;
+}
+.cover-title strong { font-weight: 600; display: block; }
+.cover-rule { width: 100%; height: 0.5px; background: var(--ghost); margin-bottom: 20px; }
+.cover-sub {
+  font-family: 'Inter', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--text-white-mid);
+  line-height: 1.75;
+  max-width: 580px;
+  margin-bottom: 32px;
+}
+.cover-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.cover-pill {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+  padding: 4px 10px; border-radius: 3px; letter-spacing: 0.04em;
+}
+.cover-foot {
+  position: absolute; bottom: 20px; left: 40px; right: 40px;
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 9px; color: var(--text-white-pale);
+  letter-spacing: 0.04em;
+  border-top: 0.5px solid var(--ghost); padding-top: 14px;
+}
+
+/* ── MAIN ────────────────────────────────────── */
+main { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+
+/* ── SECTION ─────────────────────────────────── */
+.sec { padding: 56px 0 0; }
+.sec + .sec { border-top: 0.5px solid var(--border-pale); margin-top: 56px; }
+
+/* ── TYPOGRAPHY ──────────────────────────────── */
+.kick { display: block; font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; color: var(--text-pale); text-transform: uppercase; margin-bottom: 8px; }
+.stitle { font-family: var(--font-head); font-size: 22px; font-weight: 600; color: var(--text-ink); line-height: 1.25; margin-bottom: 10px; letter-spacing: -0.015em; }
+.sint { font-size: 13px; color: var(--text-mid); line-height: 1.75; max-width: 680px; margin-bottom: 28px; }
+.body { font-size: 13px; color: var(--text-mid); line-height: 1.75; margin-bottom: 10px; }
+.body strong { color: var(--text-ink); font-weight: 500; }
+.lbl { display: block; font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: var(--text-pale); text-transform: uppercase; margin-bottom: 10px; margin-top: 22px; }
+
+/* ── THREAD (narrative lead) ─────────────────── */
+.thread {
+  background: var(--bone); border-left: 3px solid var(--gold);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 18px 22px; margin-bottom: 28px;
+}
+.thread-label { font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: var(--gold-dark); text-transform: uppercase; margin-bottom: 7px; }
+.thread-text { font-size: 14px; font-style: italic; color: var(--text-mid); line-height: 1.7; }
+.thread-text strong { font-style: normal; font-weight: 600; color: var(--text-ink); }
+
+/* ── OVERVIEW TABLE ──────────────────────────── */
+.overview-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; border: 0.5px solid var(--border-light); border-radius: var(--r); overflow: hidden; }
+.overview-table tr { border-bottom: 0.5px solid var(--border-light); }
+.overview-table tr:last-child { border-bottom: none; }
+.overview-table td { font-size: 12px; padding: 8px 14px; vertical-align: top; }
+.overview-table td:first-child { font-family: var(--font-mono); font-size: 10px; color: var(--text-pale); width: 160px; letter-spacing: 0.04em; background: var(--bone); font-weight: 500; }
+.overview-table td:last-child { color: var(--text-mid); background: var(--white); }
+
+/* ── DRIVER CARDS ────────────────────────────── */
+.driver-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+@media (max-width: 640px) { .driver-grid { grid-template-columns: 1fr; } }
+.driver-card { background: var(--white); border: 0.5px solid var(--border-light); border-radius: var(--r); padding: 18px 20px; }
+.driver-card.primary { border-top: 2.5px solid var(--gold); }
+.driver-card.secondary { border-top: 2.5px solid var(--steel); }
+.driver-card.suppressed { border-top: 2.5px solid var(--border-pale); opacity: 0.7; }
+.driver-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+.driver-card.primary .driver-tag { color: var(--gold-dark); }
+.driver-card.secondary .driver-tag { color: var(--steel-dark); }
+.driver-card.suppressed .driver-tag { color: var(--text-pale); }
+.driver-name { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: var(--text-ink); margin-bottom: 7px; letter-spacing: -0.01em; }
+.driver-body { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
+
+/* ── TRAIT LIST ──────────────────────────────── */
+.trait-list { display: flex; flex-direction: column; gap: 0; border: 0.5px solid var(--border-light); border-radius: var(--rl); overflow: hidden; margin-bottom: 20px; }
+.trait-item { padding: 12px 18px; border-bottom: 0.5px solid var(--border-pale); background: var(--white); display: flex; gap: 16px; align-items: flex-start; }
+.trait-item:last-child { border-bottom: none; }
+.trait-item:hover { background: var(--bone); }
+.trait-key { font-family: var(--font-mono); font-size: 10px; font-weight: 600; color: var(--text-pale); letter-spacing: 0.06em; min-width: 140px; padding-top: 2px; flex-shrink: 0; }
+.trait-val { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+.trait-val strong { color: var(--text-ink); font-weight: 500; }
+
+/* ── AUDIENCE CARDS ──────────────────────────── */
+.audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+@media (max-width: 640px) { .audience-grid { grid-template-columns: 1fr; } }
+.aud-card { background: var(--white); border: 0.5px solid var(--border-light); border-radius: var(--r); padding: 18px 20px; }
+.aud-type { font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px; }
+.aud-name { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: var(--text-ink); margin-bottom: 3px; letter-spacing: -0.01em; }
+.aud-role { font-family: var(--font-mono); font-size: 10px; color: var(--text-pale); margin-bottom: 10px; }
+.aud-body { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
+.aud-note { font-size: 11px; color: var(--gold-dark); margin-top: 8px; font-style: italic; }
+
+/* ── PORTFOLIO ROWS ──────────────────────────── */
+.portfolio-list { display: flex; flex-direction: column; gap: 0; border: 0.5px solid var(--border-light); border-radius: var(--rl); overflow: hidden; margin-bottom: 20px; }
+.port-item { padding: 13px 18px; border-bottom: 0.5px solid var(--border-pale); background: var(--white); display: grid; grid-template-columns: 100px 1fr 80px; gap: 16px; align-items: start; }
+.port-item:last-child { border-bottom: none; }
+.port-name { font-family: var(--font-head); font-size: 13px; font-weight: 600; color: var(--text-ink); padding-top: 2px; }
+.port-body { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
+.port-badge { font-family: var(--font-mono); font-size: 9px; font-weight: 600; padding: 3px 8px; border-radius: 3px; text-align: center; letter-spacing: 0.04em; }
+.badge-high   { background: var(--good-bg); color: var(--good); }
+.badge-med    { background: var(--gold-bg); color: var(--gold-dark); }
+.badge-watch  { background: var(--risk-bg); color: var(--risk); }
+
+/* ── RISK BLOCKS ─────────────────────────────── */
+.risk-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.risk-block { border: 0.5px solid var(--border-light); border-radius: var(--rl); overflow: hidden; }
+.risk-block.high   { border-color: rgba(192,64,64,0.3); }
+.risk-block.medium { border-color: rgba(200,169,110,0.4); }
+.risk-head { padding: 12px 18px; border-bottom: 0.5px solid var(--border-pale); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.risk-block.high   .risk-head { background: var(--risk-bg); border-color: rgba(192,64,64,0.15); }
+.risk-block.medium .risk-head { background: var(--warn-bg); border-color: rgba(200,169,110,0.2); }
+.risk-title { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: var(--text-ink); letter-spacing: -0.01em; line-height: 1.3; }
+.risk-level { font-family: var(--font-mono); font-size: 9px; font-weight: 600; padding: 3px 9px; border-radius: 3px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.risk-block.high   .risk-level { background: rgba(192,64,64,0.12); color: var(--risk); }
+.risk-block.medium .risk-level { background: rgba(200,169,110,0.15); color: var(--gold-dark); }
+.risk-body { padding: 14px 18px; background: var(--white); }
+.risk-section-label { font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-pale); margin-bottom: 5px; margin-top: 12px; display: block; }
+.risk-section-label:first-child { margin-top: 0; }
+.risk-body-text { font-size: 12px; color: var(--text-mid); line-height: 1.65; }
+
+/* ── ACTION ITEMS ────────────────────────────── */
+.action-list { display: flex; flex-direction: column; position: relative; padding: 0 0 0 44px; margin-bottom: 20px; }
+.action-list::before { content: ''; position: absolute; left: 14px; top: 20px; bottom: 20px; width: 0.5px; background: var(--border-light); }
+.action-item { position: relative; padding-bottom: 22px; }
+.action-item:last-child { padding-bottom: 0; }
+.action-dot {
+  position: absolute; left: -30px; top: 0;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text-white);
+  background: var(--ink); z-index: 1;
+}
+.action-priority { font-family: var(--font-mono); font-size: 8.5px; font-weight: 600; color: var(--text-pale); letter-spacing: 0.06em; margin-bottom: 4px; }
+.action-title { font-family: var(--font-head); font-size: 13px; font-weight: 600; color: var(--text-ink); margin-bottom: 5px; letter-spacing: -0.01em; line-height: 1.35; }
+.action-body { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
+.action-time { font-size: 10px; color: var(--text-pale); margin-top: 5px; font-family: var(--font-mono); font-weight: 500; }
+
+/* ── CONCLUSION ──────────────────────────────── */
+.conclusion { background: var(--void); color: var(--text-white); border-radius: var(--rl); padding: 40px 48px; margin: 40px 0; }
+.conclusion-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.conclusion-text { font-family: var(--font-head); font-size: 18px; font-weight: 500; line-height: 1.45; margin-bottom: 18px; letter-spacing: -0.01em; max-width: 640px; }
+.conclusion-sub { font-size: 13px; color: var(--text-white-mid); line-height: 1.75; max-width: 680px; }
+.conclusion-sub + .conclusion-sub { margin-top: 12px; }
+
+/* ── FOOTER ──────────────────────────────────── */
+.report-footer {
+  background: var(--ink); color: var(--text-white-pale);
+  padding: 24px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  margin-top: 56px;
+}
+.footer-brand { color: var(--gold); font-weight: 500; }
+
+/* ── SUMMARY GRID ────────────────────────────── */
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+@media (max-width: 700px) { .summary-grid { grid-template-columns: 1fr; } }
+.sum-card { background: var(--white); border: 0.5px solid var(--border-light); border-radius: var(--r); padding: 18px 20px; }
+.sum-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-pale); margin-bottom: 7px; }
+.sum-val { font-family: var(--font-head); font-size: 15px; font-weight: 600; color: var(--text-ink); margin-bottom: 5px; letter-spacing: -0.01em; }
+.sum-body { font-size: 11px; color: var(--text-mid); line-height: 1.55; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#cover" class="nav-brand">Reason<em>ant</em></a>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#audience">Audience</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#risks">Risks</a></li>
+    <li><a href="#actions">Actions</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <div class="cover-grain"></div>
+  <div class="cover-kicker">Reasonant · Brand Architecture Diagnostic · NEURA Robotics</div>
+  <div class="cover-line"></div>
+  <div class="cover-inner">
+    <h1 class="cover-title">The brand<br>is one<br><strong>person deep.</strong></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">NEURA Robotics has a coherent and well-functioning brand at its current stage of development. The risks identified are not execution failures — they are the predictable structural tensions of a company moving at exceptional velocity through a transition most organisations navigate over a decade.</p>
+    <div class="cover-pills">
+      <span class="cover-pill" style="background:var(--gold-bg);color:var(--gold-dark)">Brand architecture</span>
+      <span class="cover-pill" style="background:var(--steel-bg);color:var(--steel-dark)">Audience mapping</span>
+      <span class="cover-pill" style="background:var(--good-bg);color:var(--good)">Portfolio coherence</span>
+      <span class="cover-pill" style="background:var(--risk-bg);color:var(--risk)">Risk assessment</span>
+      <span class="cover-pill" style="background:rgba(107,110,126,0.1);color:var(--dusk)">Priority actions</span>
+    </div>
+  </div>
+  <div class="cover-foot">
+    <span>April 2026 · Confidential — internal reference only</span>
+    <span>© 2026 Reasonant · All rights reserved</span>
+  </div>
+</section>
+
+<main>
+
+<!-- ═══ SECTION 1 — COMPANY OVERVIEW ═══ -->
+<div class="sec" id="overview">
+  <span class="kick">Section 01</span>
+  <h2 class="stitle">Company Overview</h2>
+  <p class="sint">Public source analysis of NEURA Robotics GmbH. Where direct data was unavailable, gaps have been addressed through reasoned inference from observable behaviour. Estimated figures are marked [E].</p>
+
+  <table class="overview-table">
+    <tr><td>Founded</td><td>March 2019</td></tr>
+    <tr><td>Headquarters</td><td>Metzingen, Baden-Württemberg</td></tr>
+    <tr><td>CEO / Founder</td><td>David Reger</td></tr>
+    <tr><td>Employees</td><td>1,200+ from 45+ countries</td></tr>
+    <tr><td>Global locations</td><td>8+, including Metzingen, Hangzhou, Zurich</td></tr>
+    <tr><td>Total funding</td><td>$1.48bn across five rounds (Series A–C, 2021–2026)</td></tr>
+    <tr><td>Order backlog</td><td>€1bn+ as of January 2025</td></tr>
+    <tr><td>Production target</td><td>5 million units by 2030</td></tr>
+    <tr><td>Key investors</td><td>Primepulse SE, HV Capital, Vsquared Ventures, Lingotto, BlueCrest Capital, L-Bank Baden-Württemberg, C4 Ventures</td></tr>
+    <tr><td>Platform</td><td>Neuraverse — scalable robotics application ecosystem modelled on smartphone platform logic, including NEURA Gyms as in-platform learning infrastructure</td></tr>
+    <tr><td>Technology model</td><td>In-house design and manufacturing across AI, control software, sensor systems, and mechanical parts — the "one-device" approach</td></tr>
+    <tr><td>Key partnerships</td><td>NVIDIA (Isaac GR00T developer programme), Schaeffler, Vodafone, GFT Technologies, Sona Comstar, Porsche Consulting</td></tr>
+  </table>
+
+  <div class="thread">
+    <div class="thread-label">Founder context</div>
+    <div class="thread-text">David Reger grew up as the eldest of eleven siblings. Prior to founding NEURA, he ran three high-tech automation companies and spent time in social work in San Francisco. He coined the term "cognitive robotics" and sits on the German Economic Senate and the European Senate for Economy and Technology. His public positioning is explicitly civilisational in scale — restructuring labour economics, addressing the skilled worker shortage, <strong>doing for robotics what Apple did for the smartphone.</strong></div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2 — BRAND ARCHITECTURE ASSESSMENT ═══ -->
+<div class="sec" id="architecture">
+  <span class="kick">Section 02</span>
+  <h2 class="stitle">Brand Architecture Assessment</h2>
+  <p class="sint">This section maps the structural brand architecture of NEURA Robotics against a defined diagnostic framework. The analysis moves from foundational emotional drivers through behavioural identity, audience fit, and portfolio coherence.</p>
+
+  <!-- 2.1 Emotional Foundation -->
+  <span class="lbl">2.1 — Emotional Foundation</span>
+  <p class="body">Every brand operates from a set of primary emotional drivers that determine what it gravitates toward, what it suppresses, and what its audience receives emotionally. These are not values statements — they are structural patterns observable in communication, product decisions, and leadership behaviour.</p>
+
+  <div class="driver-grid">
+    <div class="driver-card primary">
+      <div class="driver-tag">Primary driver</div>
+      <div class="driver-name">Drive / Forward Momentum</div>
+      <div class="driver-body">The brand's primary operating mode. Every observable signal — the production targets, the platform ecosystem, the founder's communication register, the category-defining terminology — reflects an organisation that treats the present as a staging point for a future it intends to build. This is the brand's most stable and consistent characteristic.</div>
+    </div>
+    <div class="driver-card secondary">
+      <div class="driver-tag">Secondary driver</div>
+      <div class="driver-name">Service Orientation at Scale</div>
+      <div class="driver-body">Expressed through the company's stated mission ("We serve humanity") and its thematic framing: returning human time to humans, making work safer and more meaningful, solving systemic demographic labour constraints. Importantly, this is not interpersonal care — it is institutional stewardship at a civilisational scale.</div>
+    </div>
+    <div class="driver-card suppressed">
+      <div class="driver-tag">Structural tension — productive</div>
+      <div class="driver-name">Suppressed Anxiety About Inaction</div>
+      <div class="driver-body">Beneath the forward-momentum orientation, there is a structural anxiety about inaction — visible in Reger's commentary on Germany's global competitiveness and the urgency framing around the demographic labour crisis. This anxiety is productive — it fuels acceleration rather than manifesting as caution. It is not surfaced in brand communication; it operates as an engine beneath the visible tone.</div>
+    </div>
+    <div class="driver-card suppressed">
+      <div class="driver-tag">Key structural tension</div>
+      <div class="driver-name">Institutional Scale vs Consumer Warmth</div>
+      <div class="driver-body">The primary tension is between institutional scale (civilisational mission) and interpersonal warmth (consumer product ambitions). This tension becomes structurally significant as the product portfolio expands into domestic and consumer environments. Addressed in full under Risk 3.</div>
+    </div>
+  </div>
+
+  <!-- 2.2 Brand World -->
+  <span class="lbl">2.2 — Brand World — Operating Principles</span>
+  <p class="body">These are the implicit rules that govern how NEURA behaves across contexts. They are observable and consistent, not aspirational.</p>
+
+  <div class="trait-list">
+    <div class="trait-item">
+      <span class="trait-key">Temporal orientation</span>
+      <span class="trait-val">Strictly future-facing. Historical reference appears only as contrast framing. The brand's grammar is anticipatory — the present is infrastructure for a world in progress.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Technology philosophy</span>
+      <span class="trait-val">Foregrounded, not abstracted. NEURA names its technology, explains its sensing architecture, and builds brand value on technical transparency. This is not a company that hides complexity behind simplicity — it uses complexity as evidence of capability.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Authority model</span>
+      <span class="trait-val">Founder-centric in public expression, meritocratic in stated internal culture. Authority derives from technical mastery and execution speed, not from credential or hierarchy.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Operating environment</span>
+      <span class="trait-val">Industrial-to-domestic. The brand world spans factory floors, logistics centres, medical facilities, and private homes. It is an expanding field, not a fixed sector.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Social tone</span>
+      <span class="trait-val">Purposeful urgency. The brand world contains a systemic problem (demographic labour shortage, dangerous and monotonous work) and a collective effort to solve it. There is no named competitive antagonist — the tension is structural, not adversarial.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Pace</span>
+      <span class="trait-val">Extremely fast by design. "Two steps ahead" is a stated value. Empowerment and ownership of decisions are cultural anchors.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">What this brand does not permit</span>
+      <span class="trait-val">Complacency. Incremental ambition. Waiting for institutional approval. Sentimentality about what automation displaces.</span>
+    </div>
+  </div>
+
+  <!-- 2.3 Behavioural Characteristics -->
+  <span class="lbl">2.3 — Brand Identity — Behavioural Characteristics</span>
+  <div class="trait-list">
+    <div class="trait-item">
+      <span class="trait-key">Thinking style</span>
+      <span class="trait-val"><strong>Anticipatory and systemic.</strong> NEURA does not respond to market conditions — it defines a category and builds toward a world that does not yet exist.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Conviction model</span>
+      <span class="trait-val"><strong>Purpose-led.</strong> The mission frame is not a communications layer — it runs consistently through company values, product architecture, and founder communication.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Communication style</span>
+      <span class="trait-val"><strong>Direct and large-scale.</strong> The brand does not hedge. Its claims are bold — "world's first cognitive robot," "the iPhone moment for robotics" — and stated with consistency. This is not marketing inflation; it reflects genuine organisational belief.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Innovation posture</span>
+      <span class="trait-val"><strong>Radical, not incremental.</strong> Each NEURA product and system represents a position beyond the existing competitive map. The company is not improving an existing category; it is attempting to replace its assumptions.</span>
+    </div>
+    <div class="trait-item">
+      <span class="trait-key">Integrity</span>
+      <span class="trait-val"><strong>Stated values are consistent across contexts.</strong> Transparency, trust, and honesty appear with consistency across company communication and founder expression — a reliable indicator of brand governance coherence. [E]</span>
+    </div>
+  </div>
+
+  <!-- 2.4 Narrative Coherence -->
+  <span class="lbl">2.4 — Narrative Coherence</span>
+  <div class="thread">
+    <div class="thread-label">Operating narrative</div>
+    <div class="thread-text">"Cognitive robotics is the next industrial revolution. We are building the tools that make human work human again."</div>
+  </div>
+  <p class="body"><strong>What the brand communicates well:</strong> The macro frame is strong, consistent, and founder-driven. The civilisational claim — that NEURA exists to return human time to humans — is a compelling and differentiated position in the category.</p>
+  <p class="body"><strong>The gap:</strong> NEURA tells the world the story it intends to build. It does not yet tell the stories of the world it is building. There are no visible outcome narratives in circulation — no documented cases of what happened on a specific factory floor when MAiRA was deployed. The top of the narrative is strong. The base is thin.</p>
+  <p class="body"><strong>Why this matters now:</strong> For industrial buyers, technical proof closes deals; narrative proof is supplementary. As NEURA expands into consumer markets and geographies where brand trust is load-bearing — Japan, US consumer, European household — the absence of a grounded evidence layer becomes a commercial risk, not just a communications gap.</p>
+</div>
+
+<!-- ═══ SECTION 3 — AUDIENCE ARCHITECTURE ═══ -->
+<div class="sec" id="audience">
+  <span class="kick">Section 03</span>
+  <h2 class="stitle">Audience Architecture</h2>
+  <p class="sint">NEURA's current audience structure contains four distinct groups with materially different needs and fundamentally different relationships to the brand.</p>
+
+  <div class="audience-grid">
+    <div class="aud-card">
+      <div class="aud-type">Current revenue base</div>
+      <div class="aud-name">Industrial Buyer</div>
+      <div class="aud-role">Operations director · Engineering manager</div>
+      <div class="aud-body">Decisions driven by productivity improvement, safety compliance, and labour cost reduction. Risk-averse in procurement. Proof requirements are technical — performance data, integration complexity, after-sales reliability. Brand narrative is secondary. This is the audience NEURA's current brand architecture is calibrated for.</div>
+    </div>
+    <div class="aud-card">
+      <div class="aud-type">Growth target</div>
+      <div class="aud-name">Enterprise Innovation Leader</div>
+      <div class="aud-role">CTO · VP Engineering</div>
+      <div class="aud-body">Attracted to the ecosystem model (Neuraverse), platform lock-in economics, and the NVIDIA partnership. More receptive to brand narrative. Still requires technical proof, but has organisational mandate to take forward bets.</div>
+    </div>
+    <div class="aud-card">
+      <div class="aud-type">Future · currently speculative</div>
+      <div class="aud-name">Consumer Household</div>
+      <div class="aud-role">Early adopter · Urban · Technology-positive</div>
+      <div class="aud-body">The MiPA addressable market. This persona is currently underdeveloped — the product is pre-scale, and the brand has not yet built the emotional architecture this relationship requires.</div>
+      <div class="aud-note">Most significant structural gap in the current brand system. See Risk 3.</div>
+    </div>
+    <div class="aud-card">
+      <div class="aud-type">Legitimacy layer</div>
+      <div class="aud-name">Public, Media &amp; Policy</div>
+      <div class="aud-role">Press · Regulators · Governments</div>
+      <div class="aud-body">Not a buyer — a credibility infrastructure. Shaped heavily by Reger's personal positioning. Responds to civilisational narrative. High function at current stage; becomes a dependency risk at scale.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4 — PORTFOLIO COHERENCE ═══ -->
+<div class="sec" id="portfolio">
+  <span class="kick">Section 04</span>
+  <h2 class="stitle">Portfolio Coherence</h2>
+  <p class="sint">Each product line assessed against brand identity. Coherence indicates alignment with the structural brand architecture; Watch indicates emerging tension; Gap indicates a mismatch that requires active management.</p>
+
+  <div class="portfolio-list">
+    <div class="port-item">
+      <div class="port-name">MAiRA</div>
+      <div class="port-body">Fully coherent with brand identity. Industrial application. The proof of concept for cognitive robotics at commercial scale. Highest confidence product in the portfolio.</div>
+      <div><span class="port-badge badge-high">Coherent</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-name">4NE1</div>
+      <div class="port-body">The brand's highest-symbolic-weight product. Humanoid, designed for series production, consumer-aspiration framing. The design language — black and white, athletic — is visually consistent with the brand's authority register. The product that makes the civilisational claim legible.</div>
+      <div><span class="port-badge badge-high">Coherent</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-name">Neuraverse</div>
+      <div class="port-body">High coherence. The platform frame directly mirrors the brand's core logic — continuous learning, open development, ecosystem expansion. The brand equity in the "Neuraverse" name is well-founded. Execution must match the ambition of the frame.</div>
+      <div><span class="port-badge badge-high">Coherent</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-name">MiPA</div>
+      <div class="port-body">Coherent in mission terms, but operating in emotional territory the current brand architecture was not designed for. The consumer domestic context requires warmth, approachability, and interpersonal safety signals. MiPA is currently being positioned by instinct — the OMR Festival debut was a correct tonal move — but without a systematic foundation beneath it.</div>
+      <div><span class="port-badge badge-watch">Tension</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-name">LARA / MAV</div>
+      <div class="port-body">Industrial and logistics applications. Coherent with brand's core positioning. Lower symbolic weight than MAiRA and 4NE1 — functional proof products rather than brand-defining statements.</div>
+      <div><span class="port-badge badge-med">Functional</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 5 — RISK ASSESSMENT ═══ -->
+<div class="sec" id="risks">
+  <span class="kick">Section 05</span>
+  <h2 class="stitle">Risk Assessment</h2>
+  <p class="sint">Five structural risks identified. Rated by urgency relative to current stage of growth. These are not execution failures — they are the predictable structural tensions of a company moving at exceptional velocity.</p>
+
+  <div class="risk-list">
+
+    <div class="risk-block high">
+      <div class="risk-head">
+        <div class="risk-title">Founder Dependency</div>
+        <span class="risk-level">High</span>
+      </div>
+      <div class="risk-body">
+        <span class="risk-section-label">What it is</span>
+        <p class="risk-body-text">The brand's identity, narrative, and public positioning are structurally routed through David Reger. His personal website and the company website share language, tone, and framing with near-identical consistency. The "cognitive robotics" concept is attributed to him personally. The brand has no coherent identity that exists independently of one person.</p>
+        <span class="risk-section-label">Why it matters</span>
+        <p class="risk-body-text">As the company approaches 1,200 employees across 45 countries and multiple product lines, the founder's personal bandwidth becomes a genuine constraint on brand coherence at scale. When Reger is absent from a market, unavailable due to organisational growth, or affected by a reputational event, the brand has no autonomous weight to carry the position.</p>
+        <span class="risk-section-label">Recommended action</span>
+        <p class="risk-body-text">Commission a formal brand foundation process that extracts the structural identity from the founder's personal expression and encodes it in documented language, design rules, and behavioural standards. The "serve humanity" frame contains the seed. It requires architecture, not continued reliance on one individual to carry it.</p>
+      </div>
+    </div>
+
+    <div class="risk-block medium">
+      <div class="risk-head">
+        <div class="risk-title">Civilisational Claim Without Grounded Evidence</div>
+        <span class="risk-level">Medium · Growing</span>
+      </div>
+      <div class="risk-body">
+        <span class="risk-section-label">What it is</span>
+        <p class="risk-body-text">The brand communicates at the scale of industrial revolutions and civilisational transformation. Product-level communication does not consistently deliver the evidence that a claim at this scale requires. There is no visible library of customer outcomes — no documented cases that ground the macro narrative in human-scale proof.</p>
+        <span class="risk-section-label">Why it matters</span>
+        <p class="risk-body-text">For the current industrial buyer base, this gap is manageable — procurement decisions at this level are driven by performance data, not narrative. As the company moves toward consumer products and markets where brand trust drives purchasing decisions, the gap between promise and evidence becomes commercially load-bearing. Credibility debt accumulates when claims consistently precede proof.</p>
+        <span class="risk-section-label">Recommended action</span>
+        <p class="risk-body-text">Build a structured outcome documentation programme. One flagship case per product line, told from the perspective of the human whose work or operating environment changed as a result of NEURA deployment. These are not testimonials — they are evidence that the civilisational claim is real at ground level.</p>
+      </div>
+    </div>
+
+    <div class="risk-block high">
+      <div class="risk-head">
+        <div class="risk-title">Single Brand Architecture Across Incompatible Emotional Requirements</div>
+        <span class="risk-level">High</span>
+      </div>
+      <div class="risk-body">
+        <span class="risk-section-label">What it is</span>
+        <p class="risk-body-text">NEURA is currently attempting to serve industrial procurement decisions (MAiRA, LARA, MAV) and domestic consumer markets (MiPA) under a single brand architecture. Industrial buyers require authority, technical reliability, and systemic dependability. Consumer households require warmth, approachability, and interpersonal trust. The current brand identity is calibrated entirely for the industrial register.</p>
+        <span class="risk-section-label">Why it matters</span>
+        <p class="risk-body-text">As MiPA moves toward distribution scale, the brand will face a forced choice: stretch the existing identity into emotional territory it was not built for, or develop a coherent sub-brand architecture. Stretching without governance produces identity drift. Sub-branding without a formal framework produces fragmentation.</p>
+        <span class="risk-section-label">Recommended action</span>
+        <p class="risk-body-text">Conduct a formal sub-brand architecture review before MiPA reaches significant distribution. The decision — whether MiPA operates under the NEURA master brand with a modulated emotional register, or under a separate brand identity anchored to the Neuraverse platform — should be made on a structured basis, not by execution instinct.</p>
+      </div>
+    </div>
+
+    <div class="risk-block medium">
+      <div class="risk-head">
+        <div class="risk-title">German Engineering Identity in Tension with Global Expansion Register</div>
+        <span class="risk-level">Medium · Increasing</span>
+      </div>
+      <div class="risk-body">
+        <span class="risk-section-label">What it is</span>
+        <p class="risk-body-text">NEURA holds two identity anchors that are not naturally coherent across all geographies: German engineering provenance and Silicon Valley-scale disruption ambition. In the German market, these anchors reinforce each other. In the US, "from Metzingen" carries no weight. In Japan, neither the German engineering frame nor the American disruption frame fully addresses the evaluation criteria of long-term partnership commitment and institutional trust.</p>
+        <span class="risk-section-label">Recommended action</span>
+        <p class="risk-body-text">Develop a cultural translation layer before significant marketing investment in the US or Japan. The goal is not to dilute the brand but to express the core identity — forward momentum, service at scale — in the emotional register each market responds to. The underlying mission is universally accessible. The cultural expression of that mission is market-specific.</p>
+      </div>
+    </div>
+
+    <div class="risk-block medium">
+      <div class="risk-head">
+        <div class="risk-title">Cognitive Positioning Without Cognitive Demonstration</div>
+        <span class="risk-level">Medium</span>
+      </div>
+      <div class="risk-body">
+        <span class="risk-section-label">What it is</span>
+        <p class="risk-body-text">"Cognitive robotics" is NEURA's primary differentiating claim. The brand states this claim consistently. It does not yet consistently show what cognitive behaviour looks, feels, and sounds like in real operating environments.</p>
+        <span class="risk-section-label">Why it matters</span>
+        <p class="risk-body-text">NEURA operates in a category where well-funded competitors are producing high-visibility demonstration content — Boston Dynamics, Figure AI, Tesla Optimus. Credibility in a claims-led category is built through demonstration. Each claim that is not grounded in observable behaviour increases the evidentiary burden on the next.</p>
+        <span class="risk-section-label">Recommended action</span>
+        <p class="risk-body-text">Build a systematic demonstration content programme — not product marketing, but behavioural evidence. Robots performing real tasks in real environments, with human context visible. The distinction between "cognitive" as a claim and "cognitive" as an observable reality is closed through documentation, not communication.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ SECTION 6 — PRIORITY ACTIONS ═══ -->
+<div class="sec" id="actions">
+  <span class="kick">Section 06</span>
+  <h2 class="stitle">Priority Actions</h2>
+  <p class="sint">Ranked by urgency relative to current stage. Each action is sequenced so that earlier decisions lower the cost of later execution.</p>
+
+  <div class="action-list">
+    <div class="action-item">
+      <div class="action-dot">1</div>
+      <div class="action-priority">Immediate · Highest return on investment</div>
+      <div class="action-title">Document the brand foundation before scale makes it expensive</div>
+      <div class="action-body">Extract the structural brand identity from the founder's personal expression and encode it in a formal foundation document. Every subsequent decision — creative hiring, product launches, international market entry, investor communications — is more coherent and less costly with this document in place.</div>
+      <div class="action-time">Timeframe: Immediate. The window is now. Monthly delay increases the cost of execution.</div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-dot">2</div>
+      <div class="action-priority">6–12 months · Structural decision</div>
+      <div class="action-title">Determine the consumer product architecture before MiPA scales</div>
+      <div class="action-body">Before MiPA reaches serious distribution, make a formal decision about whether it operates under the NEURA master brand with a calibrated emotional register, or under a sub-brand structure anchored to the Neuraverse platform. This decision should be made with a clear framework, not resolved by execution instinct.</div>
+      <div class="action-time">Timeframe: 6–12 months.</div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-dot">3</div>
+      <div class="action-priority">6–12 months · Evidence infrastructure</div>
+      <div class="action-title">Build a grounded evidence layer</div>
+      <div class="action-body">Commission a structured programme of outcome documentation — one case per product line, told from the perspective of the human whose situation changed. These are not case studies. They are the evidence base that makes the civilisational claim credible at the level of individual transactions.</div>
+      <div class="action-time">Timeframe: 6–12 months.</div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-dot">4</div>
+      <div class="action-priority">12 months · Market preparation</div>
+      <div class="action-title">Develop a market localisation strategy before major US and Japan investment</div>
+      <div class="action-body">Define how the brand's core identity translates into the emotional and cultural register of each priority market without losing coherence. This is not adaptation — it is translation. The identity is stable; the expression is market-specific.</div>
+      <div class="action-time">Timeframe: 12 months.</div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-dot">5</div>
+      <div class="action-priority">12–18 months · Content programme</div>
+      <div class="action-title">Invest in cognitive demonstration content</div>
+      <div class="action-body">Build a content programme that shows cognitive behaviour in real environments. Not product demonstrations — behavioural evidence. Robots learning, adapting, and responding in observable, human-proximate contexts. The distinction between "cognitive" as a claim and "cognitive" as an observable reality is closed through documentation, not communication.</div>
+      <div class="action-time">Timeframe: 12–18 months.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 7 — SUMMARY ASSESSMENT ═══ -->
+<div class="sec" id="summary">
+  <span class="kick">Section 07</span>
+  <h2 class="stitle">Summary Assessment</h2>
+  <p class="sint">NEURA Robotics has the necessary internal substance. It does not yet have the architecture to make that substance transferable, scalable, and resilient to the growth it is actively pursuing.</p>
+
+  <div class="summary-grid">
+    <div class="sum-card">
+      <div class="sum-label">Brand coherence</div>
+      <div class="sum-val">Coherent at current stage</div>
+      <div class="sum-body">Mission is clearly held and consistently expressed. Founder communicates with genuine conviction and at a scale that gives the company access to audiences most competitors cannot reach.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-label">Primary vulnerability</div>
+      <div class="sum-val">Structurally founder-dependent</div>
+      <div class="sum-body">The brand's coherence is currently carried by one person. Everything else — the evidence gap, the consumer market challenge, the localisation requirement — is addressable, provided the foundation is formally documented first.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-label">Risk character</div>
+      <div class="sum-val">Predictable, not accidental</div>
+      <div class="sum-body">The risks are proportional to the speed of growth. NEURA is compressing a decade-long organisational transition into two to three years. The risks are not failures — they are the cost of that velocity.</div>
+    </div>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <div class="conclusion-label">Net Assessment</div>
+    <div class="conclusion-text">The brand is one person deep. That is its greatest strength at this stage, and its most urgent structural risk.</div>
+    <p class="conclusion-sub">David Reger's civilisational framing gives NEURA access to audiences and positioning most competitors cannot reach. The product portfolio is structurally consistent with the stated identity. The mission is well-held and genuinely believed.</p>
+    <p class="conclusion-sub">The primary vulnerability is structural: everything operates through one individual. Every other risk in this report — the evidence gap, the consumer market register challenge, the localisation requirement, the demonstration content deficit — is addressable with skilled execution, provided the foundation is formally documented first. The brand has what it needs. It has not yet built the container that makes it transferable.</p>
+  </div>
+</div>
+
+</main>
+
+<div class="report-footer">
+  <div class="footer-brand">Reasonant — Brand Architecture Diagnostic</div>
+  <div>Confidential · Internal reference only · April 2026 · © 2026 Reasonant</div>
+</div>
+
+</body>
+</html>

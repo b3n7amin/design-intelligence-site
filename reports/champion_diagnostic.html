@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>Champion — A Structural Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ══════════════════════════════════
+   TOKENS
+══════════════════════════════════ */
+:root {
+  --ink:         #111110;
+  --surface-2:   #1F1F1D;
+  --surface-3:   #272725;
+  --gold:        #C8A96E;
+  --gold-dim:    #9A7E4F;
+  --dusk:        #6B6E7E;
+  --text-hi:     #F0EBE1;
+  --text-mid:    #C8C2B8;
+  --text-lo:     #8A8580;
+  --text-faint:  #4A4845;
+  --border:      rgba(200,169,110,0.14);
+  --border-soft: rgba(255,255,255,0.06);
+
+  /* fluid spacing */
+  --sp-sm:  clamp(16px, 2.5vw, 24px);
+  --sp-md:  clamp(28px, 4vw,   44px);
+  --sp-lg:  clamp(44px, 6vw,   72px);
+  --sp-xl:  clamp(60px, 8vw,   96px);
+
+  /* fluid type */
+  --t-xs:   clamp(10px, 1.2vw, 11px);
+  --t-sm:   clamp(13px, 1.6vw, 15px);
+  --t-base: clamp(15px, 1.9vw, 17px);
+  --t-md:   clamp(17px, 2.2vw, 20px);
+  --t-lg:   clamp(20px, 3vw,   26px);
+  --t-xl:   clamp(26px, 4.5vw, 40px);
+  --t-2xl:  clamp(36px, 7vw,   72px);
+
+  --pad-x:  clamp(20px, 5vw, 40px);
+  --max-w:  760px;
+}
+
+/* ══════════════════════════════════
+   RESET
+══════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ══════════════════════════════════
+   BASE
+══════════════════════════════════ */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text-mid);
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--t-base);
+  line-height: 1.78;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  padding-left:  env(safe-area-inset-left,  0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+/* ══════════════════════════════════
+   WRAPPER
+══════════════════════════════════ */
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+/* ══════════════════════════════════
+   HEADER
+══════════════════════════════════ */
+.site-header {
+  padding-top: var(--sp-lg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brand-mark {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: var(--t-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.doc-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════
+   RULE
+══════════════════════════════════ */
+.rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 40%, transparent 100%);
+  margin: var(--sp-md) 0;
+  opacity: 0.35;
+}
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero {
+  padding: var(--sp-xl) 0 var(--sp-lg);
+}
+
+.hero-label {
+  font-family: 'DM Mono', monospace;
+  font-size: var(--t-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--sp-md);
+  opacity: 0.8;
+}
+
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: var(--t-2xl);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  color: var(--text-hi);
+  margin-bottom: 6px;
+}
+
+.hero-title span { color: var(--gold); }
+
+.hero-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dusk);
+  margin-bottom: var(--sp-lg);
+}
+
+.hero-lede {
+  font-size: var(--t-md);
+  line-height: 1.72;
+  color: #C0BAB0;
+  font-style: italic;
+  max-width: 640px;
+}
+
+.hero-lede strong {
+  color: var(--text-hi);
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* ══════════════════════════════════
+   SECTIONS
+══════════════════════════════════ */
+section {
+  padding: var(--sp-lg) 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: var(--t-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--sp-md);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  min-width: 16px;
+}
+
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: var(--t-xl);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--text-hi);
+  margin-bottom: var(--sp-md);
+}
+
+.section-title em {
+  font-style: italic;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: normal;
+  color: var(--gold);
+}
+
+/* ══════════════════════════════════
+   BODY COPY
+══════════════════════════════════ */
+.body-copy {
+  font-size: var(--t-base);
+  line-height: 1.8;
+  color: var(--text-lo);
+}
+
+.body-copy p { margin-bottom: var(--sp-sm); }
+.body-copy p:last-child { margin-bottom: 0; }
+
+.body-copy strong {
+  color: var(--text-mid);
+  font-weight: normal;
+}
+
+/* ══════════════════════════════════
+   CALLOUT
+══════════════════════════════════ */
+.callout {
+  margin: var(--sp-md) 0;
+  padding: var(--sp-md) clamp(20px, 4vw, 36px);
+  background: var(--surface-2);
+  border-left: 2px solid var(--gold);
+  position: relative;
+}
+
+.callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(200,169,110,0.04), transparent);
+  pointer-events: none;
+}
+
+.callout p {
+  font-size: var(--t-md);
+  line-height: 1.68;
+  color: var(--text-mid);
+  font-style: italic;
+  position: relative;
+}
+
+.callout p strong {
+  color: var(--text-hi);
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* ══════════════════════════════════
+   TIMELINE
+══════════════════════════════════ */
+.timeline { margin: var(--sp-md) 0; }
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: clamp(58px, 10vw, 80px) 1fr;
+  gap: clamp(16px, 3vw, 28px);
+  padding: clamp(16px, 2.5vw, 22px) 0;
+  border-bottom: 1px solid var(--border-soft);
+  align-items: start;
+}
+
+.timeline-item:last-child { border-bottom: none; }
+
+.timeline-year {
+  font-family: 'DM Mono', monospace;
+  font-size: var(--t-xs);
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  padding-top: 3px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.timeline-event {
+  font-size: var(--t-sm);
+  line-height: 1.68;
+  color: var(--text-lo);
+}
+
+.timeline-event strong {
+  color: var(--text-mid);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: var(--t-sm);
+  letter-spacing: -0.01em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* stack timeline on very small screens */
+@media (max-width: 360px) {
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+/* ══════════════════════════════════
+   FINDINGS
+══════════════════════════════════ */
+.findings {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: var(--sp-md) 0;
+}
+
+.finding {
+  padding: clamp(20px, 3.5vw, 30px) clamp(20px, 4vw, 32px);
+  background: var(--surface-2);
+  border-top: 1px solid var(--border-soft);
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.finding:first-child { border-top: 1px solid var(--border); }
+
+@media (hover: hover) {
+  .finding:hover { background: var(--surface-3); }
+}
+@media (hover: none) {
+  .finding:active { background: var(--surface-3); }
+}
+
+.finding-number {
+  font-family: 'DM Mono', monospace;
+  font-size: var(--t-xs);
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  margin-bottom: clamp(8px, 1.5vw, 12px);
+  opacity: 0.7;
+}
+
+.finding-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: var(--t-sm);
+  color: #E8E2D8;
+  margin-bottom: clamp(8px, 1.5vw, 12px);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.finding-body {
+  font-size: var(--t-sm);
+  line-height: 1.72;
+  color: var(--text-lo);
+}
+
+.finding-body strong {
+  color: var(--text-mid);
+  font-weight: normal;
+}
+
+/* ══════════════════════════════════
+   PULL LINE
+══════════════════════════════════ */
+.pull-line {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: var(--t-lg);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text-hi);
+  border-left: 3px solid var(--gold);
+  padding-left: clamp(16px, 3vw, 24px);
+  margin: var(--sp-md) 0;
+}
+
+/* ══════════════════════════════════
+   COST FRAME
+══════════════════════════════════ */
+.cost-frame {
+  margin: var(--sp-md) 0;
+  padding: var(--sp-md) clamp(20px, 4vw, 36px);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.cost-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+.cost-text {
+  font-size: var(--t-md);
+  line-height: 1.74;
+  color: var(--text-mid);
+  position: relative;
+}
+
+.cost-text strong {
+  color: var(--text-hi);
+  font-weight: normal;
+}
+
+/* ══════════════════════════════════
+   CONTACT SECTION
+══════════════════════════════════ */
+.contact-section {
+  padding: var(--sp-lg) 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.contact-body {
+  font-size: var(--t-base);
+  line-height: 1.82;
+  color: var(--text-lo);
+  max-width: 580px;
+  margin-bottom: var(--sp-md);
+}
+
+.contact-body p { margin-bottom: var(--sp-sm); }
+.contact-body p:last-child { margin-bottom: 0; }
+
+.contact-body strong {
+  color: var(--text-mid);
+  font-weight: normal;
+}
+
+.contact-link-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: var(--sp-md);
+}
+
+.contact-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: var(--t-sm);
+  letter-spacing: 0.01em;
+  color: var(--gold);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact-link::after {
+  content: '→';
+  font-size: 14px;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+@media (hover: hover) {
+  .contact-link:hover {
+    background: var(--surface-3);
+    border-color: rgba(200,169,110,0.35);
+    color: #E0C88A;
+  }
+  .contact-link:hover::after {
+    transform: translateX(4px);
+  }
+}
+
+@media (hover: none) {
+  .contact-link:active {
+    background: var(--surface-3);
+  }
+}
+
+/* ══════════════════════════════════
+   CLOSE
+══════════════════════════════════ */
+.close-section {
+  padding: var(--sp-xl) 0 clamp(80px, 12vw, 120px);
+  border-top: 1px solid var(--border-soft);
+}
+
+.close-question {
+  font-size: var(--t-md);
+  line-height: 1.72;
+  color: var(--text-mid);
+  font-style: italic;
+  max-width: 600px;
+}
+
+.close-question strong {
+  color: var(--text-hi);
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+.site-footer {
+  border-top: 1px solid var(--border-soft);
+  padding: var(--sp-sm) 0;
+  padding-bottom: max(clamp(40px, 8vw, 56px), env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+}
+
+.footer-brand {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: var(--t-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.footer-note {
+  font-family: 'DM Mono', monospace;
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════
+   SCROLL ANIMATIONS
+══════════════════════════════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="brand-mark">Reasonant</div>
+    <div class="doc-meta">Structural Reading — Champion<br>May 2026 · Confidential</div>
+  </header>
+
+  <div class="hero fade-up">
+    <div class="hero-label">Brand Diagnostic</div>
+    <h1 class="hero-title">Cham<span>pion</span></h1>
+    <div class="hero-subtitle">A structural reading · Europe</div>
+    <p class="hero-lede">
+      Champion is one of the few clothing brands in the world whose best products do not need to be explained. The Reverse Weave hoodie has been bought, worn out, and replaced by the same person for forty years. <strong>That is not nostalgia. That is a structural relationship.</strong> This document is about the gap between that relationship and what the brand is currently doing with it.
+    </p>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- 01 -->
+  <section>
+    <div class="section-label fade-up">01 — The Asset</div>
+    <h2 class="section-title fade-up">What the brand has that <em>money cannot buy</em></h2>
+
+    <div class="body-copy fade-up">
+      <p>Champion entered the world in 1919 not as a fashion brand, not as a lifestyle platform, but as a supplier to institutions that needed things to work. University athletic programs. The US Military Academy. Eventually the NBA. The brand built its entire identity through a single mechanism: <strong>being chosen by people who had no reason to choose anything other than the best available thing.</strong></p>
+      <p>The Reverse Weave sweatshirt was patented in 1934. The technical logic behind it — cutting the fabric against the grain so it holds its shape through repeated washing — remains valid and unchanged. The product is now over ninety years old and it still sells. That is an extraordinary fact. Most clothing brands would exhibit it in a museum. Champion sells it at the weekend.</p>
+    </div>
+
+    <div class="callout fade-up">
+      <p>In 1992, Champion dressed the US Olympic basketball team in Barcelona — Jordan, Magic Johnson, Barkley, Malone. That team was watched by a global audience that had never seen anything like it. <strong>The jerseys they wore are still being traded in Tokyo, Paris, and London today</strong> at prices that would surprise the people who originally bought them.</p>
+    </div>
+
+    <div class="body-copy fade-up">
+      <p>Then there is the sports bra. Champion invented it in 1977, years before women's athletic participation was commercially significant or culturally visible. The brand did not do this because it was strategically smart. It did it because it was technically correct — because the equipment women needed to compete did not exist yet, and Champion made it. That founding claim has accrued enormous value since then. The women's sports market is growing faster than any other segment in global athletic apparel. Champion's claim to it predates every competitor's women's strategy by decades.</p>
+      <p>The brand's deepest asset is not the logo or the product range or the archive. It is the relationship between its material quality and the cultural weight of the moments it happened to be present for. <strong>This is not manufactured heritage. It is accumulated fact.</strong></p>
+    </div>
+
+    <div class="timeline fade-up">
+      <div class="timeline-item">
+        <div class="timeline-year">1934</div>
+        <div class="timeline-event">
+          <strong>Reverse Weave technology patented</strong>
+          Horizontal knit construction that resists shrinkage. Still the brand's flagship product, unchanged in its core logic.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1977</div>
+        <div class="timeline-event">
+          <strong>First women's sports bra</strong>
+          Invented before women's sport was commercially important. The founding claim to the fastest-growing segment in athletic apparel today.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1992</div>
+        <div class="timeline-event">
+          <strong>Dream Team, Barcelona Olympics</strong>
+          The most-watched basketball event in history. The jerseys remain the most sought-after Champion product on the secondary market.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1988–2000</div>
+        <div class="timeline-event">
+          <strong>Cultural adoption without invitation</strong>
+          Hip-hop, skateboarding, and street culture choose Champion independently. The brand is adopted as a signal of authenticity, not purchased as a marketing vehicle.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section>
+    <div class="section-label fade-up">02 — The Leaks</div>
+    <h2 class="section-title fade-up">Where the <em>identity</em> is losing pressure</h2>
+
+    <div class="body-copy fade-up">
+      <p>The assets above are real. They are not being fully used. What follows is not a critique of decisions made in difficult circumstances — it is a structural observation about three specific points where the brand is currently working against itself.</p>
+    </div>
+
+    <div class="findings fade-up">
+      <div class="finding">
+        <div class="finding-number">Finding 01</div>
+        <div class="finding-title">The brand is trying to live in two places at once</div>
+        <div class="finding-body">Champion is simultaneously available at mass-market retailers and positioned at premium fashion destinations. This is not democratisation — it is a distribution architecture that makes the product mean something different depending on where it is bought, with no narrative to bridge the gap. <strong>When a brand can be bought at the same price point in two entirely different retail environments, the brand is not communicating anything at all.</strong> The product does not change. What it says about the person wearing it does. And right now, it says something different in every channel.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-number">Finding 02</div>
+        <div class="finding-title">The brand's voice is speaking in a register it did not earn</div>
+        <div class="finding-body">Champion's most recent major global campaign asked people to "champion what moves them" — creators, activists, people pursuing causes. The sentiment is warm. The problem is structural: <strong>Champion's entire history is about being chosen by people doing serious things, not about asking people to aspire to serious things.</strong> The brand has always been downstream of authentic achievement — the team, the athlete, the street — not upstream of it. Campaigns that position the brand as a source of purpose rather than evidence of it read as adopted personality. The brand's natural register is quieter, more certain, and considerably more earned than this.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-number">Finding 03</div>
+        <div class="finding-title">The most valuable founding claim is sitting unused</div>
+        <div class="finding-body">Champion invented the sports bra in 1977. Women's sports is the fastest-growing segment in global athletic apparel. The institutional broadcast rights, audience sizes, and commercial investment in women's sport have increased by an order of magnitude in the last five years. <strong>No other brand can say it built the equipment women needed to compete before anyone was watching.</strong> That is a founding narrative, not a marketing angle. It is not being told.</div>
+      </div>
+    </div>
+
+    <div class="pull-line fade-up">
+      The brand's coherence problem is not about product quality. The product is fine. The problem is above the product.
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section>
+    <div class="section-label fade-up">03 — The Cost</div>
+    <h2 class="section-title fade-up">What incoherence <em>actually costs</em></h2>
+
+    <div class="cost-frame fade-up">
+      <p class="cost-text">A brand with genuinely earned cultural capital — institutional history, material authenticity, and a category-founding claim in women's sport — should not be losing market share to brands that are five years old. <strong>The gap between what Champion owns and what it is currently converting into commercial performance is not a market problem. It is an identity architecture problem.</strong> The brand is spending money communicating the wrong things in the wrong register through a distribution model that contradicts itself. Every pound and euro spent in that configuration is friction, not growth. The underlying assets have not depreciated. The machinery built to deploy them is misaligned.</p>
+    </div>
+
+    <div class="body-copy fade-up">
+      <p>This is recoverable. The Reverse Weave still sells. The archive still has cultural heat in secondary markets across Europe and Asia. The institutional sports opportunity that the current ownership is pursuing is structurally sound. But those individual moves will underperform if the brand's identity layer — what it says, where it shows up, and what story it tells about itself — is not brought into alignment first.</p>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close-section">
+    <div class="section-label fade-up">—</div>
+    <p class="close-question fade-up">The brand that dressed the Dream Team, invented the hoodie, and was adopted by street culture without trying is now being outperformed by brands that are doing all three of those things deliberately — and less well. <strong>The question worth sitting with is not what Champion needs to do differently. It is why everything the brand genuinely is has not yet been organised into something the market can feel.</strong></p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section">
+    <div class="section-label fade-up">04 — Next</div>
+    <h2 class="section-title fade-up">Where a <em>conversation</em> could go</h2>
+
+    <div class="contact-body fade-up">
+      <p>The work that follows a diagnostic like this one moves in a clear sequence. The first step is to establish precisely where the brand's identity is currently landing versus where it is intended to land — not as a survey or a focus group, but as a structured reading of the brand's outputs against what the brand actually is at its root. That work typically surfaces a small number of high-leverage decisions that have been deferred or made without full information.</p>
+      <p>The second step is to define what a coherent expression of the brand looks like across the dimensions that matter most for the European market — how it speaks, where it shows up, what it charges, and what story it tells about its own history. <strong>This is not a rebrand. It is an alignment exercise.</strong> The brand already has what it needs. The task is to stop it working against itself.</p>
+      <p>The third step, if the first two produce findings worth acting on, is to translate those findings into the briefs, frameworks, and decision tools that the internal team can actually use — material that travels into campaign development, channel strategy, and product narrative without requiring ongoing external involvement to interpret.</p>
+    </div>
+
+    <div class="contact-link-wrap fade-up">
+      <a class="contact-link" href="mailto:B3njamin@me.com">Design Intelligence</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-brand">Reasonant — reasonant.io</div>
+    <div class="footer-note">Prepared by B3n · May 2026</div>
+  </footer>
+
+</div>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -28px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // stagger the finding cards individually
+  document.querySelectorAll('.finding').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = `opacity 0.55s ease ${i * 0.08}s, transform 0.55s ease ${i * 0.08}s`;
+    const cardObs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        cardObs.unobserve(el);
+      }
+    }, { threshold: 0.06 });
+    cardObs.observe(el);
+  });
+</script>
+
+
+<!-- ============================================================
+     DESIGN INTELLIGENCE — CTA FOOTER
+     ============================================================ -->
+<section style="
+  background: #111110;
+  border-top: 0.5px solid #2E2E2C;
+  padding: 72px 64px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div style="font-family:'DM Mono','Courier New',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#C8A96E;margin-bottom:20px;">Design Intelligence · A method by Benjamin Cuenod</div>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:48px;flex-wrap:wrap;margin-bottom:48px;">
+      <div style="flex:1;min-width:260px;">
+        <div style="font-family:'Inter',sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.2;color:#F7F6F3;margin-bottom:16px;">What you just read is a structural reading, not a summary.</div>
+        <div style="font-size:14px;font-weight:300;line-height:1.75;color:rgba(247,246,243,0.55);max-width:480px;">Design Intelligence maps brand coherence below the surface — signal architecture, identity-leadership alignment, and audience resonance — producing findings that feel like something you already knew but could not say. Every analysis is bespoke, confidential, and built for decision-making, not presentation.</div>
+
+        <!-- author card -->
+        <div style="margin-top:28px;padding-top:24px;border-top:0.5px solid #2E2E2C;display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#2E2E2C;border:0.5px solid #3A3A38;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#C8A96E;">BC</div>
+          <div>
+            <div style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#F7F6F3;margin-bottom:4px;letter-spacing:-0.01em;">Benjamin Cuenod</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:#C8A96E;margin-bottom:10px;">Senior Brand Strategist</div>
+            <div style="font-size:13px;font-weight:300;line-height:1.7;color:rgba(247,246,243,0.45);max-width:420px;">Benjamin Cuenod has spent 30 years at the point where brand structure and consequential decisions meet — at Red Bull, Audi, Roland Berger, and NIO. Design Intelligence does not stop at the finding. It builds the structural conditions for coherence, then stays — through the turns, the pivots, the calls that define what a brand will become. A brand is not fixed at a moment. It drifts, evolves, and requires continuous navigation. The method exists for exactly that.</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding-top:4px;">
+        <a href="mailto:b3njamin@me.com?subject=Design Intelligence — Commission an analysis" style="display:inline-block;font-family:'DM Mono','Courier New',monospace;font-size:11px;letter-spacing:0.10em;text-transform:uppercase;color:#111110;background:#C8A96E;padding:13px 26px;border-radius:4px;text-decoration:none;white-space:nowrap;">Commission an analysis →</a>
+        <div style="font-family:'DM Mono','Courier New',monospace;font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(247,246,243,0.30);">b3njamin@me.com</div>
+      </div>
+    </div>
+    <div style="height:0.5px;background:#2E2E2C;margin-bottom:24px;"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+      <div style="font-family:'DM Mono','Courier New',monospace;font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(247,246,243,0.25);">© 2026 Reasonant · Design Intelligence · All rights reserved</div>
+      <div style="font-family:'DM Mono','Courier New',monospace;font-size:9px;letter-spacing:0.08em;color:rgba(247,246,243,0.20);">This analysis is for private circulation only. Not for redistribution.</div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,770 @@
+
+<style>
+  :root { --kia: #C8001E; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  #app { font-family: var(--font-sans); width: 100%; }
+  .header { padding: 1.25rem 1.5rem 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .kia-mark { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; color: var(--color-text-secondary); }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--kia); display: inline-block; }
+  .h-title { font-size: 17px; font-weight: 500; color: var(--color-text-primary); }
+  .h-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 1px; }
+  .nav { display: flex; padding: 0 1.5rem; border-bottom: 0.5px solid var(--color-border-tertiary); overflow-x: auto; }
+  .tab { padding: 0.7rem 1.1rem; font-size: 13px; color: var(--color-text-secondary); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -0.5px; white-space: nowrap; flex-shrink: 0; }
+  .tab:hover { color: var(--color-text-primary); }
+  .tab.on { color: var(--color-text-primary); font-weight: 500; border-bottom-color: var(--kia); }
+  .body { display: grid; grid-template-columns: 1fr 1fr; }
+  .body-full { display: block; }
+  .panel { padding: 1.25rem 1.5rem; border-right: 0.5px solid var(--color-border-tertiary); overflow-y: auto; max-height: 580px; }
+  .panel:last-child { border-right: none; }
+  .panel-full { padding: 1.5rem 2rem; overflow-y: auto; max-height: 620px; }
+  .ph { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .ph-left { display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 3px; }
+  .bp { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+  .bl { background: #C8001E14; color: var(--kia); }
+  .pl { font-size: 12px; color: var(--color-text-secondary); }
+  .psw { display: flex; align-items: center; gap: 1px; }
+  .psw-item { position: relative; padding: 3px 7px; font-size: 11px; font-weight: 500; color: var(--color-text-secondary); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; user-select: none; }
+  .psw-item:hover { color: var(--color-text-primary); }
+  .psw-item.on { color: var(--kia); border-bottom-color: var(--kia); }
+  .psw-item .tt { display: none; position: absolute; top: calc(100% + 6px); right: 0; background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 5px 9px; font-size: 11px; color: var(--color-text-secondary); white-space: nowrap; pointer-events: none; z-index: 10; }
+  .psw-item:hover .tt { display: block; }
+  .st { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin: 12px 0 7px; }
+  .st:first-child { margin-top: 0; }
+  .six { display: flex; flex-direction: column; gap: 9px; }
+  .li { display: flex; gap: 10px; }
+  .lk { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); min-width: 86px; padding-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .lv { font-size: 13px; color: var(--color-text-primary); line-height: 1.5; }
+  .fable { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.875rem 1rem; font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; font-style: italic; border-left: 2px solid var(--kia); margin-top: 4px; }
+  .claim { font-size: 16px; font-weight: 500; color: var(--color-text-primary); line-height: 1.4; border-top: 0.5px solid var(--color-border-tertiary); padding-top: 12px; margin-top: 12px; }
+  .partners { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+  .partner-item { display: flex; gap: 10px; align-items: flex-start; }
+  .partner-name { font-size: 12px; font-weight: 500; color: var(--color-text-primary); min-width: 72px; padding-top: 1px; }
+  .partner-reason { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .srow { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .srow:last-child { border-bottom: none; }
+  .slabel { font-size: 12px; color: var(--color-text-secondary); }
+  .sval { font-size: 13px; font-weight: 500; }
+  .sv-green { color: #1D9E75; } .sv-amber { color: #BA7517; }
+  .pcard { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.875rem 1rem; margin-bottom: 8px; background: var(--color-background-primary); }
+  .ptop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .pname { font-size: 13px; font-weight: 500; }
+  .rh { color: #1D9E75; font-size: 12px; font-weight: 500; }
+  .rm { color: #BA7517; font-size: 12px; font-weight: 500; }
+  .rred { color: var(--kia); font-size: 12px; font-weight: 500; }
+  .pdesc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 7px; }
+  .ptag { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 2px; margin-bottom: 7px; display: inline-block; }
+  .ptag-ev6 { background: #E1F5EE; color: #0F6E56; }
+  .ptag-ev9 { background: #C8001E14; color: var(--kia); }
+  .ptag-sport { background: #FAEEDA; color: #854F0B; }
+  .bar { height: 4px; border-radius: 2px; background: var(--color-border-tertiary); margin-bottom: 3px; }
+  .bfill { height: 4px; border-radius: 2px; }
+  .bzone { font-size: 10px; color: var(--color-text-secondary); }
+  .fdiv { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 7px 0; }
+  .flabel { font-size: 10px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
+  .ftext { font-size: 12px; color: var(--color-text-primary); line-height: 1.5; font-style: italic; }
+  .arow { display: flex; gap: 8px; align-items: center; margin-bottom: 7px; }
+  .an { font-size: 11px; color: var(--color-text-secondary); min-width: 118px; }
+  .atrack { flex: 1; height: 4px; background: var(--color-border-tertiary); border-radius: 2px; position: relative; }
+  .adot { width: 8px; height: 8px; border-radius: 50%; position: absolute; top: -2px; transform: translateX(-50%); }
+  .dok { background: #1D9E75; } .dwarn { background: #BA7517; } .dflag { background: var(--kia); }
+  .alok { font-size: 10px; color: #1D9E75; min-width: 48px; text-align: right; }
+  .alflag { font-size: 10px; color: var(--kia); min-width: 48px; text-align: right; }
+  .alwarn { font-size: 10px; color: #BA7517; min-width: 48px; text-align: right; }
+  .pctx { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; margin-bottom: 12px; border-left: 2px solid var(--color-border-secondary); }
+  .pctx-name { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+  .pctx-t { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; font-style: italic; }
+  .pctx-p { border-left-color: var(--kia); }
+  .sstage { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.7rem 0.9rem; margin-bottom: 7px; }
+  .snum { font-size: 10px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
+  .stxt { font-size: 12px; color: var(--color-text-primary); line-height: 1.5; }
+  .entry { border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 0.875rem 1rem; margin-bottom: 8px; background: var(--color-background-secondary); }
+  .entry-lbl { font-size: 10px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .entry-txt { font-size: 12px; color: var(--color-text-primary); line-height: 1.7; }
+  .entry-tl { font-size: 15px; font-weight: 500; font-style: italic; color: var(--kia); margin-top: 10px; padding-top: 10px; border-top: 0.5px solid var(--color-border-tertiary); }
+  .track { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+  .track-note { font-size: 16px; }
+  .track-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .track-why { font-size: 11px; color: var(--color-text-secondary); line-height: 1.4; margin-top: 2px; }
+  .field-wrap { margin-bottom: 10px; }
+  .elabel { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 4px; }
+  textarea, input[type=text] { font-size: 13px; padding: 8px 10px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); background: var(--color-background-primary); color: var(--color-text-primary); font-family: var(--font-sans); resize: none; width: 100%; line-height: 1.5; }
+  textarea:focus, input[type=text]:focus { outline: none; border-color: var(--kia); }
+  .btn { width: 100%; padding: 10px; font-size: 13px; font-weight: 500; background: var(--kia); color: white; border: none; border-radius: var(--border-radius-md); cursor: pointer; margin-top: 4px; }
+  .btn:hover { opacity: 0.88; }
+  .hint { font-size: 12px; color: var(--color-text-secondary); background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.625rem 0.875rem; line-height: 1.5; margin-top: 10px; }
+  .hint strong { color: var(--color-text-primary); font-weight: 500; }
+  .spbtn { padding: 4px 11px; font-size: 12px; border: 0.5px solid var(--color-border-secondary); border-radius: 20px; cursor: pointer; background: transparent; color: var(--color-text-secondary); margin-right: 6px; margin-bottom: 10px; }
+  .spbtn.on { border-color: var(--kia); color: var(--kia); background: #C8001E08; }
+  .proposal { display: none; }
+  .proposal.on { display: block; }
+  .act { display: none; }
+  .act.on { display: contents; }
+  .act-full { display: none; }
+  .act-full.on { display: block; }
+  .footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 0.5px solid var(--color-border-tertiary); }
+  .footer-cell { padding: 0.75rem 1.5rem; }
+  .footer-cell:first-child { border-right: 0.5px solid var(--color-border-tertiary); }
+  .footer-top { display: flex; align-items: center; justify-content: space-between; }
+  .f-label { font-size: 11px; color: var(--color-text-secondary); }
+  .f-scores { display: flex; align-items: baseline; gap: 14px; }
+  .f-score { display: flex; align-items: baseline; gap: 4px; }
+  .f-score-label { font-size: 10px; color: var(--color-text-secondary); }
+  .f-score-val { font-size: 14px; font-weight: 500; }
+  .footer-sub { font-size: 10px; color: var(--color-text-secondary); margin-top: 3px; opacity: 0.7; }
+</style>
+
+<div id="app">
+  <div class="header">
+    <div class="header-top">
+      <span class="kia-mark">KIA</span><span class="dot"></span>
+      <div>
+        <div class="h-title">Brand Engine — Executive Demo</div>
+        <div class="h-sub">Living Brand Architecture · Three proposals pre-loaded · Compare or build your own</div>
+      </div>
+    </div>
+    <div class="nav">
+      <div class="tab on" onclick="go(0)">System</div>
+      <div class="tab" onclick="go(1)">Act 1 · Soul</div>
+      <div class="tab" onclick="go(2)">Act 2 · Clients</div>
+      <div class="tab" onclick="go(3)">Act 3 · Cars</div>
+      <div class="tab" onclick="go(4)">Act 4 · Story</div>
+    </div>
+  </div>
+
+  <div id="view">
+
+  <!-- ===== SYSTEM TAB ===== -->
+  <div class="act-full on" id="t0">
+    <div class="panel-full">
+      <svg width="100%" viewBox="0 0 680 560">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <!-- ENGINE -->
+        <g class="c-gray">
+          <rect x="190" y="20" width="300" height="68" rx="8" stroke-width="0.5"/>
+          <text class="th" x="340" y="46" text-anchor="middle" dominant-baseline="central">Living Brand Architecture Engine</text>
+          <text class="ts" x="340" y="66" text-anchor="middle" dominant-baseline="central">The system that derives everything else</text>
+        </g>
+
+        <!-- ENGINE → SOUL -->
+        <line x1="340" y1="88" x2="340" y2="136" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+        <!-- SOUL -->
+        <g class="c-coral">
+          <rect x="190" y="136" width="300" height="72" rx="8" stroke-width="0.5"/>
+          <text class="th" x="340" y="162" text-anchor="middle" dominant-baseline="central">Brand soul</text>
+          <text class="ts" x="340" y="182" text-anchor="middle" dominant-baseline="central">Six-Line Core · Fable · Claim · Partners</text>
+        </g>
+
+        <!-- Annotation: soul -->
+        <text class="ts" x="508" y="162" dominant-baseline="central" style="fill:var(--color-text-secondary)">The structural root.</text>
+        <text class="ts" x="508" y="178" dominant-baseline="central" style="fill:var(--color-text-secondary)">Everything is derived from this.</text>
+        <line x1="490" y1="170" x2="506" y2="170" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+        <!-- SOUL trunk down -->
+        <line x1="340" y1="208" x2="340" y2="254" stroke="#888780" stroke-width="1"/>
+
+        <!-- HORIZONTAL RAIL -->
+        <line x1="88" y1="254" x2="592" y2="254" stroke="#888780" stroke-width="0.5"/>
+
+        <!-- DROPS -->
+        <line x1="112" y1="254" x2="112" y2="292" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="278" y1="254" x2="278" y2="292" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="444" y1="254" x2="444" y2="292" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="592" y1="254" x2="592" y2="292" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+        <!-- ACT 1: SOUL OUTPUT -->
+        <g class="c-coral">
+          <rect x="48" y="292" width="128" height="108" rx="8" stroke-width="0.5"/>
+          <text class="th" x="112" y="318" text-anchor="middle" dominant-baseline="central">Act 1</text>
+          <text class="ts" x="112" y="338" text-anchor="middle" dominant-baseline="central">Soul</text>
+          <text class="ts" x="112" y="358" text-anchor="middle" dominant-baseline="central" style="font-style:italic">Three positioning</text>
+          <text class="ts" x="112" y="374" text-anchor="middle" dominant-baseline="central" style="font-style:italic">proposals, derived</text>
+          <text class="ts" x="112" y="390" text-anchor="middle" dominant-baseline="central" style="font-style:italic">from the engine</text>
+        </g>
+
+        <!-- ACT 2: CLIENTS -->
+        <g class="c-teal">
+          <rect x="214" y="292" width="128" height="108" rx="8" stroke-width="0.5"/>
+          <text class="th" x="278" y="318" text-anchor="middle" dominant-baseline="central">Act 2</text>
+          <text class="ts" x="278" y="338" text-anchor="middle" dominant-baseline="central">Clients</text>
+          <text class="ts" x="278" y="358" text-anchor="middle" dominant-baseline="central" style="font-style:italic">Who resonates</text>
+          <text class="ts" x="278" y="374" text-anchor="middle" dominant-baseline="central" style="font-style:italic">and why —</text>
+          <text class="ts" x="278" y="390" text-anchor="middle" dominant-baseline="central" style="font-style:italic">measured</text>
+        </g>
+
+        <!-- ACT 3: CARS -->
+        <g class="c-purple">
+          <rect x="380" y="292" width="128" height="108" rx="8" stroke-width="0.5"/>
+          <text class="th" x="444" y="318" text-anchor="middle" dominant-baseline="central">Act 3</text>
+          <text class="ts" x="444" y="338" text-anchor="middle" dominant-baseline="central">Cars</text>
+          <text class="ts" x="444" y="358" text-anchor="middle" dominant-baseline="central" style="font-style:italic">Does the design</text>
+          <text class="ts" x="444" y="374" text-anchor="middle" dominant-baseline="central" style="font-style:italic">express the soul</text>
+          <text class="ts" x="444" y="390" text-anchor="middle" dominant-baseline="central" style="font-style:italic">correctly?</text>
+        </g>
+
+        <!-- ACT 4: STORY -->
+        <g class="c-amber">
+          <rect x="528" y="292" width="128" height="108" rx="8" stroke-width="0.5"/>
+          <text class="th" x="592" y="318" text-anchor="middle" dominant-baseline="central">Act 4</text>
+          <text class="ts" x="592" y="338" text-anchor="middle" dominant-baseline="central">Story</text>
+          <text class="ts" x="592" y="358" text-anchor="middle" dominant-baseline="central" style="font-style:italic">Narrative built</text>
+          <text class="ts" x="592" y="374" text-anchor="middle" dominant-baseline="central" style="font-style:italic">from soul ×</text>
+          <text class="ts" x="592" y="390" text-anchor="middle" dominant-baseline="central" style="font-style:italic">client</text>
+        </g>
+
+        <!-- DROPS TO COHERENCE RAIL -->
+        <line x1="112" y1="400" x2="112" y2="438" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="278" y1="400" x2="278" y2="438" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="444" y1="400" x2="444" y2="438" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="592" y1="400" x2="592" y2="438" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="88" y1="438" x2="616" y2="438" stroke="#888780" stroke-width="0.5"/>
+        <line x1="352" y1="438" x2="352" y2="468" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+        <!-- RESONANCE SCORE -->
+        <g class="c-gray">
+          <rect x="192" y="468" width="320" height="62" rx="8" stroke-width="0.5"/>
+          <text class="th" x="352" y="492" text-anchor="middle" dominant-baseline="central">Resonance score  R</text>
+          <text class="ts" x="352" y="514" text-anchor="middle" dominant-baseline="central">Coherence across all four layers, measured</text>
+        </g>
+
+        <!-- LEFT RAIL MARKERS -->
+        <line x1="28" y1="148" x2="28" y2="540" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <text class="ts" x="22" y="172" text-anchor="middle" dominant-baseline="central" style="fill:var(--color-text-secondary)">1</text>
+        <text class="ts" x="22" y="346" text-anchor="middle" dominant-baseline="central" style="fill:var(--color-text-secondary)">2</text>
+        <text class="ts" x="22" y="499" text-anchor="middle" dominant-baseline="central" style="fill:var(--color-text-secondary)">3</text>
+        <text class="ts" x="38" y="172" dominant-baseline="central" style="fill:var(--color-text-secondary)">Root</text>
+        <text class="ts" x="38" y="346" dominant-baseline="central" style="fill:var(--color-text-secondary)">Derived</text>
+        <text class="ts" x="38" y="499" dominant-baseline="central" style="fill:var(--color-text-secondary)">Tested</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ===== ACT 1 ===== -->
+  <div class="act on" id="t1">
+    <div class="panel">
+      <div class="ph"><div class="ph-left"><span class="badge bp">From public signals</span><span class="pl">What the system reads today</span></div></div>
+      <div class="st">Six-Line Core</div>
+      <div class="six">
+        <div class="li"><span class="lk">Human Belief</span><span class="lv">People become more fully themselves when they move freely through the world.</span></div>
+        <div class="li"><span class="lk">The Drive</span><span class="lv">That freedom has always been unequal — rationed by cost, complexity, and access.</span></div>
+        <div class="li"><span class="lk">The Obstacle</span><span class="lv">Premium mobility demands compromise: pay more, accept less, or settle.</span></div>
+        <div class="li"><span class="lk">The Enabler</span><span class="lv">Kia dissolves that compromise — design and technology without the premium penalty.</span></div>
+        <div class="li"><span class="lk">Magic Moment</span><span class="lv">The first time someone drives something beautiful they never expected to afford.</span></div>
+        <div class="li"><span class="lk">Circulation</span><span class="lv">They tell others. Aspiration spreads. The category raises its floor.</span></div>
+      </div>
+      <div class="st">The Fable</div>
+      <div class="fable">A challenger who believed the best things shouldn't belong only to the few. Who made objects of desire democratic. And in doing so, didn't lower the standard — raised the expectation.</div>
+      <div class="claim">Movement that inspires.</div>
+      <div class="st" style="margin-top:14px;">Score</div>
+      <div class="srow"><span class="slabel">Brand soul coherence — Act 1 only</span><span class="sval sv-amber">0.67</span></div>
+    </div>
+    <div class="panel">
+      <div class="ph">
+        <div class="ph-left"><span class="badge bl">Proposal</span><span class="pl">Pre-generated</span></div>
+        <div class="psw" id="psw1">
+          <div class="psw-item on" onclick="showP('s1','pa',1)">1<div class="tt">Democratic Future</div></div>
+          <div class="psw-item" onclick="showP('s1','pb',1)">2<div class="tt">Quiet Authority</div></div>
+          <div class="psw-item" onclick="showP('s1','pc',1)">3<div class="tt">Movement as Human Right</div></div>
+          <div class="psw-item" onclick="showP('s1','pi',1)">yours<div class="tt">Build your own</div></div>
+        </div>
+      </div>
+      <div id="s1-pa" class="proposal on">
+        <div class="st" style="margin-top:0;">Democratic Future</div>
+        <div class="six">
+          <div class="li"><span class="lk">Human Belief</span><span class="lv">People deserve to move through the world in ways that reflect who they're becoming — not who they were born as.</span></div>
+          <div class="li"><span class="lk">The Drive</span><span class="lv">Kia must make the future-facing identity available before people can afford to believe it's theirs.</span></div>
+          <div class="li"><span class="lk">The Obstacle</span><span class="lv">The assumption that beauty, intelligence, and forward-thinking design are reserved for those who can already afford them.</span></div>
+          <div class="li"><span class="lk">The Enabler</span><span class="lv">A vehicle that earns its place on design and substance alone — where the price tag is the last thing you notice.</span></div>
+          <div class="li"><span class="lk">Magic Moment</span><span class="lv">When someone realizes the car they're sitting in is better than anything they thought they could reach — and it's theirs.</span></div>
+          <div class="li"><span class="lk">Circulation</span><span class="lv">They don't just recommend it. They become proof of it — and the category shifts around them.</span></div>
+        </div>
+        <div class="st">The Fable</div>
+        <div class="fable">There was a brand that refused to accept that aspiration was a luxury. It built things of genuine beauty and gave them to people the design world had forgotten. And in doing so, it didn't just change what those people drove — it changed what they believed they deserved.</div>
+        <div class="claim">Design that liberates.</div>
+        <div class="st" style="margin-top:14px;">Partner brands</div>
+        <div class="partners">
+          <div class="partner-item"><span class="partner-name">Muji</span><span class="partner-reason">Design for everyone without compromise. Shared belief that good design belongs to all — not as a concession, but as a conviction.</span></div>
+          <div class="partner-item"><span class="partner-name">Patagonia</span><span class="partner-reason">Purpose-led, environmentally honest, democratic access to quality. The right choice and the desirable choice as the same object.</span></div>
+          <div class="partner-item"><span class="partner-name">Sonos</span><span class="partner-reason">Premium audio made genuinely accessible. The Kia persona has equipped their entire life with intention — not just their car.</span></div>
+        </div>
+        <div class="st">Score</div>
+        <div class="srow"><span class="slabel">Brand soul coherence — Act 1 only</span><span class="sval sv-green">0.84</span></div>
+        <div class="srow"><span class="slabel">vs public signals</span><span class="sval sv-green">+0.17</span></div>
+      </div>
+      <div id="s1-pb" class="proposal">
+        <div class="st" style="margin-top:0;">Quiet Authority</div>
+        <div class="six">
+          <div class="li"><span class="lk">Human Belief</span><span class="lv">Every person carries an idea of who they are becoming — and deserves a world that takes that idea seriously.</span></div>
+          <div class="li"><span class="lk">The Drive</span><span class="lv">Kia must build objects that reflect that seriousness back without requiring the owner to explain themselves.</span></div>
+          <div class="li"><span class="lk">The Obstacle</span><span class="lv">The automotive world still conflates price with worthiness — making premium feel like permission rather than recognition.</span></div>
+          <div class="li"><span class="lk">The Enabler</span><span class="lv">Design and engineering that speaks for itself — quietly, precisely, and without needing a badge to be understood.</span></div>
+          <div class="li"><span class="lk">Magic Moment</span><span class="lv">When a person stops justifying their choice and simply lives inside it.</span></div>
+          <div class="li"><span class="lk">Circulation</span><span class="lv">The car becomes a signal others read correctly — not because it shouts, but because it is unmistakably right.</span></div>
+        </div>
+        <div class="st">The Fable</div>
+        <div class="fable">There was a world that measured worth in noise and price. A maker appeared who disagreed — who built things of such quiet precision that they needed no announcement. Those who drove them stopped explaining themselves. And in the silence, something new became the standard.</div>
+        <div class="claim">Precision that speaks.</div>
+        <div class="st" style="margin-top:14px;">Partner brands</div>
+        <div class="partners">
+          <div class="partner-item"><span class="partner-name">Aesop</span><span class="partner-reason">Material integrity over marketing. The product earns trust through touch and time — the closest brand equivalent to Proposal 2 in another category.</span></div>
+          <div class="partner-item"><span class="partner-name">Vitsœ</span><span class="partner-reason">Furniture designed once, designed right, designed to last. Signals that the Kia driver builds their world the same way.</span></div>
+          <div class="partner-item"><span class="partner-name">Leica</span><span class="partner-reason">Precision engineering as philosophy. Restraint as identity. The camera equivalent of the Considered Defector's EV9.</span></div>
+        </div>
+        <div class="st">Score</div>
+        <div class="srow"><span class="slabel">Brand soul coherence — Act 1 only</span><span class="sval sv-green">0.81</span></div>
+        <div class="srow"><span class="slabel">vs public signals</span><span class="sval sv-green">+0.14</span></div>
+      </div>
+      <div id="s1-pc" class="proposal">
+        <div class="st" style="margin-top:0;">Movement as Human Right</div>
+        <div class="six">
+          <div class="li"><span class="lk">Human Belief</span><span class="lv">The ability to move freely through the world is not a privilege — it is what makes human life possible.</span></div>
+          <div class="li"><span class="lk">The Drive</span><span class="lv">Kia must make that possibility real for more people, in more forms, without asking them to settle.</span></div>
+          <div class="li"><span class="lk">The Obstacle</span><span class="lv">The systems of mobility have always extracted cost — financial, environmental, emotional — from those who could least afford it.</span></div>
+          <div class="li"><span class="lk">The Enabler</span><span class="lv">Vehicles and services that remove that extraction — accessible, sustainable, and genuinely desirable at every level.</span></div>
+          <div class="li"><span class="lk">Magic Moment</span><span class="lv">When someone who was never supposed to have this drives away in something that proves the system wrong.</span></div>
+          <div class="li"><span class="lk">Circulation</span><span class="lv">Their journey becomes the argument. The category shifts. Access becomes the new standard.</span></div>
+        </div>
+        <div class="st">The Fable</div>
+        <div class="fable">There was a right that had been priced out of reach. A maker decided that was a design failure, not a market condition. They built the proof. And the proof drove itself into the world and refused to be ignored.</div>
+        <div class="claim">Movement for everyone.</div>
+        <div class="st" style="margin-top:14px;">Partner brands</div>
+        <div class="partners">
+          <div class="partner-item"><span class="partner-name">Brompton</span><span class="partner-reason">Urban mobility democratised, designed with conviction. Used by people who believe how you move matters. Overlapping audience, non-competing category.</span></div>
+          <div class="partner-item"><span class="partner-name">Fairphone</span><span class="partner-reason">Technology built on ethical supply chains, designed to last. Signals that Kia's environmental commitment is structural, not cosmetic.</span></div>
+          <div class="partner-item"><span class="partner-name">The North Face</span><span class="partner-reason">Endurance, exploration, the outdoors as a right not a luxury. The Purpose-Led Flagship Buyer needs the car to belong to the same world as their values.</span></div>
+        </div>
+        <div class="st">Score</div>
+        <div class="srow"><span class="slabel">Brand soul coherence — Act 1 only</span><span class="sval sv-green">0.79</span></div>
+        <div class="srow"><span class="slabel">vs public signals</span><span class="sval sv-green">+0.12</span></div>
+      </div>
+      <div id="s1-pi" class="proposal">
+        <div class="field-wrap"><label class="elabel">What Kia believes about people</label><textarea id="b1" rows="2" placeholder="The fundamental human truth Kia builds on"></textarea></div>
+        <div class="field-wrap"><label class="elabel">The real obstacle Kia removes</label><textarea id="b2" rows="2" placeholder="What stands between people and that belief being true"></textarea></div>
+        <div class="field-wrap"><label class="elabel">What Kia uniquely enables</label><textarea id="b3" rows="2" placeholder="What Kia gives people that removes the obstacle"></textarea></div>
+        <div class="field-wrap"><label class="elabel">The magic moment</label><textarea id="b4" rows="2" placeholder="What it looks and feels like when it works"></textarea></div>
+        <button class="btn" onclick="sendSoul()">Generate Six-Line Core + Fable ↗</button>
+        <div class="hint"><strong>Output appears below in this chat</strong> — Six-Line Core, Fable, claim, partners, and coherence score.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ACT 2 ===== -->
+  <div class="act" id="t2">
+    <div class="panel">
+      <div class="ph"><div class="ph-left"><span class="badge bp">From public signals</span><span class="pl">Defined by behaviour and lifestyle</span></div></div>
+      <div class="st" style="margin-top:0;">Who they are — observable</div>
+      <div class="pcard">
+        <div class="ptop"><span class="pname">The Progressive Mover</span><span class="rh">R = 0.71</span></div>
+        <div><span class="ptag ptag-ev6">EV6</span></div>
+        <div class="pdesc">Urban professional, 28–42. Early EV adopter. Buys on design credentials. Keeps status discreet. Reads Dezeen, drives to the farmers market, owns good headphones.</div>
+        <div class="fdiv"></div><div class="flabel">How we reach them</div>
+        <div class="ftext">Show the product. Lead with design. Signal the category without declaring it.</div>
+        <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:71%;background:#1D9E75;"></div></div>
+        <div class="bzone">Core Zone — tight resonance with current positioning.</div>
+      </div>
+      <div class="pcard">
+        <div class="ptop"><span class="pname">The Optimistic Pragmatist</span><span class="rm">R = 0.58</span></div>
+        <div><span class="ptag ptag-sport">Sportage · Telluride</span></div>
+        <div class="pdesc">Family buyer, 32–50. Values modern design but leads with safety and practicality. Makes smart financial decisions. Wants to feel good about the choice without overthinking it.</div>
+        <div class="fdiv"></div><div class="flabel">How we reach them</div>
+        <div class="ftext">Lead with reassurance. Show the family. End on design pride.</div>
+        <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:58%;background:#BA7517;"></div></div>
+        <div class="bzone">Elastic Zone — reachable. Messaging needs calibration.</div>
+      </div>
+      <div class="pcard">
+        <div class="ptop"><span class="pname">The Bold Riser</span><span class="rred">R = 0.49</span></div>
+        <div><span class="ptag ptag-ev9">EV9</span></div>
+        <div class="pdesc">Established professional, 38–52. Achieved. Wants a flagship that signals purpose over pretension. Compares to German premium. Not yet convinced Kia belongs in that conversation.</div>
+        <div class="fdiv"></div><div class="flabel">The problem</div>
+        <div class="ftext">Kia's challenger tone creates dissonance. He's already arrived — a challenger brand feels like a step back.</div>
+        <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:49%;background:#C8001E;"></div></div>
+        <div class="bzone">Elastic→Fracture risk. Current messaging actively repels this persona.</div>
+      </div>
+      <div class="srow" style="margin-top:4px;"><span class="slabel">Avg persona resonance — Act 2 only</span><span class="sval sv-amber">0.59</span></div>
+    </div>
+    <div class="panel">
+      <div class="ph">
+        <div class="ph-left"><span class="badge bl">Proposal</span><span class="pl">Pre-generated</span></div>
+        <div class="psw" id="psw2">
+          <div class="psw-item on" onclick="showP('s2','pa',2)">1<div class="tt">Democratic Future</div></div>
+          <div class="psw-item" onclick="showP('s2','pb',2)">2<div class="tt">Quiet Authority</div></div>
+          <div class="psw-item" onclick="showP('s2','pc',2)">3<div class="tt">Movement as Human Right</div></div>
+          <div class="psw-item" onclick="showP('s2','pi',2)">yours<div class="tt">Describe your own segment</div></div>
+        </div>
+      </div>
+      <div id="s2-pa" class="proposal on">
+        <div class="st" style="margin-top:0;">Democratic Future — defined by identity tension</div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Unrecognised Self</span><span class="rh">R = 0.78</span></div>
+          <div><span class="ptag ptag-ev6">EV6 · Niro EV</span></div>
+          <div class="pdesc">28–42. Knows exactly who they're becoming — their taste, values, trajectory. The world still offers objects built for who they were. They resent having to choose between what they believe in and what they can afford.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Confirm their self-image before the world catches up. The car is not a reward — it is recognition.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:78%;background:#1D9E75;"></div></div>
+          <div class="bzone">Core Zone — Proposal 1 soul speaks directly to this identity tension.</div>
+        </div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Quiet Achiever</span><span class="rm">R = 0.66</span></div>
+          <div><span class="ptag ptag-sport">Sportage · Ceed</span></div>
+          <div class="pdesc">32–48. Stable life with carefully held values. Doesn't want to compromise on sustainability or design for a family budget. Needs proof that the right choice and the smart choice are the same.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Remove the guilt of compromise. Show that wanting good things and being responsible are not in conflict.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:66%;background:#BA7517;"></div></div>
+          <div class="bzone">Elastic Zone — strong fit when messaging leads with values.</div>
+        </div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Substance Seeker</span><span class="rh">R = 0.74</span></div>
+          <div><span class="ptag ptag-ev9">EV9</span></div>
+          <div class="pdesc">38–54. Has outgrown status signalling. Wants a flagship that earns its place through design intelligence and material honesty. Looking for a reason to defect from German premium. Needs to be proven right, not sold to.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Give them the intellectual justification they're already looking for. The EV9 must be undeniably right — chosen on merit, not faith.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:74%;background:#1D9E75;"></div></div>
+          <div class="bzone">Core Zone — highest opportunity. Proposal 1 closes the current brand dissonance.</div>
+        </div>
+        <div class="srow"><span class="slabel">Avg resonance — Act 2 only</span><span class="sval sv-green">0.73</span></div>
+      </div>
+      <div id="s2-pb" class="proposal">
+        <div class="st" style="margin-top:0;">Quiet Authority — defined by identity tension</div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Convinced Minimalist</span><span class="rh">R = 0.76</span></div>
+          <div><span class="ptag ptag-ev6">EV6</span></div>
+          <div class="pdesc">30–45. Consciously edited their life — fewer things, better things. Every object must earn its place. Suspicious of brands that perform values rather than embody them.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Withstand scrutiny. Every detail must hold up. One inconsistency and the whole thing collapses.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:76%;background:#1D9E75;"></div></div>
+          <div class="bzone">Core Zone — Proposal 2 speaks to earned trust, not declared values.</div>
+        </div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Arrived Sceptic</span><span class="rm">R = 0.61</span></div>
+          <div><span class="ptag ptag-sport">Sportage</span></div>
+          <div class="pdesc">38–52. Twenty years watching brands promise and underdeliver. Trusts only what can be touched and driven. Does not respond to advertising. Responds to reputation and proof.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Be so obviously good that they feel slightly foolish for not having considered it earlier.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:61%;background:#BA7517;"></div></div>
+          <div class="bzone">Elastic Zone — word of mouth and test drive are the only channels that work.</div>
+        </div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Considered Defector</span><span class="rh">R = 0.73</span></div>
+          <div><span class="ptag ptag-ev9">EV9</span></div>
+          <div class="pdesc">42–58. Driven German premium for fifteen years. Now finds the badge signals conformity rather than taste. Wants to defect but needs the alternative to be objectively better. Will not move on faith alone.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Make defection feel like the obvious move — so clearly superior that staying with the old choice looks like stubbornness.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:73%;background:#1D9E75;"></div></div>
+          <div class="bzone">Core Zone — highest-value acquisition target in Proposal 2.</div>
+        </div>
+        <div class="srow"><span class="slabel">Avg resonance — Act 2 only</span><span class="sval sv-green">0.70</span></div>
+      </div>
+      <div id="s2-pc" class="proposal">
+        <div class="st" style="margin-top:0;">Movement as Human Right — defined by identity tension</div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Systemic Optimist</span><span class="rh">R = 0.74</span></div>
+          <div><span class="ptag ptag-ev6">EV6 · Niro EV</span></div>
+          <div class="pdesc">25–42. Believes choices compound into structural change. EV adoption is personal conviction and political act simultaneously. Needs the brand to hold the same belief — not perform it.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Be the evidence they can point to. The car is an argument, not a possession.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:74%;background:#1D9E75;"></div></div>
+          <div class="bzone">Core Zone — highest resonance with Proposal 3 soul.</div>
+        </div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Emerging Market Achiever</span><span class="rm">R = 0.63</span></div>
+          <div><span class="ptag ptag-sport">Seltos · Niro</span></div>
+          <div class="pdesc">Global South, 28–40. First-generation professional. The car is proof of trajectory. Acutely aware of the difference between aspiration and pretension.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Feel like it was designed for someone exactly like them — not adapted down from something richer.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:63%;background:#BA7517;"></div></div>
+          <div class="bzone">Elastic Zone — Seltos, Niro. Strong growth market opportunity.</div>
+        </div>
+        <div class="pcard">
+          <div class="ptop"><span class="pname">The Purpose-Led Flagship Buyer</span><span class="rh">R = 0.71</span></div>
+          <div><span class="ptag ptag-ev9">EV9</span></div>
+          <div class="pdesc">38–54. The vehicle is a public statement of values. Wants the largest, most visible choice to be the most responsible one — without sacrificing presence or authority.</div>
+          <div class="fdiv"></div><div class="flabel">What the car must do for them</div>
+          <div class="ftext">Make sustainability and authority occupy the same space — large, assured, and evidently right.</div>
+          <div class="bar" style="margin-top:8px;"><div class="bfill" style="width:71%;background:#1D9E75;"></div></div>
+          <div class="bzone">Core Zone — EV9 must not undermine presence to signal sustainability.</div>
+        </div>
+        <div class="srow"><span class="slabel">Avg resonance — Act 2 only</span><span class="sval sv-green">0.69</span></div>
+      </div>
+      <div id="s2-pi" class="proposal">
+        <div class="field-wrap"><label class="elabel">Describe the segment</label><textarea id="p1" rows="3" placeholder="Who are they, what do they want, what do they fear, which model are they considering?"></textarea></div>
+        <div class="field-wrap"><label class="elabel">Model they are considering</label><input type="text" id="p2" placeholder="EV9, EV6, Sportage..." /></div>
+        <button class="btn" onclick="sendPersona()">Analyse this segment ↗</button>
+        <div class="hint"><strong>Output appears below in this chat</strong> — persona name, R score, zone, identity tension, what the car must do.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ACT 3 ===== -->
+  <div class="act" id="t3">
+    <div class="panel">
+      <div class="ph"><div class="ph-left"><span class="badge bp">From public signals</span><span class="pl">EV9 design audit — Bold Riser</span></div></div>
+      <div class="st">EV9 — vehicle resonance score</div>
+      <div class="arow"><span class="an">System foresight</span><div class="atrack"><div class="adot dok" style="left:78%"></div></div><span class="alok">Aligned</span></div>
+      <div class="arow"><span class="an">Aspiration expression</span><div class="atrack"><div class="adot dwarn" style="left:35%"></div></div><span class="alwarn">Tension</span></div>
+      <div class="arow"><span class="an">Innovation posture</span><div class="atrack"><div class="adot dok" style="left:82%"></div></div><span class="alok">Aligned</span></div>
+      <div class="arow"><span class="an">Decision integrity</span><div class="atrack"><div class="adot dok" style="left:74%"></div></div><span class="alok">Aligned</span></div>
+      <div class="arow"><span class="an">Status visibility</span><div class="atrack"><div class="adot dflag" style="left:28%"></div></div><span class="alflag">Flag</span></div>
+      <div class="arow"><span class="an">Emotional temperature</span><div class="atrack"><div class="adot dwarn" style="left:42%"></div></div><span class="alwarn">Tension</span></div>
+      <div class="arow"><span class="an">Spatial character</span><div class="atrack"><div class="adot dok" style="left:65%"></div></div><span class="alok">Aligned</span></div>
+      <div class="arow"><span class="an">Life integration</span><div class="atrack"><div class="adot dok" style="left:80%"></div></div><span class="alok">Aligned</span></div>
+      <div class="fable" style="font-style:normal;font-size:12px;margin-top:10px;">Flag: EV9 skews toward Progressive Mover (understated, meaning) rather than Bold Riser (purposeful status, visible arrival). The design was calibrated for one persona and is being asked to serve another.</div>
+      <div class="st" style="margin-top:14px;">Score</div>
+      <div class="srow"><span class="slabel">Vehicle coherence — Act 3 only</span><span class="sval sv-amber">0.61</span></div>
+    </div>
+    <div class="panel">
+      <div class="ph">
+        <div class="ph-left"><span class="badge bl">Proposal</span><span class="pl">Pre-generated</span></div>
+        <div class="psw" id="psw3">
+          <div class="psw-item on" onclick="showP('s3','pa',3)">1<div class="tt">Democratic Future</div></div>
+          <div class="psw-item" onclick="showP('s3','pb',3)">2<div class="tt">Quiet Authority</div></div>
+          <div class="psw-item" onclick="showP('s3','pc',3)">3<div class="tt">Movement as Human Right</div></div>
+          <div class="psw-item" onclick="showP('s3','pi',3)">yours<div class="tt">Test your own direction</div></div>
+        </div>
+      </div>
+      <div id="s3-pa" class="proposal on">
+        <div class="st" style="margin-top:0;">Democratic Future — EV9 design direction</div>
+        <div class="arow"><span class="an">System foresight</span><div class="atrack"><div class="adot dok" style="left:82%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Aspiration expression</span><div class="atrack"><div class="adot dok" style="left:62%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Innovation posture</span><div class="atrack"><div class="adot dok" style="left:84%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Decision integrity</span><div class="atrack"><div class="adot dok" style="left:76%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Status visibility</span><div class="atrack"><div class="adot dwarn" style="left:48%"></div></div><span class="alwarn">Tension</span></div>
+        <div class="arow"><span class="an">Emotional temperature</span><div class="atrack"><div class="adot dok" style="left:60%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Spatial character</span><div class="atrack"><div class="adot dok" style="left:66%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Life integration</span><div class="atrack"><div class="adot dok" style="left:82%"></div></div><span class="alok">Aligned</span></div>
+        <div class="fable" style="font-style:normal;font-size:12px;margin-top:8px;">Stronger vertical light signature + tactile interior warmth. Moves emotional temperature from cool-architectural toward settled confidence without losing Opposites United tension.</div>
+        <div class="srow" style="margin-top:8px;"><span class="slabel">Vehicle coherence — Act 3 only</span><span class="sval sv-green">0.78</span></div>
+        <div class="srow"><span class="slabel">vs inferred</span><span class="sval sv-green">+0.17</span></div>
+      </div>
+      <div id="s3-pb" class="proposal">
+        <div class="st" style="margin-top:0;">Quiet Authority — EV9 design direction</div>
+        <div class="arow"><span class="an">System foresight</span><div class="atrack"><div class="adot dok" style="left:80%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Aspiration expression</span><div class="atrack"><div class="adot dok" style="left:55%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Innovation posture</span><div class="atrack"><div class="adot dok" style="left:72%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Decision integrity</span><div class="atrack"><div class="adot dok" style="left:86%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Status visibility</span><div class="atrack"><div class="adot dok" style="left:38%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Emotional temperature</span><div class="atrack"><div class="adot dok" style="left:64%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Spatial character</span><div class="atrack"><div class="adot dok" style="left:62%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Life integration</span><div class="atrack"><div class="adot dok" style="left:78%"></div></div><span class="alok">Aligned</span></div>
+        <div class="fable" style="font-style:normal;font-size:12px;margin-top:8px;">Reduce surface ornamentation. Deepen material quality — stone, fabric, wood. The car should look like it has nothing to prove.</div>
+        <div class="srow" style="margin-top:8px;"><span class="slabel">Vehicle coherence — Act 3 only</span><span class="sval sv-green">0.82</span></div>
+        <div class="srow"><span class="slabel">vs inferred</span><span class="sval sv-green">+0.21</span></div>
+      </div>
+      <div id="s3-pc" class="proposal">
+        <div class="st" style="margin-top:0;">Movement as Human Right — EV9 design direction</div>
+        <div class="arow"><span class="an">System foresight</span><div class="atrack"><div class="adot dok" style="left:80%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Aspiration expression</span><div class="atrack"><div class="adot dwarn" style="left:44%"></div></div><span class="alwarn">Tension</span></div>
+        <div class="arow"><span class="an">Innovation posture</span><div class="atrack"><div class="adot dok" style="left:88%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Decision integrity</span><div class="atrack"><div class="adot dok" style="left:80%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Status visibility</span><div class="atrack"><div class="adot dwarn" style="left:52%"></div></div><span class="alwarn">Tension</span></div>
+        <div class="arow"><span class="an">Emotional temperature</span><div class="atrack"><div class="adot dok" style="left:68%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Spatial character</span><div class="atrack"><div class="adot dok" style="left:72%"></div></div><span class="alok">Aligned</span></div>
+        <div class="arow"><span class="an">Life integration</span><div class="atrack"><div class="adot dok" style="left:84%"></div></div><span class="alok">Aligned</span></div>
+        <div class="fable" style="font-style:normal;font-size:12px;margin-top:8px;">Sustainable material story made visible — bio-materials, recycled textiles, natural finishes. The car looks like the future it advocates for.</div>
+        <div class="srow" style="margin-top:8px;"><span class="slabel">Vehicle coherence — Act 3 only</span><span class="sval sv-green">0.75</span></div>
+        <div class="srow"><span class="slabel">vs inferred</span><span class="sval sv-green">+0.14</span></div>
+      </div>
+      <div id="s3-pi" class="proposal">
+        <div class="field-wrap"><label class="elabel">Model</label><input type="text" id="d1" placeholder="EV9, EV6, Sportage..." /></div>
+        <div class="field-wrap"><label class="elabel">Design direction to test</label><textarea id="d2" rows="3" placeholder="Describe the design decision or material direction..."></textarea></div>
+        <div class="field-wrap"><label class="elabel">Target persona</label><input type="text" id="d3" placeholder="Which customer is this for?" /></div>
+        <button class="btn" onclick="sendDesign()">Test this direction ↗</button>
+        <div class="hint"><strong>Output appears below in this chat</strong> — axis verdict, coherence score, recommendation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ACT 4 ===== -->
+  <div class="act" id="t4">
+    <div class="panel">
+      <div class="ph"><div class="ph-left"><span class="badge bp">From public signals</span><span class="pl">EV9 × Bold Riser — inferred</span></div></div>
+      <div class="pctx">
+        <div class="pctx-name">The Bold Riser</div>
+        <div class="pctx-t">Established, arrived, compares to German premium. Needs the car to signal purposeful status — but Kia's challenger tone creates dissonance before the story begins.</div>
+      </div>
+      <div class="st">Ur-story — five stages</div>
+      <div class="sstage"><div class="snum">Stage 1 · Ordinary world</div><div class="stxt">A person who has built something real. Ready for what comes next — but the world still offers the same options as everyone else.</div></div>
+      <div class="sstage"><div class="snum">Stage 2 · The call</div><div class="stxt">A vehicle that doesn't look like compromise. That matches where they're going, not where they've been.</div></div>
+      <div class="sstage"><div class="snum">Stage 3 · The threshold</div><div class="stxt">The moment they sit inside. Space that feels like a decision has already been made — in their favour.</div></div>
+      <div class="sstage"><div class="snum">Stage 4 · Transformation</div><div class="stxt">Moving through the world in something that says, without saying: I chose this deliberately.</div></div>
+      <div class="sstage"><div class="snum">Stage 5 · Return</div><div class="stxt">Others notice. Not because it's loud. Because it's right.</div></div>
+      <div class="st">Campaign entry</div>
+      <div class="entry">
+        <div class="entry-lbl">Setting · atmosphere · first image</div>
+        <div class="entry-txt">Dusk. An underground car park, near-empty. The EV9 already parked — one of two cars left, the other a German saloon. No person in frame yet. The camera moves toward it slowly. Cut to: the owner's hand on the door handle. Pull back — city lights beginning outside the ramp exit.</div>
+        <div class="entry-tl">Already decided.</div>
+      </div>
+      <div class="srow"><span class="slabel">Narrative coherence — Act 4 only</span><span class="sval sv-amber">0.64</span></div>
+    </div>
+    <div class="panel">
+      <div class="ph">
+        <div class="ph-left"><span class="badge bl">Proposal</span><span class="pl">Pre-generated</span></div>
+        <div class="psw" id="psw4">
+          <div class="psw-item on" onclick="showP('s4','pa',4)">1<div class="tt">Democratic Future</div></div>
+          <div class="psw-item" onclick="showP('s4','pb',4)">2<div class="tt">Quiet Authority</div></div>
+          <div class="psw-item" onclick="showP('s4','pc',4)">3<div class="tt">Movement as Human Right</div></div>
+          <div class="psw-item" onclick="showP('s4','pi',4)">yours<div class="tt">Build your own story</div></div>
+        </div>
+      </div>
+      <div id="s4-pa" class="proposal on">
+        <div class="pctx pctx-p">
+          <div class="pctx-name">The Substance Seeker · EV9</div>
+          <div class="pctx-t">Has outgrown status signalling. Wants a flagship that earns its place through design intelligence and material honesty. Needs to be proven right, not sold to.</div>
+        </div>
+        <div class="st">Ur-story — five stages</div>
+        <div class="sstage"><div class="snum">Stage 1 · Ordinary world</div><div class="stxt">Someone who has spent years watching premium brands rest on reputation. Now looking for a reason to be proven wrong — about a brand, about an assumption, about what they thought they knew.</div></div>
+        <div class="sstage"><div class="snum">Stage 2 · The call</div><div class="stxt">A car that earns attention without asking for it. That looks like a considered decision rather than a familiar one.</div></div>
+        <div class="sstage"><div class="snum">Stage 3 · The threshold</div><div class="stxt">They sit in it with the intention of finding the flaw. They don't find it. The materials are right. The proportions are right. The silence is deliberate.</div></div>
+        <div class="sstage"><div class="snum">Stage 4 · Transformation</div><div class="stxt">They drive away having changed their mind. Not because they were sold to — because the object proved itself and they were honest enough to notice.</div></div>
+        <div class="sstage"><div class="snum">Stage 5 · Return</div><div class="stxt">They tell people with a certainty that's slightly surprising, even to themselves. Not enthusiasm — conviction.</div></div>
+        <div class="st">Campaign entry</div>
+        <div class="entry">
+          <div class="entry-lbl">Setting · atmosphere · first image</div>
+          <div class="entry-txt">Early morning. A city street that hasn't woken up yet — bakeries open, no traffic. The EV9 is parked outside a building whose architecture it matches: restrained, expensive-looking without announcing it. A man in his mid-forties walks toward it carrying coffee. He doesn't look at the car the way people look at a car they're proud of. He looks at it the way you look at something you've made a good decision about. He gets in. The city starts to move around him. He doesn't.</div>
+          <div class="entry-tl">You already knew.</div>
+        </div>
+        <div class="track">
+          <div class="track-note">♪</div>
+          <div><div class="track-title">Motion — Bonobo</div><div class="track-why">Organic, forward-moving, design-literate without announcing itself. The music equivalent of a considered decision.</div></div>
+        </div>
+        <div class="srow" style="margin-top:8px;"><span class="slabel">Narrative coherence — Act 4 only</span><span class="sval sv-green">0.81</span></div>
+      </div>
+      <div id="s4-pb" class="proposal">
+        <div class="pctx pctx-p">
+          <div class="pctx-name">The Considered Defector · EV9</div>
+          <div class="pctx-t">Driven German premium for fifteen years. Now finds the badge signals conformity. Wants to defect but needs the alternative to be objectively, demonstrably better. Will not move on faith alone.</div>
+        </div>
+        <div class="st">Ur-story — five stages</div>
+        <div class="sstage"><div class="snum">Stage 1 · Ordinary world</div><div class="stxt">Someone whose taste has quietly moved past the objects they own. The gap between what they know to be good and what they're still driving has become impossible to ignore.</div></div>
+        <div class="sstage"><div class="snum">Stage 2 · The call</div><div class="stxt">Something that doesn't try to be anything other than what it is. No performance. No announcement. Just the quality of a thing designed by people who knew exactly what they were doing.</div></div>
+        <div class="sstage"><div class="snum">Stage 3 · The threshold</div><div class="stxt">The door closes with a weight that says nothing needs to be added. The interior doesn't show off — it holds. Every surface was chosen, not specified.</div></div>
+        <div class="sstage"><div class="snum">Stage 4 · Transformation</div><div class="stxt">They drive in the quiet of something that has no gap between what it promises and what it delivers. That gap used to be normal. Now its absence is remarkable.</div></div>
+        <div class="sstage"><div class="snum">Stage 5 · Return</div><div class="stxt">When asked, they explain their choice without defensiveness — with the calm of someone who has done the comparison and has nothing left to justify.</div></div>
+        <div class="st">Campaign entry</div>
+        <div class="entry">
+          <div class="entry-lbl">Setting · atmosphere · first image</div>
+          <div class="entry-txt">Night. A wet street in a European city — not dramatic weather, just the ordinary rain that makes surfaces reflect. The EV9 is parked on a residential street. Shot from across the road: the interior is lit softly from within, the way a room is lit when someone is reading. A woman in her late forties crosses toward it with the unhurried pace of someone who has nowhere to be except exactly here. She opens the door. The interior light spills briefly onto the wet pavement. She closes it. The street returns to its ordinary quiet — except the car is still there, completely at home.</div>
+          <div class="entry-tl">No explanation needed.</div>
+        </div>
+        <div class="track">
+          <div class="track-note">♪</div>
+          <div><div class="track-title">On the Nature of Daylight — Max Richter</div><div class="track-why">Unhurried, structurally precise, deeply human underneath the restraint. No gap between what it promises and what it delivers.</div></div>
+        </div>
+        <div class="srow" style="margin-top:8px;"><span class="slabel">Narrative coherence — Act 4 only</span><span class="sval sv-green">0.83</span></div>
+      </div>
+      <div id="s4-pc" class="proposal">
+        <div class="pctx pctx-p">
+          <div class="pctx-name">The Purpose-Led Flagship Buyer · EV9</div>
+          <div class="pctx-t">The vehicle is a public statement of values. Wants the largest, most visible choice to be the most responsible one — without sacrificing presence or authority.</div>
+        </div>
+        <div class="st">Ur-story — five stages</div>
+        <div class="sstage"><div class="snum">Stage 1 · Ordinary world</div><div class="stxt">Someone for whom every significant decision is simultaneously personal and consequential. They don't separate who they are from what they choose. The vehicle is not exempt from this.</div></div>
+        <div class="sstage"><div class="snum">Stage 2 · The call</div><div class="stxt">A car large enough to mean something — and honest enough to mean the right thing. Scale without apology. Presence without guilt.</div></div>
+        <div class="sstage"><div class="snum">Stage 3 · The threshold</div><div class="stxt">They get in. Real space. Materials that speak of intention, not expenditure. Technology visible enough to be understood, invisible enough to trust.</div></div>
+        <div class="sstage"><div class="snum">Stage 4 · Transformation</div><div class="stxt">They move through the world in something that makes no contradictions. For the first time, the size of the vehicle and the scale of their values occupy the same object.</div></div>
+        <div class="sstage"><div class="snum">Stage 5 · Return</div><div class="stxt">Their family is in the back. The road ahead is open. Nothing has been traded away to get here.</div></div>
+        <div class="st">Campaign entry</div>
+        <div class="entry">
+          <div class="entry-lbl">Setting · atmosphere · first image</div>
+          <div class="entry-txt">Dawn. A coastal road, high ground, the sea just visible below. The light is grey-blue, not golden — the kind of morning that hasn't been romanticised yet. The EV9 rounds a bend and comes into frame from behind: large, unhurried, silent at speed. Cut to inside — three rows, two children asleep in the back, a couple in the front talking quietly. The world outside is enormous. The car is not small against it. It simply belongs — present without dominating, purposeful without performing. The horizon opens. The camera stays wide.</div>
+          <div class="entry-tl">Both. Finally.</div>
+        </div>
+        <div class="track">
+          <div class="track-note">♪</div>
+          <div><div class="track-title">Re:Stacks — Bon Iver</div><div class="track-why">Organic, open, earned emotion without sentimentality. Matches the wide landscape, the quiet family, the horizon. Nothing performed.</div></div>
+        </div>
+        <div class="srow" style="margin-top:8px;"><span class="slabel">Narrative coherence — Act 4 only</span><span class="sval sv-green">0.79</span></div>
+      </div>
+      <div id="s4-pi" class="proposal">
+        <div>
+          <button class="spbtn on" onclick="setSP(this,'Substance Seeker')">Substance Seeker</button>
+          <button class="spbtn" onclick="setSP(this,'Quiet Achiever')">Quiet Achiever</button>
+          <button class="spbtn" onclick="setSP(this,'Systemic Optimist')">Systemic Optimist</button>
+        </div>
+        <div class="field-wrap"><label class="elabel">Model</label><input type="text" id="s1" value="EV9" /></div>
+        <div class="field-wrap"><label class="elabel">Campaign context</label><textarea id="s2" rows="2" placeholder="European launch, Father's Day, urban mobility moment..."></textarea></div>
+        <button class="btn" onclick="sendStory()">Build this story ↗</button>
+        <div class="hint"><strong>Switch persona above</strong> — same car, different story. <strong>Output appears below in this chat.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-cell">
+      <div class="footer-top">
+        <span class="f-label">From public signals</span>
+        <div class="f-scores"><div class="f-score"><span class="f-score-label">Overall R</span><span class="f-score-val sv-amber">0.63</span></div></div>
+      </div>
+      <div class="footer-sub">Average across soul · clients · cars · story</div>
+    </div>
+    <div class="footer-cell">
+      <div class="footer-top">
+        <span class="f-label">Pre-generated proposals</span>
+        <div class="f-scores">
+          <div class="f-score"><span class="f-score-label">1</span><span class="f-score-val sv-green">0.84</span></div>
+          <div class="f-score"><span class="f-score-label">2</span><span class="f-score-val sv-green">0.81</span></div>
+          <div class="f-score"><span class="f-score-label">3</span><span class="f-score-val sv-green">0.79</span></div>
+        </div>
+      </div>
+      <div class="footer-sub">Average across soul · clients · cars · story</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let storyPersona = 'Substance Seeker';
+
+function go(n) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('on', i===n));
+  document.getElementById('t0').classList.toggle('on', n===0);
+  for (let i=1; i<=4; i++) {
+    const l=document.getElementById('t'+i);
+    if(l) l.classList.toggle('on', i===n);
+  }
+  const view = document.getElementById('view');
+  if(n===0) { view.className='body-full'; } else { view.className='body'; }
+}
+
+function showP(section, prop, pswIdx) {
+  const pa = document.getElementById(section+'-pa');
+  if (!pa) return;
+  pa.parentElement.querySelectorAll('.proposal').forEach(p => p.classList.remove('on'));
+  document.getElementById(section+'-'+prop).classList.add('on');
+  const psw = document.getElementById('psw'+pswIdx);
+  if (psw) {
+    const map = ['pa','pb','pc','pi'];
+    psw.querySelectorAll('.psw-item').forEach((el,i) => el.classList.toggle('on', map[i]===prop));
+  }
+}
+
+function setSP(el, name) {
+  el.closest('div').querySelectorAll('.spbtn').forEach(b => b.classList.remove('on'));
+  el.classList.add('on'); storyPersona = name;
+}
+
+function v(id) { const el=document.getElementById(id); return el ? el.value.trim() : ''; }
+
+function sendSoul() {
+  sendPrompt('[KIA BRAND ENGINE — YOUR IDEA: SOUL]\n\nBuild a Kia Six-Line Core, Fable, one-line Claim (form: [noun] that [one word effect], like "Design that liberates"), three Partner Brands (CASM logic — cultural territory fit), and coherence score. No preamble.\n\nHuman Belief: '+v('b1')+'\nThe Obstacle: '+v('b2')+'\nThe Enabler: '+v('b3')+'\nMagic Moment: '+v('b4')+'\n\nHUMAN BELIEF: [one sentence]\nTHE DRIVE: [one sentence]\nTHE OBSTACLE: [one sentence]\nTHE ENABLER: [one sentence]\nMAGIC MOMENT: [one sentence]\nCIRCULATION: [one sentence]\nFABLE: [2–3 sentences, no brand names]\nCLAIM: [noun that verb — e.g. Design that liberates]\nPARTNER 1: [brand] — [one sentence why]\nPARTNER 2: [brand] — [one sentence why]\nPARTNER 3: [brand] — [one sentence why]\nCOHERENCE SCORE: [0.70–0.95]\nVS PUBLIC SIGNALS (0.67): [+0.xx — one sentence on what changed]');
+}
+
+function sendPersona() {
+  sendPrompt('[KIA BRAND ENGINE — YOUR IDEA: PERSONA]\n\nSegment: '+v('p1')+'\nConsidering: '+(v('p2')||'unspecified')+'\n\nDefine by psychological state and identity tension. What do they need the car to do for their sense of self?\n\nPERSONA NAME: [2–3 words]\nPERSONA TYPE: [Type A / B / C]\nIDENTITY TENSION: [one sentence]\nWORLDVIEW ALIGNMENT (WV): [0.0–1.0]\nASPIRATION ALIGNMENT (AV): [0.0–1.0]\nCOGNITIVE MATCH (CI): [0.0–1.0]\nDISSONANCE (D): [0.0–0.30]\nRESONANCE SCORE R = (WV × AV × CI) − D: [result]\nZONE: [Core / Elastic / Fracture]\nWHAT THE CAR MUST DO: [one sentence]\nMESSAGING SHIFT: [one sentence]');
+}
+
+function sendDesign() {
+  sendPrompt('[KIA BRAND ENGINE — YOUR IDEA: DESIGN AUDIT]\n\nModel: '+(v('d1')||'unspecified')+'\nDirection: '+v('d2')+'\nPersona: '+(v('d3')||'unspecified')+'\n\nScore each — Aligned / Tension / Flag:\nSystem foresight: [verdict] — [reason]\nAspiration expression: [verdict] — [reason]\nInnovation posture: [verdict] — [reason]\nDecision integrity: [verdict] — [reason]\nStatus visibility: [verdict] — [reason]\nEmotional temperature: [verdict] — [reason]\nSpatial character: [verdict] — [reason]\nLife integration: [verdict] — [reason]\nOVERALL COHERENCE: [0.55–0.95]\nIMPROVEMENT VS INFERRED (0.61): [+0.xx]\nPRIMARY FLAG: [one sentence]\nBRIEF RECOMMENDATION: [one sentence]');
+}
+
+function sendStory() {
+  sendPrompt('[KIA BRAND ENGINE — YOUR IDEA: STORY]\n\nVehicle: '+(v('s1')||'EV9')+'\nPersona: '+storyPersona+'\nContext: '+(v('s2')||'general campaign')+'\n\nBuild the ur-story, campaign entry scene, tagline, and one music track. The entry moment should be a fully written scene — specific setting, time of day, what we see first, what the person is doing.\n\nStage 1 — Ordinary world: [one sentence]\nStage 2 — The call: [one sentence]\nStage 3 — The threshold: [one sentence]\nStage 4 — Transformation: [one sentence]\nStage 5 — Return: [one sentence]\nCAMPAIGN ENTRY: [3–5 sentences — a fully written opening scene]\nTAGLINE DIRECTION: [3–6 words]\nMUSIC TRACK: [artist — title] — [one sentence on why it fits]\nRESONANCE SCORE: [0.60–0.92]');
+}
+</script>

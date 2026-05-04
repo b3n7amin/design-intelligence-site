@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volkswagen — Full Brand Intelligence Report · Reasonant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+@font-face{font-family:'Tiempos';src:local('Tiempos Text'),local('TiemposText-Regular'),local('Georgia');font-weight:400}
+:root{
+  --font-sans:'DM Sans',system-ui,sans-serif;
+  --font-head:'Inter',system-ui,sans-serif;
+  --bg:#111110;--bg2:#1C1C1A;--bg3:#252523;--bg4:#2E2E2C;--bg5:#3A3A38;
+  --t1:#F7F6F3;--t2:rgba(247,246,243,0.55);--t3:rgba(247,246,243,0.30);
+  --bd:rgba(247,246,243,0.08);--bdm:rgba(247,246,243,0.13);
+  --brand:#8A9BAE;--brand-lt:rgba(138,155,174,0.13);--brand-md:#D0D8E2;
+  --user:#C8A96E;--user-lt:rgba(200,169,110,0.12);
+  --car:#6B6E7E;--car-lt:rgba(107,110,126,0.12);
+  --good:#29B885;--good-lt:rgba(41,184,133,0.1);
+  --warn:#D4900A;--warn-lt:rgba(212,144,10,0.1);
+  --bad:#E06030;--bad-lt:rgba(224,96,48,0.1);
+  --crit:#C43030;--crit-lt:rgba(196,48,48,0.12);--crit-bd:rgba(196,48,48,0.28);
+  --gold:#C8A96E;
+  --toyota:#CC0000;--toyota-lt:rgba(204,0,0,0.1);
+  --byd:#1AACE8;--byd-lt:rgba(26,172,232,0.1);
+  --max:880px;--nav:52px;--r:6px;--rl:10px
+}
+html{scroll-behavior:smooth;font-size:15px}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bg5);border-radius:2px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(12,12,10,0.94);backdrop-filter:blur(16px);border-bottom:0.5px solid var(--bd);height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+.nb{font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--t1);text-decoration:none;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.np{width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.nl{display:flex;align-items:center;gap:1px;list-style:none;overflow-x:auto;padding-right:4px}
+.nl a{font-size:10px;font-weight:500;color:var(--t3);text-decoration:none;padding:4px 8px;border-radius:4px;white-space:nowrap;transition:color .15s,background .15s}
+.nl a:hover{color:var(--t1);background:var(--bg4)}
+
+/* COVER */
+.cover{min-height:90vh;background:var(--bg);display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 60px;position:relative;overflow:hidden}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.crule{position:absolute;top:52px;left:32px;right:32px;height:.5px;background:var(--gold);opacity:.45}
+.ckick{position:absolute;top:36px;left:32px;font-size:9px;font-weight:600;letter-spacing:.14em;color:var(--gold)}
+.ci{max-width:var(--max);margin:0 auto;padding:0 32px;width:100%}
+.ctitle{font-weight:300;font-size:clamp(44px,7vw,78px);line-height:1;color:var(--t1);margin-bottom:24px;letter-spacing:-.025em}
+.ctitle strong{font-weight:600;display:block}
+.cmid{width:100%;height:.5px;background:var(--bg5);margin-bottom:20px}
+.csub{font-family:var(--font-head);font-style:italic;font-size:14px;color:var(--t2);line-height:1.7;max-width:560px;margin-bottom:28px}
+.cpills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:0}
+.cpill{font-size:9.5px;font-weight:600;padding:4px 10px;border-radius:3px;letter-spacing:.04em}
+.cfoot{position:absolute;bottom:20px;left:32px;right:32px;display:flex;justify-content:space-between;font-size:9px;color:var(--t3);letter-spacing:.04em;border-top:.5px solid var(--bg5);padding-top:14px}
+
+/* MAIN LAYOUT */
+main{max-width:var(--max);margin:0 auto;padding:0 32px}
+.sec{padding:56px 0 0}
+.sec+.sec{border-top:.5px solid var(--bd);margin-top:56px}
+
+/* NARRATIVE THREAD */
+.thread{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 var(--r) var(--r) 0;padding:16px 20px;margin-bottom:28px}
+.thread-label{font-size:9px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.thread-text{font-family:var(--font-head);font-style:italic;font-size:13.5px;color:var(--t2);line-height:1.7}
+.thread-text strong{font-style:normal;font-weight:600;color:var(--t1)}
+
+/* TYPOGRAPHY */
+.kick{display:block;font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--t3);text-transform:uppercase;margin-bottom:8px}
+.stitle{font-size:21px;font-weight:500;color:var(--t1);line-height:1.25;margin-bottom:10px;letter-spacing:-.01em}
+.sint{font-size:13px;color:var(--t2);line-height:1.7;max-width:660px;margin-bottom:28px}
+.lbl{display:block;font-size:9px;font-weight:600;letter-spacing:.1em;color:var(--t3);text-transform:uppercase;margin-bottom:10px}
+.body{font-size:12.5px;color:var(--t2);line-height:1.7;margin-bottom:10px}
+.serif-q{font-family:var(--font-head);font-style:italic;font-size:14px;line-height:1.7;color:var(--t2);border-left:2px solid var(--bg5);padding:4px 0 4px 16px;margin:14px 0}
+.serif-q strong{font-style:normal;font-weight:600;color:var(--t1)}
+
+/* PILLAR HEADERS */
+.ph{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 16px;border-radius:var(--rl);margin-bottom:18px;border-left:3px solid transparent}
+.ph-l{flex:1}
+.ph-k{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.ph-t{font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--t1)}
+.badge{font-size:9px;font-weight:700;letter-spacing:.05em;padding:5px 10px;border-radius:4px;white-space:nowrap;color:white}
+.ph-brand{background:var(--brand-lt);border-left-color:var(--brand)}.ph-brand .ph-k{color:var(--brand)}
+.ph-user{background:var(--user-lt);border-left-color:var(--user)}.ph-user .ph-k{color:var(--user)}
+.ph-car{background:var(--car-lt);border-left-color:var(--car)}.ph-car .ph-k{color:var(--car)}
+
+/* DIMENSION BARS — SPLIT INTO NAMED SUBSECTIONS */
+.dim-group{margin-bottom:24px}
+.dim-group-title{font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--t3);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:.5px solid var(--bd)}
+.dim-item{display:grid;grid-template-columns:128px 1fr 34px;gap:12px;align-items:start;margin-bottom:14px}
+.dim-item:last-child{margin-bottom:0}
+.dim-label{font-size:11px;font-weight:600;color:var(--t1);padding-top:1px;line-height:1.35}
+.dim-right{display:flex;flex-direction:column;gap:5px}
+.dim-track{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-top:4px}
+.dim-fill{height:100%;border-radius:2px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.dim-ctx{font-size:11px;color:var(--t2);line-height:1.5}
+.dim-pct{font-size:11px;font-weight:600;padding-top:1px;text-align:right}
+
+/* PROMISE LIST */
+.prom-list{border:.5px solid var(--bd);border-radius:var(--rl);overflow:hidden;margin-bottom:12px}
+.prom-item{padding:13px 16px;border-bottom:.5px solid var(--bd);background:var(--bg2);transition:background .12s}
+.prom-item:last-child{border-bottom:none}
+.prom-item:hover{background:var(--bg3)}
+.prom-t{font-size:11.5px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.prom-b{font-size:11.5px;color:var(--t2);line-height:1.6}
+
+/* GROUPS */
+.grp-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.grp-row{display:grid;grid-template-columns:116px 1fr;border:.5px solid var(--bd);border-radius:var(--rl);overflow:hidden}
+.grp-l{background:var(--bg3);padding:12px;display:flex;flex-direction:column;justify-content:space-between;border-right:.5px solid var(--bd)}
+.grp-id{font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--user);text-transform:uppercase;margin-bottom:3px}
+.grp-name{font-size:10px;font-weight:600;color:var(--t1);line-height:1.3;margin-bottom:8px;flex:1}
+.grp-score{font-size:18px;font-weight:600;margin-bottom:3px}
+.grp-badge{font-size:8px;font-weight:700;padding:2px 7px;border-radius:3px;display:inline-block;color:white}
+.grp-r{padding:12px 15px;display:flex;align-items:center;background:var(--bg2)}
+.grp-desc{font-size:11.5px;color:var(--t2);line-height:1.6}
+
+/* RESONANCE MINI-BARS inside group */
+.res-bars{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.res-bar-row{display:flex;align-items:center;gap:8px}
+.res-bar-lbl{font-size:9px;color:var(--t3);min-width:80px}
+.res-bar-track{flex:1;height:3px;background:var(--bg4);border-radius:2px;overflow:hidden}
+.res-bar-fill{height:100%;border-radius:2px}
+.res-bar-val{font-size:9px;font-weight:600;min-width:24px;text-align:right}
+
+/* FLEET */
+.fleet-list{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.vrow{display:grid;grid-template-columns:140px 88px 88px 48px 1fr;gap:9px;align-items:center;background:var(--bg2);border-radius:var(--r);padding:8px 11px;border:.5px solid transparent;transition:background .12s,border-color .12s}
+.vrow:hover{background:var(--bg3);border-color:var(--bd)}
+.vrow.crit{background:rgba(196,48,48,.07);border-color:rgba(196,48,48,.2)}
+.vrow.crit:hover{background:rgba(196,48,48,.1)}
+.vname{font-size:11px;font-weight:600;color:var(--t1);line-height:1.25}
+.vseg{font-size:9px;color:var(--t3);margin-top:1px}
+.vmb{display:flex;flex-direction:column;gap:3px}
+.vmb-lbl{font-size:8px;color:var(--t3);font-weight:500}
+.vmb-tr{height:4px;background:var(--bg5);border-radius:2px;overflow:hidden}
+.vmb-fi{height:100%;border-radius:2px}
+.dbadge{font-size:9px;font-weight:700;padding:3px 5px;border-radius:3px;color:white;text-align:center;white-space:nowrap}
+.vnote{font-size:10px;color:var(--t2);line-height:1.4}
+.fleet-leg{font-size:10px;color:var(--t3);margin-top:6px;display:flex;gap:14px;flex-wrap:wrap}
+.fleet-leg span{display:flex;align-items:center;gap:4px}
+.ldot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+
+/* RING */
+.ring-wrap{display:flex;gap:32px;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap}
+.ring-legend{flex:1;min-width:200px;display:flex;flex-direction:column;gap:14px;padding-top:4px}
+.rl-item{display:flex;flex-direction:column;gap:4px}
+.rl-lbl{font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.rl-track{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden}
+.rl-bar{height:100%;border-radius:2px;transition:width .8s ease}
+.rl-desc{font-size:11px;color:var(--t2);line-height:1.5}
+
+/* DRIFT AXES */
+.drift-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.drift-cell{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:12px 13px}
+.drift-name{font-size:9px;font-weight:600;letter-spacing:.05em;color:var(--t3);text-transform:uppercase;margin-bottom:6px}
+.drift-ceo-row{display:flex;align-items:center;gap:7px;margin-bottom:4px}
+.drift-vw-row{display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.drift-track{flex:1;height:4px;background:var(--bg5);border-radius:2px;overflow:hidden}
+.drift-fill{height:100%;border-radius:2px}
+.drift-who{font-size:8.5px;min-width:36px;color:var(--t3)}
+.drift-val{font-size:9px;font-weight:600;min-width:26px;text-align:right}
+.drift-desc{font-size:10.5px;color:var(--t2);line-height:1.45;margin-top:2px}
+.drift-gap{font-size:9px;font-weight:600;padding:2px 7px;border-radius:3px;margin-top:5px;display:inline-block}
+
+/* COMPETITOR BARS */
+.comp-dim-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.comp-dim{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:13px 15px}
+.comp-dim-name{font-size:11px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.comp-dim-desc{font-size:11px;color:var(--t2);line-height:1.5;margin-bottom:9px}
+.comp-bars{display:flex;flex-direction:column;gap:5px}
+.cb-row{display:flex;align-items:center;gap:8px}
+.cb-brand{font-size:9.5px;font-weight:600;min-width:52px}
+.cb-track{flex:1;height:5px;background:var(--bg5);border-radius:3px;overflow:hidden}
+.cb-fill{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.cb-pct{font-size:9.5px;font-weight:600;min-width:28px;text-align:right}
+.comp-insight{font-size:10.5px;color:var(--t3);margin-top:7px;line-height:1.45;font-style:italic}
+
+/* WINDOW CARDS */
+.win-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.win-card{border:.5px solid var(--bd);border-radius:var(--r);overflow:hidden}
+.win-head{padding:10px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg3);border-bottom:.5px solid var(--bd)}
+.win-title{font-size:12px;font-weight:600;color:var(--t1)}
+.win-size{font-size:8.5px;font-weight:700;padding:3px 8px;border-radius:3px;background:var(--user-lt);color:var(--user)}
+.win-body{padding:10px 15px;background:var(--bg2);font-size:11.5px;color:var(--t2);line-height:1.6}
+.win-risk{font-size:10.5px;color:var(--warn);margin-top:5px;font-weight:500}
+
+/* GAP BLOCKS */
+.gap-list{display:flex;flex-direction:column;gap:14px}
+.gap-block{border:.5px solid var(--crit-bd);border-radius:var(--rl);overflow:hidden}
+.gap-head{padding:11px 15px;border-bottom:.5px solid var(--crit-bd);background:var(--crit-lt)}
+.gap-title{font-size:12px;font-weight:600;color:#E06060;line-height:1.35}
+.gap-finding{padding:12px 15px;font-size:11.5px;color:var(--t2);line-height:1.65;border-bottom:.5px solid var(--bd);background:var(--bg2)}
+.proposals{background:var(--bg2);padding:3px 0}
+.prop{display:flex;gap:9px;padding:9px 15px;border-bottom:.5px solid var(--bd)}
+.prop:last-child{border-bottom:none}
+.ppip{width:6px;height:6px;border-radius:50%;background:var(--user);flex-shrink:0;margin-top:5px}
+.pb{flex:1}
+.plbl{font-size:9px;font-weight:700;color:var(--user);letter-spacing:.04em;margin-bottom:2px;text-transform:uppercase}
+.ptxt{font-size:11.5px;color:var(--t2);line-height:1.6}
+
+/* TIMELINE */
+.tl{display:flex;flex-direction:column;position:relative;padding:0 0 0 44px}
+.tl::before{content:'';position:absolute;left:14px;top:20px;bottom:20px;width:1px;background:var(--bg5)}
+.tl-item{position:relative;padding-bottom:22px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-30px;top:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;z-index:1}
+.tl-phase{font-size:8.5px;font-weight:600;color:var(--t3);letter-spacing:.05em;margin-bottom:4px}
+.tl-title{font-size:12.5px;font-weight:600;color:var(--t1);margin-bottom:4px;line-height:1.3}
+.tl-desc{font-size:11.5px;color:var(--t2);line-height:1.6}
+.tl-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.ttag{font-size:9px;font-weight:600;padding:3px 8px;border-radius:3px;letter-spacing:.03em}
+
+/* OUTCOME GRID */
+.outcome{margin:0 0 18px;padding:15px;background:var(--bg3);border-radius:var(--r);border:.5px solid var(--bd)}
+.out-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:10px;display:block}
+.out-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.out-item{display:flex;flex-direction:column;gap:4px}
+.out-metric{font-size:18px;font-weight:600;line-height:1}
+.out-desc{font-size:10.5px;color:var(--t2);line-height:1.4}
+
+/* RISK FLAG */
+.risk{display:flex;gap:9px;padding:10px 15px 14px;background:var(--bg2);border-top:.5px solid var(--bd)}
+.risk-icon{font-size:12px;flex-shrink:0;margin-top:1px}
+.risk-text{font-size:11px;color:var(--t3);line-height:1.55}
+
+/* CONCLUSION */
+.conclusion{background:var(--bg2);border:.5px solid var(--bdm);border-radius:var(--rl);overflow:hidden;margin-bottom:20px}
+.conc-head{padding:18px 22px;background:var(--bg3);border-bottom:.5px solid var(--bd)}
+.conc-head-title{font-size:15px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.conc-head-sub{font-size:12px;color:var(--t2);line-height:1.5}
+.conc-body{padding:20px 22px}
+.conc-para{font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:14px}
+.conc-para:last-child{margin-bottom:0}
+.conc-para strong{color:var(--t1);font-weight:600}
+
+.verdict-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.verdict-card{border-radius:var(--r);padding:14px 16px;border:.5px solid var(--bd)}
+.vc-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.vc-title{font-size:12.5px;font-weight:600;color:var(--t1);margin-bottom:5px;line-height:1.35}
+.vc-body{font-size:11.5px;color:var(--t2);line-height:1.6}
+
+.four-decisions{display:flex;flex-direction:column;gap:0;border:.5px solid var(--bd);border-radius:var(--rl);overflow:hidden;margin-bottom:20px}
+.fd-item{padding:14px 18px;border-bottom:.5px solid var(--bd);background:var(--bg2);display:flex;gap:14px;align-items:flex-start;transition:background .12s}
+.fd-item:last-child{border-bottom:none}
+.fd-item:hover{background:var(--bg3)}
+.fd-num{font-size:18px;font-weight:600;color:var(--gold);flex-shrink:0;line-height:1;padding-top:2px;min-width:22px}
+.fd-body{flex:1}
+.fd-title{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.fd-text{font-size:11.5px;color:var(--t2);line-height:1.6}
+.fd-timeline{font-size:10px;color:var(--t3);margin-top:5px;font-weight:500}
+
+.closing-sermon{font-family:var(--font-head);font-style:italic;font-size:15px;line-height:1.8;color:var(--t2);padding:22px 24px;background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 var(--r) var(--r) 0;margin-bottom:20px}
+.closing-sermon strong{font-style:normal;font-weight:600;color:var(--t1)}
+
+/* DATA TABLE */
+.dtbl{width:100%;border:.5px solid var(--bd);border-radius:var(--rl);overflow:hidden;margin-bottom:12px}
+.dtbl-head{display:grid;grid-template-columns:1.4fr .7fr 1.8fr 1.6fr;background:var(--bg3);padding:9px 13px;gap:11px}
+.dth{font-size:8px;font-weight:700;letter-spacing:.08em;color:var(--t3);text-transform:uppercase}
+.dtbl-row{display:grid;grid-template-columns:1.4fr .7fr 1.8fr 1.6fr;padding:10px 13px;gap:11px;border-top:.5px solid var(--bd);background:var(--bg2);align-items:start;transition:background .12s}
+.dtbl-row:hover{background:var(--bg3)}
+.dt-name{font-size:11px;font-weight:600;color:var(--t1);line-height:1.4}
+.avail{font-size:8px;font-weight:700;padding:3px 7px;border-radius:3px;display:inline-block;color:white;white-space:nowrap}
+.dt-txt{font-size:11px;color:var(--t2);line-height:1.5}
+
+/* SOURCES */
+.src{padding:28px 0 44px;border-top:.5px solid var(--bd);margin-top:52px}
+.src-lbl{display:block;font-size:9px;font-weight:600;letter-spacing:.1em;color:var(--t3);text-transform:uppercase;margin-bottom:8px}
+.src-txt{font-size:11px;color:var(--t3);line-height:1.65;max-width:640px;margin-bottom:12px}
+.src-copy{font-size:10px;color:var(--t3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt20{margin-top:20px}.mb12{margin-bottom:12px}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.fade.vis{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#cover" class="nb"><span class="np"></span>Reasonant</a>
+  <ul class="nl">
+    <li><a href="#brand">Brand</a></li>
+    <li><a href="#users">Users</a></li>
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#ring">Ring</a></li>
+    <li><a href="#drift">Leadership</a></li>
+    <li><a href="#comp">Competition</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <div class="grain"></div>
+  <span class="ckick">REASONANT · FULL BRAND INTELLIGENCE · VOLKSWAGEN PASSENGER CARS · APRIL 2026</span>
+  <div class="crule"></div>
+  <div class="ci">
+    <h1 class="ctitle">The brand<br>knows who<br><strong>it is.</strong></h1>
+    <div class="cmid"></div>
+    <p class="csub">The problem is not Volkswagen's identity. It is coherent, distinctive, and 80 years deep. The problem is that a sequence of internal decisions — a technology philosophy applied to the wrong products, a CEO register that speaks a different language, and a competitive landscape that has shifted faster than the organisation has adapted — is working against it. This report maps all of it.</p>
+    <div class="cpills">
+      <span class="cpill" style="background:var(--brand-lt);color:var(--brand)">Brand portrait</span>
+      <span class="cpill" style="background:var(--user-lt);color:var(--user)">Audience resonance</span>
+      <span class="cpill" style="background:var(--car-lt);color:var(--car)">Fleet analysis</span>
+      <span class="cpill" style="background:rgba(201,168,76,.12);color:var(--gold)">Leadership drift</span>
+      <span class="cpill" style="background:var(--byd-lt);color:var(--byd)">Competitive map</span>
+      <span class="cpill" style="background:var(--crit-lt);color:#E06060">Solution plans</span>
+    </div>
+  </div>
+  <div class="cfoot">
+    <span>April 2026 · For private circulation only</span>
+    <span>© 2026 Reasonant.io · All rights reserved</span>
+  </div>
+</section>
+
+<main>
+
+<!-- ═══════════════════════ SECTION 1 — BRAND ═══════════════════════ -->
+<div class="sec fade" id="brand">
+  <div class="thread">
+    <div class="thread-label">The argument begins here</div>
+    <div class="thread-text">Before diagnosing what is wrong with Volkswagen, it is necessary to understand what is right — and what is genuinely distinctive. Because the diagnosis that follows is not that VW has the wrong identity. It is that <strong>VW has the right identity and is failing to protect it</strong>. That distinction matters enormously for what the solutions look like.</div>
+  </div>
+
+  <span class="kick">Section one</span>
+  <h2 class="stitle">What Volkswagen actually stands for</h2>
+  <p class="sint">VW's identity is among the most coherent of any volume automotive brand. It has a clear emotional centre, a distinctive communication style, and values that have held consistently across eight decades. The diagnostic finds no ambiguity about what the brand is.</p>
+
+  <div class="ph ph-brand">
+    <div class="ph-l"><div class="ph-k">The brand character</div><div class="ph-t">Identity — well defined, under pressure</div></div>
+    <span class="badge" style="background:var(--warn)">Pressure at execution layer</span>
+  </div>
+
+  <div class="dim-group">
+    <div class="dim-group-title">The three things VW does better than almost anyone</div>
+    <div class="dim-item">
+      <span class="dim-label">Warmth and human care</span>
+      <div class="dim-right">
+        <div class="dim-track"><div class="dim-fill" style="width:80%;background:var(--brand)"></div></div>
+        <span class="dim-ctx">The brand's deepest and most consistent signal. 'Building relationships for life.' Human-scale photography. A communication style that treats the buyer as a person, not a target. This is where VW is most authentic — and most different from every competitor trying to be exciting.</span>
+      </div>
+      <span class="dim-pct" style="color:var(--brand)">80%</span>
+    </div>
+    <div class="dim-item">
+      <span class="dim-label">Heritage and cultural weight</span>
+      <div class="dim-right">
+        <div class="dim-track"><div class="dim-fill" style="width:55%;background:var(--brand-md)"></div></div>
+        <span class="dim-ctx">80 years of accumulated cultural presence — the Beetle, the Microbus, Think Small. This is an asset no Chinese domestic brand, however well-funded, can manufacture. Currently underused in the electric portfolio, outside the ID. Buzz.</span>
+      </div>
+      <span class="dim-pct" style="color:var(--brand-md)">55%</span>
+    </div>
+    <div class="dim-item">
+      <span class="dim-label">Wit and self-aware intelligence</span>
+      <div class="dim-right">
+        <div class="dim-track"><div class="dim-fill" style="width:55%;background:var(--brand-md)"></div></div>
+        <span class="dim-ctx">"A pretty fast car. If you park it correctly." This register — honest, self-aware, quietly funny — is world-class when it appears and has been for 60 years. It is also the first quality lost when brand management becomes risk-averse. And it has no leadership reinforcement from the CEO layer.</span>
+      </div>
+      <span class="dim-pct" style="color:var(--brand-md)">55%</span>
+    </div>
+  </div>
+
+  <div class="dim-group">
+    <div class="dim-group-title">The two dimensions VW intentionally suppresses — and why that creates a structural ceiling</div>
+    <div class="dim-item">
+      <span class="dim-label">Forward drive and innovation pull</span>
+      <div class="dim-right">
+        <div class="dim-track"><div class="dim-fill" style="width:35%;background:var(--t3)"></div></div>
+        <span class="dim-ctx">Intentionally modest. VW positions itself as the brand that makes innovation accessible, not the brand that leads it. Correct for European and family audiences. Creates a structural gap with younger urban buyers — particularly in China — who need to feel pulled toward something, not accompanied through something.</span>
+      </div>
+      <span class="dim-pct" style="color:var(--t3)">35%</span>
+    </div>
+    <div class="dim-item">
+      <span class="dim-label">Desire and aspiration pull</span>
+      <div class="dim-right">
+        <div class="dim-track"><div class="dim-fill" style="width:30%;background:var(--t3)"></div></div>
+        <span class="dim-ctx">Deliberately low. VW earns consideration through trust, not through want. This is coherent with its character — but it limits reach in markets where purchase decisions are driven primarily by aspiration. China is the most acute case. Younger European buyers are a secondary one.</span>
+      </div>
+      <span class="dim-pct" style="color:var(--t3)">30%</span>
+    </div>
+  </div>
+
+  <div class="serif-q">"A pretty fast car. If you park it correctly." — The register this line achieves is the brand's highest expression: <strong>honest, self-aware, unpretentious</strong>. Every VW communication — including every CEO speech — should be held against this standard. Almost none of the corporate communications currently meet it.</div>
+
+  <span class="lbl mt20">Three promises VW makes — and how each one is performing</span>
+  <div class="prom-list">
+    <div class="prom-item">
+      <div class="prom-t">Dependable value — the most important promise and the most violated one</div>
+      <div class="prom-b">Products that hold their quality and their worth over time. The Atlas infotainment crisis (D·28) and the ID.4 recall sequence struck directly at this commitment with the audiences who trusted VW most. The brand promised reliability and delivered software failures. That is not a communication problem. It is a behaviour problem — and behaviour must be fixed before communication can help.</div>
+    </div>
+    <div class="prom-item">
+      <div class="prom-t">Technology that feels human — the most frequently violated in product decisions</div>
+      <div class="prom-b">Not technology for its own sake. Technology that is intuitive, accessible, and honest about what it does. The move to touch-only interfaces across multiple models between 2020 and 2024 was the single most damaging internal decision of the past decade. It contradicted this promise at the moment of use, every day, for every driver. The 2025–26 corrections are right — but they came late.</div>
+    </div>
+    <div class="prom-item">
+      <div class="prom-t">Understanding across life stages — the deepest claim, and the most credible with the right audience</div>
+      <div class="prom-b">The brand's most ambitious claim: that VW sees the person, not just the customer. Currently most credible with Group 1 (European family buyers, 35–55) and least credible with younger urban audiences who don't yet see the brand as relevant to the life stage they're in. The gap is not permanent — but it requires product and communication decisions that currently aren't being made.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SECTION 2 — USERS ═══════════════════════ -->
+<div class="sec fade" id="users">
+  <div class="thread">
+    <div class="thread-label">The argument develops</div>
+    <div class="thread-text">If VW's identity is coherent, why are its resonance scores so poor? The answer is not that the brand is misunderstood. The answer is that <strong>the brand has made a series of commitments it has not kept</strong>, and that the audiences who most valued those commitments are the ones who feel the gap most acutely. The dissonance is not a perception problem. It is a delivery problem wearing a perception costume.</div>
+  </div>
+
+  <span class="kick">Section two</span>
+  <h2 class="stitle">Who is actually buying Volkswagen — and what they're getting</h2>
+  <p class="sint">VW serves four distinct audience groups across its major markets. Only one is in positive resonance territory. Three are in deficit — not because they dislike the brand, but because the gap between what VW promises and what it delivers is visible enough to cost the relationship.</p>
+
+  <div class="ph ph-user">
+    <div class="ph-l"><div class="ph-k">Audience resonance</div><div class="ph-t">Partially aligned — D-term doing severe damage</div></div>
+    <span class="badge" style="background:var(--warn)">3 of 4 in deficit</span>
+  </div>
+
+  <div class="grp-list">
+    <div class="grp-row">
+      <div class="grp-l">
+        <div><div class="grp-id">Group 1</div><div class="grp-name">European family buyers</div></div>
+        <div><div class="grp-score" style="color:var(--warn)">+0.15</div><span class="grp-badge" style="background:var(--warn)">Marginal</span></div>
+      </div>
+      <div class="grp-r">
+        <div>
+          <p class="grp-desc">The brand's natural home. Warm, heritage-conscious, value-aware, 35–55. These buyers share VW's worldview almost exactly. Their resonance score is positive but dangerously fragile — held down by Dieselgate legacy and quality erosion from the 2020–24 product decisions. This is the most alarming finding: VW's best-aligned audience is marginal, not strong. The brand is communicating well to people who already trust it — and still only scoring +0.15.</p>
+          <div class="res-bars mt8">
+            <div class="res-bar-row"><span class="res-bar-lbl">Worldview match</span><div class="res-bar-track"><div class="res-bar-fill" style="width:72%;background:var(--warn)"></div></div><span class="res-bar-val" style="color:var(--warn)">72%</span></div>
+            <div class="res-bar-row"><span class="res-bar-lbl">Trust damage (D)</span><div class="res-bar-track"><div class="res-bar-fill" style="width:55%;background:var(--crit)"></div></div><span class="res-bar-val" style="color:var(--crit)">−18%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grp-row">
+      <div class="grp-l">
+        <div><div class="grp-id">Group 2</div><div class="grp-name">Progressive European alternatives</div></div>
+        <div><div class="grp-score" style="color:var(--bad)">−0.06</div><span class="grp-badge" style="background:var(--bad)">Deficit</span></div>
+      </div>
+      <div class="grp-r">
+        <div>
+          <p class="grp-desc">Sustainability-conscious, culturally progressive, 25–60. Sceptical of institutional claims. Multiple strategy cycles announced and partially delivered have created a specific credibility discount with this group. They read the gap between VW's corporate language ("Global Automotive Tech Driver") and its actual brand character (warmth, honesty, wit) — and that gap produces active distrust, not neutrality.</p>
+          <div class="res-bars mt8">
+            <div class="res-bar-row"><span class="res-bar-lbl">Worldview match</span><div class="res-bar-track"><div class="res-bar-fill" style="width:55%;background:var(--warn)"></div></div><span class="res-bar-val" style="color:var(--warn)">55%</span></div>
+            <div class="res-bar-row"><span class="res-bar-lbl">Trust damage (D)</span><div class="res-bar-track"><div class="res-bar-fill" style="width:67%;background:var(--crit)"></div></div><span class="res-bar-val" style="color:var(--crit)">−22%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grp-row">
+      <div class="grp-l">
+        <div><div class="grp-id">Group 3</div><div class="grp-name">North American aspirational buyers</div></div>
+        <div><div class="grp-score" style="color:var(--bad)">−0.04</div><span class="grp-badge" style="background:var(--bad)">Deficit</span></div>
+      </div>
+      <div class="grp-r">
+        <div>
+          <p class="grp-desc">Forward-oriented, peer-influenced, 25–50. VW's European heritage gives just enough distinction to be a considered choice. The brand's suppressed forward-drive creates an aspiration gap — these buyers want to feel pulled toward something, not accompanied through something. The Atlas reliability failures hit this group hard: they came for European quality and received class-action-level software failures.</p>
+          <div class="res-bars mt8">
+            <div class="res-bar-row"><span class="res-bar-lbl">Aspiration match</span><div class="res-bar-track"><div class="res-bar-fill" style="width:45%;background:var(--warn)"></div></div><span class="res-bar-val" style="color:var(--warn)">45%</span></div>
+            <div class="res-bar-row"><span class="res-bar-lbl">Trust damage (D)</span><div class="res-bar-track"><div class="res-bar-fill" style="width:49%;background:var(--crit)"></div></div><span class="res-bar-val" style="color:var(--crit)">−16%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grp-row">
+      <div class="grp-l">
+        <div><div class="grp-id">Group 4</div><div class="grp-name">Chinese progressive urban buyers</div></div>
+        <div><div class="grp-score" style="color:var(--crit)">−0.09</div><span class="grp-badge" style="background:var(--crit)">Structural</span></div>
+      </div>
+      <div class="grp-r">
+        <div>
+          <p class="grp-desc">The most commercially critical and most structurally misaligned group. These buyers — 25–45, metropolitan, premium-aspiring — make decisions on desire and technology leadership. Those are the two dimensions VW most suppresses. The UNYX and AURA launches reduce the delivery-credibility component of the deficit. They do not touch the structural mismatch. No campaign resolves this. A structurally different product offering — possibly under a different name — is the only viable path.</p>
+          <div class="res-bars mt8">
+            <div class="res-bar-row"><span class="res-bar-lbl">Identity match</span><div class="res-bar-track"><div class="res-bar-fill" style="width:28%;background:var(--crit)"></div></div><span class="res-bar-val" style="color:var(--crit)">28%</span></div>
+            <div class="res-bar-row"><span class="res-bar-lbl">Structural gap</span><div class="res-bar-track"><div class="res-bar-fill" style="width:88%;background:var(--crit)"></div></div><span class="res-bar-val" style="color:var(--crit)">High</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="serif-q">The diagnostic's most alarming single number: <strong>VW's best-aligned audience — the group whose worldview, values and aspirations map most closely to the brand — is scoring +0.15 resonance.</strong> That is marginal. It is one step above functional. It means that even where VW is doing everything right, trust damage from broken promises is eating almost the entire positive signal. The brand is not losing ground because its identity is wrong. It is losing ground because its behaviour has contradicted its identity at the moments that matter most.</div>
+</div>
+
+<!-- ═══════════════════════ SECTION 3 — FLEET ═══════════════════════ -->
+<div class="sec fade" id="fleet">
+  <div class="thread">
+    <div class="thread-label">The argument sharpens</div>
+    <div class="thread-text">The resonance scores above are not abstract. They are being produced by specific product experiences. The fleet analysis traces the damage to its source: <strong>two specific cars, one specific design philosophy, one specific failure to govern UX decisions against brand character</strong>. Everything else in the fleet is performing adequately to well. The fleet is not broken. Two nodes in it are.</div>
+  </div>
+
+  <span class="kick">Section three</span>
+  <h2 class="stitle">What each car actually delivers</h2>
+  <p class="sint">Fourteen products. Wide variation in how faithfully each one carries the brand's identity and serves the person driving it. Two standout successes, two acute failures, and a large middle group performing adequately. Both failures share the same root cause — a technology philosophy applied to product decisions without checking it against brand character first.</p>
+
+  <div class="ph ph-car">
+    <div class="ph-l"><div class="ph-k">Fleet coherence</div><div class="ph-t">Mixed — two nodes generating most of the brand damage</div></div>
+    <span class="badge" style="background:var(--bad)">Two acute failures</span>
+  </div>
+
+  <span class="lbl">Fleet coherence map — brand fit, user fit, dissonance score</span>
+  <div class="fleet-list">
+    <div class="vrow"><div><div class="vname">Golf (standard)</div><div class="vseg">Core volume · Europe</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:93%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:92%;background:var(--user)"></div></div></div><div class="dbadge" style="background:var(--good)">D·05</div><div class="vnote">Fleet benchmark. Closest product to the brand's own character. Physical controls restored 2025. The reference case for the Golf Electric brief.</div></div>
+    <div class="vrow"><div><div class="vname">Golf GTI</div><div class="vseg">Performance icon · Europe</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:85%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:88%;background:var(--user)"></div></div></div><div class="dbadge" style="background:var(--good)">D·08</div><div class="vnote">Best elastic stretch in the fleet. Heritage and wit at full expression. The buyer who knows 50 years of GTI history gets exactly what they came for.</div></div>
+    <div class="vrow"><div><div class="vname">ID. Buzz</div><div class="vseg">Heritage EV · Global</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:88%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:90%;background:var(--user)"></div></div></div><div class="dbadge" style="background:var(--good)">D·10</div><div class="vnote">Proof that EV and brand identity can coexist. Heritage-anchored design creates genuine emotional pull without requiring VW to be something it isn't.</div></div>
+    <div class="vrow"><div><div class="vname">Tiguan · Tayron</div><div class="vseg">Family SUV · Europe</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:83%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:84%;background:var(--user)"></div></div></div><div class="dbadge" style="background:var(--good)">D·10</div><div class="vnote">2025 redesign significantly improved. Core family buyer well served. Honest, reliable, human-scaled.</div></div>
+    <div class="vrow"><div><div class="vname">Polo · Jetta · Tayron</div><div class="vseg">Entry / Sedan / Multi-market</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:88%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:84%;background:var(--user)"></div></div></div><div class="dbadge" style="background:var(--good)">D·06</div><div class="vnote">Consistently honest products. No acute issues. The stable, largely invisible core of the fleet.</div></div>
+    <div class="vrow"><div><div class="vname">ID.7</div><div class="vseg">Premium EV · Europe</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:80%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:78%;background:var(--user)"></div></div></div><div class="dbadge" style="background:var(--warn)">D·12</div><div class="vnote">Clearer positioning than ID.4. Premium buyer more tolerant of software iteration. Refinement delivers.</div></div>
+    <div class="vrow"><div><div class="vname">Golf R</div><div class="vseg">Performance · Europe</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:60%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:72%;background:var(--user)"></div></div></div><div class="dbadge" style="background:var(--good)">D·10</div><div class="vnote">At the edge of what VW can credibly endorse. Works as one model. An R family across multiple vehicles would fracture the brand's character.</div></div>
+    <div class="vrow"><div><div class="vname">ID.3</div><div class="vseg">Compact EV · Europe</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:74%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:68%;background:var(--user)"></div></div></div><div class="dbadge" style="background:var(--warn)">D·18</div><div class="vnote">Better than ID.4. 2025 Neo version improving. Still stretches brand identity beyond its natural elastic zone.</div></div>
+    <div class="vrow crit"><div><div class="vname">⚠ Atlas</div><div class="vseg">Family SUV · US</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:84%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:42%;background:var(--crit)"></div></div></div><div class="dbadge" style="background:var(--crit)">D·28</div><div class="vnote">Critical. Touch-only infotainment contradicted the family safety buyer at the moment of use. Software failures, recalls, class action. Brand's highest-trust audience — most damaged product.</div></div>
+    <div class="vrow crit"><div><div class="vname">✕ ID.4 (US, ended)</div><div class="vseg">Compact EV · US</div></div><div class="vmb"><div class="vmb-lbl">Brand fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:62%;background:var(--brand)"></div></div></div><div class="vmb"><div class="vmb-lbl">User fit</div><div class="vmb-tr"><div class="vmb-fi" style="width:38%;background:var(--crit)"></div></div></div><div class="dbadge" style="background:var(--crit)">D·35</div><div class="vnote">Severe double failure. Didn't reach EV buyers on excitement or traditional buyers on reliability. US production ended April 2026. The diagnostic case for the Golf Electric brief.</div></div>
+  </div>
+  <div class="fleet-leg">
+    <span><span class="ldot" style="background:var(--good)"></span>D ≤10% Low</span>
+    <span><span class="ldot" style="background:var(--warn)"></span>D 11–18% Moderate</span>
+    <span><span class="ldot" style="background:var(--bad)"></span>D 19–25% High</span>
+    <span><span class="ldot" style="background:var(--crit)"></span>D >25% Critical</span>
+  </div>
+
+  <div class="serif-q mt12">The pattern in both failures is identical: <strong>a UX philosophy — technology-first, screen-dominant, touch-only — was applied to products without checking it against the character of the buyers who would use them</strong>. The Atlas buyer is a family-safety-oriented Group 1 person who chose VW precisely because it promised dependability and honest simplicity. The ID.4 buyer was an early EV adopter who wanted forward momentum and reliability. Both received software complexity and software failure. Neither failure was inevitable. Both were the result of a product decision made without asking who the car was for.</div>
+</div>
+
+<!-- ═══════════════════════ SECTION 4 — RING ═══════════════════════ -->
+<div class="sec fade" id="ring">
+  <div class="thread">
+    <div class="thread-label">The synthesis</div>
+    <div class="thread-text">The brand portrait, the audience scores, and the fleet analysis are three separate lenses on the same problem. The Resonance Ring brings them together into a single diagnostic picture: <strong>three relationships, three different health readings, one structural weakness that the data keeps pointing to</strong>.</div>
+  </div>
+
+  <span class="kick">Section four</span>
+  <h2 class="stitle">The Resonance Ring — where the three connections hold and break</h2>
+  <p class="sint">For a car brand to genuinely connect with buyers, three relationships must hold simultaneously: brand to user, brand to vehicle, vehicle to user. When all three align, the result is loyalty that persists through price increases and competitive alternatives. Right now, only one of VW's three connections is strong.</p>
+
+  <div class="ring-wrap">
+    <div>
+      <svg width="270" height="226" viewBox="0 0 270 226" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="135" y1="36" x2="225" y2="192" stroke="#29B885" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="135" y1="36" x2="45" y2="192" stroke="#D4900A" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+        <line x1="45" y1="192" x2="225" y2="192" stroke="#E06030" stroke-width="1.5" stroke-dasharray="4 5" stroke-linecap="round"/>
+        <rect x="166" y="103" width="54" height="18" rx="4" fill="#111110" stroke="#29B885" stroke-width=".75"/><text x="193" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#29B885">Strong</text>
+        <rect x="52" y="103" width="54" height="18" rx="4" fill="#111110" stroke="#D4900A" stroke-width=".75"/><text x="79" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#D4900A">Partial</text>
+        <rect x="109" y="188" width="52" height="18" rx="4" fill="#111110" stroke="#E06030" stroke-width=".75"/><text x="135" y="200" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#E06030">Weak</text>
+        <circle cx="135" cy="36" r="30" fill="#7B72D4"/><text x="135" y="33" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="white">BRAND</text><text x="135" y="45" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,.75)">Identity</text>
+        <circle cx="45" cy="192" r="30" fill="#29B885"/><text x="45" y="189" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="white">USER</text><text x="45" y="201" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,.75)">Who they are</text>
+        <circle cx="225" cy="192" r="30" fill="#D4900A"/><text x="225" y="189" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="white">VEHICLE</text><text x="225" y="201" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,.75)">What they drive</text>
+      </svg>
+    </div>
+    <div class="ring-legend">
+      <div class="rl-item">
+        <span class="rl-lbl" style="color:var(--brand)">Brand → Vehicle · 72%</span>
+        <div class="rl-track"><div class="rl-bar" style="width:72%;background:var(--good)"></div></div>
+        <span class="rl-desc">Products largely carry the brand's identity. The Golf family, the ID. Buzz, and the Polo family all conduct the brand faithfully. Two acute failures (Atlas, ID.4) drag the average and produce most of the audience trust damage.</span>
+      </div>
+      <div class="rl-item">
+        <span class="rl-lbl" style="color:var(--car)">Brand → User · 48%</span>
+        <div class="rl-track"><div class="rl-bar" style="width:48%;background:var(--warn)"></div></div>
+        <span class="rl-desc">One group in positive territory. Three in deficit. The brand's identity architecture is sound — the damage comes from accumulated dissonance: broken promises, strategy cycles that overstated delivery, and a China market where the identity is structurally misaligned.</span>
+      </div>
+      <div class="rl-item">
+        <span class="rl-lbl" style="color:var(--bad)">Vehicle → User · 30%</span>
+        <div class="rl-track"><div class="rl-bar" style="width:30%;background:var(--bad)"></div></div>
+        <span class="rl-desc">The weakest and least measured connection. How each specific car serves each specific type of person is partially inferred from owner reviews and recall data — but not systematically measured. This is the missing data layer. See the gap section below.</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="body">Line thickness shows connection strength. A dashed line marks where the ring is failing. The Vehicle–User edge is the one the customer experiences every single day — and the one the organisation understands least.</p>
+
+  <span class="lbl mt20">The missing connection — what data is needed to complete the picture</span>
+  <div class="dtbl">
+    <div class="dtbl-head"><div class="dth">Data needed</div><div class="dth">Available?</div><div class="dth">What it answers</div><div class="dth">How to get it</div></div>
+    <div class="dtbl-row"><div class="dt-name">Segmented owner satisfaction by buyer type</div><span class="avail" style="background:var(--crit)">Missing</span><div class="dt-txt">Does a 45-year-old European family buyer experience the Atlas differently than a 30-year-old US aspirational buyer? Currently unknown. The most important gap in the diagnostic.</div><div class="dt-txt">200-person owner survey segmented by the four persona groups. 6–8 weeks. Moderate cost.</div></div>
+    <div class="dtbl-row"><div class="dt-name">Post-ownership brand trust shift</div><span class="avail" style="background:var(--crit)">Missing</span><div class="dt-txt">Did buying this car strengthen or weaken trust in VW as a brand? NPS by model exists but not by psychographic profile.</div><div class="dt-txt">Add 3 brand trust questions to existing owner satisfaction surveys. Minimal cost.</div></div>
+    <div class="dtbl-row"><div class="dt-name">Recall and failure event data</div><span class="avail" style="background:var(--good)">Public</span><div class="dt-txt">Which product failures generate the most trust damage, and in which audience segments?</div><div class="dt-txt">NHTSA recall database and class action filings. Requires synthesis, not new research.</div></div>
+    <div class="dtbl-row"><div class="dt-name">Competitive satisfaction benchmarking</div><span class="avail" style="background:var(--warn)">Partial</span><div class="dt-txt">Is the Tiguan owner more or less satisfied than the Mazda CX-5 owner with the same profile?</div><div class="dt-txt">JD Power IQS public summaries give headline data. Full segmented benchmarks ~€15k.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SECTION 5 — DRIFT ═══════════════════════ -->
+<div class="sec fade" id="drift">
+  <div class="thread">
+    <div class="thread-label">The argument goes deeper</div>
+    <div class="thread-text">The product failures and the communication inconsistencies documented above share a common structural cause: the organisation's decision-making layer is not governed by the brand's own character. <strong>The CEO's public register, the UX philosophy that produced the Atlas crisis, the strategy communications that contradict the campaign layer — all three are symptoms of the same absence: brand character is not the filter that product and leadership decisions pass through before they reach the market.</strong></div>
+  </div>
+
+  <span class="kick">Section five</span>
+  <h2 class="stitle">Is the CEO's identity gradually replacing the brand's?</h2>
+  <p class="sint">Every leader shapes a brand. That is expected and healthy. The risk emerges when the leader's personal identity accumulates enough external visibility that it begins displacing the brand's own character in how the world reads the company. We assess this for Oliver Blume at VW — 30 months into his tenure as sole VW Group CEO.</p>
+
+  <div class="ph" style="background:var(--crit-lt);border-left:3px solid var(--crit)">
+    <div class="ph-l"><div class="ph-k" style="color:var(--crit)">Leadership drift assessment · Oliver Blume · Sept 2022 – April 2026</div><div class="ph-t">Elevated risk — not yet critical, window for intervention is now</div></div>
+    <span class="badge" style="background:var(--warn)">30 months accumulated</span>
+  </div>
+
+  <p class="body">Each pair of bars below shows Blume's personal communication register (top) against the brand's own character on the same dimension (faded). The wider the gap, the more his sustained public presence pulls the brand's perceived identity away from its structural truth.</p>
+
+  <div class="drift-grid">
+    <div class="drift-cell">
+      <div class="drift-name">Institutional force and conviction</div>
+      <div class="drift-ceo-row"><span class="drift-who">CEO</span><div class="drift-track"><div class="drift-fill" style="width:80%;background:var(--crit)"></div></div><span class="drift-val" style="color:var(--crit)">80%</span></div>
+      <div class="drift-vw-row"><span class="drift-who">Brand</span><div class="drift-track"><div class="drift-fill" style="width:15%;background:var(--t3);opacity:.5"></div></div><span class="drift-val" style="color:var(--t3)">15%</span></div>
+      <span class="drift-gap" style="background:var(--crit-lt);color:#E06060">Gap: 65 pts — widest in analysis</span>
+      <div class="drift-desc">"We decide, we act, we deliver." "Stepping up the pace." "Pioneer." This institutional conviction is the opposite of VW's suppressed force/challenge register. It is the Porsche register — and it has migrated into VW's strategy layer.</div>
+    </div>
+    <div class="drift-cell">
+      <div class="drift-name">Forward drive and technology ambition</div>
+      <div class="drift-ceo-row"><span class="drift-who">CEO</span><div class="drift-track"><div class="drift-fill" style="width:75%;background:var(--bad)"></div></div><span class="drift-val" style="color:var(--bad)">75%</span></div>
+      <div class="drift-vw-row"><span class="drift-who">Brand</span><div class="drift-track"><div class="drift-fill" style="width:35%;background:var(--t3);opacity:.5"></div></div><span class="drift-val" style="color:var(--t3)">35%</span></div>
+      <span class="drift-gap" style="background:var(--bad-lt);color:var(--bad)">Gap: 40 pts — significant</span>
+      <div class="drift-desc">"Global Automotive Tech Driver." "Level 4 autonomous pioneer." Blume's technology vocabulary operates at double the brand's natural forward-drive register. VW positions innovation as accessible and human. Blume positions it as leading and ambitious.</div>
+    </div>
+    <div class="drift-cell">
+      <div class="drift-name">Warmth and human understanding</div>
+      <div class="drift-ceo-row"><span class="drift-who">CEO</span><div class="drift-track"><div class="drift-fill" style="width:40%;background:var(--brand)"></div></div><span class="drift-val" style="color:var(--brand)">40%</span></div>
+      <div class="drift-vw-row"><span class="drift-who">Brand</span><div class="drift-track"><div class="drift-fill" style="width:80%;background:var(--brand);opacity:.5"></div></div><span class="drift-val" style="color:var(--brand)">80%</span></div>
+      <span class="drift-gap" style="background:var(--brand-lt);color:var(--brand)">Gap: 40 pts — brand losing its primary signal</span>
+      <div class="drift-desc">The brand's dominant character — warmth as the primary register — is the dimension Blume contributes least to in his public presence. In strategy contexts, warmth is entirely absent from his language.</div>
+    </div>
+    <div class="drift-cell">
+      <div class="drift-name">Wit and self-aware intelligence</div>
+      <div class="drift-ceo-row"><span class="drift-who">CEO</span><div class="drift-track"><div class="drift-fill" style="width:10%;background:var(--t3)"></div></div><span class="drift-val" style="color:var(--t3)">10%</span></div>
+      <div class="drift-vw-row"><span class="drift-who">Brand</span><div class="drift-track"><div class="drift-fill" style="width:55%;background:var(--brand-md);opacity:.5"></div></div><span class="drift-val" style="color:var(--brand-md)">55%</span></div>
+      <span class="drift-gap" style="background:var(--warn-lt);color:var(--warn)">Gap: 45 pts — differentiator at risk</span>
+      <div class="drift-desc">VW's most distinctive differentiator has never appeared in Blume's public register. The brand's wit is maintained by the campaign team in isolation. Without leadership sponsorship, it is the first thing removed when budgets tighten or risk-aversion enters a brief.</div>
+    </div>
+    <div class="drift-cell">
+      <div class="drift-name">Heritage and earned meaning</div>
+      <div class="drift-ceo-row"><span class="drift-who">CEO</span><div class="drift-track"><div class="drift-fill" style="width:30%;background:var(--warn)"></div></div><span class="drift-val" style="color:var(--warn)">30%</span></div>
+      <div class="drift-vw-row"><span class="drift-who">Brand</span><div class="drift-track"><div class="drift-fill" style="width:55%;background:var(--brand-md);opacity:.5"></div></div><span class="drift-val" style="color:var(--brand-md)">55%</span></div>
+      <span class="drift-gap" style="background:var(--warn-lt);color:var(--warn)">Gap: 25 pts — underused asset</span>
+      <div class="drift-desc">Blume references heritage occasionally but treats it as a credibility claim rather than an emotional anchor. The Beetle, the Microbus, the DDB era do not feature in his strategic narrative — despite being VW's single most defensible competitive advantage against Chinese domestic brands.</div>
+    </div>
+    <div class="drift-cell">
+      <div class="drift-name">Engineering precision and discipline</div>
+      <div class="drift-ceo-row"><span class="drift-who">CEO</span><div class="drift-track"><div class="drift-fill" style="width:85%;background:var(--user)"></div></div><span class="drift-val" style="color:var(--user)">85%</span></div>
+      <div class="drift-vw-row"><span class="drift-who">Brand</span><div class="drift-track"><div class="drift-fill" style="width:55%;background:var(--user);opacity:.5"></div></div><span class="drift-val" style="color:var(--user)">55%</span></div>
+      <span class="drift-gap" style="background:var(--good-lt);color:var(--good)">Gap: positive — Blume reinforces this</span>
+      <div class="drift-desc">The one dimension where Blume's register strengthens the brand. His engineering background, the €10B cost restructuring, the discipline-first decision style — all consistent with VW's "honest, quality-first" character. This is the foundation on which a correction can be built.</div>
+    </div>
+  </div>
+
+  <div class="serif-q">The Porsche decade shaped Blume's identity more than the VW identity has shaped him. Porsche's character — precision, prestige, performance, institutional authority — is almost the mirror image of VW's character on three of the five key dimensions. <strong>Blume is not wrong. He is calibrated for a different brand.</strong> The correction is not about changing how he thinks — it is about translating his thinking into the brand's register before it reaches the public.</div>
+
+  <span class="lbl mt20">Three governance actions — before the drift becomes irreversible</span>
+  <div class="rec-list" style="display:flex;flex-direction:column;gap:8px">
+    <div style="background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:12px 15px;display:flex;gap:11px">
+      <div style="width:22px;height:22px;border-radius:50%;background:var(--brand-lt);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--brand);flex-shrink:0;margin-top:1px">1</div>
+      <div><div style="font-size:11.5px;font-weight:600;color:var(--t1);margin-bottom:3px">Run every CEO public statement through the brand's own communication filter before publication</div><div style="font-size:11.5px;color:var(--t2);line-height:1.55">The filter already exists in VW's own communication principles — "Disarmingly Honest / Genuinely Human." Apply it to CEO communications the same way it is applied to campaign copy. A press release that would fail the filter in a campaign brief should not appear under the VW brand in any context. This is a governance decision. No external resource required.</div></div>
+    </div>
+    <div style="background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:12px 15px;display:flex;gap:11px">
+      <div style="width:22px;height:22px;border-radius:50%;background:var(--brand-lt);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--brand);flex-shrink:0;margin-top:1px">2</div>
+      <div><div style="font-size:11.5px;font-weight:600;color:var(--t1);margin-bottom:3px">Create explicit protection for the brand's wit register at leadership level</div><div style="font-size:11.5px;color:var(--t2);line-height:1.55">Designate a senior brand leader as the explicit guardian of VW's self-aware, quietly funny communication register. Ensure at least one communication per quarter from leadership level demonstrates this register. The wit will not survive long-term without a sponsor at the level where budget and brief decisions are made.</div></div>
+    </div>
+    <div style="background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:12px 15px;display:flex;gap:11px">
+      <div style="width:22px;height:22px;border-radius:50%;background:var(--brand-lt);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--brand);flex-shrink:0;margin-top:1px">3</div>
+      <div><div style="font-size:11.5px;font-weight:600;color:var(--t1);margin-bottom:3px">Anchor one major Blume speech per year to the brand's warmth and heritage register</div><div style="font-size:11.5px;color:var(--t2);line-height:1.55">One keynote per year — at the most consumer-facing event — written from the CA + heritage + wit register: what ordinary people's relationship with VW has meant over 80 years. Not technology targets. Not market share goals. The relationships. This is the single most powerful external signal that the CEO understands what the brand genuinely is.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SECTION 6 — COMPETITION ═══════════════════════ -->
+<div class="sec fade" id="comp">
+  <div class="thread">
+    <div class="thread-label">The external picture</div>
+    <div class="thread-text">Everything documented above is an internal problem — things VW is doing to itself. The competitive map adds the external dimension: <strong>where does VW's identity give it a genuine, structurally defensible advantage? And where is it being outmanoeuvred by competitors who are built for what the market increasingly demands?</strong> The answers are more specific — and more useful — than any market share analysis.</div>
+  </div>
+
+  <span class="kick">Section six</span>
+  <h2 class="stitle">Where VW sits in the competitive identity landscape</h2>
+  <p class="sint">This is not a market share analysis or a product specification comparison. It is a map of what each brand fundamentally is — at the emotional and structural level below any campaign or product decision. Understanding this map tells you which competitive battles VW is built to win and which ones it is structurally outgunned in.</p>
+
+  <div class="comp-dim-list">
+    <div class="comp-dim">
+      <div class="comp-dim-name">Warmth and human care — VW's strongest territory</div>
+      <div class="comp-dim-desc">The degree to which the brand makes buyers feel genuinely understood and accompanied — not just efficiently served.</div>
+      <div class="comp-bars">
+        <div class="cb-row"><span class="cb-brand" style="color:var(--brand)">VW</span><div class="cb-track"><div class="cb-fill" style="width:80%;background:var(--brand)"></div></div><span class="cb-pct" style="color:var(--brand)">80%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--toyota)">Toyota</span><div class="cb-track"><div class="cb-fill" style="width:75%;background:var(--toyota)"></div></div><span class="cb-pct" style="color:var(--toyota)">75%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--byd)">BYD</span><div class="cb-track"><div class="cb-fill" style="width:45%;background:var(--byd)"></div></div><span class="cb-pct" style="color:var(--byd)">45%</span></div>
+      </div>
+      <div class="comp-insight">VW and Toyota both lead here — but from different directions. Toyota's warmth is functional: reliability as trust. VW's warmth is relational: observation and wit as understanding. They occupy the same territory through different means. BYD's warmth is primarily sustainability ethics — present but not the primary driver of the relationship. This is where VW and Toyota are competing most directly, and where BYD is most vulnerable.</div>
+    </div>
+
+    <div class="comp-dim">
+      <div class="comp-dim-name">Cultural heritage — VW's most defensible advantage against Chinese competitors</div>
+      <div class="comp-dim-desc">Accumulated emotional meaning that buyers inherit when they purchase — genuine cultural history, not just brand age.</div>
+      <div class="comp-bars">
+        <div class="cb-row"><span class="cb-brand" style="color:var(--brand)">VW</span><div class="cb-track"><div class="cb-fill" style="width:55%;background:var(--brand)"></div></div><span class="cb-pct" style="color:var(--brand)">55%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--toyota)">Toyota</span><div class="cb-track"><div class="cb-fill" style="width:60%;background:var(--toyota)"></div></div><span class="cb-pct" style="color:var(--toyota)">60%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--byd)">BYD</span><div class="cb-track"><div class="cb-fill" style="width:10%;background:var(--byd)"></div></div><span class="cb-pct" style="color:var(--byd)">10%</span></div>
+      </div>
+      <div class="comp-insight">Toyota's heritage is reliability mythology — the Corolla that runs forever. VW's heritage is cultural mythology — Think Small, the Microbus, the Beetle as cultural object. These are different kinds of heritage: Toyota's is functional, VW's is emotional. BYD's 10% is a structural fact of a 30-year-old brand. No marketing resolves it. This is where VW has its single most defensible competitive advantage — and it is currently underused in the EV portfolio, outside the ID. Buzz.</div>
+    </div>
+
+    <div class="comp-dim">
+      <div class="comp-dim-name">Wit and self-aware intelligence — VW's only truly uncontested territory</div>
+      <div class="comp-dim-desc">The ability to communicate with observed insight and lightness — the rarest dimension in automotive. No one else has it.</div>
+      <div class="comp-bars">
+        <div class="cb-row"><span class="cb-brand" style="color:var(--brand)">VW</span><div class="cb-track"><div class="cb-fill" style="width:55%;background:var(--brand)"></div></div><span class="cb-pct" style="color:var(--brand)">55%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--toyota)">Toyota</span><div class="cb-track"><div class="cb-fill" style="width:20%;background:var(--toyota)"></div></div><span class="cb-pct" style="color:var(--toyota)">20%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--byd)">BYD</span><div class="cb-track"><div class="cb-fill" style="width:12%;background:var(--byd)"></div></div><span class="cb-pct" style="color:var(--byd)">12%</span></div>
+      </div>
+      <div class="comp-insight">This is VW's only genuinely uncontested competitive territory. Neither Toyota nor BYD communicates with wit as a primary register. Neither has the cultural permission or the 60-year communication history to occupy it credibly. VW's wit — from "Think Small" to the parking clamp ad — is structurally irreplicable by a competitor without a corresponding history. The fact that leadership drift is quietly eroding this dimension makes it the single most urgent brand governance issue in the portfolio.</div>
+    </div>
+
+    <div class="comp-dim">
+      <div class="comp-dim-name">Desire and aspiration — the territory BYD is taking unchallenged</div>
+      <div class="comp-dim-desc">The degree to which the brand creates a feeling of want rather than consideration — magnetism, ownership as identity signal.</div>
+      <div class="comp-bars">
+        <div class="cb-row"><span class="cb-brand" style="color:var(--brand)">VW</span><div class="cb-track"><div class="cb-fill" style="width:30%;background:var(--brand)"></div></div><span class="cb-pct" style="color:var(--brand)">30%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--toyota)">Toyota</span><div class="cb-track"><div class="cb-fill" style="width:25%;background:var(--toyota)"></div></div><span class="cb-pct" style="color:var(--toyota)">25%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--byd)">BYD</span><div class="cb-track"><div class="cb-fill" style="width:55%;background:var(--byd)"></div></div><span class="cb-pct" style="color:var(--byd)">55%</span></div>
+      </div>
+      <div class="comp-insight">BYD's rapid European rise is significantly powered by desire — design ambition, technology aspiration, social media positioning as a lifestyle brand. VW and Toyota both score low on desire by structural choice: they earn consideration through trust. This is appropriate for their core audiences but creates a ceiling with premium-aspiring segments globally, and with younger European buyers. BYD is taking this territory without competition from either legacy brand.</div>
+    </div>
+
+    <div class="comp-dim">
+      <div class="comp-dim-name">Forward drive and innovation pull — where VW is furthest from what the EV market requires</div>
+      <div class="comp-dim-desc">The degree to which the brand makes buyers feel they are moving toward something — that ownership expresses forward momentum.</div>
+      <div class="comp-bars">
+        <div class="cb-row"><span class="cb-brand" style="color:var(--brand)">VW</span><div class="cb-track"><div class="cb-fill" style="width:35%;background:var(--brand)"></div></div><span class="cb-pct" style="color:var(--brand)">35%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--toyota)">Toyota</span><div class="cb-track"><div class="cb-fill" style="width:40%;background:var(--toyota)"></div></div><span class="cb-pct" style="color:var(--toyota)">40%</span></div>
+        <div class="cb-row"><span class="cb-brand" style="color:var(--byd)">BYD</span><div class="cb-track"><div class="cb-fill" style="width:75%;background:var(--byd)"></div></div><span class="cb-pct" style="color:var(--byd)">75%</span></div>
+      </div>
+      <div class="comp-insight">BYD is structurally designed for forward drive. "Build Your Dreams." The pace of its product launches. The Wang Chuanfu "revenge arc" narrative. This is not a communication strategy — it is what the brand genuinely is. VW cannot compete here by raising its forward-drive signal without compromising the warmth and heritage that are its genuine advantages. The correct response is not to compete on BYD's terms but to make the warmth + heritage + wit combination so distinctive that a segment of buyers chooses it specifically because it is not a forward-drive brand.</div>
+    </div>
+  </div>
+
+  <span class="lbl mt20">VW's three defensible windows — where it can win without becoming something it isn't</span>
+  <div class="win-list">
+    <div class="win-card">
+      <div class="win-head"><div class="win-title">The family trust segment — Group 1 globally</div><div class="win-size">Largest window</div></div>
+      <div class="win-body">Warm, heritage-conscious, reliability-primary buyers aged 35–55 across European and North American markets. VW's identity is almost perfectly aligned with this group. The window is currently being damaged by the Atlas and ID.4 failures — but those are repairable through behaviour, not communication. If the remediation plan executes and the Golf Electric brief locks on the right character, VW can own this segment more completely than any competitor. Toyota competes here but on a different emotional register (functional reliability vs. relational warmth). BYD doesn't compete here at all.
+      <div class="win-risk">⚠ At risk: trust damage from Atlas is actively eroding this window. Remediation is the first priority.</div></div>
+    </div>
+    <div class="win-card">
+      <div class="win-head"><div class="win-title">The heritage EV segment — buyers who want cultural meaning, not technology leadership</div><div class="win-size">Medium window, growing</div></div>
+      <div class="win-body">The ID. Buzz has demonstrated this segment exists and is commercially viable. These are buyers who want an electric vehicle but don't want a technology product — they want an object with genuine cultural weight. VW is the only mass-market brand with the mythological assets to serve this segment authentically. The Beetle heritage is a second chapter of the same logic, not yet deployed. No competitor is positioned to enter this territory credibly.
+      <div class="win-risk">⚠ At risk: only if VW abandons the heritage approach in pursuit of technology-leadership positioning — which the leadership drift section suggests is a live risk.</div></div>
+    </div>
+    <div class="win-card">
+      <div class="win-head"><div class="win-title">The wit-led communication territory — no competitor owns this</div><div class="win-size">Strategic window — no competition</div></div>
+      <div class="win-body">This is not a product segment — it is a communication register that VW uniquely owns and no competitor can replicate without 60 years of cultural history to back it. The "Disarmingly Honest" register, the observational wit, the self-aware intelligence — these are differentiation assets that cost nothing to deploy and have no competitive pressure. The entire competitive landscape is serious, ambitious, or aspirational. VW is the only brand with permission to be genuinely funny about what a car is and what owning one means.
+      <div class="win-risk">⚠ At risk: leadership drift is eroding the CEO-level support that this register needs to survive brief-stage risk-aversion. See Section 5.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SECTION 7 — SOLUTIONS ═══════════════════════ -->
+<div class="sec fade" id="solutions">
+  <div class="thread">
+    <div class="thread-label">The argument turns to action</div>
+    <div class="thread-text">The diagnostic is clear. The question is what to do — in what order, with what resources, with what expected outcomes. <strong>Two failures dominate the priority list because they are both generating damage in the present, and because one of them (the Golf Electric brief) is a decision being made right now that determines whether the pattern repeats or breaks.</strong></div>
+  </div>
+
+  <span class="kick">Section seven</span>
+  <h2 class="stitle">The two failures that need solving — in full</h2>
+  <p class="sint">Four structural gaps were identified across this report. Two of them are acute: the Atlas is generating active trust damage today, and the Golf Electric brief is being written now. The other two — China structural mismatch and communication register fragmentation — are addressed in the conclusion's priority sequence. These two come first because they are both time-sensitive.</p>
+
+  <!-- ATLAS RECOVERY -->
+  <div style="border-radius:var(--rl);overflow:hidden;margin-bottom:32px;border:.5px solid var(--bd)">
+    <div style="padding:18px 22px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;background:linear-gradient(135deg,rgba(196,48,48,.15) 0%,rgba(196,48,48,.04) 100%);border-bottom:.5px solid rgba(196,48,48,.25)">
+      <div>
+        <div style="font-size:17px;font-weight:600;color:var(--t1);letter-spacing:-.01em;line-height:1.3;margin-bottom:5px">Atlas — active trust damage in VW's most important audience</div>
+        <div style="font-size:12px;color:var(--t2);line-height:1.5;max-width:520px">VW's best-selling US model delivered to its most trusting audience a product experience that directly violated the brand's most central promise. The damage is ongoing. It cannot be communicated away.</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:26px;font-weight:600;color:var(--crit);line-height:1">D·28</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-top:3px">Critical</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:.5px solid var(--bd)">
+      <div style="padding:13px 17px;border-right:.5px solid var(--bd);background:var(--bg2)"><div style="font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-bottom:4px">Root cause</div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:3px">UX philosophy reversal</div><div style="font-size:10.5px;color:var(--t2);line-height:1.45">Touch-only interfaces replaced physical controls in a vehicle whose buyers require cognitive transparency. Climate, volume, and core functions buried inside software menus. Daily contradiction of the brand's own promises.</div></div>
+      <div style="padding:13px 17px;border-right:.5px solid var(--bd);background:var(--bg2)"><div style="font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-bottom:4px">Damage type</div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:3px">Promise contradiction at use</div><div style="font-size:10.5px;color:var(--t2);line-height:1.45">VW's "technology that feels human and intuitive" promise was violated daily. Multiple recalls, software crashes, class action proceedings. The product actively works against the brand relationship.</div></div>
+      <div style="padding:13px 17px;background:var(--bg2)"><div style="font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-bottom:4px">Why it's urgent</div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:3px">Group 1 is the brand's foundation</div><div style="font-size:10.5px;color:var(--t2);line-height:1.45">This is not a fringe buyer group. Group 1 is VW's architecturally closest audience — the people the brand was built for. Losing their trust costs more than any other segment, because it erodes the brand's own identity claim.</div></div>
+    </div>
+    <div style="font-family:var(--font-head);font-style:italic;font-size:14px;line-height:1.7;color:var(--t2);padding:14px 20px;border-bottom:.5px solid var(--bd);background:var(--bg3)">"The brand that promises to understand people built a vehicle for its most trusting buyers that required a fuse-pull to reset. <strong style="font-style:normal;font-weight:600;color:var(--t1)">The solution is behaviour first. Communication only after the behaviour has already happened.</strong>"</div>
+    <div style="padding:18px 22px;background:var(--bg2)">
+      <span style="font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:16px">Recovery sequence — 18 months</span>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-dot" style="background:var(--crit)">1</div><div class="tl-phase">Weeks 1–4 · High urgency</div><div class="tl-title">Relationship repair outreach — not a recall notice, not a press release</div><div class="tl-desc">Every registered Atlas owner from 2024 and 2025 model years receives a direct communication acknowledging the infotainment experience fell below VW's own stated standard of "technology that feels human." No legal hedging. The problem named plainly. A specific remedy offered: hardware replacement where feasible, extended warranty on all infotainment-related faults as minimum. Tone: the brand's own "Disarmingly Honest" register — exactly what was violated must be used to repair what was broken.</div><div class="tl-tags"><span class="ttag" style="background:var(--crit-lt);color:#E06060">High urgency</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">No external cost</span></div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--bad)">2</div><div class="tl-phase">Months 1–3 · Cost: moderate–high</div><div class="tl-title">Hardware remediation for the worst-affected owners</div><div class="tl-desc">Identify the specific configurations that generated the highest failure rates. For owners who experienced documented failures, offer dealer-installed physical control modules where technically feasible, or guaranteed replacement under extended warranty. This is expensive but less expensive than the continued erosion of Group 1 trust and ongoing legal exposure. The cost is a brand investment, not just a product fix.</div><div class="tl-tags"><span class="ttag" style="background:var(--bad-lt);color:var(--bad)">Cost: moderate–high</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">Legal mitigation</span></div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--warn)">3</div><div class="tl-phase">Months 2–4 · Cost: low</div><div class="tl-title">Group 1 owner trust audit — before the next product launch</div><div class="tl-desc">150-person survey of Atlas owners from 2024–2025, segmented by purchase motivation. Measure: how much trust was lost, which specific failures caused the most damage, what would restore it. This data directly feeds the Golf Electric brief. Without it, the next product will be briefed against assumed audience needs, not measured ones. Field the survey before any major 2026 US announcement.</div><div class="tl-tags"><span class="ttag" style="background:var(--warn-lt);color:var(--warn)">Cost: low</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">4–6 weeks</span></div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--brand)">4</div><div class="tl-phase">Months 3–6 · No external cost</div><div class="tl-title">Formalise the physical controls standard — written into the brief, not the option pack</div><div class="tl-desc">Any vehicle whose primary buyers are family-safety-oriented has physical controls for climate, volume, and hazard lights as non-negotiable defaults. Not a trim variant. Not a market variant. The default. Documented, signed off by product leadership, referenced in every future brief for this segment. This is the systemic prevention of the Atlas problem recurring. A governance decision with no cost beyond one internal meeting.</div><div class="tl-tags"><span class="ttag" style="background:var(--brand-lt);color:var(--brand)">Governance</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">Prevents recurrence</span></div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--good)">5</div><div class="tl-phase">Months 6–18 · After behaviour is demonstrable</div><div class="tl-title">Evidence-based communication — the behaviour happened first, now the brand can say so</div><div class="tl-desc">Once the remediation programme is underway and the trust audit is complete, VW has a genuine story: we identified the problem, acknowledged it honestly, fixed it for existing owners, and changed our design standards to prevent recurrence. Owner testimonials from Atlas drivers who received the remediation are more valuable than any advertising message. This is how trust is rebuilt with Group 1. Not through aspiration. Through proof.</div><div class="tl-tags"><span class="ttag" style="background:var(--good-lt);color:var(--good)">Trust recovery</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">After behaviour, not before</span></div></div>
+      </div>
+    </div>
+    <div class="outcome" style="margin:0 20px 18px">
+      <span class="out-lbl">Expected outcomes — if plan executes in full</span>
+      <div class="out-grid">
+        <div class="out-item"><div class="out-metric" style="color:var(--good)">D·28 → D·12</div><div class="out-desc">Projected dissonance reduction over 18 months. Hardware remediation removes the acute source. Trust audit enables precise repair. Physical controls standard prevents recurrence.</div></div>
+        <div class="out-item"><div class="out-metric" style="color:var(--brand)">+0.15 → +0.28</div><div class="out-desc">Projected Group 1 resonance improvement. From marginal to functional. The gap between what VW promises and what Group 1 receives narrows meaningfully.</div></div>
+        <div class="out-item"><div class="out-metric" style="color:var(--warn)">18 months</div><div class="out-desc">Full plan timeline. Outreach in weeks. Hardware in months. Trust audit before summer. Governance standard before next product cycle. Communication only after behaviour.</div></div>
+      </div>
+    </div>
+    <div class="risk"><div class="risk-icon">⚠</div><div class="risk-text"><strong style="color:var(--t1)">Primary risk:</strong> If the Golf Electric brief proceeds before this plan is complete, it risks repeating the same root cause — UX philosophy overriding buyer needs — in VW's most important European product. The two plans must be explicitly connected. The trust audit data from Atlas recovery should directly inform the Golf Electric design gates.</div></div>
+  </div>
+
+  <!-- GOLF ELECTRIC -->
+  <div style="border-radius:var(--rl);overflow:hidden;margin-bottom:20px;border:.5px solid var(--bd)">
+    <div style="padding:18px 22px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;background:linear-gradient(135deg,rgba(212,144,10,.12) 0%,rgba(212,144,10,.04) 100%);border-bottom:.5px solid rgba(212,144,10,.25)">
+      <div>
+        <div style="font-size:17px;font-weight:600;color:var(--t1);letter-spacing:-.01em;line-height:1.3;margin-bottom:5px">Golf Electric — the brief being written now determines VW's European EV future</div>
+        <div style="font-size:12px;color:var(--t2);line-height:1.5;max-width:520px">This is not yet a failure. It is a decision point. The choices being made now — what controls it gets, which existing product it resembles — will produce either VW's strongest EV or its second acute failure. There is no middle outcome.</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:26px;font-weight:600;color:var(--warn);line-height:1">65/35</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-top:3px">Right / Risk</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:.5px solid var(--bd)">
+      <div style="padding:13px 17px;border-right:.5px solid var(--bd);background:var(--bg2)"><div style="font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-bottom:4px">The right path</div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:3px">ID. Buzz logic — heritage first</div><div style="font-size:10.5px;color:var(--t2);line-height:1.45">The ID. Buzz succeeds because it was designed around what VW genuinely is. It didn't try to compete on excitement. The Golf has 50 years of the same logic. Use it.</div></div>
+      <div style="padding:13px 17px;border-right:.5px solid var(--bd);background:var(--bg2)"><div style="font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-bottom:4px">The wrong path</div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:3px">ID.4 logic — technology first</div><div style="font-size:10.5px;color:var(--t2);line-height:1.45">The ID.4 tried to compete on forward energy and tech appeal — the two things VW's identity structurally suppresses. It failed on the brand's own strongest axis. US production ended April 2026.</div></div>
+      <div style="padding:13px 17px;background:var(--bg2)"><div style="font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-bottom:4px">The signal we have</div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:3px">Corrections are encouraging</div><div style="font-size:10.5px;color:var(--t2);line-height:1.45">VW is restoring physical controls across Golf, Tiguan, ID. Polo. That pattern suggests internal awareness. The question is whether it reaches the Golf Electric brief before UX decisions lock.</div></div>
+    </div>
+    <div style="font-family:var(--font-head);font-style:italic;font-size:14px;line-height:1.7;color:var(--t2);padding:14px 20px;border-bottom:.5px solid var(--bd);background:var(--bg3)">The Golf is not a technology product that happens to carry VW's name. It is <strong style="font-style:normal;font-weight:600;color:var(--t1)">the most faithful physical expression of what VW believes</strong> — honest engineering, quiet intelligence, the car that doesn't need to announce itself. The electric version must carry all of that, or it is not a Golf.</div>
+    <div style="padding:18px 22px;background:var(--bg2)">
+      <span style="font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:16px">Prevention plan — brief-stage governance</span>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-dot" style="background:var(--crit)">1</div><div class="tl-phase">Before any brief is issued · Highest priority · No cost</div><div class="tl-title">Write the product character specification before any technology or UX decision is made</div><div class="tl-desc">The Golf Electric brief must begin with an identity document. That document defines the car's emotional character in plain language: what it feels like when you sit in it, what the relationship between driver and controls should be. The Golf GTI's character is the reference case — warm, witty, honest at human scale, driving feedback that is immediate and physical. This document must be formally approved by brand leadership before any engineering, UX, or software team receives a brief. Technology decisions made before character is locked drift toward what is impressive rather than what is appropriate.</div><div class="tl-tags"><span class="ttag" style="background:var(--crit-lt);color:#E06060">Highest priority</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">No cost</span></div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--bad)">2</div><div class="tl-phase">Brief stage · Non-negotiable</div><div class="tl-title">Mandate physical controls as a default — not a trim level, not a market option</div><div class="tl-desc">Climate: physical dial. Volume: physical knob. Hazard: physical button. These are not UX preferences — they are the product's identity in the hands of a Group 1 buyer. The Golf Electric buyer is the same person who bought the petrol Golf: educated, practical, trusts the brand, expects technology to disappear into the experience. Touch-only interfaces make technology visible in exactly the wrong way for this person. Physical controls are the Golf Electric's most important specification. They must be in the brief before any screen design is commissioned.</div><div class="tl-tags"><span class="ttag" style="background:var(--bad-lt);color:var(--bad)">Non-negotiable</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">Engineering brief</span></div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--warn)">3</div><div class="tl-phase">Design stage · Cost: low · Recurring</div><div class="tl-title">Group 1 persona review at every major design gate</div><div class="tl-desc">At each formal design review — concept, alpha, beta, pre-production — a Group 1 panel of 8–10 people evaluates the current design against three questions: Does this feel honest? Does this feel easy? Does this feel like a VW? Any design element that fails two of three is flagged for revision before the gate passes. This is a governance mechanism, not a focus group. The panel's role is to catch drift before it becomes a product decision that costs hundreds of millions to reverse.</div><div class="tl-tags"><span class="ttag" style="background:var(--warn-lt);color:var(--warn)">Cost: low</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">Recurring at each gate</span></div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--brand)">4</div><div class="tl-phase">Engineering stage</div><div class="tl-title">Benchmark against ID. Buzz and Golf GTI owner satisfaction — not Tesla or BYD</div><div class="tl-desc">The Golf Electric should not be benchmarked against EV category competitors. It should be benchmarked against what Golf GTI and ID. Buzz owners report as their highest-satisfaction moments — because both of those vehicles achieved high user-product alignment by defining character clearly before engineering began. The benchmark question for every engineering decision: "Does this produce the same satisfaction a Golf GTI driver experiences in the first week of ownership?" That satisfaction comes from three things: the car does what the driver expects, the controls respond immediately, and the experience improves with familiarity rather than requiring ongoing tolerance.</div><div class="tl-tags"><span class="ttag" style="background:var(--brand-lt);color:var(--brand)">Product standard</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">Right benchmark</span></div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--good)">5</div><div class="tl-phase">Pre-launch · After product is locked</div><div class="tl-title">The communication brief must follow, not lead, the product character</div><div class="tl-desc">If the Golf Electric is briefed correctly, the communication brief writes itself. VW's best advertising has always worked this way: "Think Small" was about the car's honest scale. "A pretty fast car. If you park it correctly." was about the GTI's self-aware wit. The Golf Electric communication must emerge from what the car genuinely is — not from what EV category convention dictates. If the product has been built correctly, the communication team's job is archaeological: find what is already there, and say it simply.</div><div class="tl-tags"><span class="ttag" style="background:var(--good-lt);color:var(--good)">Brand coherence</span><span class="ttag" style="background:var(--bg4);color:var(--t2)">After product is locked</span></div></div>
+      </div>
+    </div>
+    <div class="outcome" style="margin:0 20px 18px">
+      <span class="out-lbl">What success looks like</span>
+      <div class="out-grid">
+        <div class="out-item"><div class="out-metric" style="color:var(--good)">D·08–10</div><div class="out-desc">Projected dissonance score if briefed from Golf GTI character with physical controls as default. Equivalent to the Golf standard — the fleet benchmark.</div></div>
+        <div class="out-item"><div class="out-metric" style="color:var(--brand)">+0.40+</div><div class="out-desc">Projected Group 1 resonance if both Atlas trust repair and Golf Electric brief plan succeed. The brand's first strong resonance score since before Dieselgate.</div></div>
+        <div class="out-item"><div class="out-metric" style="color:var(--car)">Fleet anchor</div><div class="out-desc">A correctly briefed Golf Electric becomes the global EV fleet benchmark — the ID. Buzz logic at volume. Proof that VW's EV thesis works as a mass-market product.</div></div>
+      </div>
+    </div>
+    <div class="risk"><div class="risk-icon">⚠</div><div class="risk-text"><strong style="color:var(--t1)">Primary risk:</strong> If the technology team leads the brief rather than the brand team — if screen size, software capability, or category feature parity is specified before product character is defined — the Golf Electric will drift toward the ID.4 outcome. The window for prevention is now, at brief stage. Once the UX architecture is locked, the physical controls decision becomes a platform constraint rather than a design choice, and reversal becomes expensive rather than free.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SECTION 8 — CONCLUSION ═══════════════════════ -->
+<div class="sec fade" id="conclusion">
+  <div class="thread">
+    <div class="thread-label">The conclusion of the argument</div>
+    <div class="thread-text">Eight sections. One argument. <strong>VW's identity is not the problem. The organisation's relationship with its own identity is the problem.</strong> Every finding in this report — the resonance scores, the fleet dissonance, the leadership drift, the competitive disadvantages — traces back to the same root: decisions made without checking them against what the brand genuinely is.</div>
+  </div>
+
+  <span class="kick">Conclusion</span>
+  <h2 class="stitle">The overall verdict</h2>
+
+  <div class="closing-sermon">Volkswagen is one of the few volume automotive brands in the world that has a genuine identity — not a positioning, not a tagline, but a real emotional character that has been consistent across eight decades, across markets, across product categories. Warmth. Wit. Honest scale. The companion, not the hero. <strong>That is genuinely rare. It is genuinely valuable. And right now, the organisation is working against it on multiple fronts simultaneously.</strong>
+  <br><br>
+  This is not a brand in crisis. It is a brand that is failing to govern itself against its own strongest asset. The gap between what VW genuinely is and what its product decisions, leadership communications, and strategy cycles have been saying is the entire story. Close that gap, and the resonance scores recover. Leave it open, and the identity that has sustained VW for 80 years slowly becomes background noise behind a technology ambition that the brand cannot authentically claim.</div>
+
+  <span class="lbl">The verdict in four frames</span>
+  <div class="verdict-grid">
+    <div class="verdict-card" style="background:var(--bg2)">
+      <div class="vc-label" style="color:var(--good)">What is working</div>
+      <div class="vc-title">The identity is architecturally sound</div>
+      <div class="vc-body">The brand's character — warmth, heritage, wit, honest scale — is coherent, distinctive, and 80 years deep. The campaign layer (YourWagen, True Volkswagen, the GTI advertising) correctly expresses it. The ID. Buzz proves it can survive the EV transition intact. The Golf and GTI prove it can sustain across product generations. These are the reference cases for everything that needs to be fixed.</div>
+    </div>
+    <div class="verdict-card" style="background:var(--bg2)">
+      <div class="vc-label" style="color:var(--crit)">What is broken</div>
+      <div class="vc-title">Two product failures and a governance absence</div>
+      <div class="vc-body">The Atlas (D·28) and ID.4 (D·35) failures share one cause: UX decisions were made without checking them against brand character. The leadership drift adds a second governance failure: strategy communications use a register that contradicts the brand's identity. Both failures are repairable — but only if the organisation decides that brand character is the filter through which product and leadership decisions must pass before they reach the market.</div>
+    </div>
+    <div class="verdict-card" style="background:var(--bg2)">
+      <div class="vc-label" style="color:var(--warn)">What is structurally limited</div>
+      <div class="vc-title">China Group 4 and the desire deficit</div>
+      <div class="vc-body">The Chinese progressive urban buyer's resonance score of −0.09 is not fixable by adding more VW-branded products. The brand's identity is structurally misaligned with what this group requires. The correct structural answer is a governed separate entity — not called Volkswagen — that can carry desire and forward energy without diluting the trust VW has built with the audiences where its identity does work. JETTA is the template at the value end. The premium end needs the same approach.</div>
+    </div>
+    <div class="verdict-card" style="background:var(--bg2)">
+      <div class="vc-label" style="color:var(--brand)">What is genuinely defensible</div>
+      <div class="vc-title">Three windows no competitor can take</div>
+      <div class="vc-body">The family trust segment, the heritage EV territory, and the wit-led communication register are all genuinely defensible — no competitor can replicate them without 60–80 years of cultural history. BYD is taking the desire and forward-drive territory. Toyota is competing in the warmth and reliability territory. The wit territory is entirely uncontested. VW is the only brand in the world with permission to be genuinely funny about what a car is. That is an extraordinary asset. It should be the most protected thing in the portfolio.</div>
+    </div>
+  </div>
+
+  <span class="lbl mt20">The four decisions that determine whether VW recovers or continues to drift</span>
+  <div class="four-decisions">
+    <div class="fd-item">
+      <div class="fd-num">1</div>
+      <div class="fd-body">
+        <div class="fd-title">Lock the Golf Electric brief to the Golf GTI's character — before any other decision is made</div>
+        <div class="fd-text">This is the most time-sensitive decision in the entire report. The Golf Electric brief is being written now. If it is briefed from the Golf GTI's character — warm, witty, honest at human scale, physical controls as default — it will be VW's strongest EV and the product that proves the brand can survive the electrification transition with its identity intact. If it is briefed from technology-first, the ID.4 failure repeats at higher volume. There is no middle outcome. The window for the right decision is now.</div>
+        <div class="fd-timeline">⏱ Decision window: now, at brief stage · Cost if right: zero · Cost if wrong: the next ID.4</div>
+      </div>
+    </div>
+    <div class="fd-item">
+      <div class="fd-num">2</div>
+      <div class="fd-body">
+        <div class="fd-title">Fix the Atlas trust damage with behaviour — outreach, remediation, governance standard — before any campaign</div>
+        <div class="fd-text">VW's highest-trust audience is currently in marginal resonance territory (+0.15). The Atlas is the primary cause. The remediation plan is clear, the sequencing is clear, the expected outcomes are measurable. The one rule that must not break: communication comes after behaviour, not before it. Every campaign VW runs for Group 1 before the Atlas situation is visibly addressed makes the dissonance gap larger, not smaller, because it amplifies the gap between what the brand says and what owners are experiencing.</div>
+        <div class="fd-timeline">⏱ Timeline: 18 months · Priority: outreach in weeks, governance standard before next product cycle</div>
+      </div>
+    </div>
+    <div class="fd-item">
+      <div class="fd-num">3</div>
+      <div class="fd-body">
+        <div class="fd-title">Create a governed separate brand entity for the premium urban China segment — do not use the VW name</div>
+        <div class="fd-text">Adding more VW-branded products to the China market will not resolve the Group 4 resonance deficit. The identity mismatch is structural: what Group 4 requires (desire, aspiration, forward energy) is what VW's identity most suppresses. A separate brand entity — desire-forward character, Xpeng technology underneath, VW engineering standards as the quality backstop — is the structurally correct answer. JETTA at the value end has already proven the governance model works. The premium end needs the same approach, before a competitor with the right character occupies the territory permanently.</div>
+        <div class="fd-timeline">⏱ Timeline: 24–36 months to launch · Platform infrastructure already exists</div>
+      </div>
+    </div>
+    <div class="fd-item">
+      <div class="fd-num">4</div>
+      <div class="fd-body">
+        <div class="fd-title">Govern the CEO's public register against the brand's own communication filter — before the drift becomes irreversible</div>
+        <div class="fd-text">Leadership drift at 30 months is still correctable with a governance decision. At 48 months, the external signal — analysts, media, partners — will have built the "VW as technology ambition brand" narrative into the public record, and returning to the warmth register requires an active repositioning programme rather than a filter. Three specific actions: run every CEO public statement through the brand's own "Disarmingly Honest" filter, designate a senior leader as explicit guardian of the brand's wit register, and anchor one major Blume speech per year to the warmth and heritage register. The cost is minimal. The cost of inaction compounds every month.</div>
+        <div class="fd-timeline">⏱ Window: now — action in this quarter, not next year · Cost of acting now: minimal · Cost of acting in 18 months: significant</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg2);border:.5px solid var(--bdm);border-radius:var(--rl);overflow:hidden;margin-bottom:16px">
+    <div style="padding:16px 20px;background:var(--bg3);border-bottom:.5px solid var(--bd)">
+      <div style="font-size:13px;font-weight:600;color:var(--t1);margin-bottom:3px">The single sentence that summarises the entire diagnosis</div>
+    </div>
+    <div style="padding:20px 22px">
+      <div style="font-family:var(--font-head);font-style:italic;font-size:16px;line-height:1.8;color:var(--t2)">VW is losing ground not because its identity is weak, but because <strong style="font-style:normal;font-weight:600;color:var(--t1)">the organisation keeps making decisions as if the identity doesn't exist</strong> — product decisions that contradict its promises, leadership communications that speak a different language, and strategy cycles that overpromise on dimensions the brand cannot authentically inhabit.</div>
+      <div style="font-family:var(--font-head);font-style:italic;font-size:16px;line-height:1.8;color:var(--t2);margin-top:14px">Fix that governance failure, and the identity does the rest. <strong style="font-style:normal;font-weight:600;color:var(--t1)">The brand knows who it is. The question is whether the organisation will start listening to it.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCES -->
+<div class="src">
+  <span class="src-lbl">Sources and method</span>
+  <p class="src-txt"><strong style="color:var(--t1)">Brand portrait:</strong> VW's internal communications and advertising principles, brand design documentation, and tonality guidelines (2025). <strong style="color:var(--t1)">Audience analysis:</strong> VW's own target group research cross-referenced with external market data. <strong style="color:var(--t1)">Fleet analysis:</strong> Owner review data (Edmunds, JD Power, Consumer Reports), owner forum sentiment, NHTSA recall records, and sales data (Q4 2025–Q1 2026). <strong style="color:var(--t1)">Leadership drift:</strong> Analysis of Oliver Blume's public communications, investor presentations, and strategy speeches (2022–2026). <strong style="color:var(--t1)">Competitive map:</strong> Brand analysis applied to BYD and Toyota from public brand guidelines, communications strategy, and market positioning data (2024–2026). Scores throughout are structured analytical estimates designed for diagnostic comparison, not absolute benchmarking.</p>
+  <div class="src-copy">
+    <span>© 2026 Reasonant.io · All rights reserved</span>
+    <span>April 2026 · For private circulation only</span>
+  </div>
+</div>
+
+</main>
+
+<script>
+const obs = new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.05,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+const bobs = new IntersectionObserver(e=>{e.forEach(x=>{if(!x.isIntersecting)return;x.target.querySelectorAll('.dim-fill,.vmb-fi,.rl-bar,.cb-fill,.drift-fill,.res-bar-fill,.axis-bar,.axis-vw-bar').forEach(b=>{const t=b.style.width;b.style.width='0%';requestAnimationFrame(()=>setTimeout(()=>{b.style.width=t},80))});bobs.unobserve(x.target)})},{threshold:.08});
+document.querySelectorAll('.sec,.dim-group,.grp-row,.comp-dim,.drift-cell').forEach(el=>bobs.observe(el));
+</script>
+</body>
+</html>

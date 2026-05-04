@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMW Group — Brand Portrait | April 2026</title>
+<style>
+  :root {
+    --bmw-blue: #1C69D4;
+    --bmw-dark: #0A0A0A;
+    --bmw-mid: #1A1A2E;
+    --bmw-steel: #2D2D3A;
+    --bmw-silver: #B4B9C4;
+    --bmw-white: #F5F6F8;
+    --accent-gold: #C9A84C;
+    --accent-light: #4A9EE8;
+    --text-main: #1A1A1A;
+    --text-soft: #4A4A5A;
+    --text-muted: #8A8A9A;
+    --resonant: #27AE60;
+    --dissonant: #C0392B;
+    --neutral: #E67E22;
+    --border: #E2E4EA;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: #F2F3F7;
+    color: var(--text-main);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--bmw-dark);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 10%;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(28,105,212,0.18);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(28,105,212,0.12);
+  }
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bmw-blue);
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .cover h1 {
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1.12;
+    margin-bottom: 16px;
+    color: white;
+  }
+  .cover h1 span { color: var(--bmw-blue); font-weight: 600; }
+  .cover-subtitle {
+    font-size: 18px;
+    color: var(--bmw-silver);
+    font-weight: 300;
+    margin-bottom: 60px;
+    max-width: 540px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .cover-meta-item { }
+  .cover-meta-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bmw-blue);
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .cover-meta-value {
+    font-size: 14px;
+    color: var(--bmw-silver);
+    font-weight: 400;
+  }
+  .cover-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--bmw-blue);
+    margin: 48px 0;
+  }
+  .cover-scope {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    max-width: 680px;
+    line-height: 1.7;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .section {
+    background: white;
+    border-radius: 12px;
+    padding: 56px 64px;
+    margin: 32px auto;
+    max-width: 960px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section-narrow { max-width: 800px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bmw-blue);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .section-title {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    color: var(--bmw-dark);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .section-title strong { font-weight: 700; }
+  .section-intro {
+    font-size: 15px;
+    color: var(--text-soft);
+    margin-top: 16px;
+    margin-bottom: 40px;
+    max-width: 680px;
+    line-height: 1.75;
+  }
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  /* ── EMOTIONAL ENGINE ── */
+  .emotion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .emotion-card {
+    background: var(--bmw-white);
+    border-radius: 10px;
+    padding: 28px 24px;
+    border-left: 4px solid transparent;
+  }
+  .emotion-card.dominant { border-left-color: var(--bmw-blue); }
+  .emotion-card.secondary { border-left-color: var(--accent-gold); }
+  .emotion-card.texture { border-left-color: #8E8EA0; }
+  .emotion-card.suppressed { border-left-color: #E0E0E8; background: #FAFAFA; }
+  .emotion-card-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .emotion-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+    margin-bottom: 10px;
+  }
+  .emotion-card-body {
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 1.65;
+  }
+  .emotion-sub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .emotion-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(28,105,212,0.08);
+    color: var(--bmw-blue);
+    font-weight: 500;
+  }
+  .emotion-tag.gold { background: rgba(201,168,76,0.12); color: #9A7B2A; }
+  .emotion-tag.grey { background: rgba(100,100,120,0.08); color: #5A5A70; }
+  .signature-box {
+    background: linear-gradient(135deg, var(--bmw-dark) 0%, var(--bmw-mid) 100%);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-top: 24px;
+    color: white;
+  }
+  .signature-box-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .signature-box p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+  }
+  .signature-box p + p { margin-top: 8px; }
+  .sig-strong { color: white; font-weight: 600; }
+
+  /* ── BRAND CHARACTER ── */
+  .character-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .character-item:last-child { border-bottom: none; }
+  .character-dim-num {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--bmw-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .character-dim-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+    line-height: 1.3;
+  }
+  .character-dim-pos {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: rgba(28,105,212,0.1);
+    color: var(--bmw-blue);
+    font-weight: 600;
+  }
+  .character-body {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.72;
+  }
+  .character-tension {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* ── BRAND POSITION ── */
+  .position-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .position-row {
+    background: var(--bmw-white);
+    border-radius: 8px;
+    padding: 20px 20px;
+  }
+  .position-axis-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+    margin-bottom: 6px;
+  }
+  .position-bar-track {
+    height: 6px;
+    background: #E0E3EA;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .position-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--bmw-blue);
+    transition: width 1s ease;
+  }
+  .position-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .position-value {
+    font-weight: 700;
+    color: var(--bmw-blue);
+  }
+  .position-note {
+    font-size: 11.5px;
+    color: var(--text-soft);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .key-finding {
+    background: #FFF8E7;
+    border-left: 4px solid var(--accent-gold);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin-top: 28px;
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.7;
+  }
+  .key-finding strong { color: var(--bmw-dark); }
+
+  /* ── VEHICLE RANGE ── */
+  .vehicle-segment {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 28px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s;
+  }
+  .vehicle-segment:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+  .vehicle-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .vehicle-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+  }
+  .vehicle-models {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .vehicle-badge {
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge-performance { background: rgba(28,105,212,0.1); color: var(--bmw-blue); }
+  .badge-executive { background: rgba(201,168,76,0.15); color: #8A6A1A; }
+  .badge-flagship { background: rgba(10,10,10,0.08); color: #2A2A3A; }
+  .badge-electric { background: rgba(39,174,96,0.1); color: #1A7A46; }
+  .badge-suv { background: rgba(100,80,180,0.1); color: #5A40A0; }
+  .badge-halo { background: rgba(192,57,43,0.1); color: #8A2020; }
+  .vehicle-body {
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .vehicle-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .vehicle-meta-item { }
+  .vehicle-meta-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .vehicle-meta-value {
+    font-size: 12.5px;
+    color: var(--bmw-dark);
+    font-weight: 600;
+  }
+
+  /* ── ARCHETYPES ── */
+  .archetype-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .archetype-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 24px;
+  }
+  .archetype-num {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .archetype-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+    margin-bottom: 4px;
+  }
+  .archetype-demo {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .archetype-body {
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 1.68;
+    margin-bottom: 16px;
+  }
+  .archetype-drivers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .driver-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: var(--bmw-white);
+    color: var(--text-soft);
+    border: 1px solid var(--border);
+    font-weight: 500;
+  }
+
+  /* ── RESONANCE ── */
+  .resonance-group {
+    margin-bottom: 32px;
+  }
+  .resonance-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .resonance-group-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+  }
+  .resonance-group-profile {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .resonance-score-badge {
+    font-size: 22px;
+    font-weight: 300;
+    padding: 8px 16px;
+    border-radius: 8px;
+    min-width: 80px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .score-strong { background: rgba(39,174,96,0.1); color: var(--resonant); }
+  .score-functional { background: rgba(230,126,34,0.1); color: var(--neutral); }
+  .score-marginal { background: rgba(192,57,43,0.1); color: var(--dissonant); }
+  .score-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    font-weight: 600;
+  }
+  .resonance-components {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .rcomp {
+    background: var(--bmw-white);
+    border-radius: 8px;
+    padding: 14px 14px;
+  }
+  .rcomp-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .rcomp-score {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--bmw-dark);
+    margin-bottom: 4px;
+  }
+  .rcomp-note {
+    font-size: 11.5px;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+  .rcomp.dissonance .rcomp-score { color: var(--dissonant); }
+  .resonance-reading {
+    background: var(--bmw-white);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 1.7;
+    border-left: 3px solid var(--bmw-blue);
+  }
+
+  /* ── CEO PORTRAIT ── */
+  .ceo-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 32px;
+  }
+  .ceo-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--bmw-blue) 0%, var(--bmw-mid) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 300;
+    color: white;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+  .ceo-name {
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--bmw-dark);
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  .ceo-title {
+    font-size: 13px;
+    color: var(--bmw-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  .ceo-meta-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .ceo-meta-chip {
+    font-size: 12px;
+    padding: 4px 12px;
+    background: var(--bmw-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-soft);
+    font-weight: 500;
+  }
+  .ceo-profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .ceo-dimension {
+    background: var(--bmw-white);
+    border-radius: 8px;
+    padding: 20px 20px;
+  }
+  .ceo-dim-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bmw-blue);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .ceo-dim-score {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+    margin-bottom: 6px;
+  }
+  .ceo-dim-body {
+    font-size: 12.5px;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+
+  /* ── IMPACT ── */
+  .impact-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .impact-col {
+    border-radius: 10px;
+    padding: 28px 24px;
+  }
+  .impact-col.positive { background: rgba(39,174,96,0.05); border: 1px solid rgba(39,174,96,0.2); }
+  .impact-col.negative { background: rgba(192,57,43,0.04); border: 1px solid rgba(192,57,43,0.18); }
+  .impact-col-header {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .impact-col.positive .impact-col-header { color: var(--resonant); }
+  .impact-col.negative .impact-col-header { color: var(--dissonant); }
+  .impact-item {
+    margin-bottom: 16px;
+  }
+  .impact-item-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+    margin-bottom: 4px;
+  }
+  .impact-item-body {
+    font-size: 12.5px;
+    color: var(--text-soft);
+    line-height: 1.65;
+  }
+  .impact-vector-summary {
+    background: var(--bmw-white);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-top: 24px;
+  }
+  .impact-vector-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+    margin-bottom: 14px;
+  }
+  .vector-change-row {
+    display: grid;
+    grid-template-columns: 160px 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .vector-change-row:last-child { border-bottom: none; }
+  .vcr-name { font-weight: 600; color: var(--bmw-dark); }
+  .vcr-note { font-size: 12px; color: var(--text-soft); }
+  .vcr-arrow {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .arrow-up { color: var(--resonant); }
+  .arrow-down { color: var(--dissonant); }
+  .arrow-flat { color: var(--text-muted); }
+  .vcr-impact {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .impact-pos { background: rgba(39,174,96,0.1); color: var(--resonant); }
+  .impact-neg { background: rgba(192,57,43,0.1); color: var(--dissonant); }
+  .impact-neu { background: rgba(100,100,120,0.08); color: var(--text-muted); }
+
+  /* ── STRUCTURAL ISSUES ── */
+  .issue-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .issue-item:last-child { border-bottom: none; }
+  .issue-num {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(192,57,43,0.08);
+    color: var(--dissonant);
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .issue-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+    margin-bottom: 8px;
+  }
+  .issue-body {
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 1.72;
+  }
+
+  /* ── METHODOLOGY ── */
+  .method-pie {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    background: var(--bmw-white);
+    border-radius: 10px;
+    padding: 28px 32px;
+  }
+  .method-chart {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+  .method-chart svg { width: 120px; height: 120px; }
+  .method-legend {
+    flex: 1;
+  }
+  .method-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .method-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .method-legend-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--bmw-dark);
+  }
+  .method-legend-pct {
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--bmw-dark);
+    letter-spacing: -0.5px;
+  }
+  .method-legend-body {
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    margin-top: 2px;
+  }
+  .method-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.7;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── NAV ── */
+  .toc-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .toc-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    align-items: center;
+  }
+  .toc-contact {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 10px;
+    font-family: 'DM Mono', 'Courier New', monospace;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: #C8A96E;
+    text-decoration: none;
+    padding: 6px 0 6px 24px;
+    border-left: 1px solid var(--border);
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .toc-contact:hover { opacity: 0.7; }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 16px 14px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .toc-link:hover { color: var(--bmw-blue); border-bottom-color: var(--bmw-blue); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--bmw-dark);
+    color: rgba(255,255,255,0.4);
+    padding: 32px 10%;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+  /* ── UTILITIES ── */
+  @media (max-width: 700px) {
+    .section { padding: 36px 28px; }
+    .character-item { grid-template-columns: 1fr; }
+    .emotion-grid, .archetype-grid, .impact-columns, .ceo-profile-grid,
+    .position-grid, .resonance-components { grid-template-columns: 1fr; }
+    .ceo-header { grid-template-columns: 1fr; }
+    .vector-change-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover" id="top">
+  <div class="cover-eyebrow">Reasonant — Brand Intelligence</div>
+  <h1>BMW Group<br><span>Brand Portrait</span></h1>
+  <div class="cover-subtitle">A structural analysis of brand identity, product alignment, audience resonance, and incoming leadership impact.</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Date</span>
+      <span class="cover-meta-value">April 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Incoming CEO</span>
+      <span class="cover-meta-value">Milan Nedeljković — effective 14 May 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Scope</span>
+      <span class="cover-meta-value">Brand · Vehicles · Audiences · Leadership</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Produced by</span>
+      <span class="cover-meta-value">Design Intelligence</span>
+    </div>
+  </div>
+  <div class="cover-meta-item" style="margin-top:16px;">
+    <span class="cover-meta-label">Contact</span>
+    <span class="cover-meta-value"><a href="mailto:b3njamin@me.com?subject=Design Intelligence — BMW Analysis" style="color:var(--accent-gold);text-decoration:none;">b3njamin@me.com</a></span>
+  </div>
+  <div class="cover-meta-item" style="margin-top:12px;">
+    <span class="cover-meta-label">Analysis by</span>
+    <span class="cover-meta-value">Benjamin Cuenod · Senior Brand Strategist</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="cover-scope">This portrait maps BMW's emotional architecture, character, and market position through a proprietary structural diagnostic. It is not a communications audit. Every finding traces back to how the brand is built at its foundation — not to how it is described.</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="toc-bar">
+  <div class="toc-inner">
+    <a href="#emotional-engine" class="toc-link">Emotional Engine</a>
+    <a href="#brand-world" class="toc-link">Brand World</a>
+    <a href="#brand-character" class="toc-link">Brand Character</a>
+    <a href="#brand-position" class="toc-link">Brand Position</a>
+    <a href="#vehicle-range" class="toc-link">Vehicle Range</a>
+    <a href="#archetypes" class="toc-link">Audiences</a>
+    <a href="#resonance" class="toc-link">Resonance</a>
+    <a href="#ceo" class="toc-link">New CEO</a>
+    <a href="#impact" class="toc-link">Leadership Impact</a>
+    <a href="#methodology" class="toc-link">Methodology</a>
+    <a href="mailto:b3njamin@me.com?subject=Design Intelligence — BMW Analysis" class="toc-contact">Contact Benjamin →</a>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 1 · EMOTIONAL ENGINE                -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="emotional-engine">
+  <span class="section-label">Foundation</span>
+  <h2 class="section-title">The <strong>Emotional Engine</strong></h2>
+  <p class="section-intro">Every brand runs on a specific pattern of motivational energy — the drives that animate what it makes, says, and stands for. These are not values statements or positioning lines. They are the forces operating beneath every product decision, campaign, and audience relationship. Understanding them is the starting point of any honest brand diagnosis.</p>
+
+  <div class="emotion-grid">
+    <div class="emotion-card dominant">
+      <div class="emotion-card-label">Primary Drive · Very High</div>
+      <div class="emotion-card-title">Challenger Force</div>
+      <div class="emotion-card-body">BMW's deepest drive is the refusal to accept limitation. The brand does not challenge for sport — it challenges because accepting second-best is structurally incompatible with what BMW believes it is. This is what makes "The Ultimate Driving Machine" a credible claim rather than marketing copy: it is not a boast, it is a boundary condition. BMW will not produce something it considers less than its best.</div>
+      <div class="emotion-sub-tags">
+        <span class="emotion-tag">Standard Defence</span>
+        <span class="emotion-tag">Anti-Mediocrity Drive</span>
+        <span class="emotion-tag">Category Command</span>
+      </div>
+    </div>
+
+    <div class="emotion-card dominant">
+      <div class="emotion-card-label">Co-Primary Drive · Very High</div>
+      <div class="emotion-card-title">Desire &amp; Magnetism</div>
+      <div class="emotion-card-body">BMW produces objects you want before you can fully explain why. This is not styling. It is a structural feature of how the brand approaches product: the car must create a pull, a magnetic draw that operates before rational evaluation begins. The premium price is downstream of this desire architecture — people do not justify the cost, they find reasons to afford the want.</div>
+      <div class="emotion-sub-tags">
+        <span class="emotion-tag">Aesthetic Gravity</span>
+        <span class="emotion-tag">Aspirational Pull</span>
+        <span class="emotion-tag">Sensory Promise</span>
+      </div>
+    </div>
+
+    <div class="emotion-card secondary">
+      <div class="emotion-card-label">Secondary Drive · High</div>
+      <div class="emotion-card-title">Forward Drive</div>
+      <div class="emotion-card-body">BMW does not stand still. The brand is permanently oriented toward what comes next — the next generation of the engine, the next platform, the next definition of the segment. This is not restlessness for its own sake. It is competitive necessity elevated to a founding instinct. The Neue Klasse is not a product pivot; it is the forward drive made physical.</div>
+      <div class="emotion-sub-tags">
+        <span class="emotion-tag gold">Competitive Momentum</span>
+        <span class="emotion-tag gold">Launch Energy</span>
+        <span class="emotion-tag gold">Pioneering Instinct</span>
+      </div>
+    </div>
+
+    <div class="emotion-card secondary">
+      <div class="emotion-card-label">Structural Texture · Moderate-High</div>
+      <div class="emotion-card-title">Heritage Depth</div>
+      <div class="emotion-card-body">BMW's history is not nostalgia — it is authority. The 100+ year engineering record is not a marketing asset. It is what gives the brand the right to make bold claims. Heritage operates in BMW's architecture as gravity: it slows impulsive decisions, anchors identity under pressure, and gives the forward drive something to push against. Without it, the challenger energy would be hollow.</div>
+      <div class="emotion-sub-tags">
+        <span class="emotion-tag grey">Engineering Legacy</span>
+        <span class="emotion-tag grey">Temporal Authority</span>
+        <span class="emotion-tag grey">Craft Continuity</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="signature-box">
+    <div class="signature-box-label">Emotional Signature</div>
+    <p><span class="sig-strong">Dominant combination:</span> Challenger Force and Desire working together produce a brand that insists on excellence and makes that insistence seductive. This is rare. Most brands are either demanding or attractive. BMW manages both simultaneously — the car makes you want it, and the brand makes you feel you have earned something by choosing it.</p>
+    <p style="margin-top: 10px;"><span class="sig-strong">What is notably absent:</span> Warmth, playfulness, and community energy are all structurally low. BMW does not hold people. It attracts them. This is not a weakness — it is a positioning choice. But it creates a specific vulnerability: in categories where belonging and care have become purchase drivers (family EVs, urban mobility, younger buyer segments), the brand's cold magnetic quality requires very careful translation.</p>
+    <p style="margin-top: 10px;"><span class="sig-strong">Structural tension:</span> A brand built to lead and to attract, navigating a category transition where the emotional rules are being rewritten in real time.</p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 2 · THE BRAND'S WORLD               -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="brand-world">
+  <span class="section-label">Brand Universe</span>
+  <h2 class="section-title">The <strong>Brand's World</strong></h2>
+  <p class="section-intro">A brand is not just an identity — it is a world with its own structural laws. These laws govern what is possible, what is forbidden, and how reality behaves inside that brand. The laws below are not aspirational. They are observable truths about how BMW operates, built up across a century of product decisions, communications, and institutional behaviour.</p>
+
+  <div class="character-item" style="display: block; padding: 20px 0; border-bottom: 1px solid var(--border);">
+    <div style="display: grid; grid-template-columns: 180px 1fr; gap: 24px;">
+      <div><span class="character-dim-num">World Law 01</span><div class="character-dim-name" style="font-size: 14px;">Time is forward-leaning</div></div>
+      <div class="character-body">BMW's world exists primarily in the future tense. The brand is always building toward the next version of itself. Past achievements are present only as credentials, never as destinations. In BMW's universe, looking backward for too long signals stagnation. The record exists to be beaten, preferably by BMW itself.</div>
+    </div>
+  </div>
+  <div class="character-item" style="display: block; padding: 20px 0; border-bottom: 1px solid var(--border);">
+    <div style="display: grid; grid-template-columns: 180px 1fr; gap: 24px;">
+      <div><span class="character-dim-num">World Law 02</span><div class="character-dim-name" style="font-size: 14px;">Technology earns its place</div></div>
+      <div class="character-body">In BMW's world, technology is not decoration. It must function, and it must function demonstrably. The brand's engineering heritage means that every new technology is tested against the standard of what came before. Novelty without performance is not permitted. This is why early criticisms of BMW's iDrive system stung harder than they would have elsewhere — in this world, a technology that doesn't work is worse than no technology at all.</div>
+    </div>
+  </div>
+  <div class="character-item" style="display: block; padding: 20px 0; border-bottom: 1px solid var(--border);">
+    <div style="display: grid; grid-template-columns: 180px 1fr; gap: 24px;">
+      <div><span class="character-dim-num">World Law 03</span><div class="character-dim-name" style="font-size: 14px;">Authority is earned, not asserted</div></div>
+      <div class="character-body">BMW occupies an expert authority position — not celebrity authority, not democratic authority. The brand leads from a position of knowledge and proven record. It does not seek approval. It invites its audience to meet its standard. This creates a tone of quiet confidence that reads as arrogance to some and as assurance to those who already believe.</div>
+    </div>
+  </div>
+  <div class="character-item" style="display: block; padding: 20px 0; border-bottom: 1px solid var(--border);">
+    <div style="display: grid; grid-template-columns: 180px 1fr; gap: 24px;">
+      <div><span class="character-dim-num">World Law 04</span><div class="character-dim-name" style="font-size: 14px;">Premium is precise, not excessive</div></div>
+      <div class="character-body">BMW's world is not a world of display. Wealth in this universe is expressed through precision, not volume. The M3 is not a status symbol by virtue of its price tag. It is a status symbol because of what it can do, how precisely it does it, and the knowledge required to appreciate it. This governs everything from interior material choices to the pitch of the exhaust note.</div>
+    </div>
+  </div>
+  <div class="character-item" style="display: block; padding: 20px 0;">
+    <div style="display: grid; grid-template-columns: 180px 1fr; gap: 24px;">
+      <div><span class="character-dim-num">World Law 05</span><div class="character-dim-name" style="font-size: 14px;">Driving is the irreducible act</div></div>
+      <div class="character-body">In BMW's world, the act of driving — the physical experience of man and machine at the limit of each other's capability — is sacred. This is the founding law and the hardest to preserve in an EV transition. If the car no longer requires the driver's skill, the brand's deepest world law is under structural pressure. This is not a technology problem. It is an identity problem.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 3 · BRAND CHARACTER                 -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="brand-character">
+  <span class="section-label">Identity</span>
+  <h2 class="section-title">Brand <strong>Character</strong></h2>
+  <p class="section-intro">Brand character is the philosophical and behavioural DNA of the brand. It defines who BMW is, independent of what it currently sells or who it currently markets to. These dimensions are long-term stable — they should not change with every new model generation or market pressure.</p>
+
+  <div class="character-item">
+    <div>
+      <div class="character-dim-num">Dimension 01</div>
+      <div class="character-dim-name">How BMW Thinks</div>
+      <div class="character-dim-pos">Anticipatory</div>
+    </div>
+    <div>
+      <div class="character-body">BMW thinks from first principles toward future states — not from market signals backward. The brand anticipates what the category will demand before the demand is legible. The four-cylinder strategy of the 1960s, the M division's creation in 1972, the hydrogen research programme of the 1980s, and the current Neue Klasse architecture all share this trait: BMW moves before the market confirms the direction. The risk of this posture is visible in the current EV transition, where BMW announced multiple powertrain strategies simultaneously — a sign of genuine anticipatory thinking encountering genuine uncertainty about which future will arrive first.</div>
+      <div class="character-tension">Tension: Anticipatory thinking at the product level is not always matched by anticipatory thinking at the communications level, where BMW often explains decisions after competitors have already framed the narrative.</div>
+    </div>
+  </div>
+
+  <div class="character-item">
+    <div>
+      <div class="character-dim-num">Dimension 02</div>
+      <div class="character-dim-name">What Drives BMW</div>
+      <div class="character-dim-pos">Performance-led, moving toward meaning</div>
+    </div>
+    <div>
+      <div class="character-body">BMW's conviction is rooted in performance and achievement — the belief that making the best version of something is a moral act, not just a commercial strategy. This is genuine and observable in behaviour: the company does not cut corners on engineering even when margins compress. However, BMW is in the early stages of a conviction shift. The sustainability agenda, the Neue Klasse platform's efficiency goals, and the increasing emphasis on digital-human experience all signal a brand reaching toward a purpose layer — but not yet having fully articulated what that purpose is beyond excellence.</div>
+      <div class="character-tension">Tension: Performance conviction is credible and owned. Purpose conviction is still being constructed. The gap between these is not a contradiction — it is the most important strategic territory BMW currently occupies.</div>
+    </div>
+  </div>
+
+  <div class="character-item">
+    <div>
+      <div class="character-dim-num">Dimension 03</div>
+      <div class="character-dim-name">How BMW Shows Up</div>
+      <div class="character-dim-pos">Expert authority, understated expression</div>
+    </div>
+    <div>
+      <div class="character-body">BMW's authority comes from record, not from loudness. The brand leads by demonstrating, not by announcing. Its expression is restrained — precisely controlled, never decorative. The roundel is one of the most recognised symbols in the world, but BMW wears it quietly. This understated posture is the correct one for the brand's emotional architecture: a brand built on desire and standards communicates most effectively through the quality of its product, not the volume of its claims. The risk is that understatement can become invisibility in markets where attention is fought for rather than earned.</div>
+      <div class="character-tension">Tension: Works flawlessly for established markets with high brand familiarity. Requires careful calibration in emerging markets and with younger buyers who have not yet inherited the cultural code.</div>
+    </div>
+  </div>
+
+  <div class="character-item">
+    <div>
+      <div class="character-dim-num">Dimension 04</div>
+      <div class="character-dim-name">How BMW Evolves</div>
+      <div class="character-dim-pos">Forward-thinking, evolutionarily managed</div>
+    </div>
+    <div>
+      <div class="character-body">BMW innovates from within its established character rather than breaking from it. The M4 GTS is not a departure from the M tradition — it is the tradition intensified. The iX is not a rejection of BMW's design language — it is that language rewritten in an electric medium. This evolutionary discipline has served the brand well, protecting coherence across decades. The current pressure point is whether evolutionary management is fast enough for a category in structural transition. BMW's multi-powertrain strategy — supporting combustion, hybrid, plug-in hybrid, and full electric simultaneously — is an expression of this evolutionary discipline applied under genuine uncertainty. It is expensive and coherent at once.</div>
+      <div class="character-tension">Tension: Evolutionary management preserves identity coherence. It may delay the decisive commitment that the EV category will eventually demand from every premium manufacturer.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 4 · BRAND POSITION                  -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="brand-position">
+  <span class="section-label">Market Position</span>
+  <h2 class="section-title">Where BMW <strong>Stands</strong></h2>
+  <p class="section-intro">The following scores map BMW's position across eight structural dimensions — the shared geometry in which brands, products, and audiences can all be measured and compared. These are not survey results. They are diagnostic estimates derived from the brand's documented behaviour, product character, and institutional record. Scored 0.0 to 1.0.</p>
+
+  <div class="position-grid">
+    <div class="position-row">
+      <div class="position-axis-name">Market Standing</div>
+      <div class="position-bar-track"><div class="position-bar-fill" style="width: 82%"></div></div>
+      <div class="position-label-row"><span class="position-value">0.82</span><span>Clear premium positioning</span></div>
+      <div class="position-note">BMW occupies a well-defined and defended premium position globally. The price tier is not in question. The challenge is sustaining emotional premium credentials as the product definition changes.</div>
+    </div>
+    <div class="position-row">
+      <div class="position-axis-name">Strategic Horizon</div>
+      <div class="position-bar-track"><div class="position-bar-fill" style="width: 80%"></div></div>
+      <div class="position-label-row"><span class="position-value">0.80</span><span>Visionary, long-cycle thinking</span></div>
+      <div class="position-note">BMW consistently thinks in decade-long product cycles rather than quarterly market responses. This is a genuine competitive advantage in capital-intensive engineering.</div>
+    </div>
+    <div class="position-row">
+      <div class="position-axis-name">Internal Compass</div>
+      <div class="position-bar-track"><div class="position-bar-fill" style="width: 75%"></div></div>
+      <div class="position-label-row"><span class="position-value">0.75</span><span>Principle-driven decisions</span></div>
+      <div class="position-note">BMW demonstrates high internal locus of control — it makes engineering and product decisions from conviction, not from competitive reaction. The multi-powertrain strategy reflects this: BMW chose what it believed was right rather than what Tesla's success suggested.</div>
+    </div>
+    <div class="position-row">
+      <div class="position-axis-name">Appetite for What's New</div>
+      <div class="position-bar-track"><div class="position-bar-fill" style="width: 72%"></div></div>
+      <div class="position-label-row"><span class="position-value">0.72</span><span>Forward-looking, not trend-chasing</span></div>
+      <div class="position-note">BMW pursues new technology when it serves performance — not novelty for its own sake. The Neue Klasse's 30% range improvement and battery density leap are measures of genuine engineering ambition.</div>
+    </div>
+    <div class="position-row">
+      <div class="position-axis-name">Cultural Decoding Requirement</div>
+      <div class="position-bar-track"><div class="position-bar-fill" style="width: 72%"></div></div>
+      <div class="position-label-row"><span class="position-value">0.72</span><span>Sophisticated audience required</span></div>
+      <div class="position-note">BMW's restrained expression only fully lands with audiences who can read the signals — who know what a well-tuned chassis communicates, what the M badge costs to earn, what the interior material choice signals. Audiences without this decoding capacity read BMW as merely expensive rather than genuinely excellent.</div>
+    </div>
+    <div class="position-row">
+      <div class="position-axis-name">Identity Flexibility</div>
+      <div class="position-bar-track"><div class="position-bar-fill" style="width: 62%"></div></div>
+      <div class="position-label-row"><span class="position-value">0.62</span><span>Moderately adaptive</span></div>
+      <div class="position-note">BMW maintains a stable core identity while allowing surface-level adaptation across markets and contexts. The brand can occupy a different emotional register in China versus Germany without losing structural coherence.</div>
+    </div>
+    <div class="position-row">
+      <div class="position-axis-name">Purpose Drive</div>
+      <div class="position-bar-track"><div class="position-bar-fill" style="width: 38%"></div></div>
+      <div class="position-label-row"><span class="position-value">0.38</span><span>Performance-led, not meaning-led</span></div>
+      <div class="position-note">BMW's conviction sits closer to achievement and performance than to broader human purpose. This is honest and consistent with the brand's history. It is also the dimension where the gap to competitors like Mercedes (with its sustainability narrative) is most visible.</div>
+    </div>
+    <div class="position-row">
+      <div class="position-axis-name">Power Orientation</div>
+      <div class="position-bar-track"><div class="position-bar-fill" style="width: 22%"></div></div>
+      <div class="position-label-row"><span class="position-value">0.22</span><span>Expert-authority model</span></div>
+      <div class="position-note">BMW operates from an institutional expert position — it does not democratise or invite co-creation. It defines the standard and invites aspiration. Scores at this level are correct for a premium brand with BMW's heritage but require deliberate translation for audiences who expect peer-level communication.</div>
+    </div>
+  </div>
+
+  <div class="key-finding">
+    <strong>Key finding:</strong> BMW is a high-conviction, high-desire, low-warmth brand. Its dominant dimensions are strong and genuinely owned. The risk profile lies not in the dominant dimensions but in what is absent — purpose depth and peer-level warmth — which are exactly the dimensions that matter most to the fastest-growing premium buyer segment globally.
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 5 · VEHICLE RANGE                   -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="vehicle-range">
+  <span class="section-label">Product Analysis</span>
+  <h2 class="section-title">The <strong>Vehicle Range</strong></h2>
+  <p class="section-intro">Each vehicle in the BMW portfolio carries its own emotional signature — the specific combination of drives it activates in the user. The best BMW products amplify the brand's core drives (Challenger Force, Desire, Forward Drive) while serving the specific needs of their target group. Where a product's emotional signature diverges from the brand's, it either becomes a strategic sub-brand or creates quiet incoherence across the portfolio.</p>
+
+  <!-- 3 Series -->
+  <div class="vehicle-segment">
+    <div class="vehicle-header">
+      <div>
+        <div class="vehicle-name">3 Series</div>
+        <div class="vehicle-models">330i · 330e · M340i · including Touring variants</div>
+      </div>
+      <span class="vehicle-badge badge-performance">Entry Performance</span>
+    </div>
+    <div class="vehicle-body">The 3 Series is the brand's clearest argument. For six decades it has defined what a sports sedan can be — and in doing so, it has set the standard against which every competitor measures itself. The car carries all three of BMW's dominant drives: the challenger force (no one makes a better sports sedan), the desire (the proportions, the steering weight, the exhaust note), and the forward drive (every generation resets the expectation). The 3 Series is the truest expression of BMW's emotional architecture in the mainstream volume segment. Its recent dilution risk — heavier, quieter, more comfort-oriented — is real and worth watching. If the 3 Series loses its driving character, BMW loses its most credible argument at scale.</div>
+    <div class="vehicle-meta">
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Emotional Drive</span><span class="vehicle-meta-value">Challenger Force + Forward Drive</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Target</span><span class="vehicle-meta-value">Performance Believer + Status Achiever</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Portfolio Role</span><span class="vehicle-meta-value">Brand credibility engine at volume</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Brand Alignment</span><span class="vehicle-meta-value">Very Strong — core brand expression</span></div>
+    </div>
+  </div>
+
+  <!-- 5 Series -->
+  <div class="vehicle-segment">
+    <div class="vehicle-header">
+      <div>
+        <div class="vehicle-name">5 Series</div>
+        <div class="vehicle-models">530i · 530e · 540i · M550i · i5 · including Touring</div>
+      </div>
+      <span class="vehicle-badge badge-executive">Executive</span>
+    </div>
+    <div class="vehicle-body">The 5 Series is the volume-premium sweet spot of the BMW range — the car where the brand's desire architecture and professional authority meet. It speaks to the buyer who has arrived professionally and wants a car that signals this without shouting. The emotional mix tilts slightly from Challenger Force toward Heritage Depth and Desire: less about proving performance, more about confirming status through quality. The i5's introduction into this segment is strategically important — it is the Neue Klasse philosophy applied at the brand's highest-volume premium tier. How well the i5 retains the 5 Series' emotional character will signal how successfully BMW can translate its brand drives into a fully electric form.</div>
+    <div class="vehicle-meta">
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Emotional Drive</span><span class="vehicle-meta-value">Desire + Heritage Depth</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Target</span><span class="vehicle-meta-value">Status Achiever (primary)</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Portfolio Role</span><span class="vehicle-meta-value">Professional premium anchor</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Brand Alignment</span><span class="vehicle-meta-value">Strong — desire-dominant expression</span></div>
+    </div>
+  </div>
+
+  <!-- 7 Series / i7 -->
+  <div class="vehicle-segment">
+    <div class="vehicle-header">
+      <div>
+        <div class="vehicle-name">7 Series &amp; i7</div>
+        <div class="vehicle-models">740i · 750e · M760e · i7 xDrive60 · i7 M70</div>
+      </div>
+      <span class="vehicle-badge badge-flagship">Flagship Luxury</span>
+    </div>
+    <div class="vehicle-body">The 7 Series is the most aspirationally ambitious car BMW makes — and the most exposed to competition from Mercedes S-Class. This is the vehicle where Heritage Depth becomes the primary driver alongside Desire. The buyer is not demonstrating driving ability. They are demonstrating a specific kind of worldly success: informed, precise, European in sensibility, not given to excess. The current generation's bold exterior design — deliberately polarising — represents a rare moment of BMW asserting desire over consensus. The i7 carries this argument into the electric era, and its Theatre Screen and executive suite cabin suggest BMW is beginning to understand that the luxury EV buyer's desire is as much about the interior world as the driving one.</div>
+    <div class="vehicle-meta">
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Emotional Drive</span><span class="vehicle-meta-value">Desire + Heritage Depth</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Target</span><span class="vehicle-meta-value">Heritage Loyalist + Status Achiever (senior)</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Portfolio Role</span><span class="vehicle-meta-value">Aspiration ceiling, technical showcase</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Brand Alignment</span><span class="vehicle-meta-value">Strong, with deliberate creative risk</span></div>
+    </div>
+  </div>
+
+  <!-- M Series -->
+  <div class="vehicle-segment">
+    <div class="vehicle-header">
+      <div>
+        <div class="vehicle-name">M Series</div>
+        <div class="vehicle-models">M2 · M3 · M4 · M5 · M8 · X5 M · XM</div>
+      </div>
+      <span class="vehicle-badge badge-halo">Performance Halo</span>
+    </div>
+    <div class="vehicle-body">M is not a trim level. It is BMW's challenger drive expressed at its most uncompromising. The M badge carries the brand's anti-mediocrity principle in its purest form — every M car is built around the question of what this platform can achieve at the absolute limit of its ability. M cars carry maximum Challenger Force and maximum Desire simultaneously, which is why they are the most emotionally coherent vehicles in the range. The risk of M dilution — more M-badged variants at lower performance levels — is a real structural threat. If the M badge can be achieved without the M standard, the halo collapses. The M5 Hybrid and upcoming electrified M cars will be the critical test of whether M's emotional architecture survives powertrain transition.</div>
+    <div class="vehicle-meta">
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Emotional Drive</span><span class="vehicle-meta-value">Challenger Force + Desire (maximum expression)</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Target</span><span class="vehicle-meta-value">Performance Believer (core)</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Portfolio Role</span><span class="vehicle-meta-value">Brand soul made visible — halo and standard-setter</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Brand Alignment</span><span class="vehicle-meta-value">Maximum — the brand at its most honest</span></div>
+    </div>
+  </div>
+
+  <!-- X Series -->
+  <div class="vehicle-segment">
+    <div class="vehicle-header">
+      <div>
+        <div class="vehicle-name">X Series</div>
+        <div class="vehicle-models">X1 · X3 · X5 · X7 · iX3 · iX (including M variants)</div>
+      </div>
+      <span class="vehicle-badge badge-suv">SUV Leadership</span>
+    </div>
+    <div class="vehicle-body">The X Series is BMW's highest-volume commercial engine and its most significant brand tension point. SAVs (Sports Activity Vehicles, as BMW correctly frames them) are where volume is won in every premium market globally — but they are also the vehicles that most often dilute the brand's driving-focused emotional architecture. BMW has managed this tension more successfully than most by insisting that the X cars drive like BMWs first and look like SUVs second. The X5 M is perhaps the clearest expression of this discipline: a large, practical family vehicle that can genuinely challenge a sports car through a corner. The iX is the most ambitious expression of what a BMW SUV can be in an electric future — polarising in design (deliberately so), advanced in technology, and explicit in its ambition to reframe what BMW desire feels like from the outside in.</div>
+    <div class="vehicle-meta">
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Emotional Drive</span><span class="vehicle-meta-value">Forward Drive + Desire (moderate Challenger Force)</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Target</span><span class="vehicle-meta-value">Status Achiever + Heritage Loyalist + Progressive Premium Buyer (iX)</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Portfolio Role</span><span class="vehicle-meta-value">Volume commercial engine, desire maintained under practical pressure</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Brand Alignment</span><span class="vehicle-meta-value">Strong in M variants, moderate in standard trim — watch for softening</span></div>
+    </div>
+  </div>
+
+  <!-- Neue Klasse -->
+  <div class="vehicle-segment" style="border-color: var(--bmw-blue); background: linear-gradient(to right, rgba(28,105,212,0.02), white);">
+    <div class="vehicle-header">
+      <div>
+        <div class="vehicle-name">Neue Klasse Platform</div>
+        <div class="vehicle-models">iX3 (2025 launch) · New i3 sedan · New 3 Series EV (arriving 2026+)</div>
+      </div>
+      <span class="vehicle-badge badge-electric">Next Architecture</span>
+    </div>
+    <div class="vehicle-body">The Neue Klasse is not just a new product line — it is BMW's argument that it can fully own its emotional architecture in an electric medium. The original Neue Klasse of the 1960s saved the company. This one is tasked with something comparably important: proving that a BMW can be fully electric and still activate Challenger Force, Desire, and Forward Drive at the same intensity as its combustion predecessors. Early signals are strong: 30% more range, 20% better energy density, a purpose-built architecture rather than an adapted combustion platform, and a design philosophy that does not compromise on the BMW visual identity. If it succeeds, it resolves the brand's most critical structural question. If it is perceived as technically excellent but emotionally diminished, the question gets harder to answer with each subsequent model.</div>
+    <div class="vehicle-meta">
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Strategic Role</span><span class="vehicle-meta-value">Brand identity resolution in the EV era</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Primary Target</span><span class="vehicle-meta-value">Progressive Premium Buyer + younger Status Achiever</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Critical Test</span><span class="vehicle-meta-value">Does desire survive the powertrain transition?</span></div>
+      <div class="vehicle-meta-item"><span class="vehicle-meta-label">Stakes</span><span class="vehicle-meta-value">Highest in the portfolio — defines the next decade</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 6 · USER ARCHETYPES                 -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="archetypes">
+  <span class="section-label">Audience Intelligence</span>
+  <h2 class="section-title">Who <strong>BMW Attracts</strong></h2>
+  <p class="section-intro">These archetypes were not sourced from market research. They were derived from BMW's own structural position — the kinds of people who would sit in natural alignment, aspiration, or productive tension with the brand's emotional and character architecture. Real research would validate or adjust the positions. What is presented here is the structural hypothesis: who BMW's brand is built to resonate with, and why.</p>
+
+  <div class="archetype-grid">
+    <div class="archetype-card">
+      <div class="archetype-num">Archetype 01 · Core</div>
+      <div class="archetype-name">The Performance Believer</div>
+      <div class="archetype-demo">28–50 · gender diverse · driving-motivated · enthusiast-aligned</div>
+      <div class="archetype-body">This person experiences cars as craft objects, not transport. They know what understeer feels like, what a well-weighted steering rack communicates, what the M3 versus the M4 decision actually means. BMW's challenger drive and desire architecture land with maximum force here because this archetype speaks the same language. They are cultural amplifiers — they influence others' brand perceptions, write reviews, share footage, recommend from experience. They are not necessarily the highest spenders in the portfolio, but they are the most important credibility carriers. Their relationship with BMW is identity-level: the car is an expression of who they believe themselves to be.</div>
+      <div class="archetype-drivers">
+        <span class="driver-tag">Driving craft</span>
+        <span class="driver-tag">Technical depth</span>
+        <span class="driver-tag">Anti-compromise</span>
+        <span class="driver-tag">Brand loyalty through performance</span>
+      </div>
+    </div>
+
+    <div class="archetype-card">
+      <div class="archetype-num">Archetype 02 · Commercial Core</div>
+      <div class="archetype-name">The Status Achiever</div>
+      <div class="archetype-demo">35–55 · career-driven · brand-aware · urban/suburban · high income</div>
+      <div class="archetype-body">This is BMW's highest-revenue archetype — the buyer who chooses BMW because the brand sits at the precise intersection of performance credibility and professional arrival. Not flashy enough for Ferrari, not anonymous enough for Mercedes, not quiet enough for a Japanese luxury brand. BMW signals something specific: I am competent, I have arrived, I know what quality is, and I chose accordingly. The desire architecture lands powerfully here but from a different angle than with the Performance Believer — it is about what the car says in a car park, at a client meeting, to a peer. This archetype is BMW's commercial engine and its most contested segment, with Audi and Mercedes constantly applying competitive pressure.</div>
+      <div class="archetype-drivers">
+        <span class="driver-tag">Professional signalling</span>
+        <span class="driver-tag">Proven quality</span>
+        <span class="driver-tag">Competitive peer comparison</span>
+        <span class="driver-tag">Aspirational progression</span>
+      </div>
+    </div>
+
+    <div class="archetype-card">
+      <div class="archetype-num">Archetype 03 · Growing Segment</div>
+      <div class="archetype-name">The Progressive Premium Buyer</div>
+      <div class="archetype-demo">28–45 · urban · sustainability-aware · digital-native · EV-interested</div>
+      <div class="archetype-body">This is BMW's most strategically important and most underserved archetype. They want premium. They want design. They want technology that works. But they are also making their purchase through the lens of what their choices say about the world they want to live in — sustainability, responsibility, forward momentum. BMW's Forward Drive and Desire dimensions land well. The challenger energy is interesting. But the brand's low warmth, institutional authority posture, and historically combustion-centred identity create distance. This archetype does not read the Roundel with the accumulated trust that older buyers carry. The Neue Klasse is BMW's direct answer to this group — but the brand, not just the product, needs to meet them.</div>
+      <div class="archetype-drivers">
+        <span class="driver-tag">Sustainability credentials</span>
+        <span class="driver-tag">Technology leadership</span>
+        <span class="driver-tag">Design coherence</span>
+        <span class="driver-tag">Brand integrity</span>
+      </div>
+    </div>
+
+    <div class="archetype-card">
+      <div class="archetype-num">Archetype 04 · Legacy Anchor</div>
+      <div class="archetype-name">The Heritage Loyalist</div>
+      <div class="archetype-demo">50–70 · long-term BMW relationship · trust-anchored · quality-led</div>
+      <div class="archetype-body">The Heritage Loyalist has a multi-decade relationship with BMW. They have watched the brand evolve, they have owned multiple generations, and their trust was built over the long haul rather than earned by any single product. BMW's Heritage Depth dimension is their primary resonance point — they know what the brand has been and extend significant latitude for what it is becoming. They are BMW's most loyal buyers and its least commercially scalable future, simply because this archetype does not self-replenish at the same resonance level. The brand's most urgent strategic task is finding what brings a younger audience into the same depth of relationship — which requires something more than product quality alone.</div>
+      <div class="archetype-drivers">
+        <span class="driver-tag">Accumulated trust</span>
+        <span class="driver-tag">Engineering continuity</span>
+        <span class="driver-tag">Brand familiarity</span>
+        <span class="driver-tag">Long-term quality record</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 7 · RESONANCE & DISSONANCE          -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="resonance">
+  <span class="section-label">Connection Analysis</span>
+  <h2 class="section-title">Where BMW <strong>Connects</strong> — and Where It <strong>Struggles</strong></h2>
+  <p class="section-intro">Resonance measures the degree to which a target group recognises their own values, thinking, and desired future reflected in the brand. It is not lifestyle similarity. It is structural alignment across three components — shared worldview, shared aspiration, and matching communication register — minus the drag of any dissonance between what the brand promises and what it actually delivers. Scale: 0.50+ exceptional · 0.35–0.49 strong · 0.20–0.34 functional · below 0.20 marginal.</p>
+
+  <!-- Group 1 -->
+  <div class="resonance-group">
+    <div class="resonance-header">
+      <div>
+        <div class="resonance-group-name">The Performance Believer</div>
+        <div class="resonance-group-profile">28–50 · driving-motivated · brand as identity</div>
+      </div>
+      <div class="resonance-score-badge score-strong">
+        0.52
+        <span class="score-label">Strong</span>
+      </div>
+    </div>
+    <div class="resonance-components">
+      <div class="rcomp">
+        <div class="rcomp-label">Shared Worldview</div>
+        <div class="rcomp-score">0.88</div>
+        <div class="rcomp-note">Deep alignment on performance as a moral position and craft as a value.</div>
+      </div>
+      <div class="rcomp">
+        <div class="rcomp-label">Aspiration Match</div>
+        <div class="rcomp-score">0.82</div>
+        <div class="rcomp-note">Brand is ahead on performance standards — a reachable elevation of their own values.</div>
+      </div>
+      <div class="rcomp">
+        <div class="rcomp-label">Communication Register</div>
+        <div class="rcomp-score">0.78</div>
+        <div class="rcomp-note">BMW speaks at depth — technical, uncompromising. This group reads the signal clearly.</div>
+      </div>
+      <div class="rcomp dissonance">
+        <div class="rcomp-label">Dissonance</div>
+        <div class="rcomp-score">0.22</div>
+        <div class="rcomp-note">M badge dilution and comfort-oriented evolution create mounting friction for this group.</div>
+      </div>
+    </div>
+    <div class="resonance-reading">
+      BMW's strongest resonance relationship — and the one most at risk from product softening. This group rewards the brand with loyalty and cultural amplification. They withdraw both the moment the performance credential becomes aspirational rather than real. The dissonance driver here is not external events but internal decisions: how many M cars can exist before the M standard is diluted?
+    </div>
+  </div>
+
+  <!-- Group 2 -->
+  <div class="resonance-group">
+    <div class="resonance-header">
+      <div>
+        <div class="resonance-group-name">The Status Achiever</div>
+        <div class="resonance-group-profile">35–55 · career-driven · brand-comparative</div>
+      </div>
+      <div class="resonance-score-badge score-strong">
+        0.44
+        <span class="score-label">Strong</span>
+      </div>
+    </div>
+    <div class="resonance-components">
+      <div class="rcomp">
+        <div class="rcomp-label">Shared Worldview</div>
+        <div class="rcomp-score">0.70</div>
+        <div class="rcomp-note">Achievement, quality standards, and professional signal alignment are all strong.</div>
+      </div>
+      <div class="rcomp">
+        <div class="rcomp-label">Aspiration Match</div>
+        <div class="rcomp-score">0.68</div>
+        <div class="rcomp-note">Brand is ahead on the aspiration curve — the car represents a reachable goal for the next career chapter.</div>
+      </div>
+      <div class="rcomp">
+        <div class="rcomp-label">Communication Register</div>
+        <div class="rcomp-score">0.65</div>
+        <div class="rcomp-note">BMW's authority register lands well, though some find it less warm than competitor communication.</div>
+      </div>
+      <div class="rcomp dissonance">
+        <div class="rcomp-label">Dissonance</div>
+        <div class="rcomp-score">0.14</div>
+        <div class="rcomp-note">Relatively low. No structural contradiction. Some ongoing perception that Mercedes offers comparable prestige with more warmth.</div>
+      </div>
+    </div>
+    <div class="resonance-reading">
+      BMW's most commercially important group — reliable, scalable, and relatively resilient. The structural risk is not dissonance but competitive displacement: Audi and Mercedes both compete at very close resonance distances with this archetype, and minor product or communication missteps shift consideration sets quickly. BMW's engineering heritage and driving character are its primary differentiators here.
+    </div>
+  </div>
+
+  <!-- Group 3 -->
+  <div class="resonance-group">
+    <div class="resonance-header">
+      <div>
+        <div class="resonance-group-name">The Progressive Premium Buyer</div>
+        <div class="resonance-group-profile">28–45 · urban · sustainability-driven · EV-interested</div>
+      </div>
+      <div class="resonance-score-badge score-functional">
+        0.27
+        <span class="score-label">Functional</span>
+      </div>
+    </div>
+    <div class="resonance-components">
+      <div class="rcomp">
+        <div class="rcomp-label">Shared Worldview</div>
+        <div class="rcomp-score">0.55</div>
+        <div class="rcomp-note">Forward drive and design ambition resonate. Institutional authority posture and low warmth do not.</div>
+      </div>
+      <div class="rcomp">
+        <div class="rcomp-label">Aspiration Match</div>
+        <div class="rcomp-score">0.48</div>
+        <div class="rcomp-note">EV transition is legible but reads as reactive rather than pioneering to this group. Tesla and Polestar have set an aspirational bar this group compares BMW against.</div>
+      </div>
+      <div class="rcomp">
+        <div class="rcomp-label">Communication Register</div>
+        <div class="rcomp-score">0.50</div>
+        <div class="rcomp-note">BMW's restrained communication requires cultural decoding this group has not fully inherited. The brand does not yet speak directly to their emotional priorities.</div>
+      </div>
+      <div class="rcomp dissonance">
+        <div class="rcomp-label">Dissonance</div>
+        <div class="rcomp-score">0.20</div>
+        <div class="rcomp-note">Historical combustion association, ongoing multi-powertrain hedging, and absence of a clear sustainability purpose narrative all contribute.</div>
+      </div>
+    </div>
+    <div class="resonance-reading">
+      BMW's most strategically important underperforming group — and the one the Neue Klasse is most directly designed to address. The product alone is not sufficient. The aspiration gap and communication register gap are brand-level problems, not product-level ones. This group needs BMW to explain what the brand believes about the future, not just what the car can do.
+    </div>
+  </div>
+
+  <!-- Group 4 -->
+  <div class="resonance-group">
+    <div class="resonance-header">
+      <div>
+        <div class="resonance-group-name">The Heritage Loyalist</div>
+        <div class="resonance-group-profile">50–70 · multi-decade BMW relationship · trust-led</div>
+      </div>
+      <div class="resonance-score-badge score-strong">
+        0.48
+        <span class="score-label">Strong</span>
+      </div>
+    </div>
+    <div class="resonance-components">
+      <div class="rcomp">
+        <div class="rcomp-label">Shared Worldview</div>
+        <div class="rcomp-score">0.82</div>
+        <div class="rcomp-note">Engineering quality, precision, and the premium-through-performance logic are all deeply shared values.</div>
+      </div>
+      <div class="rcomp">
+        <div class="rcomp-label">Aspiration Match</div>
+        <div class="rcomp-score">0.70</div>
+        <div class="rcomp-note">Brand is still ahead — the next generation of the model they love remains aspirationally relevant.</div>
+      </div>
+      <div class="rcomp">
+        <div class="rcomp-label">Communication Register</div>
+        <div class="rcomp-score">0.78</div>
+        <div class="rcomp-note">Deep shared symbolic language built over decades of brand interaction. Communication lands clearly and with emotional weight.</div>
+      </div>
+      <div class="rcomp dissonance">
+        <div class="rcomp-label">Dissonance</div>
+        <div class="rcomp-score">0.13</div>
+        <div class="rcomp-note">Low. Some uncertainty about the EV direction, but long pre-existing trust absorbs this effectively.</div>
+      </div>
+    </div>
+    <div class="resonance-reading">
+      BMW's second-strongest resonance group and its most stable. The structural limitation is demographic: this group is not being replenished at the same resonance level by any incoming cohort. BMW's highest-resonance relationship is in an age bracket that requires succession planning at the identity level — not the product level.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+  <span class="section-label">Core Structural Issues</span>
+  <h3 style="font-size: 20px; font-weight: 300; color: var(--bmw-dark); margin: 10px 0 28px;">Where the pressure points are</h3>
+
+  <div class="issue-item">
+    <div class="issue-num">1</div>
+    <div>
+      <div class="issue-title">The succession gap</div>
+      <div class="issue-body">BMW's two strongest resonance relationships (Performance Believer and Heritage Loyalist) are not being replaced at the same connection depth by incoming generations. The Progressive Premium Buyer sits at functional resonance — present consideration, not deep loyalty. The brand has a window to build the kind of structural trust with the 28–45 cohort that it earned with older buyers over decades. That window is not permanent.</div>
+    </div>
+  </div>
+
+  <div class="issue-item">
+    <div class="issue-num">2</div>
+    <div>
+      <div class="issue-title">The EV transition is a brand challenge, not just a product challenge</div>
+      <div class="issue-body">The Neue Klasse addresses the product question. It does not yet address the brand question: what does BMW believe the future should feel like? The Progressive Premium Buyer is not asking whether the iX3 charges fast enough. They are asking whether BMW's values align with theirs. That is a character question, not an engineering question. BMW's forward drive and challenger energy are the right raw materials. They need explicit translation into a purpose narrative the brand does not yet fully own.</div>
+    </div>
+  </div>
+
+  <div class="issue-item">
+    <div class="issue-num">3</div>
+    <div>
+      <div class="issue-title">M badge dilution is a slow-burn credibility risk</div>
+      <div class="issue-body">The M sub-brand is BMW's most emotionally coherent asset and its most commercially tempting one. Every dilution of the M standard — a heavier M model, an M badge on a less capable variant — borrows against the accumulated credibility of the letter. The Performance Believer archetype, BMW's cultural amplifier base, is highly sensitive to this. Their dissonance score is already rising. Protecting the M standard is not a product decision. It is a brand identity decision with long-term resonance consequences.</div>
+    </div>
+  </div>
+
+  <div class="issue-item">
+    <div class="issue-num">4</div>
+    <div>
+      <div class="issue-title">China dependency is a structural risk to identity coherence</div>
+      <div class="issue-body">China delivers over 30% of global BMW sales and has specific preference patterns — larger vehicles, longer wheelbases, different interior priority hierarchies — that require product adaptation. The discipline question is whether China-driven product adaptations are beginning to migrate upstream into decisions that affect the global brand character. If they are, the identity drift will be subtle and difficult to reverse. BMW's internal compass score (0.75) suggests the brand has resisted this to date. Maintaining it as China volumes pressure margins will require deliberate governance.</div>
+    </div>
+  </div>
+
+  <div class="issue-item">
+    <div class="issue-num">5</div>
+    <div>
+      <div class="issue-title">Desire architecture needs translation for the EV interior</div>
+      <div class="issue-body">BMW's desire dimension was historically constructed through the driving experience: the weight of the steering, the sound of the engine, the physical response of the chassis. In an electric vehicle, many of these signals are absent or fundamentally different. BMW needs to rebuild its desire architecture from the inside out — what does a BMW feel like to want, own, and live with when the emotional delivery channel shifts from driving dynamics to space, materials, interface, and silence? The i7's Theatre Screen is one answer. It needs many more.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 8 · NEW CEO PORTRAIT                -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="ceo">
+  <span class="section-label">Leadership Intelligence</span>
+  <h2 class="section-title"><strong>Milan Nedeljković</strong> — Incoming CEO</h2>
+  <p class="section-intro">The following portrait applies the same structural lens used for the brand to its incoming leader. A CEO's personal drive pattern, decision style, and institutional character function as a voltage modifier on the brand — they intensify or soften specific brand dimensions without changing the underlying identity. The question is not whether Nedeljković is a good leader. The question is how his specific pattern interacts with BMW's specific brand architecture.</p>
+
+  <div class="ceo-header">
+    <div class="ceo-avatar">MN</div>
+    <div>
+      <div class="ceo-name">Milan Nedeljković</div>
+      <div class="ceo-title">Chairman, BMW Group Board of Management — from 14 May 2026</div>
+      <div class="ceo-meta-row">
+        <span class="ceo-meta-chip">Age 56</span>
+        <span class="ceo-meta-chip">BMW since 1993 — 33 years</span>
+        <span class="ceo-meta-chip">Dr.-Ing., TU Munich</span>
+        <span class="ceo-meta-chip">MIT exchange programme</span>
+        <span class="ceo-meta-chip">Contract to 2031</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="character-body" style="margin-bottom: 24px; padding: 20px 24px; background: var(--bmw-white); border-radius: 8px;">
+    Nedeljković is a system-builder. His career arc — trainee in 1993, doctorate in forming technology and foundry engineering, plant leadership across Munich, Regensburg, Leipzig, and Oxford's MINI facility, then Head of Corporate Quality, then Board Member for Production — is the biography of someone who understands how BMW works at the manufacturing level more deeply than any previous CEO appointment. He does not lead from communications. He leads from production. He does not explain the brand. He builds what the brand makes. This is a specific and consequential leadership signature.
+  </div>
+
+  <div class="ceo-profile-grid">
+    <div class="ceo-dimension">
+      <div class="ceo-dim-label">Strategic Mode</div>
+      <div class="ceo-dim-score">Systems-first, implementation-led</div>
+      <div class="ceo-dim-body">Nedeljković thinks in operational systems — production flows, quality gates, platform architectures, cost structures. His strategic contribution is the discipline of excellent execution at massive scale. He does not generate brand narratives. He delivers on them.</div>
+    </div>
+    <div class="ceo-dimension">
+      <div class="ceo-dim-label">Communication Style</div>
+      <div class="ceo-dim-score">Precise, technically grounded, internally oriented</div>
+      <div class="ceo-dim-body">His communications are characterised by technical clarity and operational confidence. He inspires through demonstrated competence, not through aspirational rhetoric. This plays strongly internally with engineers and production teams.</div>
+    </div>
+    <div class="ceo-dimension">
+      <div class="ceo-dim-label">Risk Orientation</div>
+      <div class="ceo-dim-score">Disciplined — risk-aware, not risk-averse</div>
+      <div class="ceo-dim-body">Nedeljković's background in quality control and production management instils a precise understanding of where risk lives and what the consequences of failure are at manufacturing scale. He will not gamble with operations. He will commit decisively once the system logic is clear.</div>
+    </div>
+    <div class="ceo-dimension">
+      <div class="ceo-dim-label">Leadership Energy</div>
+      <div class="ceo-dim-score">High internal drive, calibrated external ambition</div>
+      <div class="ceo-dim-body">Described as someone who "inspires people with ideas, unites them behind shared values, and motivates them to realise peak performance." This is a builder archetype — high activation, internally directed, producing results through systems rather than through individual force of personality.</div>
+    </div>
+    <div class="ceo-dimension">
+      <div class="ceo-dim-label">Brand Energy Pattern</div>
+      <div class="ceo-dim-score">Forward Drive · Precision Instinct · Internal Standards</div>
+      <div class="ceo-dim-body">His personal drive pattern carries strong Forward Drive (always improving the system), high Precision and Consequence Awareness (quality as a governing value), and moderate Challenger Force (through operational standards rather than competitive positioning). Desire and magnetism — the brand's co-primary driver — are present through product quality rather than through public personality.</div>
+    </div>
+    <div class="ceo-dimension">
+      <div class="ceo-dim-label">Distance from Brand Architecture</div>
+      <div class="ceo-dim-score">Controlled stretch — within safe range</div>
+      <div class="ceo-dim-body">Nedeljković's personal drive pattern and BMW's brand architecture share dominant dimensions — forward drive and challenger standards — but diverge on desire and magnetism. The brand produces objects you want to possess. The new CEO produces systems that work without fail. This is not a contradiction. It is a complementary pairing where the risk is a gradual softening of desire energy in external-facing decisions.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 9 · LEADERSHIP IMPACT               -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="impact">
+  <span class="section-label">Impact Analysis</span>
+  <h2 class="section-title">How <strong>Leadership Changes</strong> the Resonance Picture</h2>
+  <p class="section-intro">Leadership transitions do not change a brand's fundamental identity — but they do change the voltage applied to specific dimensions of it. Nedeljković's appointment will intensify some brand drives and soften others. The following analysis maps where those shifts fall and how they affect the resonance scores already established across BMW's four key audience groups.</p>
+
+  <div class="impact-columns">
+    <div class="impact-col positive">
+      <div class="impact-col-header">↑ Where the New CEO Strengthens BMW</div>
+
+      <div class="impact-item">
+        <div class="impact-item-title">Challenger Force becomes operationally credible</div>
+        <div class="impact-item-body">BMW's anti-mediocrity drive is most credible when it is expressed through what the brand actually builds. A CEO whose career is defined by quality systems and manufacturing discipline turns the challenger standard from an aspiration into a verified operational commitment. This will lift Performance Believer and Status Achiever resonance, for whom product quality is a primary purchase signal.</div>
+      </div>
+
+      <div class="impact-item">
+        <div class="impact-item-title">Neue Klasse execution confidence</div>
+        <div class="impact-item-body">The Neue Klasse is the most important product programme in BMW's current decade. Having the CEO who built the production architecture for this platform also leading the company at its launch is a structural advantage. Execution risk decreases significantly. This matters most for the Progressive Premium Buyer, for whom BMW's credibility as an EV contender was previously dependent on claims rather than demonstrated delivery.</div>
+      </div>
+
+      <div class="impact-item">
+        <div class="impact-item-title">Internal alignment and cultural stability</div>
+        <div class="impact-item-body">Nedeljković's 33 years at BMW and deep institutional relationships will produce a period of internal cohesion. This is not visible externally but is felt downstream through product consistency, quality standards, and the brand behaviour that follows from a unified organisation. Cultural stability at BMW translates into brand stability over the medium term.</div>
+      </div>
+
+      <div class="impact-item">
+        <div class="impact-item-title">Margin restoration supports brand investment capacity</div>
+        <div class="impact-item-body">An operationally disciplined CEO addressing BMW's margin compression (currently 4–6% versus a target of 8–10%) restores the financial headroom for the brand investments — design, communications, experience — that sustain desire architecture. In this sense, operational excellence directly supports the brand's most seductive dimension.</div>
+      </div>
+    </div>
+
+    <div class="impact-col negative">
+      <div class="impact-col-header">↓ Where the New CEO Creates Risk</div>
+
+      <div class="impact-item">
+        <div class="impact-item-title">Desire architecture may lose executive energy</div>
+        <div class="impact-item-body">BMW's desire dimension has historically been amplified by leaders with strong aesthetic instinct and public magnetism — most visibly through design decisions and public-facing product reveals. Nedeljković's drive pattern is operational rather than aspirational. The risk is not that desire disappears from the product — it is that it receives less executive attention and energy at the top of the organisation, which over time softens the design and brand investment decisions that sustain it.</div>
+      </div>
+
+      <div class="impact-item">
+        <div class="impact-item-title">Progressive Premium Buyer narrative gap may widen</div>
+        <div class="impact-item-body">This archetype needs BMW to articulate what the brand believes — its values, its vision for mobility, its relationship to sustainability as a lived conviction rather than a product specification. Nedeljković's communication style is technical and delivery-focused. Without a deliberate brand-building counterpart at the senior leadership level, the aspiration gap with the Progressive Premium Buyer may persist even as the product improves.</div>
+      </div>
+
+      <div class="impact-item">
+        <div class="impact-item-title">Reduced challenger energy in external positioning</div>
+        <div class="impact-item-body">Zipse was a visible, combative public figure — willing to defend BMW's multi-powertrain strategy publicly and with force. Nedeljković's leadership style is less publicly confrontational. BMW's challenger drive is a competitive positioning asset. If it retreats to an internal quality standard and stops operating as an external competitive claim, the brand loses one of its most distinctive resonance signals with its most loyal audiences.</div>
+      </div>
+
+      <div class="impact-item">
+        <div class="impact-item-title">China strategy requires brand-level discipline</div>
+        <div class="impact-item-body">Nedeljković's production expertise makes him well-positioned to manage China's manufacturing complexity. The brand governance risk is different: China market preferences drive product adaptations that, without explicit identity governance, can gradually dilute the character dimensions that make BMW resonant globally. A production-focused CEO may be less immediately attentive to these character-level drift signals than a brand- or sales-led one.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="impact-vector-summary">
+    <div class="impact-vector-title">Projected impact on resonance scores — by audience group</div>
+
+    <div class="vector-change-row">
+      <span class="vcr-name">Performance Believer</span>
+      <span class="vcr-note">Manufacturing credibility and quality standards strengthen product alignment</span>
+      <span class="vcr-arrow arrow-up">↑</span>
+      <span class="vcr-impact impact-pos">+0.03 to +0.05</span>
+    </div>
+    <div class="vector-change-row">
+      <span class="vcr-name">Status Achiever</span>
+      <span class="vcr-note">Operational excellence reinforces quality premium. Slight risk if public desire energy softens</span>
+      <span class="vcr-arrow arrow-flat">→</span>
+      <span class="vcr-impact impact-neu">Stable / +0.01</span>
+    </div>
+    <div class="vector-change-row">
+      <span class="vcr-name">Progressive Premium</span>
+      <span class="vcr-note">Neue Klasse delivery improves product credibility. Narrative gap remains unaddressed</span>
+      <span class="vcr-arrow arrow-up">↑</span>
+      <span class="vcr-impact impact-pos">+0.02 to +0.04 (product-driven)</span>
+    </div>
+    <div class="vector-change-row">
+      <span class="vcr-name">Heritage Loyalist</span>
+      <span class="vcr-note">Engineering continuity and production discipline fully aligned with this group's values</span>
+      <span class="vcr-arrow arrow-up">↑</span>
+      <span class="vcr-impact impact-pos">+0.02 to +0.03</span>
+    </div>
+    <div class="vector-change-row">
+      <span class="vcr-name">Overall Desire Dimension</span>
+      <span class="vcr-note">Risk of executive attention drift if no dedicated brand leadership counterbalance</span>
+      <span class="vcr-arrow arrow-down">↓</span>
+      <span class="vcr-impact impact-neg">Watch — 12–24 month indicator</span>
+    </div>
+    <div class="vector-change-row">
+      <span class="vcr-name">Brand Challenger Energy</span>
+      <span class="vcr-note">Operational challenger credibility rises. Public positioning challenger energy at risk</span>
+      <span class="vcr-arrow arrow-flat">→</span>
+      <span class="vcr-impact impact-neu">Mixed — depends on CMO counterpart</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!-- 10 · METHODOLOGY                    -->
+<!-- ════════════════════════════════════ -->
+<section class="section" id="methodology">
+  <span class="section-label">Transparency</span>
+  <h2 class="section-title">How This Was <strong>Produced</strong></h2>
+  <p class="section-intro">This portrait was produced using the Reasonant diagnostic framework — a proprietary structural methodology for mapping brand identity, audience alignment, and leadership coherence. The framework provides the analytical architecture. The BMW-specific application — scoring, scoring rationale, and synthesis — involved both the structural methodology and AI-assisted intelligence working from public sources. The breakdown below is provided in the interest of full transparency.</p>
+
+  <div class="method-pie">
+    <div style="flex: 1; min-width: 260px;">
+      <div class="method-legend-item">
+        <div class="method-swatch" style="background: var(--bmw-blue);"></div>
+        <div>
+          <div class="method-legend-pct">~65%</div>
+          <div class="method-legend-title">Reasonant Structural Framework</div>
+          <div class="method-legend-body">The analytical architecture, diagnostic dimensions, resonance formula, scoring methodology, and governance rules are the proprietary intellectual contribution of Reasonant. The framework defines what to measure and how to measure it. These contributions are structural and consistent across every brand analysed.</div>
+        </div>
+      </div>
+      <div class="method-legend-item">
+        <div class="method-swatch" style="background: var(--accent-gold);"></div>
+        <div>
+          <div class="method-legend-pct">~35%</div>
+          <div class="method-legend-title">AI-Assisted Intelligence (Claude)</div>
+          <div class="method-legend-body">The BMW-specific application — scoring BMW's dimensions from public evidence, synthesising market intelligence, profiling the incoming CEO from press sources, and producing the written analysis — was performed by Claude (Anthropic), working within the Reasonant framework. The AI's contribution is interpretive and brand-specific. All factual claims about BMW and Milan Nedeljković are derived from public sources verified as of April 2026.</div>
+        </div>
+      </div>
+    </div>
+    <!-- Visual donut -->
+    <div style="flex-shrink: 0;">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="54" fill="none" stroke="#E2E4EA" stroke-width="16"/>
+        <!-- 65% = 339.5 degrees of 522 circumference -->
+        <circle cx="70" cy="70" r="54" fill="none" stroke="var(--bmw-blue)" stroke-width="16"
+          stroke-dasharray="220.3 338.9" stroke-dashoffset="84.7" transform="rotate(-90 70 70)"/>
+        <circle cx="70" cy="70" r="54" fill="none" stroke="var(--accent-gold)" stroke-width="16"
+          stroke-dasharray="118.6 338.9" stroke-dashoffset="-135.6" transform="rotate(-90 70 70)"/>
+        <text x="70" y="66" text-anchor="middle" font-size="13" font-weight="300" fill="var(--bmw-dark)" font-family="Arial">System</text>
+        <text x="70" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="var(--bmw-blue)" font-family="Arial">65% / 35%</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="method-note">
+    <strong>What the framework does not do:</strong> This diagnostic does not predict market outcomes, measure actual consumer sentiment, or substitute for primary research. It tests internal coherence — whether the structural pieces of BMW's identity fit each other, and whether that identity fits the structural profile of its target audiences. The scores are structured practitioner estimates, not calculated outputs from raw data. Their value is diagnostic and comparative: identifying the weakest component, enabling consistent comparison across brand-audience pairs, and making structural tensions visible before they become commercial problems.
+    <br><br>
+    <strong>Sources used for BMW intelligence:</strong> BMW Group press releases, BMW Blog, electrive.com, Motor1, autoevolution, BusinessChief, BMWblog, Forbes, Fortune, and market analysis from brandhistories.com and BusinessModelAnalyst — all accessed April 2026.
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>BMW Group Brand Portrait · April 2026 · Produced using the Reasonant diagnostic framework</div>
+  <div>Design Intelligence · <a href="mailto:b3njamin@me.com?subject=Design Intelligence — BMW Analysis" style="color:var(--accent-gold);text-decoration:none;">b3njamin@me.com</a> · Commission a bespoke analysis</div>
+</div>
+
+<script>
+  // Animate bar fills on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.position-bar-fill').forEach(bar => {
+          bar.style.width = bar.style.width; // trigger repaint
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+
+<!-- ============================================================
+     DESIGN INTELLIGENCE — CTA FOOTER
+     ============================================================ -->
+<section style="
+  background: #111110;
+  border-top: 0.5px solid #2E2E2C;
+  padding: 72px 64px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+">
+  <div style="max-width: 860px; margin: 0 auto;">
+
+    <!-- eyebrow -->
+    <div style="
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C8A96E;
+      margin-bottom: 20px;
+    ">Design Intelligence · A method by Benjamin Cuenod</div>
+
+    <!-- heading + body row -->
+    <div style="
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    ">
+      <div style="flex: 1; min-width: 260px;">
+        <div style="
+          font-family: 'Inter', sans-serif;
+          font-size: 28px;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          line-height: 1.2;
+          color: #F7F6F3;
+          margin-bottom: 16px;
+        ">What you just read is a structural reading, not a summary.</div>
+        <div style="
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 1.75;
+          color: rgba(247,246,243,0.55);
+          max-width: 480px;
+        ">Design Intelligence maps brand coherence below the surface — signal architecture, identity-leadership alignment, and audience resonance — producing findings that feel like something you already knew but could not say. Every analysis is bespoke, confidential, and built for decision-making, not presentation.</div>
+
+        <!-- author card -->
+        <div style="
+          margin-top: 28px;
+          padding-top: 24px;
+          border-top: 0.5px solid #2E2E2C;
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+        ">
+          <div style="
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: #2E2E2C;
+            border: 0.5px solid #3A3A38;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            color: #C8A96E;
+          ">BC</div>
+          <div>
+            <div style="
+              font-family: 'Inter', sans-serif;
+              font-size: 14px;
+              font-weight: 600;
+              color: #F7F6F3;
+              margin-bottom: 4px;
+              letter-spacing: -0.01em;
+            ">Benjamin Cuenod</div>
+            <div style="
+              font-family: 'DM Mono', monospace;
+              font-size: 9px;
+              letter-spacing: 0.10em;
+              text-transform: uppercase;
+              color: #C8A96E;
+              margin-bottom: 10px;
+            ">Senior Brand Strategist</div>
+            <div style="
+              font-size: 13px;
+              font-weight: 300;
+              line-height: 1.7;
+              color: rgba(247,246,243,0.45);
+              max-width: 420px;
+            ">Benjamin Cuenod has spent 30 years at the point where brand structure and consequential decisions meet — at Red Bull, Audi, Roland Berger, and NIO. Design Intelligence does not stop at the finding. It builds the structural conditions for coherence, then stays — through the turns, the pivots, the calls that define what a brand will become. A brand is not fixed at a moment. It drifts, evolves, and requires continuous navigation. The method exists for exactly that.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 4px;">
+        <a href="mailto:b3njamin@me.com?subject=Design Intelligence — Commission an analysis" style="
+          display: inline-block;
+          font-family: 'DM Mono', 'Courier New', monospace;
+          font-size: 11px;
+          letter-spacing: 0.10em;
+          text-transform: uppercase;
+          color: #111110;
+          background: #C8A96E;
+          padding: 13px 26px;
+          border-radius: 4px;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: opacity 0.2s;
+        ">Commission an analysis →</a>
+        <div style="
+          font-family: 'DM Mono', 'Courier New', monospace;
+          font-size: 9px;
+          letter-spacing: 0.10em;
+          text-transform: uppercase;
+          color: rgba(247,246,243,0.30);
+        ">b3njamin@me.com</div>
+      </div>
+    </div>
+
+    <!-- divider -->
+    <div style="height: 0.5px; background: #2E2E2C; margin-bottom: 24px;"></div>
+
+    <!-- bottom line -->
+    <div style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    ">
+      <div style="
+        font-family: 'DM Mono', 'Courier New', monospace;
+        font-size: 9px;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        color: rgba(247,246,243,0.25);
+      ">© 2026 Reasonant · Design Intelligence · All rights reserved</div>
+      <div style="
+        font-family: 'DM Mono', 'Courier New', monospace;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        color: rgba(247,246,243,0.20);
+      ">This analysis is for private circulation only. Not for redistribution.</div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
