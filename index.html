@@ -1639,6 +1639,7 @@ section {
   <a class="nav-logo" href="#home">Design Intelligence</a>
   <div class="nav-links">
     <a class="nav-link" href="#system">System</a>
+    <a class="nav-link" href="#demo-case">Case</a>
     <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('partners')">Partners</button>
     <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('lab')">Lab</button>
     <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('priorities')">Priorities</button>
@@ -1805,6 +1806,488 @@ section {
   </div>
 </div>
 </section>
+
+<!-- ============================================================
+     DEMO CASE — VW
+     ============================================================ -->
+<style>
+/* ======================================================
+   DEMO CASE STYLES
+   ====================================================== */
+.demo-section { background: var(--ink); }
+
+/* Header */
+.demo-hdr { padding: 80px 64px 0; max-width: 1200px; margin: 0 auto; }
+
+/* Subnav */
+.demo-subnav {
+  position: sticky; top: 60px; z-index: 50;
+  background: rgba(17,17,16,0.97);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border-dark-mid);
+  display: flex; align-items: center; gap: 2px;
+  padding: 0 64px; height: 48px;
+  overflow-x: auto; scrollbar-width: none; margin-top: 40px;
+}
+.demo-subnav::-webkit-scrollbar { display: none; }
+.dnav-item {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--text-white-pale);
+  text-decoration: none; padding: 6px 14px; border-radius: var(--radius-4);
+  white-space: nowrap; transition: color 0.2s, background 0.2s; flex-shrink: 0;
+}
+.dnav-item:hover { color: var(--text-white-mid); }
+.dnav-item.dc-active { color: var(--gold); background: rgba(200,169,110,0.08); }
+.dnav-div { width: 0.5px; height: 14px; background: var(--border-dark-mid); flex-shrink: 0; margin: 0 8px; }
+
+/* Content */
+.demo-content { max-width: 1200px; margin: 0 auto; padding: 0 64px 80px; }
+.dc-anchor { scroll-margin-top: 112px; }
+
+/* Block */
+.dc-block { padding-top: 64px; padding-bottom: 64px; border-bottom: 0.5px solid var(--border-dark); }
+.dc-block-num { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.dc-block-title { font-family: var(--font-serif); font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-white); line-height: 1.2; margin-bottom: 6px; }
+.dc-block-desc { font-size: 14px; font-weight: 300; color: var(--text-white-pale); line-height: 1.65; max-width: 580px; margin-bottom: 28px; }
+
+/* Drive cards */
+.drive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--bento-gap); margin-bottom: 10px; }
+.drive-card { background: var(--void); border: 0.5px solid var(--border-dark); border-radius: var(--radius-12); padding: 24px 24px 20px; }
+.drive-card.dc-primary { border-color: rgba(200,169,110,0.4); background: rgba(200,169,110,0.04); }
+.drive-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-white-pale); margin-bottom: 10px; display: inline-block; padding: 3px 8px; border-radius: var(--radius-4); border: 0.5px solid var(--border-dark-mid); }
+.drive-card.dc-primary .drive-tag { color: var(--gold); border-color: rgba(200,169,110,0.3); }
+.drive-name { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--text-white); margin-bottom: 10px; }
+.drive-body { font-size: 13px; font-weight: 300; color: var(--text-white-mid); line-height: 1.7; }
+.drive-suppressed { background: var(--void); border: 0.5px solid var(--border-dark); border-radius: var(--radius-8); padding: 14px 20px; display: flex; align-items: center; gap: 20px; margin-bottom: 12px; flex-wrap: wrap; }
+.drive-supp-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dusk); flex-shrink: 0; }
+.drive-supp-tags { display: flex; gap: 16px; flex-wrap: wrap; }
+.drive-supp-tag { font-family: var(--font-mono); font-size: 11px; color: var(--dusk); text-decoration: line-through; text-decoration-color: rgba(107,110,126,0.5); letter-spacing: 0.04em; }
+.dc-tension { padding: 18px 22px; border-left: 2px solid var(--gold); background: rgba(200,169,110,0.04); border-radius: 0 var(--radius-8) var(--radius-8) 0; }
+.dc-tension-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.dc-tension-text { font-size: 14px; font-weight: 300; color: var(--text-white-mid); line-height: 1.6; font-style: italic; }
+
+/* World rules */
+.world-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--bento-gap); }
+.world-rule { background: var(--void); border: 0.5px solid var(--border-dark); border-radius: var(--radius-10); padding: 20px 22px; }
+.world-rule.dc-full { grid-column: 1 / -1; }
+.world-rule-title { font-size: 14px; font-weight: 500; color: var(--text-white); margin-bottom: 6px; }
+.world-rule-body { font-size: 13px; font-weight: 300; color: var(--text-white-mid); line-height: 1.65; }
+
+/* Character */
+.char-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--bento-gap); }
+.char-card { background: var(--void); border: 0.5px solid var(--border-dark); border-radius: var(--radius-12); padding: 24px 24px 20px; }
+.char-dim-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.char-dim-q { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--text-white-pale); margin-bottom: 10px; }
+.char-pos { font-size: 15px; font-weight: 500; color: var(--text-white); margin-bottom: 8px; line-height: 1.3; }
+.char-body { font-size: 13px; font-weight: 300; color: var(--text-white-mid); line-height: 1.7; margin-bottom: 10px; }
+.char-risk { font-size: 12px; font-weight: 300; color: var(--steel); line-height: 1.6; padding-top: 10px; border-top: 0.5px solid var(--border-dark); font-style: italic; }
+.char-summary { margin-top: 10px; background: var(--charcoal); border: 0.5px solid var(--border-dark-mid); border-radius: var(--radius-10); padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.cs-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-white-pale); margin-bottom: 6px; }
+.cs-value { font-size: 13px; font-weight: 300; color: var(--text-white-mid); line-height: 1.5; font-style: italic; }
+
+/* Position / vector bars */
+.vector-chart { background: var(--void); border: 0.5px solid var(--border-dark); border-radius: var(--radius-12); padding: 24px 28px; margin-bottom: 12px; }
+.vector-row { display: grid; grid-template-columns: 160px 1fr 72px; align-items: center; gap: 16px; padding: 9px 0; border-bottom: 0.5px solid var(--border-dark); }
+.vector-row:last-child { border-bottom: none; }
+.vector-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--text-white-mid); text-align: right; line-height: 1.3; }
+.vector-track { height: 3px; background: var(--border-dark-mid); border-radius: 2px; }
+.vector-fill { height: 100%; background: var(--steel); border-radius: 2px; }
+.vector-qualifier { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-white-pale); }
+.vector-finding { background: var(--charcoal); border: 0.5px solid var(--border-dark-mid); border-radius: var(--radius-10); padding: 18px 22px; }
+.vf-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); margin-bottom: 8px; }
+.vf-text { font-size: 14px; font-weight: 300; color: var(--text-white-mid); line-height: 1.7; }
+.vf-text strong { color: var(--text-white); font-weight: 500; }
+
+/* Audiences */
+.audience-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--bento-gap); }
+.aud-card { background: var(--void); border: 0.5px solid var(--border-dark); border-radius: var(--radius-12); padding: 22px 24px 20px; }
+.aud-num { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-white-pale); margin-bottom: 8px; }
+.aud-name { font-size: 16px; font-weight: 500; color: var(--text-white); margin-bottom: 3px; }
+.aud-profile { font-family: var(--font-mono); font-size: 10px; color: var(--text-white-pale); margin-bottom: 16px; line-height: 1.5; }
+.aud-score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.aud-score-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-white-pale); width: 72px; flex-shrink: 0; }
+.aud-score-track { flex: 1; height: 3px; background: var(--border-dark-mid); border-radius: 2px; }
+.aud-score-fill { height: 100%; border-radius: 2px; }
+.aud-fill-strong { background: var(--gold); }
+.aud-fill-functional { background: var(--steel); }
+.aud-fill-marginal { background: var(--dusk); }
+.aud-score-badge { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; width: 80px; text-align: right; flex-shrink: 0; }
+.aud-badge-strong { color: var(--gold); }
+.aud-badge-functional { color: var(--steel); }
+.aud-badge-marginal { color: var(--dusk); }
+.aud-reading { font-size: 12px; font-weight: 300; color: var(--text-white-pale); line-height: 1.65; padding-top: 12px; border-top: 0.5px solid var(--border-dark); font-style: italic; }
+
+/* Issues */
+.issue-stack { display: flex; flex-direction: column; gap: 2px; }
+.issue-item { background: var(--void); border: 0.5px solid var(--border-dark); border-radius: var(--radius-4); padding: 20px 24px; display: grid; grid-template-columns: 36px 1fr; gap: 20px; align-items: start; transition: border-color 0.2s; }
+.issue-item:first-child { border-radius: var(--radius-10) var(--radius-10) var(--radius-4) var(--radius-4); }
+.issue-item:last-child  { border-radius: var(--radius-4) var(--radius-4) var(--radius-10) var(--radius-10); }
+.issue-item:hover { border-color: var(--border-dark-mid); }
+.issue-n { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--gold); line-height: 1; margin-top: 2px; }
+.issue-title { font-size: 15px; font-weight: 500; color: var(--text-white); margin-bottom: 8px; line-height: 1.3; }
+.issue-text { font-size: 13px; font-weight: 300; color: var(--text-white-mid); line-height: 1.7; }
+
+/* Solutions */
+.dc-solutions-zone { padding-top: 64px; }
+.sol-zone-eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.sol-zone-title { font-family: var(--font-serif); font-size: 24px; font-weight: 700; color: var(--text-white); margin-bottom: 8px; }
+.sol-zone-sub { font-size: 14px; font-weight: 300; color: var(--text-white-mid); max-width: 560px; line-height: 1.7; margin-bottom: 28px; }
+.sol-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--bento-gap); }
+.sol-card { background: var(--void); border: 0.5px solid var(--border-dark-mid); border-radius: var(--radius-14); overflow: hidden; }
+.sol-card-top { padding: 28px 28px 22px; }
+.sol-card-num { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.sol-card-theme { font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--text-white); line-height: 1.25; margin-bottom: 12px; }
+.sol-card-desc { font-size: 13px; font-weight: 300; color: var(--text-white-mid); line-height: 1.7; margin-bottom: 16px; }
+.sol-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.sol-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: var(--radius-full); border: 0.5px solid; }
+.sol-tag.gold  { border-color: rgba(200,169,110,0.4); color: var(--gold); }
+.sol-tag.steel { border-color: rgba(138,155,174,0.4); color: var(--steel); }
+.sol-card-quote { border-top: 0.5px solid var(--border-dark-mid); padding: 22px 28px; background: rgba(200,169,110,0.03); border-left: 2px solid var(--gold); }
+.sol-card-quote p { font-size: 16px; font-style: italic; color: var(--text-white); line-height: 1.55; font-weight: 300; margin-bottom: 12px; }
+.sol-card-why { font-size: 12px; font-weight: 300; color: var(--text-white-pale); line-height: 1.65; }
+.dc-footnote { margin-top: 48px; padding: 20px 24px; border: 0.5px solid var(--border-dark); border-radius: var(--radius-8); display: flex; gap: 14px; align-items: flex-start; }
+.dc-footnote-label { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); flex-shrink: 0; margin-top: 1px; white-space: nowrap; }
+.dc-footnote-text { font-size: 12px; font-weight: 300; color: var(--text-white-pale); line-height: 1.7; }
+.dc-prose { max-width: 680px; }
+.dc-prose p { font-size: 15px; font-weight: 300; color: var(--text-white-mid); line-height: 1.8; margin-bottom: 18px; }
+.dc-prose p:last-child { margin-bottom: 0; }
+
+/* Responsive */
+@media (max-width: 767px) {
+  .demo-hdr { padding: 56px 20px 0; }
+  .demo-subnav { padding: 0 16px; }
+  .demo-content { padding: 0 20px 64px; }
+  .drive-grid, .char-grid, .audience-grid, .sol-grid { grid-template-columns: 1fr; }
+  .world-grid { grid-template-columns: 1fr; }
+  .char-summary { grid-template-columns: 1fr; gap: 16px; }
+  .vector-row { grid-template-columns: 110px 1fr 60px; gap: 10px; }
+  .vector-label { font-size: 9px; }
+  .issue-item { grid-template-columns: 30px 1fr; gap: 12px; }
+  .dc-block-title { font-size: 20px; }
+  .sol-zone-title { font-size: 20px; }
+  .demo-subnav { margin-top: 28px; }
+}
+</style>
+
+<section id="demo-case">
+<div class="demo-section">
+
+  <!-- Header -->
+  <div class="demo-hdr">
+    <div class="section-header section-header-dark">
+      <span class="section-num">02 — Case</span>
+      <h2 class="section-title section-title-white">The method in action</h2>
+    </div>
+    <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+      <span style="font-family:var(--font-serif); font-size:clamp(28px,4vw,42px); font-weight:800; letter-spacing:-0.03em; color:var(--text-white); line-height:1;">Volkswagen AG</span>
+      <span style="font-family:var(--font-mono); font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:var(--text-white-pale); padding:4px 10px; border:0.5px solid var(--border-dark-mid); border-radius:var(--radius-full);">Automotive · Global volume</span>
+    </div>
+    <p style="font-family:var(--font-sans); font-size:15px; font-weight:300; color:var(--text-white-mid); max-width:540px; line-height:1.75; margin-bottom:20px;">A complete diagnostic from emotional root to strategic direction — showing what a full Reasonant engagement produces. Every finding came from publicly available information only.</p>
+    <div style="display:inline-flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:var(--steel); background:rgba(138,155,174,0.07); border:0.5px solid rgba(138,155,174,0.25); padding:5px 12px; border-radius:var(--radius-full);">
+      <span style="width:5px;height:5px;border-radius:50%;background:var(--steel);flex-shrink:0;display:inline-block;"></span>
+      Sample case — analysis from publicly available information only
+    </div>
+  </div>
+
+  <!-- Subnav -->
+  <nav class="demo-subnav" id="demo-subnav" aria-label="Case sections">
+    <a class="dnav-item dc-active" href="#dc-engine">Emotional engine</a>
+    <a class="dnav-item" href="#dc-world">Brand world</a>
+    <a class="dnav-item" href="#dc-character">Character</a>
+    <a class="dnav-item" href="#dc-position">Position</a>
+    <a class="dnav-item" href="#dc-audiences">Audiences</a>
+    <a class="dnav-item" href="#dc-issues">Issues</a>
+    <div class="dnav-div"></div>
+    <a class="dnav-item" href="#dc-solutions" style="color:var(--gold);">→ Directions found</a>
+  </nav>
+
+  <!-- Content -->
+  <div class="demo-content">
+
+    <!-- 01 EMOTIONAL ENGINE -->
+    <div id="dc-engine" class="dc-anchor dc-block">
+      <div class="dc-block-num">01 — Emotional engine</div>
+      <div class="dc-block-title">What drives this brand at its deepest level</div>
+      <div class="dc-block-desc">Not a values statement. The actual motivational current that runs through every product, every communication, and every relationship this brand builds.</div>
+      <div class="drive-grid">
+        <div class="drive-card dc-primary">
+          <div class="drive-tag">Primary drive</div>
+          <div class="drive-name">Care</div>
+          <div class="drive-body">Protection, reliability, belonging. This brand does not challenge or provoke — it holds. The founding promise, a car built for ordinary people at an accessible price, is still the deepest true thing about Volkswagen eighty years later.</div>
+        </div>
+        <div class="drive-card">
+          <div class="drive-tag">Secondary drive</div>
+          <div class="drive-name">Continuity</div>
+          <div class="drive-body">VW carries the weight of its own history. Heritage, precision, the German engineering tradition — these are not marketing choices. They are structural features of how the brand thinks and decides, built in over generations.</div>
+        </div>
+      </div>
+      <div class="drive-suppressed">
+        <span class="drive-supp-label">Not present — suppressed</span>
+        <div class="drive-supp-tags">
+          <span class="drive-supp-tag">Challenge</span>
+          <span class="drive-supp-tag">Urgency</span>
+          <span class="drive-supp-tag">Desire</span>
+        </div>
+      </div>
+      <div class="dc-tension">
+        <div class="dc-tension-label">Core tension</div>
+        <div class="dc-tension-text">A brand built to protect, now being asked to lead. The categories VW most needs to win — electric vehicles, younger urban buyers, sustainability-driven purchasers — are defined by exactly the drives it suppresses: forward energy, discovery, urgency, and desire.</div>
+      </div>
+    </div>
+
+    <!-- 02 BRAND WORLD -->
+    <div id="dc-world" class="dc-anchor dc-block">
+      <div class="dc-block-num">02 — Brand world</div>
+      <div class="dc-block-title">The world this brand lives in</div>
+      <div class="dc-block-desc">Every brand has its own internal physics — structural rules that govern what feels natural, what feels forced, and what breaks the brand's own logic when violated.</div>
+      <div class="dc-prose">
+        <p>Volkswagen inhabits a world that is contemporary rather than futuristic — grounded in the present and recent past, never reaching ahead of itself. Technology is present in this world but never heroic. Engineering shows through quality, not through display or spectacle. Authority comes from institutional trust, not from individual disruption or rebellion. This is a brand that believes in structures, not against them.</p>
+        <p>The social atmosphere is family-centred and warm. Daily utility, considered journeys, connection between people. Not a lone-achiever brand. The emotional register is measured and reliable — calm without being cold, poised without being tense, never electric. And the economic proposition has remained honest for decades: not luxury, not budget — premium engineering made genuinely accessible.</p>
+        <p>These qualities hold together. They produce a recognisable universe. They also define what this brand cannot do without breaking its own logic. Operating with urgency, disruption, or desire would require rewriting the physics of the world itself — a structural decision, not a creative one.</p>
+      </div>
+    </div>
+
+    <!-- 03 CHARACTER -->
+    <div id="dc-character" class="dc-anchor dc-block">
+      <div class="dc-block-num">03 — Brand character</div>
+      <div class="dc-block-title">What this brand is</div>
+      <div class="dc-block-desc">A stable picture of how VW thinks, why it exists, how it shows up, and how it changes — read from its decisions and history, not from what it says about itself.</div>
+      <div class="dc-prose">
+        <p>VW thinks from accumulated knowledge rather than first principles. Engineering precedent and technical legacy drive decisions. The brand refines what it knows rather than anticipating what the market will need — which worked as a strategy for decades, and which the EV transition has structurally challenged for the first time. The ID. range was a response to the market, not an initiation of it.</p>
+        <p>At its core, VW exists to provide democratic access to quality. The founding logic — a car for the people — is still the brand's most honest conviction. It does not stand for status. It stands for reliable, engineered quality made accessible across income levels. This is a genuine position. The problem is that it no longer differentiates in a market where reliability has become a baseline expectation rather than a promise worth making.</p>
+        <p>The brand shows up through institution, not personality. It carries authority through reputation and legacy — it does not seek to be liked or to challenge. Expression is restrained: quality implied, not announced. This works for audiences who already trust the brand. It is nearly invisible to those who are still deciding.</p>
+        <p>How VW changes over time is where the most significant fracture appears. Decision integrity was historically high — a brand that chose coherence over market trend. Dieselgate fractured this permanently. The break is not in communication or reputation. It is in the part of the brand's character that governs how it makes decisions under commercial pressure. That is not recoverable through messaging alone.</p>
+      </div>
+      <div class="dc-tension" style="margin-top:20px;">
+        <div class="dc-tension-label">Character in one line</div>
+        <div class="dc-tension-text">A careful institution that values continuity over discovery and trust over desire. Principled by identity. Compromised by record. The gap between the two is where connection loss originates.</div>
+      </div>
+    </div>
+
+    <!-- 04 POSITION -->
+    <div id="dc-position" class="dc-anchor dc-block">
+      <div class="dc-block-num">04 — Market position</div>
+      <div class="dc-block-title">How this brand sits across eight psychological dimensions</div>
+      <div class="dc-block-desc">Position is mapped across dimensions that describe how the brand's audiences think, feel, and make decisions. Brands that connect deeply tend to have at least one dimension where they clearly stand out.</div>
+      <div class="vector-chart">
+        <div class="vector-row">
+          <div class="vector-label">Economic reach</div>
+          <div class="vector-track"><div class="vector-fill" style="width:45%;"></div></div>
+          <div class="vector-qualifier">Mid</div>
+        </div>
+        <div class="vector-row">
+          <div class="vector-label">Identity stability</div>
+          <div class="vector-track"><div class="vector-fill" style="width:35%;"></div></div>
+          <div class="vector-qualifier">Mid-low</div>
+        </div>
+        <div class="vector-row">
+          <div class="vector-label">Trust in institutions</div>
+          <div class="vector-track"><div class="vector-fill" style="width:25%;"></div></div>
+          <div class="vector-qualifier">Low</div>
+        </div>
+        <div class="vector-row">
+          <div class="vector-label">Appetite for newness</div>
+          <div class="vector-track"><div class="vector-fill" style="width:35%;"></div></div>
+          <div class="vector-qualifier">Mid-low</div>
+        </div>
+        <div class="vector-row">
+          <div class="vector-label">Aspiration pull</div>
+          <div class="vector-track"><div class="vector-fill" style="width:55%;"></div></div>
+          <div class="vector-qualifier">Mid</div>
+        </div>
+        <div class="vector-row">
+          <div class="vector-label">Cultural sensitivity</div>
+          <div class="vector-track"><div class="vector-fill" style="width:40%;"></div></div>
+          <div class="vector-qualifier">Mid</div>
+        </div>
+        <div class="vector-row">
+          <div class="vector-label">Sense of agency</div>
+          <div class="vector-track"><div class="vector-fill" style="width:55%;"></div></div>
+          <div class="vector-qualifier">Mid</div>
+        </div>
+        <div class="vector-row">
+          <div class="vector-label">Forward intention</div>
+          <div class="vector-track"><div class="vector-fill" style="width:40%;"></div></div>
+          <div class="vector-qualifier">Mid</div>
+        </div>
+      </div>
+      <div class="vector-finding">
+        <div class="vf-label">Key finding — flat profile</div>
+        <div class="vf-text">The profile is remarkably flat. <strong>No single dimension stands out as dominant.</strong> Brands that build deep connection require at least one axis where they are unambiguously positioned — a signal strong enough to attract the right audience and let the wrong ones pass. VW has none. It sits between mass-market and premium without commanding either. Too expensive to win on price. Too restrained to win on desire. This is not strategic modesty. It is identity drift.</div>
+      </div>
+    </div>
+
+    <!-- 05 AUDIENCES -->
+    <div id="dc-audiences" class="dc-anchor dc-block">
+      <div class="dc-block-num">05 — Audience connection</div>
+      <div class="dc-block-title">How four audience groups connect with this brand</div>
+      <div class="dc-block-desc">Connection is measured by how closely a group's values, aspirations, and communication style align with the brand — minus any trust gap created by past behaviour. It is not preference or awareness. It is structural alignment.</div>
+      <div class="audience-grid">
+        <div class="aud-card">
+          <div class="aud-num">Group 01</div>
+          <div class="aud-name">The Family Pragmatist</div>
+          <div class="aud-profile">35–50 · Suburban · Safety-first · Dual income</div>
+          <div class="aud-score-row">
+            <div class="aud-score-label">Connection</div>
+            <div class="aud-score-track"><div class="aud-score-fill aud-fill-functional" style="width:80%;"></div></div>
+            <div class="aud-score-badge aud-badge-functional">Functional–strong</div>
+          </div>
+          <div class="aud-reading">VW's best-resonating group — and still held back. Shared values on safety and reliability are strong, but accumulated trust damage creates enough drag to keep connection below its potential. The fix is consistent behaviour over time, not a campaign.</div>
+        </div>
+        <div class="aud-card">
+          <div class="aud-num">Group 02</div>
+          <div class="aud-name">The Emerging Progressive</div>
+          <div class="aud-profile">28–40 · Urban · Sustainability-driven · EV-interested</div>
+          <div class="aud-score-row">
+            <div class="aud-score-label">Connection</div>
+            <div class="aud-score-track"><div class="aud-score-fill aud-fill-marginal" style="width:40%;"></div></div>
+            <div class="aud-score-badge aud-badge-marginal">Marginal</div>
+          </div>
+          <div class="aud-reading">The EV pivot reads as reactive rather than pioneering to this group. The brand's institutional, care-dominant character doesn't carry the forward-drive energy this audience expects from an EV brand. The problem is not the product — it is the character behind it.</div>
+        </div>
+        <div class="aud-card">
+          <div class="aud-num">Group 03</div>
+          <div class="aud-name">The Status-Adjacent Achiever</div>
+          <div class="aud-profile">30–45 · Urban/suburban · Career-focused · Brand-aware</div>
+          <div class="aud-score-row">
+            <div class="aud-score-label">Connection</div>
+            <div class="aud-score-track"><div class="aud-score-fill aud-fill-functional" style="width:60%;"></div></div>
+            <div class="aud-score-badge aud-badge-functional">Functional</div>
+          </div>
+          <div class="aud-reading">VW sits in this group's consideration set, but rarely as first choice. BMW and Audi hold a structural advantage here. Some models create partial elevation, but it is not sustained across the range. Risk of being displaced by competitors is high and growing.</div>
+        </div>
+        <div class="aud-card">
+          <div class="aud-num">Group 04</div>
+          <div class="aud-name">The Heritage Loyalist</div>
+          <div class="aud-profile">45–65 · Long-term relationship · Trust-based</div>
+          <div class="aud-score-row">
+            <div class="aud-score-label">Connection</div>
+            <div class="aud-score-track"><div class="aud-score-fill aud-fill-strong" style="width:90%;"></div></div>
+            <div class="aud-score-badge aud-badge-strong">Strong</div>
+          </div>
+          <div class="aud-reading">VW's strongest connection — and it is aging out. This group is not being replaced at the same connection level by any younger cohort currently in the pipeline. The brand has no credible succession plan at the identity level.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 ISSUES -->
+    <div id="dc-issues" class="dc-anchor dc-block">
+      <div class="dc-block-num">06 — Structural issues</div>
+      <div class="dc-block-title">Five problems in order of seriousness</div>
+      <div class="dc-block-desc">These are not communication problems. They are structural — meaning they cannot be fixed by changing the advertising. Each requires a decision about what the brand actually is and does.</div>
+      <div class="issue-stack">
+        <div class="issue-item">
+          <div class="issue-n">01</div>
+          <div>
+            <div class="issue-title">The brand's position is nobody's aspiration</div>
+            <div class="issue-text">VW sits between mass-market and premium without commanding either. No dimension stands out as dominant. Brands that connect deeply need at least one clear signal — strong enough to attract the right people. VW has none. This is the root problem from which all others follow.</div>
+          </div>
+        </div>
+        <div class="issue-item">
+          <div class="issue-n">02</div>
+          <div>
+            <div class="issue-title">The EV pivot is a product decision being mistaken for a brand decision</div>
+            <div class="issue-text">The electric vehicle range carries forward VW's existing character without injecting the forward energy needed to win the category. Buyers in that space want a brand with strong forward drive and a sense of discovery. VW's dominant drives are care and continuity. The brand is entering an emotionally demanding category with an emotionally insufficient signature.</div>
+          </div>
+        </div>
+        <div class="issue-item">
+          <div class="issue-n">03</div>
+          <div>
+            <div class="issue-title">Trust damage is a permanent structural cost, not a communications problem</div>
+            <div class="issue-text">The Dieselgate scandal raised the trust deficit across all audience groups. VW's best-resonating group still carries enough drag from this to keep connection fragile. Trust damage cannot be addressed through messaging alone — it requires verified behaviour, documented and tracked over multiple years. Any campaign that speaks over it without matching action makes it worse.</div>
+          </div>
+        </div>
+        <div class="issue-item">
+          <div class="issue-n">04</div>
+          <div>
+            <div class="issue-title">The brand's strongest audience is aging out with no replacement in sight</div>
+            <div class="issue-text">The Heritage Loyalist group (45–65) is VW's deepest connection. They are not being replaced. The natural successor groups are both in the marginal or fragile connection band. The brand has no structural plan — at the identity level — for reaching the next generation without abandoning what makes it coherent.</div>
+          </div>
+        </div>
+        <div class="issue-item">
+          <div class="issue-n">05</div>
+          <div>
+            <div class="issue-title">The brand's character is in direct conflict with its most important category</div>
+            <div class="issue-text">An evolutionary, institutionally-anchored brand is competing in a category being defined by challenger energy, forward drive, and discovery. Every major competitor is increasing their forward signal. VW's care-dominant, continuity-dominant character produces restraint — not invitation. In the EV context, that restraint reads as hesitation. The category is pulling in a direction the brand's character does not support without structural change at the root level.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIRECTIONS FOUND -->
+    <div id="dc-solutions" class="dc-anchor dc-solutions-zone">
+      <div class="sol-zone-eyebrow">What the diagnostic produced</div>
+      <div class="sol-zone-title">Two directions found</div>
+      <div class="sol-zone-sub">These are not creative ideas. They are the direct output of the structural findings above — the only directions available to this brand in these situations that do not fracture its own character.</div>
+      <div class="sol-grid">
+
+        <div class="sol-card">
+          <div class="sol-card-top">
+            <div class="sol-card-num">Direction 01 — Audience succession</div>
+            <div class="sol-card-theme">The same feeling.<br>New materials.</div>
+            <div class="sol-card-desc">The diagnostic identified a structural gap: the Heritage Loyalist group is VW's strongest connection, but it is aging out with no replacement. This direction bridges the 28–40 buyer — who partially resonates but finds the brand too institutional — back to the Care root, without abandoning it.</div>
+            <div class="sol-tags">
+              <span class="sol-tag gold">Care — active</span>
+              <span class="sol-tag steel">Continuity — reframed</span>
+              <span class="sol-tag steel">Controlled discovery</span>
+            </div>
+          </div>
+          <div class="sol-card-quote">
+            <p>"Your parents trusted it. You should probably figure out why."</p>
+            <div class="sol-card-why">The line opens with slight distance — "probably figure out why" respects the younger buyer's scepticism of legacy brands without abandoning the Continuity root. Care is active underneath, never announced. Forward energy enters through the invitation to think, not through urgency or desire language. The character stays intact while the audience changes.</div>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-top">
+            <div class="sol-card-num">Direction 02 — Category strategy</div>
+            <div class="sol-card-theme">The electric car for people who don't need to perform caring.</div>
+            <div class="sol-card-desc">VW's Care + Continuity root is actually the right emotional engine for sustainability — protection of the future, not desire for the new. This direction removes aspiration from the EV register entirely and reclaims the category on VW's own terms. No other automotive brand in VW's structural position can do this credibly.</div>
+            <div class="sol-tags">
+              <span class="sol-tag gold">Care — dominant</span>
+              <span class="sol-tag steel">EV register reclaimed</span>
+              <span class="sol-tag steel">Continuity — future-facing</span>
+            </div>
+          </div>
+          <div class="sol-card-quote">
+            <p>"You don't buy an electric car to make a statement. You buy it because it's the right thing and you've known that for a while."</p>
+            <div class="sol-card-why">This does something no EV brand currently does: removes aspiration from the register entirely. "You don't buy it to make a statement" is a structurally correct line for a Care-dominant brand — and sharply differentiated in a category where every competitor leads with desire or mission. The restraint reads as confidence. Everyone else is performing urgency. VW, uniquely, doesn't need to.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="dc-footnote">
+        <div class="dc-footnote-label">Note</div>
+        <div class="dc-footnote-text">This is a sample diagnostic produced entirely from publicly available information — annual reports, press coverage, advertising, product communications, and public brand statements. It was produced using the Living Brand Architecture methodology by Reasonant. Volkswagen AG has no involvement in or knowledge of this analysis. The findings represent a structural read of a public brand, not a commissioned engagement.</div>
+      </div>
+
+    </div>
+
+  </div><!-- /demo-content -->
+
+</div><!-- /demo-section -->
+</section>
+
+<script>
+// Demo subnav — highlight active section on scroll
+(function () {
+  const ids = ['dc-engine','dc-world','dc-character','dc-position','dc-audiences','dc-issues','dc-solutions'];
+  const items = document.querySelectorAll('.dnav-item');
+  function update() {
+    let active = ids[0];
+    ids.forEach(function(id) {
+      const el = document.getElementById(id);
+      if (el && window.scrollY + 116 >= el.offsetTop) active = id;
+    });
+    items.forEach(function(item) {
+      item.classList.toggle('dc-active', item.getAttribute('href') === '#' + active);
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 
 <!-- ============================================================
      PARTNERS
