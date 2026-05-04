@@ -130,6 +130,67 @@ body {
 }
 .nav-cta:hover { opacity: 0.85; }
 
+/* ---- HAMBURGER (hidden on desktop) ---- */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 4px;
+  margin-left: 12px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text-white);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+/* ---- MOBILE MENU (hidden by default) ---- */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 52px;
+  left: 0;
+  right: 0;
+  background: rgba(17,17,16,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid var(--border-dark);
+  flex-direction: column;
+  z-index: 99;
+  padding: 8px 0 12px;
+}
+.nav-mobile-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-white-mid);
+  text-decoration: none;
+  padding: 14px 20px;
+  border: none;
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  display: block;
+  width: 100%;
+  transition: color 0.2s;
+}
+.nav-mobile-link:last-child { border-bottom: none; }
+.nav-mobile-link:hover { color: var(--gold); }
+.nav-mobile-cta {
+  color: var(--gold);
+  margin-top: 4px;
+}
+
 /* ---- SECTIONS ---- */
 section {
   scroll-margin-top: 60px;
@@ -1538,14 +1599,13 @@ section {
     height: 52px;
   }
   .nav-links {
-    gap: 0;
-  }
-  .nav-link {
     display: none;
   }
-  .nav-cta {
-    padding: 7px 14px;
-    font-size: 9px;
+  .nav-hamburger {
+    display: flex;
+  }
+  .nav-mobile.open {
+    display: flex;
   }
 
   /* ---- HERO ---- */
@@ -1645,7 +1705,18 @@ section {
     <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('priorities')">Priorities</button>
     <a class="nav-cta" href="mailto:b3njamin@me.com">Connect</a>
   </div>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a class="nav-mobile-link" href="#system" onclick="closeMobileMenu()">System</a>
+  <a class="nav-mobile-link" href="#demo-case" onclick="closeMobileMenu()">Case</a>
+  <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('partners')">Partners</button>
+  <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('lab')">Lab</button>
+  <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('priorities')">Priorities</button>
+  <a class="nav-mobile-link nav-mobile-cta" href="mailto:b3njamin@me.com">Connect</a>
+</div>
 
 <!-- ============================================================
      HERO
@@ -2725,6 +2796,14 @@ const _SECTION_NAMES = {
 let _gateTarget = null;   // which section we're unlocking
 let _svActive   = null;   // which section is in the overlay
 let _svAnchor   = null;   // { parent, nextSibling } for restoring section
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('nav-mobile');
+  menu.classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('nav-mobile').classList.remove('open');
+}
 
 function openGate(sectionId) {
   _gateTarget = sectionId;
