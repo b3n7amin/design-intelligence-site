@@ -1781,7 +1781,7 @@ section {
     <a class="nav-link" href="#system">System</a>
     <a class="nav-link" href="#demo-case">Case</a>
     <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('partners')">Partners</button>
-    <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('lab')">Lab</button>
+    <a class="nav-link" href="#lab">Lab</a>
     <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('priorities')">Priorities</button>
     <a class="nav-cta" href="mailto:b3njamin@me.com">Connect</a>
   </div>
@@ -1793,7 +1793,7 @@ section {
   <a class="nav-mobile-link" href="#system" onclick="closeMobileMenu()">System</a>
   <a class="nav-mobile-link" href="#demo-case" onclick="closeMobileMenu()">Case</a>
   <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('partners')">Partners</button>
-  <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('lab')">Lab</button>
+  <a class="nav-mobile-link" href="#lab" onclick="closeMobileMenu()">Lab</a>
   <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('priorities')">Priorities</button>
   <a class="nav-mobile-link nav-mobile-cta" href="mailto:b3njamin@me.com">Connect</a>
 </div>
@@ -2715,7 +2715,7 @@ section {
 <!-- ============================================================
      LAB — POCs & TOOLS
      ============================================================ -->
-<section id="lab" class="locked-section">
+<section id="lab">
 <div class="section-dark">
 <div class="section-inner">
 
@@ -2771,7 +2771,7 @@ section {
   <!-- POC tab B — Intelligence Reports -->
   <div id="poc-b" class="tab-panel">
     <div class="lab-grid">
-      <a class="lab-card" href="reports/neura_brand_diagnostic.html" target="_blank">
+      <a class="lab-card" href="#" onclick="openReportGate('neura', 'reports/neura_brand_diagnostic.html'); return false;">
         <div class="lab-card-type"><span class="lab-card-type-dot"></span>Intelligence · 04</div>
         <div class="lab-card-title">NEURA Robotics — Brand Architecture Diagnostic</div>
         <div class="lab-card-desc">Full structural brand assessment of NEURA Robotics. Emotional foundation, audience architecture, portfolio coherence, five risk vectors, and sequenced priority actions.</div>
@@ -2780,7 +2780,7 @@ section {
           <span class="lab-card-arrow">→</span>
         </div>
       </a>
-      <a class="lab-card" href="reports/apple_ternus_brand_analysis.html" target="_blank">
+      <a class="lab-card" href="#" onclick="openReportGate('apple', 'reports/apple_ternus_brand_analysis.html'); return false;">
         <div class="lab-card-type"><span class="lab-card-type-dot"></span>Intelligence · 05</div>
         <div class="lab-card-title">Apple × Ternus — Brand–Leader Resonance</div>
         <div class="lab-card-desc">Structural analysis of incoming CEO John Ternus against Apple's brand identity. Six-axis character mapping, drive signal comparison, resonance distance, narrative stack, and voice coherence audit.</div>
@@ -2789,7 +2789,7 @@ section {
           <span class="lab-card-arrow">→</span>
         </div>
       </a>
-      <a class="lab-card" href="reports/vw-full-intelligence-report.html" target="_blank">
+      <a class="lab-card" href="#" onclick="openReportGate('vw', 'reports/vw-full-intelligence-report.html'); return false;">
         <div class="lab-card-type"><span class="lab-card-type-dot"></span>Intelligence · 06</div>
         <div class="lab-card-title">Volkswagen — Full Brand Intelligence Report</div>
         <div class="lab-card-desc">Comprehensive brand intelligence across identity, audience resonance, fleet coherence, leadership drift, competitive landscape, and a sequenced solution plan for the European market.</div>
@@ -2798,7 +2798,7 @@ section {
           <span class="lab-card-arrow">→</span>
         </div>
       </a>
-      <a class="lab-card" href="reports/BMW_Brand_Portrait_April2026.html" target="_blank">
+      <a class="lab-card" href="#" onclick="openReportGate('bmw', 'reports/BMW_Brand_Portrait_April2026.html'); return false;">
         <div class="lab-card-type"><span class="lab-card-type-dot"></span>Intelligence · 07</div>
         <div class="lab-card-title">BMW Group — Brand Portrait</div>
         <div class="lab-card-desc">Structural analysis of brand identity, product alignment, audience resonance, and incoming leadership impact across the BMW Group portfolio.</div>
@@ -2807,7 +2807,7 @@ section {
           <span class="lab-card-arrow">→</span>
         </div>
       </a>
-      <a class="lab-card" href="reports/duravit_brand_review.html" target="_blank">
+      <a class="lab-card" href="#" onclick="openReportGate('duravit', 'reports/duravit_brand_review.html'); return false;">
         <div class="lab-card-type"><span class="lab-card-type-dot"></span>Intelligence · 08</div>
         <div class="lab-card-title">Duravit Group — Brand Intelligence Review</div>
         <div class="lab-card-desc">Five-part analysis covering brand identity, emotional positioning, identity system performance, buyer behaviour, and geographic market fit.</div>
@@ -2816,7 +2816,7 @@ section {
           <span class="lab-card-arrow">→</span>
         </div>
       </a>
-      <a class="lab-card" href="reports/sensowash_communications_register.html" target="_blank">
+      <a class="lab-card" href="#" onclick="openReportGate('sensowash', 'reports/sensowash_communications_register.html'); return false;">
         <div class="lab-card-type"><span class="lab-card-type-dot"></span>Intelligence · 09</div>
         <div class="lab-card-title">SensoWash — Communications Register</div>
         <div class="lab-card-desc">A practical brand voice guide setting out how SensoWash should sound — grounded in what the product delivers and who it is speaking to. Tool for brand and creative teams.</div>
@@ -2825,7 +2825,7 @@ section {
           <span class="lab-card-arrow">→</span>
         </div>
       </a>
-      <a class="lab-card" href="reports/champion_diagnostic.html" target="_blank">
+      <a class="lab-card" href="#" onclick="openReportGate('champion', 'reports/champion_diagnostic.html'); return false;">
         <div class="lab-card-type"><span class="lab-card-type-dot"></span>Intelligence · 10</div>
         <div class="lab-card-title">Champion — A Structural Reading</div>
         <div class="lab-card-desc">A structural brand diagnostic tracing Champion's founding logic — institutional utility, material truth, and accumulated cultural weight — against its current positioning and strategic opportunity.</div>
@@ -2992,14 +2992,51 @@ function switchTab(event, panelId) {
 ================================================================ */
 const _PASSWORDS = {
   partners:   'Friends?54',
-  lab:        'resonant_samples',
   priorities: 'Me_ Prios'
 };
 const _SECTION_NAMES = {
   partners:   '02 — Partners',
-  lab:        '03 — Lab',
   priorities: '04 — Priorities'
 };
+
+
+/* ----------------------------------------------------------------
+   PER-REPORT PASSWORDS
+   Each key maps to: [password, display name]
+   Change the password strings here to update client access codes.
+---------------------------------------------------------------- */
+const _REPORT_PASSWORDS = {
+  neura:      'neura-24',
+  apple:      'ternus-25',
+  vw:         'vw-intel',
+  bmw:        'bmw-25',
+  duravit:    'duravit-25',
+  sensowash:  'sensowash',
+  champion:   'champion-r'
+};
+const _REPORT_NAMES = {
+  neura:      'NEURA Robotics',
+  apple:      'Apple × Ternus',
+  vw:         'Volkswagen',
+  bmw:        'BMW Group',
+  duravit:    'Duravit',
+  sensowash:  'SensoWash',
+  champion:   'Champion'
+};
+
+let _reportTarget = null;  // { key, url } when a report gate is open
+
+function openReportGate(key, url) {
+  _reportTarget = { key: key, url: url };
+  document.getElementById('gate-label').textContent = '— Intelligence report';
+  document.getElementById('gate-title').textContent = _REPORT_NAMES[key] || key;
+  const inp = document.getElementById('gate-input');
+  inp.value = '';
+  inp.classList.remove('gate-error');
+  document.getElementById('gate-err').classList.remove('visible');
+  document.getElementById('gate-overlay').classList.add('open');
+  setTimeout(() => inp.focus(), 80);
+}
 
 let _gateTarget = null;   // which section we're unlocking
 let _svActive   = null;   // which section is in the overlay
@@ -3028,11 +3065,32 @@ function openGate(sectionId) {
 function closeGate() {
   document.getElementById('gate-overlay').classList.remove('open');
   _gateTarget = null;
+  _reportTarget = null;
 }
 
 function verifyGate() {
   const inp = document.getElementById('gate-input');
   const val = inp.value.trim().toLowerCase();
+
+  // Report-level password check
+  if (_reportTarget) {
+    const expected = (_REPORT_PASSWORDS[_reportTarget.key] || '').toLowerCase();
+    if (val === expected) {
+      const url = _reportTarget.url;
+      closeGate();
+      window.open(url, '_blank');
+    } else {
+      inp.classList.remove('gate-error');
+      void inp.offsetWidth;
+      inp.classList.add('gate-error');
+      document.getElementById('gate-err').classList.add('visible');
+      inp.value = '';
+      setTimeout(() => { inp.classList.remove('gate-error'); }, 400);
+    }
+    return;
+  }
+
+  // Section-level password check
   const expected = (_PASSWORDS[_gateTarget] || '').toLowerCase();
   if (val === expected) {
     const target = _gateTarget;
@@ -3040,7 +3098,7 @@ function verifyGate() {
     openSectionView(target);
   } else {
     inp.classList.remove('gate-error');
-    void inp.offsetWidth; // reflow to restart animation
+    void inp.offsetWidth;
     inp.classList.add('gate-error');
     document.getElementById('gate-err').classList.add('visible');
     inp.value = '';
