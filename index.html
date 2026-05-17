@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design Intelligence — A method by Benjamin Cuenod</title>
+<title>Design Intelligence Framework — Benjamin Cuenod</title>
 <meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=EB+Garamond:ital,wght@1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -493,6 +493,86 @@ section {
   line-height: 1.65;
 }
 
+/* ---- ACCORDION ---- */
+.acc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 1px;
+  background: var(--border-dark);
+  border-top: 0.5px solid var(--border-dark);
+  border-bottom: 0.5px solid var(--border-dark);
+}
+.acc-item {
+  background: var(--void);
+  display: flex;
+  flex-direction: column;
+  border-bottom: 0.5px solid var(--border-dark);
+}
+.acc-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+  flex: 1;
+}
+.acc-row:hover { background: rgba(255,255,255,0.025); }
+.acc-type {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.acc-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-white);
+  line-height: 1.35;
+  flex: 1;
+}
+.acc-row-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4px;
+}
+.acc-format {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-white-pale);
+}
+.acc-chevron {
+  font-size: 11px;
+  color: var(--text-white-pale);
+  transition: opacity 0.2s;
+}
+.acc-body {
+  padding: 0 16px 16px;
+  border-top: 0.5px solid var(--border-dark);
+  margin-top: 0;
+}
+.acc-body p {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-white-mid);
+  line-height: 1.7;
+  padding-top: 14px;
+}
+@media (max-width: 640px) {
+  .acc-grid { grid-template-columns: 1fr; gap: 0; }
+  .acc-item { border-bottom: 0.5px solid var(--border-dark); }
+}
+
 /* ---- PARTNERS ---- */
 .partners-intro {
   font-family: var(--font-sans);
@@ -639,8 +719,28 @@ section {
 
 /* ---- LAB / POC & TOOLS ---- */
 .lab-section {
-  background: var(--ink);
+  background: #252523;
 }
+.lab-section .section-header,
+.pipeline-section .section-header {
+  border-bottom-color: #3A3A38;
+}
+.about-section .section-header {
+  border-bottom-color: #454543;
+}
+.about-section .about-lang {
+  border-color: #454543;
+}
+.lab-section .tab-nav {
+  background: rgba(0,0,0,0.25);
+  border-color: #3A3A38;
+}
+.lab-section .lab-card,
+.lab-section .lab-empty {
+  background: rgba(0,0,0,0.2);
+  border-color: #3A3A38;
+}
+.lab-section .lab-card:hover { border-color: var(--gold); }
 .tab-nav {
   display: flex;
   gap: 4px;
@@ -1776,13 +1876,13 @@ section {
      NAV
      ============================================================ -->
 <nav class="nav">
-  <a class="nav-logo" href="#home">Design Intelligence</a>
+  <a class="nav-logo" href="#home">Design Intelligence <span>Framework</span></a>
   <div class="nav-links">
     <a class="nav-link" href="#system">System</a>
     <a class="nav-link" href="#demo-case">Case</a>
+    <a class="nav-link" href="#about">About</a>
     <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('partners')">Partners</button>
     <a class="nav-link" href="#lab">Lab</a>
-    <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('priorities')">Priorities</button>
     <a class="nav-cta" href="mailto:b3njamin@me.com">Connect</a>
   </div>
   <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -1792,9 +1892,9 @@ section {
 <div class="nav-mobile" id="nav-mobile">
   <a class="nav-mobile-link" href="#system" onclick="closeMobileMenu()">System</a>
   <a class="nav-mobile-link" href="#demo-case" onclick="closeMobileMenu()">Case</a>
+  <a class="nav-mobile-link" href="#about" onclick="closeMobileMenu()">About</a>
   <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('partners')">Partners</button>
   <a class="nav-mobile-link" href="#lab" onclick="closeMobileMenu()">Lab</a>
-  <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('priorities')">Priorities</button>
   <a class="nav-mobile-link nav-mobile-cta" href="mailto:b3njamin@me.com">Connect</a>
 </div>
 
@@ -1803,9 +1903,9 @@ section {
      ============================================================ -->
 <section id="home">
 <div class="hero">
-  <div class="hero-eyebrow">Design Intelligence · A method by Benjamin Cuenod</div>
-  <h1 class="hero-title">We feel more<br>than we<br><em>understand.</em></h1>
-  <p class="hero-sub">Every audience relationship — every brand, every institution, every public figure — runs on a current that exists below strategy, below messaging, below what any brief has ever named. Resonance is not manufactured. It is the result of coherence.</p>
+  <div class="hero-eyebrow">Design Intelligence Framework · Benjamin Cuenod</div>
+  <h1 class="hero-title">Some things fit.<br>Most don't —<br><em>yet.</em></h1>
+  <p class="hero-sub">A brand, its products, and the people it's made for either find each other — or they don't. When the relationship is coherent, the brand gains amplitude. It resonates. People feel it before they can explain it. Design Intelligence finds where that coherence exists, names where it breaks down, and governs what comes next.</p>
   <div class="hero-scroll">Scroll to explore</div>
 
   <!-- decorative schematic -->
@@ -1846,49 +1946,23 @@ section {
     <!-- intro -->
     <div class="system-intro">
       <div class="system-lead">
-        Most diagnostic tools measure the surface.<br>
-        What people say. What they click. What they report.<br>
-        Design Intelligence finds what they cannot.
+        What a brand says is heard.<br>
+        What it is is felt.<br>
+        Few organisations know how to work with both.
       </div>
       <div class="system-body">
-        <p>The gap between what an entity genuinely is and what it appears to be is measurable. Coherence closes that gap. And resonance — the kind that builds trust structurally, not campaign by campaign — is what coherence produces. Inevitably.</p>
-        <p>The findings do not feel like data. They feel like something you already knew but could not say.</p>
+        <p>When both correspond, the brand does not need to persuade. It resonates.</p>
+        <p>Design Intelligence works at that second level.</p>
       </div>
     </div>
 
-    <!-- principles -->
-    <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-pale); margin-bottom:20px;">Core principles</div>
-    <div class="principles-grid">
-      <div class="principle-card">
-        <div class="principle-num">01 — Structure first</div>
-        <div class="principle-title">Coherence before communication</div>
-        <div class="principle-body">What you say only matters if what you are is stable. Design Intelligence starts by mapping the structural core — the qualities that persist across contexts, audiences, and time — before touching expression or strategy.</div>
-      </div>
-      <div class="principle-card">
-        <div class="principle-num">02 — Signal over noise</div>
-        <div class="principle-title">Reduction as a creative act</div>
-        <div class="principle-body">Clarity is not simplification. It is the discipline of knowing what to amplify and what to suppress. The system identifies which signals carry weight and which dilute presence — so every decision reinforces rather than fragments.</div>
-      </div>
-      <div class="principle-card">
-        <div class="principle-num">03 — Resonance as filter</div>
-        <div class="principle-title">Alignment, not appeal</div>
-        <div class="principle-body">Not everyone is a fit. Design Intelligence operates as a selection mechanism as much as a development one. The clearer the frequency, the more precisely it attracts what belongs — partners, clients, collaborators, and opportunities — and repels what doesn't.</div>
-      </div>
-      <div class="principle-card">
-        <div class="principle-num">04 — Living system</div>
-        <div class="principle-title">Calibration, not destination</div>
-        <div class="principle-body">Identity is not fixed. The system is designed for continuous calibration — tracking drift, catching misalignment early, and adjusting before fracture. The goal is not a finished brand but a coherent one at every stage.</div>
-      </div>
-      <div class="principle-card">
-        <div class="principle-num">05 — Observation before opinion</div>
-        <div class="principle-title">Diagnostic precision</div>
-        <div class="principle-body">Every engagement begins with listening — structured, systematic, and without agenda. The system reads what is present before proposing what could be. This distinguishes a diagnosis from a prescription and prevents the most common strategic error: solving the wrong problem.</div>
-      </div>
-      <div class="principle-card">
-        <div class="principle-num">06 — Integrated output</div>
-        <div class="principle-title">Strategy that touches everything</div>
-        <div class="principle-body">Positioning, creative direction, partner selection, and narrative are not parallel tracks — they are one system. Design Intelligence produces integrated recommendations across all registers simultaneously, because coherence is only possible when they move together.</div>
-      </div>
+    <!-- method prose -->
+    <div class="system-body" style="margin-top:48px; max-width:680px;">
+      <p>Most brands do not fail suddenly. They drift. The pressure for short-term performance is constant — clicks, conversions, quarterly returns. The brand responds. It optimises. It gets louder. And slowly, without anyone deciding it, it stops being what it was. The surface stays active. The signal beneath it quietly empties.</p>
+      <p>What made the brand real is still there. It does not disappear — it gets buried. Finding it is not a creative act. It is a diagnostic one.</p>
+      <p>That is where this practice begins.</p>
+      <p>First, the brand is mapped — its emotional architecture, its products, the audience relationship as it actually exists. Then coherence is tested across all three. Where the correspondence breaks down, the gap is named and its cost made legible. The proposals that follow are not strategic options — they are structural corrections. And the governance that comes after ensures that as the brand evolves, the coherence evolves with it.</p>
+      <p>Coherence compounds. A brand that is structurally itself attracts the right people, retains them, and earns the room to evolve. Not because it was marketed correctly. Because it was true.</p>
     </div>
 
     <!-- services v2 -->
@@ -1902,76 +1976,147 @@ section {
           <span class="svtier-label">Diagnostic reports</span>
           <span class="svtier-count">10 products</span>
         </div>
-        <div class="svc-grid svc-grid-3">
 
-          <div class="svc-card svc-featured">
-            <div class="svc-type">Core · Flagship</div>
-            <div class="svc-name">Brand Coherence Diagnostic</div>
-            <div class="svc-body">The full structural read of your presence. Emotional engine, brand world, character, market position, audience connection, structural issues — and the directions that follow. The product from which all others draw.</div>
-            <div class="svc-format">Full report + debrief session</div>
+        <div class="acc-grid" id="acc-diagnostics">
+
+          <div class="acc-item acc-open">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Core · Flagship</span>
+              <span class="acc-name">Brand Coherence Diagnostic</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Full report + debrief</span>
+                <span class="acc-chevron">↑</span>
+              </div>
+            </button>
+            <div class="acc-body">
+              <p>The full structural read of your presence. Emotional engine, brand world, character, market position, audience connection, structural issues — and the directions that follow.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Intelligence</div>
-            <div class="svc-name">Concurrence Report</div>
-            <div class="svc-body">Structural analysis of one to three competitors. Maps where they are positioned, where they are drifting, and what space exists for you to occupy distinctly.</div>
-            <div class="svc-format">Written report</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Intelligence</span>
+              <span class="acc-name">Concurrence Report</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written report</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Structural analysis of one to three competitors. Maps where they are positioned, where they are drifting, and what space exists for you to occupy distinctly.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Audience</div>
-            <div class="svc-name">Audience Coherence Report</div>
-            <div class="svc-body">Structural alignment between your brand and a specific target group. Identifies connection quality, trust gaps, and signal mismatches. Does this audience genuinely belong to us?</div>
-            <div class="svc-format">Written report</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Audience</span>
+              <span class="acc-name">Audience Coherence Report</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written report</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Structural alignment between your brand and a specific target group. Identifies connection quality, trust gaps, and signal mismatches. Does this audience genuinely belong to us?</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Expansion</div>
-            <div class="svc-name">New Market Coherence Report</div>
-            <div class="svc-body">Does your brand structure translate to a new geography, culture, or category? What holds, what distorts, and what must be re-calibrated before you enter.</div>
-            <div class="svc-format">Written report</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Expansion</span>
+              <span class="acc-name">New Market Coherence Report</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written report</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Does your brand structure translate to a new geography, culture, or category? What holds, what distorts, and what must be re-calibrated before you enter.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Product</div>
-            <div class="svc-name">New Product Coherence Report</div>
-            <div class="svc-body">Assesses whether a proposed product, line extension, or service is structurally coherent with the brand's core. Prevents launches that fragment identity.</div>
-            <div class="svc-format">Written report</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Product</span>
+              <span class="acc-name">New Product Coherence Report</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written report</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Assesses whether a proposed product, line extension, or service is structurally coherent with the brand's core. Prevents launches that fragment identity.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Corporate</div>
-            <div class="svc-name">M&amp;A Brand Compatibility Report</div>
-            <div class="svc-body">Pre-merger or pre-acquisition analysis of brand coherence between two entities. Maps structural overlap, tension points, and post-merger identity risk.</div>
-            <div class="svc-format">Written report + priority actions</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Corporate</span>
+              <span class="acc-name">M&amp;A Brand Compatibility Report</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Report + priority actions</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Pre-merger or pre-acquisition analysis of brand coherence between two entities. Maps structural overlap, tension points, and post-merger identity risk.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">People</div>
-            <div class="svc-name">Hire Resonance Report</div>
-            <div class="svc-body">Structural alignment check for a senior hire or public-facing appointment. Maps the individual's character and communication style against the organisation's structural signature.</div>
-            <div class="svc-format">Written report</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">People</span>
+              <span class="acc-name">Hire Resonance Report</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written report</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Structural alignment check for a senior hire or public-facing appointment. Maps the individual's character and communication style against the organisation's structural signature.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Leadership</div>
-            <div class="svc-name">Brand–Leader Resonance Report</div>
-            <div class="svc-body">Analysis of alignment between a founder, CEO, or spokesperson and the brand they represent. Maps overlap, drift zones, and communication risk.</div>
-            <div class="svc-format">Written report</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Leadership</span>
+              <span class="acc-name">Brand–Leader Resonance Report</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written report</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Analysis of alignment between a founder, CEO, or spokesperson and the brand they represent. Maps overlap, drift zones, and communication risk.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Audit</div>
-            <div class="svc-name">Communications Audit</div>
-            <div class="svc-body">Existing advertising, editorial, digital, and PR mapped against the structural brand core. Shows where the voice is on-signal and where it is drifting.</div>
-            <div class="svc-format">Written report</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Audit</span>
+              <span class="acc-name">Communications Audit</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written report</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Existing advertising, editorial, digital, and PR mapped against the structural brand core. Shows where the voice is on-signal and where it is drifting.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Transition</div>
-            <div class="svc-name">Rebranding Coherence Review</div>
-            <div class="svc-body">A structural integrity check for organisations mid-rebrand. Ensures the new direction does not sever what is genuinely valuable in the existing brand structure.</div>
-            <div class="svc-format">Written report + debrief</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Transition</span>
+              <span class="acc-name">Rebranding Coherence Review</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Report + debrief</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>A structural integrity check for organisations mid-rebrand. Ensures the new direction does not sever what is genuinely valuable in the existing brand structure.</p>
+            </div>
           </div>
 
         </div>
@@ -1984,34 +2129,63 @@ section {
           <span class="svtier-label">Creation</span>
           <span class="svtier-count">4 products</span>
         </div>
-        <div class="svc-grid svc-grid-4">
 
-          <div class="svc-card">
-            <div class="svc-type">Voice</div>
-            <div class="svc-name">Communications Register</div>
-            <div class="svc-body">A practical voice and tone guide derived from the diagnostic. Sets register, sentence structure, vocabulary, and what to avoid. The operational writing tool for teams and agencies.</div>
-            <div class="svc-format">Written guide</div>
+        <div class="acc-grid">
+
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Voice</span>
+              <span class="acc-name">Communications Register</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written guide</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>A practical voice and tone guide derived from the diagnostic. Sets register, sentence structure, vocabulary, and what to avoid. The operational writing tool for teams and agencies.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Position</div>
-            <div class="svc-name">Positioning Statement</div>
-            <div class="svc-body">A single, structurally grounded market position with full written rationale. Not a tagline — a structural declaration built to hold under commercial pressure.</div>
-            <div class="svc-format">Written document</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Position</span>
+              <span class="acc-name">Positioning Statement</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written document</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>A single, structurally grounded market position with full written rationale. Not a tagline — a structural declaration built to hold under commercial pressure.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Narrative</div>
-            <div class="svc-name">Narrative Architecture</div>
-            <div class="svc-body">The complete story structure: founding logic, current positioning, future direction. Written, not frameworks. Built for pitches, press, and long-form communications.</div>
-            <div class="svc-format">Written document</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Narrative</span>
+              <span class="acc-name">Narrative Architecture</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written document</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>The complete story structure: founding logic, current positioning, future direction. Written, not frameworks. Built for pitches, press, and long-form communications.</p>
+            </div>
           </div>
 
-          <div class="svc-card">
-            <div class="svc-type">Brief</div>
-            <div class="svc-name">Campaign Coherence Brief</div>
-            <div class="svc-body">A strategic brief for a campaign or communication built directly from diagnostic findings. Ensures creative output is structurally grounded before briefing a team.</div>
-            <div class="svc-format">Written brief</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Brief</span>
+              <span class="acc-name">Campaign Coherence Brief</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Written brief</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>A strategic brief for a campaign or communication built directly from diagnostic findings. Ensures creative output is structurally grounded before briefing a team.</p>
+            </div>
           </div>
 
         </div>
@@ -2024,34 +2198,63 @@ section {
           <span class="svtier-label">Retainer</span>
           <span class="svtier-count">4 actions</span>
         </div>
-        <div class="svc-grid svc-grid-4">
 
-          <div class="svc-card svc-retainer">
-            <div class="svc-type">Ongoing</div>
-            <div class="svc-name">Drift Monitoring</div>
-            <div class="svc-body">Recurring structural check-ins that catch coherence loss before it compounds. Delivered as a short written note with priority flags. Monthly or quarterly cadence.</div>
-            <div class="svc-format">Monthly or quarterly</div>
+        <div class="acc-grid">
+
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Ongoing</span>
+              <span class="acc-name">Drift Monitoring</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Monthly or quarterly</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Recurring structural check-ins that catch coherence loss before it compounds. Delivered as a short written note with priority flags.</p>
+            </div>
           </div>
 
-          <div class="svc-card svc-retainer">
-            <div class="svc-type">Ongoing</div>
-            <div class="svc-name">Communications Writing</div>
-            <div class="svc-body">All ongoing copy, scripts, statements, or editorial produced in alignment with the structural voice. Covers website, press, speeches, and executive communications.</div>
-            <div class="svc-format">Volume-based retainer</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Ongoing</span>
+              <span class="acc-name">Communications Writing</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Volume-based retainer</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>All ongoing copy, scripts, statements, or editorial produced in alignment with the structural voice. Covers website, press, speeches, and executive communications.</p>
+            </div>
           </div>
 
-          <div class="svc-card svc-retainer">
-            <div class="svc-type">On-demand</div>
-            <div class="svc-name">Launch Coherence Review</div>
-            <div class="svc-body">A fast-turnaround structural check on any campaign, product launch, or major public communication before it goes live. Ensures the output does not fracture identity.</div>
-            <div class="svc-format">Per launch</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">On-demand</span>
+              <span class="acc-name">Launch Coherence Review</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Per launch</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>A fast-turnaround structural check on any campaign, product launch, or major public communication before it goes live. Ensures the output does not fracture identity.</p>
+            </div>
           </div>
 
-          <div class="svc-card svc-retainer">
-            <div class="svc-type">Ongoing</div>
-            <div class="svc-name">Strategic Counsel</div>
-            <div class="svc-body">Regular access for live decisions. Brand, positioning, partner, hire, or market moves reviewed through the structural lens before they are made.</div>
-            <div class="svc-format">Monthly retainer</div>
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Ongoing</span>
+              <span class="acc-name">Strategic Counsel</span>
+              <div class="acc-row-footer">
+                <span class="acc-format">Monthly retainer</span>
+                <span class="acc-chevron">↓</span>
+              </div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Regular access for live decisions. Brand, positioning, partner, hire, or market moves reviewed through the structural lens before they are made.</p>
+            </div>
           </div>
 
         </div>
@@ -2082,6 +2285,344 @@ section {
       </div>
     </div>
 
+  </div>
+</div>
+</section>
+
+<!-- ============================================================
+     HOW WE WORK — PIPELINE
+     ============================================================ -->
+<style>
+.pipeline-section {
+  background: #252523;
+  border-top: 0.5px solid #3A3A38;
+  border-bottom: 0.5px solid #3A3A38;
+  padding: 96px 64px;
+}
+.pipeline-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.pipeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 48px;
+}
+.pipeline-row {
+  display: grid;
+  grid-template-columns: 48px 200px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 32px 0;
+  border-bottom: 0.5px solid #3A3A38;
+  transition: background 0.2s;
+}
+.pipeline-row:first-child { border-top: 0.5px solid #3A3A38; }
+.pipeline-row:hover { background: rgba(255,255,255,0.015); }
+.pipeline-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  padding-top: 2px;
+}
+.pipeline-label-block {}
+.pipeline-label {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-white);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.pipeline-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-white-pale);
+}
+.pipeline-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-white-mid);
+  line-height: 1.75;
+  max-width: 560px;
+}
+@media (max-width: 900px) {
+  .pipeline-section { padding: 72px 32px; }
+  .pipeline-row {
+    grid-template-columns: 36px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .pipeline-label-block { grid-column: 2; }
+  .pipeline-desc { grid-column: 2; max-width: none; margin-top: 8px; }
+}
+@media (max-width: 600px) {
+  .pipeline-section { padding: 48px 20px; }
+  .pipeline-row {
+    grid-template-columns: 28px 1fr;
+    gap: 16px;
+    padding: 24px 0;
+  }
+}
+</style>
+
+<section id="pipeline">
+<div class="pipeline-section">
+  <div class="pipeline-inner">
+    <div class="section-header">
+      <span class="section-num">02 — Process</span>
+      <h2 class="section-title">How we work</h2>
+    </div>
+    <p style="font-size:15px; font-weight:300; color:var(--text-white-mid); line-height:1.75; max-width:520px; margin-bottom:0;">The same sequence applies to every engagement. What changes is where it starts and how far it needs to go.</p>
+
+    <div class="pipeline-list">
+      <div class="pipeline-row">
+        <div class="pipeline-index">01</div>
+        <div class="pipeline-label-block">
+          <div class="pipeline-label">Orientation</div>
+          <div class="pipeline-sub">We read first</div>
+        </div>
+        <div class="pipeline-desc">Before any analysis begins, we read — the brand's history, behaviour, and moments where its character was most visible. Most of what a brand needs already exists inside it. Finding it requires patience, not invention.</div>
+      </div>
+      <div class="pipeline-row">
+        <div class="pipeline-index">02</div>
+        <div class="pipeline-label-block">
+          <div class="pipeline-label">Excavation</div>
+          <div class="pipeline-sub">We find what is real</div>
+        </div>
+        <div class="pipeline-desc">We surface the founding logic, the naming instinct, the things the brand refuses. The assets it has never claimed. These are not invented — they are recovered.</div>
+      </div>
+      <div class="pipeline-row">
+        <div class="pipeline-index">03</div>
+        <div class="pipeline-label-block">
+          <div class="pipeline-label">Foundation</div>
+          <div class="pipeline-sub">We name what it is</div>
+        </div>
+        <div class="pipeline-desc">We name what the brand actually is — its emotional logic, the world it inhabits, the character it expresses. Not what it should become. What it is, stated precisely enough to act from.</div>
+      </div>
+      <div class="pipeline-row">
+        <div class="pipeline-index">04</div>
+        <div class="pipeline-label-block">
+          <div class="pipeline-label">Diagnosis</div>
+          <div class="pipeline-sub">We say what works</div>
+        </div>
+        <div class="pipeline-desc">We test whether communication, product range, and audience relationships are coherent with what the brand actually is. Where they are, the signal is clear. Where they are not, we name the gap and what it costs.</div>
+      </div>
+      <div class="pipeline-row">
+        <div class="pipeline-index">05</div>
+        <div class="pipeline-label-block">
+          <div class="pipeline-label">Output</div>
+          <div class="pipeline-sub">We build what is needed</div>
+        </div>
+        <div class="pipeline-desc">Everything produced — voice direction, visual logic, campaign structure, the portrait report — is derived from the structural read. Nothing is added from convention. The output is a consequence of the diagnosis.</div>
+      </div>
+      <div class="pipeline-row">
+        <div class="pipeline-index">06</div>
+        <div class="pipeline-label-block">
+          <div class="pipeline-label">Continuity</div>
+          <div class="pipeline-sub">We protect what is built</div>
+        </div>
+        <div class="pipeline-desc">Brand coherence erodes quietly. We govern the execution layer — checking each new output, partnership, and market move against the brand model. When the brand is ready to grow, we ensure that growth is a deepening of what it is, not a departure from it.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================
+     ABOUT — BENJAMIN CUENOD
+     ============================================================ -->
+<style>
+.about-section {
+  background: #323230;
+  padding: 96px 64px;
+}
+.about-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 48px;
+}
+.about-sidebar {}
+.about-name {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text-white);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.about-role {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.about-credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 32px;
+}
+.about-cred-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.25);
+  border: 0.5px solid #454543;
+  border-radius: var(--radius-4);
+}
+.about-cred-org {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 72px;
+}
+.about-cred-role {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-white-mid);
+  line-height: 1.4;
+}
+.about-langs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.about-lang {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  border: 0.5px solid var(--border-dark-mid);
+  color: var(--text-white-pale);
+}
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.about-body p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-white-mid);
+  line-height: 1.8;
+}
+.about-body p strong {
+  color: var(--text-white);
+  font-weight: 500;
+}
+.about-ai-note {
+  margin-top: 8px;
+  padding: 20px 24px;
+  border: 0.5px solid #454543;
+  border-left: 2px solid var(--gold);
+  border-radius: 0 var(--radius-8) var(--radius-8) 0;
+  background: rgba(95,133,255,0.06);
+}
+.about-ai-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.about-ai-text {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-white-mid);
+  line-height: 1.7;
+}
+@media (max-width: 900px) {
+  .about-section { padding: 72px 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 600px) {
+  .about-section { padding: 48px 20px; }
+  .about-name { font-size: 22px; }
+}
+</style>
+
+<section id="about">
+<div class="about-section">
+  <div class="about-inner">
+
+    <div class="section-header">
+      <span class="section-num">03 — About</span>
+      <h2 class="section-title">The practitioner</h2>
+    </div>
+
+    <div class="about-grid">
+
+      <div class="about-sidebar">
+        <div class="about-name">Benjamin<br>Cuenod</div>
+        <div class="about-role">Brand architect · 25+ years</div>
+
+        <div class="about-credentials">
+          <div class="about-cred-item">
+            <div class="about-cred-org">NIO</div>
+            <div class="about-cred-role">Brand Design & Experience — Europe &amp; UAE</div>
+          </div>
+          <div class="about-cred-item">
+            <div class="about-cred-org">Roland Berger</div>
+            <div class="about-cred-role">Brand narrative &amp; consulting translation</div>
+          </div>
+          <div class="about-cred-item">
+            <div class="about-cred-org">Red Bull TV</div>
+            <div class="about-cred-role">Brand &amp; content architecture</div>
+          </div>
+          <div class="about-cred-item">
+            <div class="about-cred-org">ARTE / 3sat</div>
+            <div class="about-cred-role">Rebrand &amp; spatial identity (via Scripted Reality)</div>
+          </div>
+          <div class="about-cred-item">
+            <div class="about-cred-org">LA studios</div>
+            <div class="about-cred-role">Film title &amp; broadcast design</div>
+          </div>
+        </div>
+
+        <div class="about-langs">
+          <span class="about-lang">DE</span>
+          <span class="about-lang">EN</span>
+          <span class="about-lang">FR</span>
+          <span class="about-lang">IT</span>
+        </div>
+      </div>
+
+      <div class="about-body">
+        <p>The work has always begun in the same place: <strong>listening closely enough to an organisation to surface what is genuinely distinctive</strong> — before shaping it into something others can recognise and trust. From film title studios in Los Angeles to broadcast networks across Europe, from automotive flagships to electric vehicle market entries spanning Munich, Amsterdam, and Dubai, the instinct has remained constant.</p>
+
+        <p>What drives this practice is not aesthetic ambition but <strong>structural honesty</strong> — the conviction that a brand either reflects something real about an organisation, or it costs that organisation money in ways it cannot easily name. The most useful position is the space before the brief exists: where the question itself is still forming, where scattered stakeholders are working from incompatible mental models, and where someone needs to give coherent form to something genuinely undefined.</p>
+
+        <p>At NIO, that meant bridging China headquarters and European markets simultaneously. At Roland Berger, it meant translating consulting logic into brand narrative. Across decades of broadcast work, it meant connecting spatial design, motion systems, and content governance into a single coherent architecture.</p>
+
+        <p><strong>The combination is unusual.</strong> The craft grounding of someone who was animating frame by frame before After Effects had a name. The systems thinking of someone who has designed live-data broadcast architectures and multi-market brand governance frameworks. The strategic orientation of someone who has consistently operated upstream — defining the rails, not running on them.</p>
+
+        <div class="about-ai-note">
+          <div class="about-ai-label">On AI &amp; the framework</div>
+          <div class="about-ai-text">Design Intelligence is AI-assisted, not AI-built. The diagnostic framework, the scoring logic, and the practitioner judgement are human. AI tools accelerate research, pattern recognition, and report production — they do not replace the structural reading or the findings. The capability here is genuine. So is the boundary: AI can generate anything. Coherence cannot be automated — and that is precisely why the practitioner's role exists.</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 </section>
@@ -2254,14 +2795,14 @@ section {
   <!-- Header -->
   <div class="demo-hdr">
     <div class="section-header section-header-dark">
-      <span class="section-num">02 — Case</span>
+      <span class="section-num">04 — Case</span>
       <h2 class="section-title section-title-white">The method in action</h2>
     </div>
     <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
       <span style="font-family:var(--font-serif); font-size:clamp(28px,4vw,42px); font-weight:500; letter-spacing:-0.01em; color:var(--text-white); line-height:1;">Volkswagen AG</span>
       <span style="font-family:var(--font-mono); font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:var(--text-white-pale); padding:4px 10px; border:0.5px solid var(--border-dark-mid); border-radius:var(--radius-full);">Automotive · Global volume</span>
     </div>
-    <p style="font-family:var(--font-sans); font-size:15px; font-weight:300; color:var(--text-white-mid); max-width:540px; line-height:1.75; margin-bottom:20px;">A complete diagnostic from emotional root to strategic direction — showing what a full Reasonant engagement produces. Every finding came from publicly available information only.</p>
+    <p style="font-family:var(--font-sans); font-size:15px; font-weight:300; color:var(--text-white-mid); max-width:540px; line-height:1.75; margin-bottom:20px;">A complete diagnostic from emotional root to strategic direction — showing what a full Design Intelligence engagement produces. Every finding came from publicly available information only.</p>
     <div style="display:inline-flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:var(--steel); background:rgba(138,155,174,0.07); border:0.5px solid rgba(138,155,174,0.25); padding:5px 12px; border-radius:var(--radius-full);">
       <span style="width:5px;height:5px;border-radius:50%;background:var(--steel);flex-shrink:0;display:inline-block;"></span>
       Sample case — analysis from publicly available information only
@@ -2538,7 +3079,7 @@ section {
 
       <div class="dc-footnote">
         <div class="dc-footnote-label">Note</div>
-        <div class="dc-footnote-text">This is a sample diagnostic produced entirely from publicly available information — annual reports, press coverage, advertising, product communications, and public brand statements. It was produced using the Living Brand Architecture methodology by Reasonant. Volkswagen AG has no involvement in or knowledge of this analysis. The findings represent a structural read of a public brand, not a commissioned engagement.</div>
+        <div class="dc-footnote-text">This is a sample diagnostic produced entirely from publicly available information — annual reports, press coverage, advertising, product communications, and public brand statements. It was produced using the Design Intelligence Framework by Benjamin Cuenod. Volkswagen AG has no involvement in or knowledge of this analysis. The findings represent a structural read of a public brand, not a commissioned engagement.</div>
       </div>
 
     </div>
@@ -2720,7 +3261,7 @@ section {
 <div class="section-inner">
 
   <div class="section-header section-header-dark">
-    <span class="section-num">03 — Lab</span>
+    <span class="section-num">05 — Lab</span>
     <h2 class="section-title section-title-white">POCs &amp; tools</h2>
   </div>
 
@@ -3046,6 +3587,20 @@ function toggleMobileMenu() {
   const menu = document.getElementById('nav-mobile');
   menu.classList.toggle('open');
 }
+function toggleAcc(btn) {
+  const item = btn.closest('.acc-item');
+  const body = item.querySelector('.acc-body');
+  const chevron = btn.querySelector('.acc-chevron');
+  const isOpen = !body.hidden;
+  if (isOpen) {
+    body.hidden = true;
+    chevron.textContent = '↓';
+  } else {
+    body.hidden = false;
+    chevron.textContent = '↑';
+  }
+}
+
 function closeMobileMenu() {
   document.getElementById('nav-mobile').classList.remove('open');
 }
