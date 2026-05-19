@@ -595,25 +595,32 @@ section {
   padding: 28px 28px 24px;
   cursor: default;
   position: relative;
-  overflow: hidden;
   transition: border-color 0.25s;
+  min-height: 220px;
 }
 .partner-card:hover { border-color: var(--steel); }
-.partner-front { transition: opacity 0.25s; }
-.partner-back {
-  position: absolute;
-  inset: 0;
-  padding: 28px;
-  background: var(--charcoal);
-  border-radius: var(--radius-12);
-  opacity: 0;
-  transition: opacity 0.25s;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.partner-front {
+  transition: opacity 0.2s;
+  pointer-events: none;
 }
-.partner-card:hover .partner-front { opacity: 0; }
-.partner-card:hover .partner-back { opacity: 1; }
+.partner-card:hover .partner-front {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.partner-back {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  background: transparent;
+}
+.partner-card:hover .partner-back {
+  display: flex;
+}
+.partner-card:hover {
+  background: var(--charcoal);
+}
 .partner-type {
   font-family: var(--font-mono);
   font-size: 9px;
@@ -659,14 +666,18 @@ section {
   text-transform: uppercase;
   padding: 3px 8px;
   border-radius: var(--radius-4);
-  background: var(--steel-pale);
-  color: var(--steel-dark);
+  background: rgba(95,133,255,0.75);
+  color: #0d0d0c;
+  font-weight: 500;
   margin-right: 4px;
   margin-bottom: 4px;
 }
 /* firm variant */
 .partner-card.firm {
   background: var(--charcoal);
+}
+.partner-card.firm:hover {
+  background: var(--surface-dark-3);
 }
 .partner-card.firm .partner-name { font-size: 16px; }
 .partner-logo-placeholder {
@@ -3506,7 +3517,7 @@ section {
       <div class="cic-tier">Engagement · Active</div>
       <div class="cic-name">CLT-003</div>
       <div class="cic-status"><div class="cic-dot"></div><div class="cic-status-label">Diagnostic delivered · Engagement map open</div></div>
-      <div class="cic-summary">Brand Intelligence Review and SensoWash Communications Register delivered. Full engagement map with two paths, voice architecture, and Brand Intelligence Assistant in development.</div>
+      <div class="cic-summary">Brand Intelligence Review and product line communications register delivered. Full engagement map with two paths, voice architecture, and Brand Intelligence Assistant in development.</div>
       <div class="cic-footer">
         <span class="cic-phase">2 items delivered · Map active</span>
         <span class="cic-arrow">→</span>
@@ -4258,123 +4269,202 @@ function toggleItem(id){const c=document.getElementById(id);if(c)c.classList.tog
   <div class="partners-grid">
 
     <!-- Individual partner -->
+    <!-- Kerstin Dahnert -->
     <div class="partner-card">
       <div class="partner-front">
-        <span class="partner-type">Individual · Strategy</span>
-        <div class="partner-name">Partner Name A</div>
-        <div class="partner-specialty">Brand strategist &amp; narrative director</div>
+        <span class="partner-type">Individual · Automotive</span>
+        <div class="partner-name">Kerstin Dahnert</div>
+        <div class="partner-specialty">Brand experience &amp; automotive marketing</div>
         <div class="resonance-bar">
           <span class="resonance-label">Resonance</span>
-          <div class="resonance-track"><div class="resonance-fill" style="width:88%;"></div></div>
-          <span class="resonance-val">0.88</span>
+          <div class="resonance-track"><div class="resonance-fill" style="width:91%;"></div></div>
+          <span class="resonance-val">0.91</span>
         </div>
       </div>
       <div class="partner-back">
-        <div class="partner-back-name">Partner Name A</div>
-        <div class="partner-back-body">15 years navigating brand identity for post-Series B technology companies. Specialises in founder-to-brand coherence — the moment when personal presence and company presence must become one.</div>
-        <div>
-          <span class="partner-cred">Brand strategy</span>
-          <span class="partner-cred">Narrative</span>
-          <span class="partner-cred">Series A–C</span>
+        <div class="partner-back-name">Kerstin Dahnert</div>
+        <div class="partner-back-body">Marketing Manager at Porsche. Deep expertise in brand experience, experiential marketing, and how premium automotive brands create physical presence. Panel speaker at the International Festival of Brand Experience. Operates at the intersection of brand strategy and live activation.</div>
+        <a href="https://www.linkedin.com/in/kerstin-dahnert-a33b6a65/" target="_blank" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--steel);text-decoration:none;margin-top:10px;display:inline-block;">LinkedIn →</a>
+        <div style="margin-top:10px;">
+          <span class="partner-cred">Brand experience</span>
+          <span class="partner-cred">Automotive</span>
+          <span class="partner-cred">Live activation</span>
         </div>
       </div>
     </div>
 
-    <!-- Individual partner 2 -->
+    <!-- Dona Abuaf -->
     <div class="partner-card">
       <div class="partner-front">
         <span class="partner-type">Individual · Creative</span>
-        <div class="partner-name">Partner Name B</div>
-        <div class="partner-specialty">Creative director &amp; visual identity</div>
+        <div class="partner-name">Dona Abuaf</div>
+        <div class="partner-specialty">Retail brand experience &amp; spatial identity</div>
         <div class="resonance-bar">
           <span class="resonance-label">Resonance</span>
-          <div class="resonance-track"><div class="resonance-fill" style="width:94%;"></div></div>
-          <span class="resonance-val">0.94</span>
+          <div class="resonance-track"><div class="resonance-fill" style="width:93%;"></div></div>
+          <span class="resonance-val">0.93</span>
         </div>
       </div>
       <div class="partner-back">
-        <div class="partner-back-name">Partner Name B</div>
-        <div class="partner-back-body">Independent creative director working across identity systems, editorial direction, and spatial brand. Known for translating abstract strategic positioning into visual languages that hold under pressure.</div>
-        <div>
-          <span class="partner-cred">Visual identity</span>
+        <div class="partner-back-name">Dona Abuaf</div>
+        <div class="partner-back-body">Senior Design Director, EMEA Brand Creative Retail at Nike. Over two decades translating brand identity into physical retail environments across flagship stores in Rome, Milan, Paris, and London. Rare capability: making a brand coherent in space, not just on screen. Based in Amsterdam.</div>
+        <a href="https://www.linkedin.com/in/dona-abuaf-6785814/" target="_blank" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--steel);text-decoration:none;margin-top:10px;display:inline-block;">LinkedIn →</a>
+        <div style="margin-top:10px;">
+          <span class="partner-cred">Retail identity</span>
+          <span class="partner-cred">Spatial design</span>
           <span class="partner-cred">Art direction</span>
-          <span class="partner-cred">Editorial</span>
         </div>
       </div>
     </div>
 
-    <!-- Individual partner 3 -->
+    <!-- Inga Skowranek -->
     <div class="partner-card">
       <div class="partner-front">
-        <span class="partner-type">Individual · Research</span>
-        <div class="partner-name">Partner Name C</div>
-        <div class="partner-specialty">Cultural intelligence &amp; audience research</div>
+        <span class="partner-type">Individual · Academic</span>
+        <div class="partner-name">Inga Skowranek</div>
+        <div class="partner-specialty">Intercultural brand culture &amp; digital branding</div>
         <div class="resonance-bar">
           <span class="resonance-label">Resonance</span>
-          <div class="resonance-track"><div class="resonance-fill" style="width:79%;"></div></div>
-          <span class="resonance-val">0.79</span>
+          <div class="resonance-track"><div class="resonance-fill" style="width:84%;"></div></div>
+          <span class="resonance-val">0.84</span>
         </div>
       </div>
       <div class="partner-back">
-        <div class="partner-back-name">Partner Name C</div>
-        <div class="partner-back-body">Academic background in semiotics and cultural theory, applied to brand and market intelligence. Maps how ideas move through culture and identifies where a presence is positioned relative to broader shifts.</div>
-        <div>
-          <span class="partner-cred">Semiotics</span>
-          <span class="partner-cred">Cultural mapping</span>
-          <span class="partner-cred">Trend intelligence</span>
+        <div class="partner-back-name">Inga Skowranek</div>
+        <div class="partner-back-body">Professor for Intercultural Brand-Culture and Innovation at Brand University Hamburg. Teaches across brand design, digital branding, UX strategy, and system design. Brings academic rigour to questions of how brands travel across cultures — and where they lose coherence in translation.</div>
+        <a href="https://www.linkedin.com/in/inga-skowranek/?locale=en" target="_blank" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--steel);text-decoration:none;margin-top:10px;display:inline-block;">LinkedIn →</a>
+        <div style="margin-top:10px;">
+          <span class="partner-cred">Brand culture</span>
+          <span class="partner-cred">Digital branding</span>
+          <span class="partner-cred">UX strategy</span>
         </div>
       </div>
     </div>
 
-    <!-- Firm partner 1 -->
+    <!-- Eleonora Tuveri -->
+    <div class="partner-card">
+      <div class="partner-front">
+        <span class="partner-type">Individual · Comms</span>
+        <div class="partner-name">Eleonora Tuveri</div>
+        <div class="partner-specialty">Communications &amp; institutional relations</div>
+        <div class="resonance-bar">
+          <span class="resonance-label">Resonance</span>
+          <div class="resonance-track"><div class="resonance-fill" style="width:80%;"></div></div>
+          <span class="resonance-val">0.80</span>
+        </div>
+      </div>
+      <div class="partner-back">
+        <div class="partner-back-name">Eleonora Tuveri</div>
+        <div class="partner-back-body">Communications and stakeholder relations professional based in Switzerland. Background spanning Nestlé and the institutional sector. Brings rigour, multilingual range, and access to European institutional networks that are otherwise difficult to navigate independently.</div>
+        <a href="https://www.linkedin.com/in/eleonora-tuveri-ch/" target="_blank" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--steel);text-decoration:none;margin-top:10px;display:inline-block;">LinkedIn →</a>
+        <div style="margin-top:10px;">
+          <span class="partner-cred">Institutional</span>
+          <span class="partner-cred">Multilingual</span>
+          <span class="partner-cred">Switzerland · EU</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roman Fernandez -->
+    <div class="partner-card">
+      <div class="partner-front">
+        <span class="partner-type">Individual · Strategy</span>
+        <div class="partner-name">Roman Fernandez</div>
+        <div class="partner-specialty">Capital strategy &amp; business development</div>
+        <div class="resonance-bar">
+          <span class="resonance-label">Resonance</span>
+          <div class="resonance-track"><div class="resonance-fill" style="width:82%;"></div></div>
+          <span class="resonance-val">0.82</span>
+        </div>
+      </div>
+      <div class="partner-back">
+        <div class="partner-back-name">Roman Fernandez</div>
+        <div class="partner-back-body">Founder of EVOLVIA, Berlin. Helps complex businesses raise capital and achieve exits at their target valuations. Roland Berger network connections. Operates at the intersection of brand positioning and investment narrative — where the story a company tells becomes the story investors believe.</div>
+        <a href="https://www.linkedin.com/in/roman-fernandez/" target="_blank" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--steel);text-decoration:none;margin-top:10px;display:inline-block;">LinkedIn →</a>
+        <div style="margin-top:10px;">
+          <span class="partner-cred">Capital strategy</span>
+          <span class="partner-cred">M&amp;A</span>
+          <span class="partner-cred">Investor narrative</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- loyalkaspar -->
     <div class="partner-card firm">
       <div class="partner-front">
-        <div class="partner-logo-placeholder">Logo</div>
-        <span class="partner-type">Agency · Design</span>
-        <div class="partner-name">Studio / Firm Name</div>
-        <div class="partner-specialty">Identity &amp; spatial experience design</div>
+        <div class="partner-logo-placeholder">LK</div>
+        <span class="partner-type">Agency · Branding</span>
+        <div class="partner-name">loyalkaspar</div>
+        <div class="partner-specialty">Brand identity &amp; creative production</div>
         <div class="resonance-bar">
           <span class="resonance-label">Resonance</span>
-          <div class="resonance-track"><div class="resonance-fill" style="width:85%;"></div></div>
-          <span class="resonance-val">0.85</span>
+          <div class="resonance-track"><div class="resonance-fill" style="width:89%;"></div></div>
+          <span class="resonance-val">0.89</span>
         </div>
       </div>
       <div class="partner-back">
-        <div class="partner-back-name">Studio / Firm Name</div>
-        <div class="partner-back-body">Boutique identity studio operating at the intersection of graphic design and spatial practice. Their work extends brand coherence across physical and digital environments — rare in an industry that treats them as separate problems.</div>
-        <div>
-          <span class="partner-cred">Identity systems</span>
-          <span class="partner-cred">Spatial design</span>
-          <span class="partner-cred">Digital</span>
+        <div class="partner-back-name">loyalkaspar</div>
+        <div class="partner-back-body">New York branding agency founded 2003. Thinks like an agency, designs like a studio, produces like a production company. Clients include Disney+, ESPN, Marvel, the Smithsonian, and the White House. Rare in the industry for operating fluently across strategy, identity, and motion without losing coherence between them.</div>
+        <a href="https://www.loyalkaspar.com/" target="_blank" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--steel);text-decoration:none;margin-top:10px;display:inline-block;">loyalkaspar.com →</a>
+        <div style="margin-top:10px;">
+          <span class="partner-cred">Brand identity</span>
+          <span class="partner-cred">Motion &amp; production</span>
+          <span class="partner-cred">New York</span>
         </div>
       </div>
     </div>
 
-    <!-- Firm partner 2 -->
+    <!-- machenschaft -->
     <div class="partner-card firm">
       <div class="partner-front">
-        <div class="partner-logo-placeholder">Logo</div>
-        <span class="partner-type">Agency · Strategy</span>
-        <div class="partner-name">Firm / Consultancy Name</div>
-        <div class="partner-specialty">Communications strategy &amp; PR</div>
+        <div class="partner-logo-placeholder">M</div>
+        <span class="partner-type">Studio · CGI &amp; Visualisation</span>
+        <div class="partner-name">Machenschaft</div>
+        <div class="partner-specialty">High-end CGI &amp; automotive visualisation</div>
         <div class="resonance-bar">
           <span class="resonance-label">Resonance</span>
-          <div class="resonance-track"><div class="resonance-fill" style="width:76%;"></div></div>
-          <span class="resonance-val">0.76</span>
+          <div class="resonance-track"><div class="resonance-fill" style="width:87%;"></div></div>
+          <span class="resonance-val">0.87</span>
         </div>
       </div>
       <div class="partner-back">
-        <div class="partner-back-name">Firm / Consultancy Name</div>
-        <div class="partner-back-body">Independent communications practice focused on thought leadership and earned media for individuals and companies navigating public transition. Avoids volume — works with a small number of clients at any one time.</div>
-        <div>
-          <span class="partner-cred">PR</span>
-          <span class="partner-cred">Thought leadership</span>
-          <span class="partner-cred">Media strategy</span>
+        <div class="partner-back-name">Machenschaft</div>
+        <div class="partner-back-body">Munich-based CGI and visualisation studio, founded 2012. Premium visual quality for automotive, product, and industrial content. Recently merged with Rapid Images to accelerate AI-assisted production workflows. The partner of choice when a brand's visual world needs to exist before the product does.</div>
+        <a href="http://machenschaft.com" target="_blank" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--steel);text-decoration:none;margin-top:10px;display:inline-block;">machenschaft.com →</a>
+        <div style="margin-top:10px;">
+          <span class="partner-cred">CGI</span>
+          <span class="partner-cred">Automotive</span>
+          <span class="partner-cred">Munich</span>
         </div>
       </div>
     </div>
 
-    <!-- Placeholder slot -->
+    <!-- lomi -->
+    <div class="partner-card firm">
+      <div class="partner-front">
+        <div class="partner-logo-placeholder">lomi</div>
+        <span class="partner-type">Agency · Strategic Design</span>
+        <div class="partner-name">Lomi Agency</div>
+        <div class="partner-specialty">Strategy &amp; design for complex organisations</div>
+        <div class="resonance-bar">
+          <span class="resonance-label">Resonance</span>
+          <div class="resonance-track"><div class="resonance-fill" style="width:86%;"></div></div>
+          <span class="resonance-val">0.86</span>
+        </div>
+      </div>
+      <div class="partner-back">
+        <div class="partner-back-name">Lomi Agency</div>
+        <div class="partner-back-body">Oslo-based strategic design consultancy. Applies design to shape strategy — not decorate it. Clients include Audi, BMW, NIO, Mercedes, and Volkswagen Financial Services. Built by founders from Tandberg, where design was used to build a premium brand and become the market leader in videoconferencing. That is a specific credential.</div>
+        <a href="https://www.lomi.agency/" target="_blank" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--steel);text-decoration:none;margin-top:10px;display:inline-block;">lomi.agency →</a>
+        <div style="margin-top:10px;">
+          <span class="partner-cred">Strategic design</span>
+          <span class="partner-cred">Automotive</span>
+          <span class="partner-cred">Oslo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder -->
     <div class="partner-card" style="background:transparent; border:0.5px dashed var(--border-dark-mid); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; min-height:200px;">
       <div style="font-family:var(--font-mono); font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:var(--text-white-pale); margin-bottom:8px;">Open · By selection</div>
       <div style="font-family:var(--font-sans); font-size:15px; font-weight:300; color:var(--text-white-mid);">Network grows through resonance</div>
@@ -4682,7 +4772,7 @@ const _PASSWORDS = {
   partners:           'Friends?54',
   priorities:         'Me_ Prios',
   catalogue:          'DIF-services',
-  clients:            'DIF-services',
+  clients:            null,
   'client-pareva':    'pareva-26',
   'client-vw':        'vw-demo-26',
   'client-duravit':   'duravit-26'
@@ -4763,9 +4853,20 @@ function closeMobileMenu() {
 }
 
 function openGate(sectionId) {
+  // No password defined — open directly
+  if (_PASSWORDS[sectionId] === null || _PASSWORDS[sectionId] === undefined) {
+    openSectionView(sectionId);
+    return;
+  }
+  // If already unlocked this session, open directly
+  const unlocked = JSON.parse(sessionStorage.getItem('dif_unlocked') || '[]');
+  if (unlocked.includes(sectionId)) {
+    openSectionView(sectionId);
+    return;
+  }
   _gateTarget = sectionId;
   document.getElementById('gate-label').textContent = '— ' + _SECTION_NAMES[sectionId];
-  document.getElementById('gate-title').textContent = _SECTION_NAMES[sectionId].split('— ')[1];
+  document.getElementById('gate-title').textContent = (_SECTION_NAMES[sectionId] || sectionId).replace('— ','');
   const inp = document.getElementById('gate-input');
   inp.value = '';
   inp.classList.remove('gate-error');
@@ -4806,6 +4907,12 @@ function verifyGate() {
   const expected = (_PASSWORDS[_gateTarget] || '').toLowerCase();
   if (val === expected) {
     const target = _gateTarget;
+    // Store all sections that share this password as unlocked
+    const unlocked = JSON.parse(sessionStorage.getItem('dif_unlocked') || '[]');
+    Object.entries(_PASSWORDS).forEach(([k, v]) => {
+      if (v && v.toLowerCase() === val && !unlocked.includes(k)) unlocked.push(k);
+    });
+    sessionStorage.setItem('dif_unlocked', JSON.stringify(unlocked));
     closeGate();
     openSectionView(target);
   } else {
@@ -4821,16 +4928,30 @@ function verifyGate() {
 function openSectionView(sectionId) {
   const section = document.getElementById(sectionId);
   if (!section) return;
+  // If a section is already open, restore it first
+  if (_svActive) {
+    const prev = document.getElementById(_svActive);
+    if (prev && _svAnchor) {
+      prev.classList.add('locked-section');
+      if (_svAnchor.nextSibling) {
+        _svAnchor.parent.insertBefore(prev, _svAnchor.nextSibling);
+      } else {
+        _svAnchor.parent.appendChild(prev);
+      }
+    }
+  }
   // Record where the section lives so we can restore it
   _svAnchor = { parent: section.parentNode, nextSibling: section.nextSibling };
   _svActive  = sectionId;
   // Move the actual DOM node into the overlay content area
-  section.classList.remove('locked-section'); // make it visible inside overlay
+  section.classList.remove('locked-section');
   const content = document.getElementById('sv-content');
   content.innerHTML = '';
   content.appendChild(section);
   // Label the overlay
   document.getElementById('sv-section-name').textContent = _SECTION_NAMES[sectionId] || sectionId;
+  // Scroll to top
+  content.scrollTop = 0;
   // Open overlay
   document.getElementById('sv-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
