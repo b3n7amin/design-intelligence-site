@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMW Brand Portrait 2026 — Design Intelligence Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&family=EB+Garamond:ital,wght@1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-black:    #111110;
+  --surface-dark-0: #111110;
+  --surface-dark-1: #1C1C1A;
+  --surface-dark-2: #252523;
+  --surface-dark-3: #2E2E2C;
+  --border-dark:    #2A2A28;
+  --border-dark-mid:#363634;
+  --text-white:  #E5E5E5;
+  --text-white-mid: #D8D8D8;
+  --text-white-pale: #9E9E9C;
+  --text-white-ghost: #808080;
+  --blue:        #173DED;
+  --blue-on-dark: #5F85FF;
+  --blue-pale-dark: rgba(23,61,237,0.10);
+  --blue-rule:   rgba(23,61,237,0.40);
+  --red-on-dark: #e04a4c;
+  --bg-white:    #FAFAF8;
+  --bg-grey:     #EFEFEF;
+  --surface-1:   #F0EEE9;
+  --border-light: #D8D8D8;
+  --text-ink:    #393939;
+  --text-mid:    #888886;
+  --text-pale:   #AAAAAA;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-voice:   'EB Garamond', Georgia, serif;
+  --font-mono:    'DM Mono', monospace;
+  --lh-tight:   1.15;
+  --lh-heading: 1.25;
+  --lh-body:    1.72;
+  --ls-tight:   -0.01em;
+  --ls-heading:  0em;
+  --ls-tag:      0.13em;
+  --radius-4:   4px;
+  --radius-8:   8px;
+  --radius-10:  10px;
+  --radius-12:  12px;
+  --radius-14:  14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-display);
+  background: var(--bg-black);
+  color: var(--text-white);
+  font-size: 15px;
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(17,17,16,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border-dark);
+  padding: 0 64px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-wordmark {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-white-pale);
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-white-ghost);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text-white-mid); }
+
+/* ── COVER ── */
+.cover {
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 64px 72px;
+  border-bottom: 0.5px solid var(--border-dark);
+  position: relative;
+  overflow: hidden;
+}
+.cover-overline {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-pale);
+  margin-bottom: 24px;
+}
+.cover-title {
+  font-size: clamp(52px, 7vw, 84px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: var(--lh-tight);
+  color: var(--text-white);
+  margin-bottom: 12px;
+}
+.cover-title span { color: var(--text-white-ghost); }
+.cover-spine {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-white-mid);
+  max-width: 620px;
+  line-height: 1.65;
+  margin-bottom: 56px;
+  font-style: italic;
+  font-family: var(--font-voice);
+}
+.cover-meta {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.cover-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cover-meta-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-pale);
+}
+.cover-meta-value {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-white-mid);
+}
+.cover-divider {
+  width: 0.5px;
+  height: 32px;
+  background: var(--border-dark-mid);
+}
+
+/* ── LAYOUT ── */
+.report-body {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section {
+  padding: 72px 0 0;
+  border-top: 0.5px solid var(--border-dark);
+  margin-top: 72px;
+}
+.section:first-child { border-top: none; margin-top: 0; }
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.section-number {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--blue-on-dark);
+  min-width: 28px;
+}
+.section-title {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  line-height: var(--lh-heading);
+  color: var(--text-white);
+}
+
+/* ── INTRO BLOCK ── */
+.intro-block {
+  background: var(--surface-dark-2);
+  border: 0.5px solid var(--border-dark-mid);
+  border-radius: var(--radius-14);
+  padding: 40px 48px;
+  margin-bottom: 64px;
+}
+.intro-block p {
+  font-size: 15px;
+  color: var(--text-white-mid);
+  line-height: var(--lh-body);
+  margin-bottom: 16px;
+}
+.intro-block p:last-child { margin-bottom: 0; }
+.intro-spine {
+  font-family: var(--font-voice);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--text-white);
+  line-height: 1.6;
+  border-left: 2px solid var(--blue-on-dark);
+  padding-left: 20px;
+  margin: 24px 0;
+}
+
+/* ── BODY PROSE ── */
+.prose p {
+  font-size: 15px;
+  color: var(--text-white-mid);
+  line-height: var(--lh-body);
+  margin-bottom: 20px;
+  max-width: 72ch;
+}
+.prose p:last-child { margin-bottom: 0; }
+
+/* ── BENTO GRID ── */
+.bento { display: grid; gap: 10px; }
+.bento-2col { grid-template-columns: 2fr 1fr; }
+.bento-2eq  { grid-template-columns: 1fr 1fr; }
+.bento-3eq  { grid-template-columns: 1fr 1fr 1fr; }
+.bento-3col { grid-template-columns: 2fr 1fr 1fr; }
+.bento-4eq  { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.card {
+  background: var(--surface-dark-2);
+  border: 0.5px solid var(--border-dark-mid);
+  border-radius: var(--radius-10);
+  padding: 24px 26px;
+}
+.card-dark1 {
+  background: var(--surface-dark-1);
+  border: 0.5px solid var(--border-dark);
+  border-radius: var(--radius-10);
+  padding: 24px 26px;
+}
+.card-blue {
+  background: rgba(95,133,255,0.07);
+  border: 0.5px solid rgba(95,133,255,0.18);
+  border-radius: var(--radius-10);
+  padding: 24px 26px;
+}
+.card-ink {
+  background: var(--surface-dark-0);
+  border: 0.5px solid var(--border-dark);
+  border-radius: var(--radius-10);
+  padding: 24px 26px;
+}
+
+.card-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-mid);
+  margin-bottom: 10px;
+}
+.card-label-blue {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--blue-on-dark);
+  margin-bottom: 10px;
+}
+.card-title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  color: var(--text-white);
+  line-height: var(--lh-heading);
+  margin-bottom: 8px;
+}
+.card-body {
+  font-size: 13px;
+  color: var(--text-white-pale);
+  line-height: 1.65;
+}
+.card-body-blue {
+  font-size: 13px;
+  color: var(--text-white-mid);
+  line-height: 1.65;
+}
+.card-score {
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--text-white);
+  margin-bottom: 6px;
+}
+.card-score-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-mid);
+}
+.card-score-blue {
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--text-white);
+  margin-bottom: 6px;
+}
+
+/* ── SCORE BAR ── */
+.score-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 0.5px solid var(--border-dark);
+}
+.score-bar-row:last-child { border-bottom: none; }
+.score-bar-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-white-mid);
+  width: 160px;
+  flex-shrink: 0;
+}
+.score-bar-track {
+  flex: 1;
+  height: 3px;
+  background: var(--border-dark-mid);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  background: var(--blue-on-dark);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+.score-bar-fill-muted {
+  background: var(--text-white-ghost);
+}
+.score-bar-value {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-white-mid);
+  width: 32px;
+  text-align: right;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  border-left: 2px solid var(--blue-on-dark);
+  padding: 14px 20px;
+  margin: 24px 0;
+  background: var(--blue-pale-dark);
+  border-radius: 0 var(--radius-8) var(--radius-8) 0;
+}
+.callout p {
+  font-size: 13px;
+  color: var(--text-white-mid);
+  line-height: 1.65;
+}
+.callout-red {
+  border-left: 2px solid var(--red-on-dark);
+  padding: 14px 20px;
+  margin: 24px 0;
+  background: rgba(224,74,76,0.07);
+  border-radius: 0 var(--radius-8) var(--radius-8) 0;
+}
+.callout-red p {
+  font-size: 13px;
+  color: var(--text-white-mid);
+  line-height: 1.65;
+}
+
+/* ── SOURCE TAGS ── */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-4);
+  display: inline-block;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.tag-fw  { background: var(--blue-pale-dark); color: var(--blue-on-dark); border: 0.5px solid rgba(95,133,255,0.25); }
+.tag-pub { background: rgba(160,180,200,0.10); color: #8AAABB; border: 0.5px solid rgba(160,180,200,0.20); }
+.tag-est { background: rgba(150,150,160,0.10); color: #999; border: 0.5px solid rgba(150,150,160,0.20); }
+
+/* ── PROGRESS BAR ── */
+.progress-bar-block {
+  background: var(--surface-dark-1);
+  border: 0.5px solid var(--border-dark);
+  border-radius: var(--radius-8);
+  padding: 16px 20px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.progress-bar-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-mid);
+  min-width: 120px;
+}
+.progress-bar-track {
+  flex: 1;
+  height: 4px;
+  background: var(--border-dark-mid);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+}
+.pb-fw   { background: var(--blue-on-dark); height: 100%; }
+.pb-est  { background: var(--text-white-ghost); height: 100%; }
+.progress-bar-legend {
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.pb-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-white-mid);
+  letter-spacing: 0.06em;
+}
+.pb-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+/* ── WORLD LAW ROW ── */
+.law-row {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--border-dark);
+  align-items: start;
+}
+.law-row:last-child { border-bottom: none; }
+.law-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-white-mid);
+  letter-spacing: 0.06em;
+  padding-top: 2px;
+}
+.law-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-white);
+  margin-bottom: 4px;
+}
+.law-body {
+  font-size: 13px;
+  color: var(--text-white-pale);
+  line-height: 1.65;
+}
+
+/* ── PRODUCT CARD ── */
+.product-card {
+  background: var(--surface-dark-2);
+  border: 0.5px solid var(--border-dark-mid);
+  border-radius: var(--radius-12);
+  padding: 24px 28px;
+  margin-bottom: 10px;
+}
+.product-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.product-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-white);
+  letter-spacing: 0em;
+}
+.product-sublabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-mid);
+  margin-top: 3px;
+}
+.product-alignment {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--blue-on-dark);
+  text-align: right;
+}
+.product-body {
+  font-size: 13px;
+  color: var(--text-white-pale);
+  line-height: 1.65;
+}
+
+/* ── ARCHETYPE CARD ── */
+.archetype-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.archetype-card {
+  background: var(--surface-dark-2);
+  border: 0.5px solid var(--border-dark-mid);
+  border-radius: var(--radius-12);
+  padding: 24px 26px;
+}
+.archetype-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.archetype-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-white);
+  letter-spacing: 0em;
+  margin-bottom: 3px;
+}
+.archetype-demo {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--text-white-mid);
+}
+.archetype-score {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: right;
+}
+.archetype-score-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-mid);
+  text-align: right;
+  margin-top: 3px;
+}
+.archetype-body {
+  font-size: 12px;
+  color: var(--text-white-pale);
+  line-height: 1.65;
+}
+.score-strong { color: var(--blue-on-dark); }
+.score-mid    { color: var(--text-white-mid); }
+.score-low    { color: var(--red-on-dark); }
+
+/* ── ZONE MODEL ── */
+.zone-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 0.5px solid var(--border-dark);
+  align-items: start;
+}
+.zone-row:last-child { border-bottom: none; }
+.zone-num {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-white-ghost);
+  line-height: 1;
+}
+.zone-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-white);
+  margin-bottom: 5px;
+}
+.zone-body {
+  font-size: 13px;
+  color: var(--text-white-pale);
+  line-height: 1.65;
+}
+.zone-status {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  text-align: right;
+  padding-top: 3px;
+  font-weight: 500;
+}
+.zone-active   { color: var(--blue-on-dark); }
+.zone-gap      { color: var(--red-on-dark); }
+.zone-partial  { color: var(--text-white-pale); }
+
+/* ── MOVE CARDS ── */
+.move-card {
+  background: var(--surface-dark-2);
+  border: 0.5px solid var(--border-dark-mid);
+  border-radius: var(--radius-12);
+  padding: 28px 32px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.move-num {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--text-white-ghost);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.move-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-white);
+  letter-spacing: 0em;
+  margin-bottom: 10px;
+}
+.move-body {
+  font-size: 14px;
+  color: var(--text-white-pale);
+  line-height: var(--lh-body);
+}
+
+/* ── BULL/BEAR ── */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.scenario-card {
+  border-radius: var(--radius-12);
+  padding: 28px 28px;
+}
+.scenario-bull {
+  background: var(--surface-dark-2);
+  border: 0.5px solid var(--border-dark-mid);
+}
+.scenario-bear {
+  background: rgba(224,74,76,0.06);
+  border: 0.5px solid rgba(224,74,76,0.18);
+}
+.scenario-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.scenario-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-white);
+  letter-spacing: 0em;
+  margin-bottom: 12px;
+}
+.scenario-list {
+  list-style: none;
+  padding: 0;
+}
+.scenario-list li {
+  font-size: 13px;
+  color: var(--text-white-pale);
+  line-height: 1.65;
+  padding: 6px 0;
+  border-bottom: 0.5px solid var(--border-dark);
+  padding-left: 14px;
+  position: relative;
+}
+.scenario-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-white-ghost);
+}
+.scenario-list li:last-child { border-bottom: none; }
+
+/* ── METHODOLOGY ── */
+.methodology-block {
+  background: var(--surface-dark-1);
+  border: 0.5px solid var(--border-dark);
+  border-radius: var(--radius-12);
+  padding: 32px 36px;
+  margin-top: 40px;
+}
+.methodology-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-mid);
+  margin-bottom: 16px;
+}
+.methodology-body {
+  font-size: 13px;
+  color: var(--text-white-pale);
+  line-height: 1.7;
+}
+.methodology-body p { margin-bottom: 12px; }
+.methodology-body p:last-child { margin-bottom: 0; }
+
+/* ── ENGAGEMENT REQUIREMENTS ── */
+.engagement-block {
+  background: var(--surface-dark-1);
+  border: 0.5px solid var(--border-dark);
+  border-left: 2px solid var(--text-white-ghost);
+  border-radius: 0 var(--radius-8) var(--radius-8) 0;
+  padding: 14px 20px;
+  margin-top: 32px;
+}
+.engagement-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+  color: var(--text-white-mid);
+  margin-bottom: 8px;
+}
+.engagement-body {
+  font-size: 12px;
+  color: var(--text-white-pale);
+  line-height: 1.6;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 0.5px solid var(--border-dark);
+  padding: 28px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 80px;
+}
+.footer-mark {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-white-pale);
+}
+.footer-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-white-pale);
+  text-align: right;
+  line-height: 1.7;
+}
+
+/* ── WHITE SECTION ── */
+.section-light {
+  background: var(--bg-white);
+  margin: 72px -40px 0;
+  padding: 64px 40px;
+  color: var(--text-ink);
+}
+.section-light .section-title { color: var(--text-ink); }
+.section-light .prose p { color: #555; }
+.section-light .card {
+  background: #fff;
+  border-color: var(--border-light);
+  color: var(--text-ink);
+}
+.section-light .card-title { color: var(--text-ink); }
+.section-light .card-body { color: #666; }
+.section-light .card-label { color: var(--text-pale); }
+.section-light .section-number { color: var(--text-pale); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .cover { padding: 0 24px 48px; }
+  .report-body { padding: 0 20px; }
+  .bento-2col, .bento-3eq, .bento-3col, .bento-4eq, .bento-2eq,
+  .archetype-grid, .scenario-grid { grid-template-columns: 1fr; }
+  footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+  .cover-title { font-size: 42px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wordmark">Design Intelligence Framework · Benjamin Cuénod</div>
+  <ul class="nav-links">
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#principle">The Principle</a></li>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#brand">Brand</a></li>
+    <li><a href="#design">Design</a></li>
+    <li><a href="#copy">Expression</a></li>
+    <li><a href="#range">Range</a></li>
+    <li><a href="#audience">Audience</a></li>
+    <li><a href="#life">The Life</a></li>
+    <li><a href="#leader">Leadership</a></li>
+    <li><a href="#moves">What To Do</a></li>
+    <li><a href="#outlook">Outlook</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-overline">Design Intelligence Framework · Benjamin Cuénod · May 2026</div>
+  <h1 class="cover-title">BMW<br><span>2026</span></h1>
+  <p class="cover-spine">BMW was built on the deepest possible connection between a driver and a road. That principle is alive in every car. It is not yet alive in how BMW speaks — and a new leadership chapter has just begun.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Brand State</div>
+      <div class="cover-meta-value">Archaelogical — State 2</div>
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Core Principle</div>
+      <div class="cover-meta-value">The Communion</div>
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Core Gap</div>
+      <div class="cover-meta-value">Principle unexpressed</div>
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Window</div>
+      <div class="cover-meta-value">Now open — 18–24 months</div>
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Data basis</div>
+      <div class="cover-meta-value">Public record only</div>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT BODY -->
+<div class="report-body">
+
+<!-- INTRODUCTION CHAPTER -->
+<div class="section" id="introduction" style="border-top: none; margin-top: 0; padding-top: 40px;">
+  <div class="section-header">
+    <div class="section-number" style="color: var(--blue-on-dark);">00</div>
+    <h2 class="section-title">What this report is</h2>
+  </div>
+
+  <!-- What this is -->
+  <div style="background: var(--surface-dark-1); border: 0.5px solid var(--border-dark-mid); border-radius: var(--radius-14); padding: 40px 48px; margin-bottom: 10px;">
+    <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--ls-tag); text-transform: uppercase; color: var(--blue-on-dark); margin-bottom: 20px;">A self-initiated diagnostic study</div>
+    <p style="font-size: 15px; color: var(--text-white); line-height: var(--lh-body); margin-bottom: 16px; max-width: 72ch;">This report is a demonstration. It was not commissioned by BMW. It was produced to show what a structured diagnostic framework can find from public data alone — before a single internal interview is run, before any proprietary research is accessed, before a formal engagement begins.</p>
+    <p style="font-size: 15px; color: var(--text-white-mid); line-height: var(--lh-body); margin-bottom: 16px; max-width: 72ch;">The findings are not provisional. The structural reading of BMW's brand identity, the analysis of its live communications, the scoring of its product range and audience architecture — these conclusions hold on public evidence. What changes with primary access is not the direction of the findings. It is their precision, their confidence level, and their actionability.</p>
+    <p style="font-size: 15px; color: var(--text-white-mid); line-height: var(--lh-body); max-width: 72ch;">This report is also an invitation. The engagement requirement blocks at the end of each section describe specifically what primary access — interviews, internal documents, customer research — would add to each finding. Together they constitute a brief for a full diagnostic engagement with BMW's brand and leadership team.</p>
+  </div>
+
+  <!-- Intended reader + how the diagnostic works -->
+  <div class="bento bento-2eq" style="margin-bottom: 10px;">
+    <div class="card" style="padding: 28px 32px;">
+      <div class="card-label" style="color: var(--text-white-mid); margin-bottom: 14px;">The intended reader</div>
+      <p style="font-size: 14px; color: var(--text-white-mid); line-height: var(--lh-body); margin-bottom: 12px;">This report is written for Milan Nedeljković, Chairman of BMW AG, and for senior members of BMW's brand strategy leadership. It is addressed to the person most directly responsible for the brand's narrative trajectory over the next decade.</p>
+      <p style="font-size: 14px; color: var(--text-white-mid); line-height: var(--lh-body);">It does not tell him what BMW's products should look like or how to run the company. It reveals what BMW has always been at its structural root — and shows precisely where that truth is currently suppressed in how the brand communicates. The gap is real. The principle that closes it is already in the product.</p>
+    </div>
+    <div class="card" style="padding: 28px 32px;">
+      <div class="card-label" style="color: var(--text-white-mid); margin-bottom: 14px;">How the diagnostic works</div>
+      <p style="font-size: 14px; color: var(--text-white-mid); line-height: var(--lh-body); margin-bottom: 12px;">The framework behind this report tests internal brand coherence — whether a brand's emotional foundations, its live communications, and its leadership signals are pointing in the same direction. It begins with the brand's core drives and tests whether current output expresses or suppresses them.</p>
+      <p style="font-size: 14px; color: var(--text-white-mid); line-height: var(--lh-body);">This is not a market positioning study. It does not benchmark BMW against competitors on feature dimensions. It reads the brand as a structural system and identifies where that system is under stress — and why.</p>
+    </div>
+  </div>
+
+  <!-- How to read evidence -->
+  <div class="card" style="padding: 28px 32px; margin-bottom: 10px;">
+    <div class="card-label" style="color: var(--text-white-mid); margin-bottom: 20px;">How to read the evidence in this report</div>
+    <div class="bento bento-3eq">
+      <div style="background: var(--surface-dark-1); border: 0.5px solid var(--border-dark); border-radius: var(--radius-8); padding: 16px 18px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span class="tag tag-fw" style="margin-left: 0;">Framework</span>
+        </div>
+        <div style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65;">Conclusions drawn directly from the structural diagnostic model. These findings are framework-validated — they follow from the brand's scored emotional architecture and the system's internal logic.</div>
+      </div>
+      <div style="background: var(--surface-dark-1); border: 0.5px solid var(--border-dark); border-radius: var(--radius-8); padding: 16px 18px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span class="tag tag-pub" style="margin-left: 0;">Public record</span>
+        </div>
+        <div style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65;">Sourced from verified public material — BMW press releases, campaign briefs, published interviews, official statements, and market data. Directly attributable.</div>
+      </div>
+      <div style="background: var(--surface-dark-1); border: 0.5px solid var(--border-dark); border-radius: var(--radius-8); padding: 16px 18px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span class="tag tag-est" style="margin-left: 0;">Estimated</span>
+        </div>
+        <div style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65;">Analytical inference — conclusions drawn from pattern matching, structural extrapolation, or public data without direct primary evidence. Directionally reliable. Updatable with primary research.</div>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65; margin-top: 16px; border-top: 0.5px solid var(--border-dark); padding-top: 14px;">Each section ends with a confidence split — the proportion of findings that are framework-derived versus estimated. The lower the framework percentage, the more a section would change with primary access. The higher it is, the more the finding stands on structural evidence alone.</p>
+  </div>
+
+  <!-- Commercial invitation -->
+  <div style="background: rgba(95,133,255,0.07); border: 0.5px solid rgba(95,133,255,0.18); border-radius: var(--radius-14); padding: 36px 40px;">
+    <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--ls-tag); text-transform: uppercase; color: var(--blue-on-dark); margin-bottom: 20px;">What completing this report requires</div>
+    <div class="bento bento-3eq" style="margin-bottom: 20px;">
+      <div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white); margin-bottom: 6px;">Leadership access</div>
+        <div style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65;">A direct conversation with the incoming CEO and senior brand leadership — specifically about the felt proposition of the BMW brand, not its operational priorities.</div>
+      </div>
+      <div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white); margin-bottom: 6px;">Customer research</div>
+        <div style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65;">Depth interviews with committed long-term BMW owners and lapsed buyers — specifically those who switched to Tesla or to Chinese premium brands.</div>
+      </div>
+      <div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white); margin-bottom: 6px;">Internal documents</div>
+        <div style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65;">Brand strategy briefs, internal positioning documents, and campaign development material — to validate or correct the structural readings made from public output.</div>
+      </div>
+    </div>
+    <p style="font-family: var(--font-voice); font-style: italic; font-size: 17px; color: var(--text-white); line-height: 1.65; max-width: 68ch;">The diagnostic system behind this report was built to work from the inside out. This version works from the outside in. It finds what it finds. What it cannot yet see is named precisely — and that naming is the beginning of the conversation.</p>
+    <div style="margin-top: 16px; padding-top: 14px; border-top: 0.5px solid rgba(95,133,255,0.15);">
+      <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--ls-tag); text-transform: uppercase; color: var(--text-white-pale);">Contact — Benjamin Cuénod · Design Intelligence Framework</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SPINE BLOCK -->
+<div style="padding: 40px 0 0;">
+  <div class="intro-block">
+    <p style="font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--ls-tag); text-transform: uppercase; color: var(--text-white-mid); margin-bottom: 16px;">Introduction — how to read this report</p>
+    <p>This report examines the structural coherence of the BMW brand: whether what BMW says it is, what its communications perform, and what its incoming leadership signals are all pointing in the same direction. They are not, and that gap is what this report documents.</p>
+    <div class="intro-spine">BMW was built on the deepest possible connection between a driver and a road. That principle is alive in every car. It is not yet alive in how BMW speaks — and a new leadership chapter has just begun.</div>
+    <p>The report moves through four layers: the market conditions that give the diagnosis urgency, the structural brand diagnostic with scored findings, the phenomenological depth — what the cars say, who the driver is, what life BMW offers — and the commercial consequence of closing or failing to close the gap. The sections build on each other. Each connects to the spine above.</p>
+    <p style="color: var(--text-white-pale); font-size: 13px;">This report is built entirely from public sources — campaigns, press releases, published interviews, and public market data. No internal BMW documents, customer research, or leadership access informed the findings. Where primary evidence is absent, that absence is named. Each section ends with a note on what primary engagement would add.</p>
+  </div>
+</div>
+
+<!-- S0.5: THE COMMUNION PRINCIPLE -->
+<div class="section" id="principle" style="border-top: 0.5px solid var(--border-dark);">
+  <div class="section-header">
+    <div class="section-number" style="color: var(--blue-on-dark);">00.5</div>
+    <h2 class="section-title">The principle BMW was founded on</h2>
+  </div>
+
+  <div style="background: var(--surface-dark-1); border: 0.5px solid rgba(95,133,255,0.25); border-radius: var(--radius-14); padding: 48px 56px; margin-bottom: 10px;">
+    <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--ls-tag); text-transform: uppercase; color: var(--blue-on-dark); margin-bottom: 24px;">The Communion Principle · internal name</div>
+    <div style="font-size: clamp(28px, 3.5vw, 42px); font-weight: 500; letter-spacing: -0.01em; line-height: 1.15; color: var(--text-white); margin-bottom: 24px;">The car that makes you more.</div>
+    <p style="font-size: 15px; color: var(--text-white-mid); line-height: var(--lh-body); max-width: 640px;">When a BMW is working as it was built to work, something happens that no other car in the category is engineered to produce. The driver and the machine become one system. The road speaks through the chassis to the body. The counter-forces, the grip at the limit, the weight shifting through a corner — all of this flows from road to driver without mediation, without flattery, without the dampening that comfort inserts between a person and what is actually happening. The driver does not use the car. The driver and the car are briefly, completely in communion.</p>
+  </div>
+
+  <div class="bento bento-2eq" style="margin-bottom: 10px;">
+    <div class="card" style="padding: 32px 36px;">
+      <div class="card-label" style="margin-bottom: 16px; color: var(--blue-on-dark);">The founding human story — 1959</div>
+      <p style="font-size: 14px; color: var(--text-white-mid); line-height: 1.72; margin-bottom: 14px;">In December 1959, BMW's board convened to vote on selling the company to Daimler-Benz. After ten hours of debate the vote was heading toward yes. One shareholder — Herbert Quandt, nearly blind from a retinal disease he had carried since childhood — had been quietly increasing his stake against all advice from his bankers. He changed his vote. He bet his fortune on a company making something he would never fully experience himself.</p>
+      <p style="font-size: 14px; color: var(--text-white-mid); line-height: 1.72;">He believed in what the car was for — the precise connection between driver and road — before he could verify it in his hands. That conviction is the brand's first founding act. <span class="tag tag-pub">Public record</span></p>
+    </div>
+    <div class="card" style="padding: 32px 36px;">
+      <div class="card-label" style="margin-bottom: 16px; color: var(--blue-on-dark);">The founding engineer — 1962</div>
+      <p style="font-size: 14px; color: var(--text-white-mid); line-height: 1.72; margin-bottom: 14px;">Baron Alexander von Falkenhausen was asked to design an engine for the Neue Klasse with a 1.3-litre displacement. He refused. He convinced management that 1.5 litres was the minimum — with headroom to 2.0 — and fought the board over the five-bearing forged crankshaft they considered an extravagance. His bosses wanted three bearings. He built five. Not to be difficult. Because three bearings produced an engine that was less precisely responsive to the driver's input.</p>
+      <p style="font-size: 14px; color: var(--text-white-mid); line-height: 1.72;">He refused the cheaper answer because the cheaper answer interrupted the communion. The M10 engine he built ran from 1962 to 1988. It powered Formula 1. He almost certainly never imagined that. That is the point. <span class="tag tag-pub">Public record</span></p>
+    </div>
+  </div>
+
+  <div class="bento bento-3eq" style="margin-bottom: 10px;">
+    <div class="card" style="background: var(--blue-pale-dark); border-color: rgba(95,133,255,0.20);">
+      <div class="card-label" style="color: var(--blue-on-dark);">What communion produces</div>
+      <div class="card-body">In that precise, unmediated response the driver finds out something about themselves. Not about the car — about their own capacity. An instinct confirmed. A limit found and then extended. The person who exits the car is more than the person who entered. Not transformed — expanded. And hungry for more road.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">The tension — permanent and ownable</div>
+      <div class="card-body">The car that makes you more vs the car that makes it easier. Every competitor is building toward easier — more isolation, more assistance, more protection from the full signal. BMW's founding position is the opposite: the car that needs you to be present, because only then does the communion work.</div>
+    </div>
+    <div class="card" style="background: var(--blue-pale-dark); border-color: rgba(95,133,255,0.20);">
+      <div class="card-label" style="color: var(--blue-on-dark);">The principle in autonomous mode</div>
+      <div class="card-body">When the car drives itself, the communion does not end — it changes channel. The expert passenger is immersed in the precision of what the machine is doing around them. Feeling the forces. Trusting the response. The interior becomes the new zone of communion. The principle survives the disappearance of the steering wheel.</div>
+    </div>
+  </div>
+
+  <div style="background: var(--surface-dark-2); border: 0.5px solid var(--border-dark-mid); border-radius: var(--radius-12); padding: 32px 40px; margin-bottom: 10px;">
+    <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--ls-tag); text-transform: uppercase; color: var(--text-white-ghost); margin-bottom: 16px;">The principle across markets</div>
+    <div class="bento bento-2eq">
+      <div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white); margin-bottom: 8px;">America — the longer road</div>
+        <div style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65;">The communion principle is native to American car culture — the road as self-discovery, the driver who becomes more capable through accumulated contact with a machine that tells the truth. The argument against Tesla is precise: technology communion makes you feel more advanced. Road communion makes you more capable. One expands what the machine can do. The other expands what you can do. <span class="tag tag-fw">Framework</span></div>
+      </div>
+      <div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white); margin-bottom: 8px;">China — 工夫 / gōngfu in motion</div>
+        <div style="font-size: 13px; color: var(--text-white-pale); line-height: 1.65;">The communion principle has a Chinese cultural root that no competitor has claimed. Gōngfu — the deep skill acquired through dedicated practice that produces a state of perfect accord between practitioner and art. The tea master whose hands know the water temperature. The calligrapher whose brush responds to thought. BMW's communion is gōngfu in motion. The Neue Klasse interior, in autonomous mode, is the space for the expert to be present to mastery. Not the driver's gōngfu — the engineer's gōngfu, felt from inside. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family: var(--font-voice); font-style: italic; font-size: 18px; color: var(--text-white-mid); line-height: 1.65; padding: 32px 40px; border: 0.5px solid var(--border-dark); border-radius: var(--radius-12);">
+    The principle is not new. Von Falkenhausen built it into the first engine in 1962. It is in the M10, in every generation of the 3 Series chassis, in the M cars, in the driving dynamics philosophy that BMW engineers have protected for six decades. It has never been named. It has never been claimed as the brand's governing logic. It has been expressed in metal and never in language. That is the gap this report documents — and that is the gap the Neue Klasse launch period is the right moment to close.
+  </div>
+</div>
+
+<!-- S1: CONTEXT -->
+<div class="section" id="context">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <h2 class="section-title">The context</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 40px;">
+    <p>The definition of luxury in automotive is undergoing a structural shift. This is the market condition that gives the brand diagnostic its urgency.</p>
+  </div>
+
+  <div class="bento bento-2eq" style="margin-bottom: 10px;">
+    <div class="card">
+      <div class="card-label">Old luxury model — pre-EV era</div>
+      <div class="card-title">Mechanical moat</div>
+      <div class="card-body">Premium buyers prioritised engine character, chassis feel, steering weight, craftsmanship, and engineering legacy. These are precisely the dimensions BMW owned most completely. The moat was mechanical, built over 90 years, and genuinely difficult to replicate. <span class="tag tag-pub">Public record</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Emerging luxury model — EV era</div>
+      <div class="card-title">Software moat</div>
+      <div class="card-body">Younger premium buyers increasingly prioritise digital ecosystems, AI personalisation, seamless connectivity, and the feeling of being early to something that matters. EV platforms compress traditional differentiation — combustion character, drivetrain feel, NVH — are structurally diminished. <span class="tag tag-pub">Public record</span></div>
+    </div>
+  </div>
+
+  <div class="bento bento-3col">
+    <div class="card-blue" style="padding: 28px 28px;">
+      <div class="card-label-blue">China — the signal market</div>
+      <div style="font-size: 42px; font-weight: 500; color: var(--blue-on-dark); letter-spacing: -0.01em; line-height: 1; margin-bottom: 6px;">−15.5%</div>
+      <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--ls-tag); text-transform: uppercase; color: var(--blue-on-dark); margin-bottom: 12px;">H1 2025 China sales</div>
+      <div class="card-body-blue">China is over 25% of global BMW volume. The standard framing is a software gap. The correct framing: BMW has a brand coherence gap in the market where incoherence costs you fastest. <span class="tag tag-pub">Public record</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">BMW is adapting</div>
+      <div class="card-title">Not native</div>
+      <div class="card-body">Tesla, NIO, Xiaomi Auto built their identity on the emerging model from the start. BMW is translating. That distinction is the context for everything that follows. <span class="tag tag-est">Estimated</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">The mechanism</div>
+      <div class="card-title">Coherence gap</div>
+      <div class="card-body">A buyer who cannot feel the emotional case clearly will compare features — and lose to a brand that is coherent. The software gap is real. The brand gap is what makes the software gap commercially dangerous. <span class="tag tag-fw">Framework</span></div>
+    </div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:0%"></div><div class="pb-est" style="width:100%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Framework 0%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Public record 100%</div>
+    </div>
+  </div>
+</div>
+
+<!-- S2: BRAND -->
+<div class="section" id="brand">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <h2 class="section-title">The brand BMW actually is</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 40px;">
+    <p>BMW built its equity on a proposition that is unusually specific for a brand of its scale: the act of driving can be its own reward. Not transportation. Not status. The physical experience of a human being controlling a machine with precision and feeling the feedback of that control in the body.</p>
+    <p>"Freude am Fahren" — joy in driving — appeared in BMW advertising in 1936. It survived the war, the postwar recovery, the American market breakthrough, the SUV era, and the first wave of electrification. It survived because it was not a marketing proposition. It was a felt conviction.</p>
+    <p>The founding principle beneath that conviction is deeper than a slogan. BMW was built — from the first Neue Klasse engine — on the idea that a machine can be so precisely responsive to a human being that the two temporarily become one system. The driver feels the road through the car as if through their own skin. The car answers without mediation, without flattery, without the dampening that comfort inserts between a person and what is actually happening. And in that exact response the driver finds out something they did not know about themselves — a capacity confirmed, a limit extended, an instinct proven right. The person who exits the car is more capable, more confident, and hungrier for more road than when they got in. This is the communion principle. It has been expressed in metal for six decades. It has never been named.</p>
+  </div>
+
+  <!-- Emotional engine bento -->
+  <div class="bento" style="grid-template-columns: 1fr 1fr 1fr 1fr; margin-bottom: 10px;">
+    <div class="card-blue" style="padding: 22px 22px; grid-column: span 2;">
+      <div class="card-label-blue">Primary drive — very high</div>
+      <div class="card-title" style="color: var(--blue-on-dark); font-size: 16px; margin-bottom: 8px;">Challenger force</div>
+      <div class="card-body-blue">BMW's deepest drive is the refusal to accept limitation. "The Ultimate Driving Machine" is not marketing copy — it is a boundary condition. Observable in product decisions, not just communications. The M series is its clearest expression. <span class="tag tag-fw">Framework</span></div>
+    </div>
+    <div class="card-blue" style="padding: 22px 22px; grid-column: span 2;">
+      <div class="card-label-blue">Co-primary drive — very high</div>
+      <div class="card-title" style="color: var(--blue-on-dark); font-size: 16px; margin-bottom: 8px;">Desire and magnetism</div>
+      <div class="card-body-blue">BMW produces objects you want before you can fully explain why. This is not styling — it is a structural feature of how the brand approaches product. The premium price is downstream of this desire architecture. <span class="tag tag-fw">Framework</span></div>
+    </div>
+  </div>
+
+  <div class="bento bento-3eq" style="margin-bottom: 10px;">
+    <div class="card">
+      <div class="card-label">Secondary — high</div>
+      <div class="card-title" style="font-size: 14px;">Forward drive</div>
+      <div class="card-body">BMW is permanently oriented toward what comes next. The Neue Klasse is not a product pivot — it is the forward drive made physical. <span class="tag tag-fw">Framework</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Structural texture — moderate-high</div>
+      <div class="card-title" style="font-size: 14px;">Heritage depth</div>
+      <div class="card-body">BMW's history is authority, not nostalgia. It gives the challenger force something to push against. Without it, the claim would be hollow. <span class="tag tag-fw">Framework</span></div>
+    </div>
+    <div class="card-dark1">
+      <div class="card-label" style="color: var(--blue-on-dark);">Structurally specific — not absent</div>
+      <div class="card-title" style="font-size: 14px;">Communion, not warmth</div>
+      <div class="card-body">Warmth, playfulness, and community energy are structurally low — and correctly so. BMW does not offer warmth. It offers something more specific and more lasting: the communion of perfect response, the intimacy of a machine that confirms your own capacity without flattering it. That is not warmth. It is a deeper form of connection that the brand has never correctly named. Naming it is the commercial opportunity. <span class="tag tag-fw">Framework</span></div>
+    </div>
+  </div>
+
+  <!-- World laws -->
+  <div class="card" style="margin-bottom: 10px; padding: 28px 32px;">
+    <div class="card-label" style="margin-bottom: 16px;">The brand's world laws</div>
+    <div class="law-row">
+      <div class="law-num">01</div>
+      <div><div class="law-title">Time is forward-leaning</div><div class="law-body">BMW's world exists primarily in the future tense. Past achievements are credentials, never destinations. <span class="tag tag-fw">Framework</span></div></div>
+    </div>
+    <div class="law-row">
+      <div class="law-num">02</div>
+      <div><div class="law-title">Technology earns its place</div><div class="law-body">Technology must function demonstrably. Novelty without performance is not permitted in BMW's world. <span class="tag tag-fw">Framework</span></div></div>
+    </div>
+    <div class="law-row">
+      <div class="law-num">03</div>
+      <div><div class="law-title">Authority is earned, not asserted</div><div class="law-body">The brand leads from knowledge and proven record. It does not seek approval — it invites its audience to meet its standard. <span class="tag tag-fw">Framework</span></div></div>
+    </div>
+    <div class="law-row">
+      <div class="law-num">04</div>
+      <div><div class="law-title">Premium is precise, not excessive</div><div class="law-body">Wealth is expressed through precision, not volume. The M3 is a status symbol because of what it can do, not what it costs. <span class="tag tag-fw">Framework</span></div></div>
+    </div>
+    <div class="law-row">
+      <div class="law-num">05</div>
+      <div><div class="law-title">The communion is the irreducible act</div><div class="law-body">The precise, unmediated connection between person and machine — and through the machine, with the road — is sacred. In driven mode: the driver in communion with the road through the chassis. In autonomous mode: the passenger in communion with the machine's mastery, immersed in what it is doing around them. The principle does not depend on the steering wheel. It depends on the precision. <span class="tag tag-fw">Framework</span></div></div>
+    </div>
+  </div>
+
+  <!-- Market position scores -->
+  <div class="bento bento-2col">
+    <div class="card" style="padding: 28px 32px;">
+      <div class="card-label" style="margin-bottom: 16px;">Market position — scored dimensions</div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Market standing</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:82%;"></div></div>
+        <div class="score-bar-value">0.82</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Strategic horizon</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:80%;"></div></div>
+        <div class="score-bar-value">0.80</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Internal compass</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:75%;"></div></div>
+        <div class="score-bar-value">0.75</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Appetite for new</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:72%;"></div></div>
+        <div class="score-bar-value">0.72</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Cultural decoding</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:72%;"></div></div>
+        <div class="score-bar-value">0.72</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Identity flexibility</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:62%;"></div></div>
+        <div class="score-bar-value">0.62</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Purpose depth</div>
+        <div class="score-bar-track"><div class="score-bar-fill score-bar-fill-muted" style="width:38%;"></div></div>
+        <div class="score-bar-value" style="color: var(--text-white-ghost);">0.38</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Warmth orientation</div>
+        <div class="score-bar-track"><div class="score-bar-fill score-bar-fill-muted" style="width:22%;"></div></div>
+        <div class="score-bar-value" style="color: var(--text-white-ghost);">0.22</div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="card" style="flex: 1;">
+        <div class="card-label">Key finding</div>
+        <div class="card-title" style="font-size: 15px;">High conviction, high desire, low warmth</div>
+        <div class="card-body">The risk profile lies not in the dominant dimensions but in what is absent. Purpose depth and peer-level warmth are exactly the dimensions that matter most to the fastest-growing premium buyer segment globally. <span class="tag tag-fw">Framework</span></div>
+      </div>
+      <div class="card-dark1" style="flex: 1;">
+        <div class="card-label">Dominant combination</div>
+        <div class="card-title" style="font-size: 14px;">Challenger force + desire</div>
+        <div class="card-body">Most brands are either demanding or attractive. BMW manages both simultaneously. This is the rarest configuration in premium automotive — and the most structurally defensible if expressed correctly. <span class="tag tag-fw">Framework</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:65%"></div><div class="pb-est" style="width:35%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Framework 65%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 35%</div>
+    </div>
+  </div>
+
+  <div class="engagement-block">
+    <div class="engagement-label">Engagement requirement</div>
+    <div class="engagement-body">Missing evidence: internal brand strategy documents and founding conviction statement from senior leadership. What would supply it: direct engagement with BMW's brand leadership team. What the finding becomes: the emotional engine scoring above moves from 65% framework-derived to 90%+, and the world laws can be validated or corrected against how BMW's own strategists describe the brand's rules.</div>
+  </div>
+</div>
+
+<!-- S3: DESIGN -->
+<div class="section" id="design">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <h2 class="section-title">What the cars say</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 40px;">
+    <p>For most of BMW's history, design said the same thing the slogan said. Proportions were driver-focused: long bonnet over the front axle, short overhangs, weight balanced between driver and road. The design was not decorative. It was a statement about what the car was for.</p>
+  </div>
+
+  <div class="bento bento-3eq" style="margin-bottom: 10px;">
+    <div class="card">
+      <div class="card-label">Phase 1 — Bangle era, early 2000s</div>
+      <div class="card-title" style="font-size: 14px;">First break: louder, still arguing</div>
+      <div class="card-body">Flame surfacing divided opinion but was still making an argument: this car has energy contained in its body, motion implied at rest. The forward drive was intact. Controversial — not incoherent. <span class="tag tag-pub">Public record</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Phase 2 — Grille era, 2019–2024</div>
+      <div class="card-title" style="font-size: 14px; color: var(--red-on-dark);">Second break: dominance over identity</div>
+      <div class="card-body">Quieter and more damaging. BMWs grew heavier in visual mass and began leading with a grille sized to project authority rather than express identity. The 4 Series, 7 Series, and XM began to look like luxury products. That is not the same as looking like driving machines. <span class="tag tag-pub">Public record</span></div>
+    </div>
+    <div class="card-blue" style="padding: 24px 24px;">
+      <div class="card-label-blue">Phase 3 — Neue Klasse, 2025–</div>
+      <div class="card-title" style="color: var(--blue-on-dark); font-size: 14px;">Correction: form returns to driver</div>
+      <div class="card-body-blue">Van Hooydonk's philosophy: simplicity, longevity, calm. "The world is getting louder and louder — I'm happy if we bring a little peace and quiet." Smaller grille, cleaner surface language, tighter proportions, a form that says the experience is inside, not on the surface. <span class="tag tag-pub">Public record</span></div>
+    </div>
+  </div>
+
+  <div class="bento bento-2col">
+    <div class="card" style="padding: 28px 32px;">
+      <div class="card-label" style="margin-bottom: 14px;">The interior argument — Neue Klasse</div>
+      <div class="card-body" style="font-size: 14px; line-height: 1.7;">
+        <p style="margin-bottom: 12px;">The Panoramic iDrive keeps driver-relevant information clean and close — speed, navigation, charge — without covering the windscreen in data. The physical driving interface is not eliminated: van Hooydonk drew an explicit line: "The car is not completely switchless." <span class="tag tag-pub">Public record</span></p>
+        <p>The steering wheel retains haptic control surfaces. The central computer — named the <strong style="color: var(--text-white);">Heart of Joy</strong> — manages power delivery and chassis response at a precision and speed no combustion system can match. <span class="tag tag-pub">Public record</span></p>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="card-dark1">
+        <div class="card-label">The critical gap</div>
+        <div class="card-title" style="font-size: 14px;">Design solved it. Communications haven't.</div>
+        <div class="card-body">The Neue Klasse is not saying: we added a screen and a battery. It is saying: the precision of the driving experience has been elevated. That argument is legible in the cars. It is not yet legible in the brand's communications. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+      </div>
+      <div class="card" style="background: var(--blue-pale-dark); border-color: rgba(95,133,255,0.20);">
+        <div class="card-label" style="color: var(--blue-on-dark);">Heart of Joy — the communion system</div>
+        <div class="card-body">A computer named for joy, managing the communion between driver and road at a precision that exceeds what the driver can consciously process. In driven mode: the system that makes the exact response possible. In autonomous mode: the system that becomes the communion itself — the technology that lets the interior passenger feel what the machine is doing and trust it completely. This argument has not been made. The name is the brief. <span class="tag tag-fw">Framework</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:55%"></div><div class="pb-est" style="width:45%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Public record 55%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 45%</div>
+    </div>
+  </div>
+</div>
+
+<!-- S4: COPY -->
+<div class="section" id="copy">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <h2 class="section-title">What the copy is currently doing</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 32px;">
+    <p>BMW's live brand communications are running a pattern visible across multiple output types and consistent enough to be structural rather than incidental. The brand is leading with obligation and trailing with identity.</p>
+    <p>The brand that offers the deepest connection between a person and a machine — a communion that extends the driver's capacity and leaves them permanently more — is currently leading with the least personal things it makes.</p>
+  </div>
+
+  <div class="callout-red" style="margin-bottom: 32px;">
+    <p><strong style="color: var(--text-white);">The most revealing phrase in BMW's recent public language:</strong> From the iX3 launch press release, September 2025 — "It stands for electric mobility without range anxiety and for a digital experience that uses intelligent solutions to put our customers at the centre. Moreover, it stands for sustainable production committed to responsible action. But most of all, it starts a new chapter for driving pleasure." That "but most of all" is a rescue move. The brand lists three obligations, then attempts to recover its identity at the end of the queue. <span class="tag tag-pub">Public record</span></p>
+  </div>
+
+  <div class="bento bento-3eq" style="margin-bottom: 10px;">
+    <div class="card">
+      <div class="card-label">Pattern 1 — iX3 launch copy</div>
+      <div class="card-title" style="font-size: 14px;">Obligation first, identity last</div>
+      <div class="card-body">The structure of the sentence performs exactly what is wrong: the pleasure claim arrives last, and defensively, as if the brand needed permission to say what it actually is. <span class="tag tag-pub">Public record</span> <span class="tag tag-fw">Framework</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Pattern 2 — Das Geschenk, 2024</div>
+      <div class="card-title" style="font-size: 14px;">Heritage as hedge</div>
+      <div class="card-body">Brands reach backward for nostalgia when they cannot yet make the forward argument on its own terms. "Driving pleasure is timeless" is a softer claim than "driving pleasure in an electric car feels like this." BMW is making the softer claim. <span class="tag tag-pub">Public record</span> <span class="tag tag-fw">Framework</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Pattern 3 — visual system</div>
+      <div class="card-title" style="font-size: 14px;">Warmth in wrong register</div>
+      <div class="card-body">The dominant imagery mode in 2024–2025 output is heritage and warmth: classic cars returning home, families sharing moments. Action photography expressing forward drive is present in M-series material only — not the dominant register. <span class="tag tag-pub">Public record</span> <span class="tag tag-fw">Framework</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="background: var(--surface-dark-1); border-color: var(--border-dark); margin-top: 10px;">
+    <div class="card-label" style="margin-bottom: 12px;">The Jung von Matt finding</div>
+    <p style="font-family: var(--font-voice); font-style: italic; font-size: 17px; color: var(--text-white); line-height: 1.65; margin-bottom: 12px;">"BMW literally invented driving pleasure. Its Neue Klasse now transports it into a new era."</p>
+    <div class="card-body">This is the correct argument — simple, confident, specific. It came from the agency's creative director, not from BMW's own press copy. The brand has outsourced its most precise self-expression to an external partner. That is itself a diagnostic finding. <span class="tag tag-pub">Public record</span> <span class="tag tag-fw">Framework</span></div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:65%"></div><div class="pb-est" style="width:35%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Public record + Framework 65%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 35%</div>
+    </div>
+  </div>
+</div>
+
+<!-- S5: RANGE -->
+<div class="section" id="range">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <h2 class="section-title">The vehicle range</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 32px;">
+    <p>Each model line in BMW's portfolio carries a distinct emotional signature. The coherence between that signature and the brand's core identity varies — and those variations are commercially legible.</p>
+  </div>
+
+  <div class="product-card">
+    <div class="product-card-header">
+      <div><div class="product-name">3 Series</div><div class="product-sublabel">Entry performance · high volume</div></div>
+      <div><div class="product-alignment">Very strong</div><div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-white-pale); text-align: right;">brand alignment</div></div>
+    </div>
+    <div class="product-body">Truest expression of BMW's emotional architecture at volume. Challenger Force + Forward Drive. The brand's clearest argument for six decades. Dilution risk is real and actively happening — heavier, quieter, more comfort-oriented than previous generations. If the 3 Series loses its driving character, BMW loses its most credible argument at scale. <span class="tag tag-pub">Public record</span> <span class="tag tag-est">Estimated</span></div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-card-header">
+      <div><div class="product-name">5 Series / i5</div><div class="product-sublabel">Executive · premium volume</div></div>
+      <div><div class="product-alignment">Strong</div><div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-white-pale); text-align: right;">brand alignment</div></div>
+    </div>
+    <div class="product-body">The i5's introduction is strategically important — it is the Neue Klasse philosophy applied at the brand's highest-volume premium tier. How well the i5 retains the 5 Series emotional character will signal how successfully BMW can translate its brand drives into fully electric form. <span class="tag tag-pub">Public record</span> <span class="tag tag-est">Estimated</span></div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-card-header">
+      <div><div class="product-name">7 Series / i7</div><div class="product-sublabel">Flagship luxury</div></div>
+      <div><div class="product-alignment">Strong with risk</div><div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-white-pale); text-align: right;">brand alignment</div></div>
+    </div>
+    <div class="product-body">Desire + Heritage Depth at maximum. The Theatre Screen and executive suite suggest BMW understands the luxury EV buyer's desire is as much about the interior world as the driving one. Most exposed to Mercedes S-Class competition. The bold exterior represents BMW asserting desire over consensus — a deliberate creative risk. <span class="tag tag-pub">Public record</span> <span class="tag tag-est">Estimated</span></div>
+  </div>
+
+  <div class="product-card" style="border-color: rgba(95,133,255,0.30);">
+    <div class="product-card-header">
+      <div><div class="product-name">M Series</div><div class="product-sublabel">Performance halo · identity anchor</div></div>
+      <div><div class="product-alignment" style="color: var(--blue-on-dark);">Maximum</div><div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-white-pale); text-align: right;">brand alignment</div></div>
+    </div>
+    <div class="product-body">M is not a trim level — it is BMW's anti-mediocrity principle in its purest form. M badge dilution is the most critical internal brand governance risk BMW faces. Every diluted M variant borrows against accumulated credibility. The M5 Hybrid and upcoming electrified M cars are the critical test: can the emotional architecture survive electrification at its highest expression? <span class="tag tag-pub">Public record</span> <span class="tag tag-est">Estimated</span></div>
+  </div>
+
+  <div class="product-card" style="border-color: rgba(224,74,76,0.25);">
+    <div class="product-card-header">
+      <div><div class="product-name">Neue Klasse — iX3, i3, next 3 Series EV</div><div class="product-sublabel">Next architecture · defining the decade</div></div>
+      <div><div class="product-alignment" style="color: var(--red-on-dark);">Highest stakes</div><div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-white-pale); text-align: right;">brand alignment</div></div>
+    </div>
+    <div class="product-body">BMW's argument that it can fully own its emotional architecture in an electric medium. If it succeeds, it resolves the brand's most critical structural question. If perceived as technically excellent but emotionally diminished, the question gets harder to answer with each subsequent model. The Heart of Joy is the key: it is the first piece of BMW product language that reaches toward a zone-4 brand argument in several years. <span class="tag tag-pub">Public record</span> <span class="tag tag-fw">Framework</span></div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:60%"></div><div class="pb-est" style="width:40%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Public record 60%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 40%</div>
+    </div>
+  </div>
+</div>
+
+<!-- S6: AUDIENCE -->
+<div class="section" id="audience">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <h2 class="section-title">Who BMW attracts</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 32px;">
+    <p>BMW's buyer base has a documented demographic centre — median age 56 in the US, household incomes well above category average, predominantly professional. But the demographic description misses the more important psychographic one.</p>
+    <p>The person who buys a BMW shares a specific orientation toward the driving experience that cuts across age, income, and geography. They experience the car as an instrument — something that extends their capability and responds to their intention. They notice when a car does not respond precisely.</p>
+  </div>
+
+  <div class="archetype-grid" style="margin-bottom: 10px;">
+    <div class="archetype-card">
+      <div class="archetype-header">
+        <div>
+          <div class="archetype-name">The Performance Believer</div>
+          <div class="archetype-demo">28–50 · driving-motivated · brand as identity</div>
+        </div>
+        <div>
+          <div class="archetype-score score-strong">0.52</div>
+          <div class="archetype-score-label">Resonance</div>
+        </div>
+      </div>
+      <div class="archetype-body">Experiences the car as a craft object. Cultural amplifiers — they influence others' brand perceptions, write reviews, recommend from experience. Most important credibility carriers. Not necessarily the highest spenders but the most identity-committed. Most at risk from product softening and M badge dilution. <span class="tag tag-fw">Framework</span></div>
+    </div>
+    <div class="archetype-card">
+      <div class="archetype-header">
+        <div>
+          <div class="archetype-name">The Status Achiever</div>
+          <div class="archetype-demo">35–55 · career-driven · high income</div>
+        </div>
+        <div>
+          <div class="archetype-score score-mid">0.44</div>
+          <div class="archetype-score-label">Resonance</div>
+        </div>
+      </div>
+      <div class="archetype-body">Chooses BMW because it sits at the precise intersection of performance credibility and professional arrival. Not flashy enough for Ferrari, not anonymous enough for Mercedes, not quiet enough for Lexus. BMW's commercial engine. Most contested segment — Audi and Mercedes apply constant pressure. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+    </div>
+    <div class="archetype-card" style="border-color: rgba(224,74,76,0.25);">
+      <div class="archetype-header">
+        <div>
+          <div class="archetype-name">The Progressive Premium Buyer</div>
+          <div class="archetype-demo">28–45 · urban · sustainability-aware · EV-first</div>
+        </div>
+        <div>
+          <div class="archetype-score score-low">0.27</div>
+          <div class="archetype-score-label">Resonance</div>
+        </div>
+      </div>
+      <div class="archetype-body">Most strategically important and most underserved. Wants premium, design, technology that works — but reads purchases through the lens of what choices say about the world they want to live in. BMW's Forward Drive and Desire land well. But low warmth, institutional posture, and historically combustion-centred identity create distance. The Neue Klasse is BMW's direct answer — but the brand, not just the product, needs to meet them. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+    </div>
+    <div class="archetype-card">
+      <div class="archetype-header">
+        <div>
+          <div class="archetype-name">The Heritage Loyalist</div>
+          <div class="archetype-demo">50–70 · multi-decade relationship</div>
+        </div>
+        <div>
+          <div class="archetype-score score-mid">0.48</div>
+          <div class="archetype-score-label">Resonance</div>
+        </div>
+      </div>
+      <div class="archetype-body">Most stable resonance group. Multi-decade relationship, significant latitude extended for what the brand is becoming. Most loyal buyers and least commercially scalable future. The brand's most urgent task is finding what brings a younger audience into the same depth of relationship. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+    </div>
+  </div>
+
+  <!-- Regional read -->
+  <div class="bento bento-3eq" style="margin-top: 10px;">
+    <div class="card">
+      <div class="card-label">Europe — strongest position</div>
+      <div class="card-title" style="font-size: 14px;">1 in 4 BMWs electric</div>
+      <div class="card-body">One in four BMW Group cars sold in Europe in 2025 was fully electric. Nordic markets and urban Germany are moving toward EVs with less resistance and retaining brand loyalty to European manufacturers. The cultural context for precision engineering as a European value is intact. <span class="tag tag-pub">Public record</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">United States — loyalty gap</div>
+      <div class="card-title" style="font-size: 14px;">52% loyalty vs. Tesla 66%</div>
+      <div class="card-body">The Tesla gap is the most instructive. Tesla's loyalty is built on technology communion — the feeling of being inside a system so advanced it extends your sense of what is possible. BMW's answer is precise and non-negotiable: technology communion makes you feel more advanced. Road communion makes you more capable. One expands what the machine can do. The other expands what you can do. That is a winnable argument — but only if BMW makes it explicitly and with the confidence of a brand that has been building the proof for six decades. <span class="tag tag-pub">Public record</span> <span class="tag tag-fw">Framework</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">China — structural problem and unexpected opportunity</div>
+      <div class="card-title" style="font-size: 14px;">Brand gap, not product gap — and a cultural root</div>
+      <div class="card-body">Chinese premium buyers are younger and more digitally native, with less inherited affinity for European automotive heritage. BMW's heritage advantage is weakest here. But the communion principle has an ancient Chinese root that no competitor has claimed: gōngfu — the deep skill acquired through dedicated practice that produces a state of perfect accord between practitioner and art. BMW's communion is gōngfu in motion. The Neue Klasse interior in autonomous mode is the space for the expert to be present to mastery. This is not a translation of European values into Chinese language. It is a discovery that the principle is already present in Chinese cultural DNA. Must be co-created with Chinese cultural intelligence — not executed from Munich. <span class="tag tag-pub">Public record</span> <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+    </div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:45%"></div><div class="pb-est" style="width:55%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Framework 45%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 55%</div>
+    </div>
+  </div>
+
+  <div class="engagement-block">
+    <div class="engagement-label">Engagement requirement</div>
+    <div class="engagement-body">Missing evidence: qualitative customer research, specifically with recent purchasers and lapsed buyers who switched to Tesla or to Chinese premium brands in Europe. What would supply it: 20–30 depth interviews segmented by archetype. What the finding becomes: the resonance scores move from estimated to framework-validated, and the generational gap analysis is confirmed or corrected with primary language.</div>
+  </div>
+</div>
+
+<!-- S7: THE LIFE -->
+<div class="section" id="life">
+  <div class="section-header">
+    <div class="section-number">07</div>
+    <h2 class="section-title">The life BMW offers</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 32px;">
+    <p>Red Bull offers a specific life: the life of a person who lives at their own limit. Everything Red Bull does is a rendering of that one experience. BMW has an equivalent offer — more specific, more intimate, and more permanently transformative. It has never been correctly named.</p>
+    <p>The life BMW offers is the life of someone who has been in communion with a machine that responds exactly — and who carries what that communion produced. Not faster. More. The driver who has accumulated enough BMW miles has learned to trust their instincts because a machine has been honest enough to confirm them, precisely, without flattery, road after road. That trust does not stay in the car. It travels with the person. They take the other road. They ask more of the next corner. They make decisions they would not have made before the machine confirmed their capacity. The communion produces a person who is hungrier for more — more road, more experience, more of what they find out about themselves when the machine answers exactly.</p>
+    <p>In autonomous mode, the communion changes channel but does not end. The expert passenger is immersed in the precision of what the machine is doing around them — the forces, the weight, the engineering performing at a level they can fully perceive and trust. The interior is no longer a cabin. It is an instrument. And the person who inhabits it fully — who brings the sensitivity of a practitioner rather than the passivity of a passenger — exits with the same expanded sense of capacity.</p>
+  </div>
+
+  <!-- Zone model -->
+  <div class="card" style="padding: 32px 36px; margin-bottom: 10px;">
+    <div class="card-label" style="margin-bottom: 20px;">The four zones — how a person moves through the BMW brand</div>
+    <div class="zone-row">
+      <div class="zone-num">1</div>
+      <div>
+        <div class="zone-title">Public — the car from outside</div>
+        <div class="zone-body">Proportions, stance, the way it looks parked. This is where the Neue Klasse design correction is most important. The calmer, more precise exterior is a better first signal than the aggressive grille language it replaces. The car declares the right identity before anyone sits in it. <span class="tag tag-fw">Framework</span></div>
+      </div>
+      <div class="zone-status zone-partial">Improving</div>
+    </div>
+    <div class="zone-row">
+      <div class="zone-num">2</div>
+      <div>
+        <div class="zone-title">Approach — touching it, sitting in it</div>
+        <div class="zone-body">The way the interior presents itself. The Neue Klasse interior is doing meaningful work: Panoramic iDrive, physical controls retained, space that says: this is for a person who is driving, not for a person who is being driven. <span class="tag tag-pub">Public record</span></div>
+      </div>
+      <div class="zone-status zone-active">Active</div>
+    </div>
+    <div class="zone-row">
+      <div class="zone-num">3</div>
+      <div>
+        <div class="zone-title">The road — the machine responding</div>
+        <div class="zone-body">BMW's strongest zone and the one its brand equity was built on. The problem: BMW's communications live almost entirely in zones 1 and 2. The Christmas film is about the grandmother's car from the outside. The iX3 launch film is about the car's history. Neither puts a person in the driver's seat at the moment the road responds. <span class="tag tag-pub">Public record</span> <span class="tag tag-fw">Framework</span></div>
+      </div>
+      <div class="zone-status zone-gap">Gap</div>
+    </div>
+    <div class="zone-row">
+      <div class="zone-num">4</div>
+      <div>
+        <div class="zone-title">The communion — what the driver becomes</div>
+        <div class="zone-body">The zone where the communion becomes permanent. The driver who takes the longer road has learned — through accumulated contact with a machine that responds without flattery — to trust their own instincts in the dark. Each drive extends what they believe they are capable of. Each exact response confirms an instinct they did not know they had. They get out of the car more capable, more confident, and hungrier for more road than when they got in. Not transformed — expanded. This is the zone BMW has built every car to reach. It is present in the product. It is absent from the brand's communications. The Heart of Joy is the first signal in years that the brand is approaching it — and it has not been developed. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+      </div>
+      <div class="zone-status zone-gap">Present in product.<br>Absent in expression.</div>
+    </div>
+  </div>
+
+  <!-- Voice sample -->
+  <div style="background: var(--bg-white); border-radius: var(--radius-14); padding: 56px 64px; margin: 10px 0;">
+    <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--ls-tag); text-transform: uppercase; color: #AAAAAA; margin-bottom: 32px;">Voice Sample · The Communion in language</div>
+    <div style="font-family: var(--font-voice); font-size: 21px; font-style: italic; color: var(--text-ink); line-height: 1.70;">
+      <p style="margin-bottom: 20px;">In 1962, an engineer named von Falkenhausen refused the cheaper crankshaft.<br>Not to be difficult. Because the cheaper crankshaft would have answered less precisely.</p>
+      <p style="margin-bottom: 20px;">That is the founding principle of every BMW built since.<br>Not the fastest. Not the loudest. The one that answers exactly.</p>
+      <p style="margin-bottom: 20px;">When the road speaks through the chassis to your hands —<br>when the weight shifts and you feel it before you think it —<br>you are not driving a car. You and the car are one system, briefly.<br>And what you find out in that moment stays with you<br>after you get out.</p>
+      <p>The person who exits is more than the person who entered.<br>That is what we have always been building.<br>We thought you should know.</p>
+    </div>
+  </div>
+
+  <!-- Slogan territory -->
+  <div class="card" style="background: var(--surface-dark-1); border: 0.5px solid var(--border-dark-mid); padding: 28px 32px;">
+    <div class="card-label" style="margin-bottom: 16px; color: var(--blue-on-dark);">Slogan territory — what the next line must do</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+      <div style="background: var(--surface-dark-2); border-radius: var(--radius-8); padding: 14px 16px;">
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-white-pale); letter-spacing: var(--ls-tag); text-transform: uppercase; margin-bottom: 6px;">Current — zone 1–2</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white-pale);">"The Ultimate Driving Machine"</div>
+        <div style="font-size: 12px; color: var(--text-white-pale); margin-top: 4px; line-height: 1.5;">Names the machine. Does not name the communion. "Driving" points at the act. The principle is what the act produces in the person.</div>
+      </div>
+      <div style="background: var(--surface-dark-2); border-radius: var(--radius-8); padding: 14px 16px;">
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-white-pale); letter-spacing: var(--ls-tag); text-transform: uppercase; margin-bottom: 6px;">Current — zone 3 adjacent</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white-pale);">"Sheer Driving Pleasure"</div>
+        <div style="font-size: 12px; color: var(--text-white-pale); margin-top: 4px; line-height: 1.5;">Names the experience but not what the driver discovers about themselves through it. Stops at the sensation. The communion is what the sensation produces.</div>
+      </div>
+      <div style="background: var(--surface-dark-2); border-radius: var(--radius-8); padding: 14px 16px;">
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--blue-on-dark); letter-spacing: var(--ls-tag); text-transform: uppercase; margin-bottom: 6px;">Required — zone 4, driven mode</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white);">"The car that makes you more"</div>
+        <div style="font-size: 12px; color: var(--text-white-pale); margin-top: 4px; line-height: 1.5;">Names what the communion produces in the driver. Not the machine — the person who exits it. Specific to BMW. Cannot be claimed by any competitor without the product to justify it.</div>
+      </div>
+      <div style="background: var(--blue-pale-dark); border: 0.5px solid rgba(95,133,255,0.20); border-radius: var(--radius-8); padding: 14px 16px;">
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--blue-on-dark); letter-spacing: var(--ls-tag); text-transform: uppercase; margin-bottom: 6px;">Required — autonomous mode, zone 4</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white);">"Precision you can feel from inside"</div>
+        <div style="font-size: 12px; color: var(--text-white-pale); margin-top: 4px; line-height: 1.5;">The interior as the new communion zone. The expert passenger present to the machine's mastery. The principle survives the disappearance of the steering wheel — and no competitor has the engineering philosophy to make this argument credibly.</div>
+      </div>
+      <div style="background: var(--blue-pale-dark); border: 0.5px solid rgba(95,133,255,0.20); border-radius: var(--radius-8); padding: 14px 16px;">
+        <div style="font-family: var(--font-mono); font-size: 9px; color: var(--blue-on-dark); letter-spacing: var(--ls-tag); text-transform: uppercase; margin-bottom: 6px;">Target territory — zone 4</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-white);">The moment of honest response</div>
+        <div style="font-size: 11px; color: var(--text-white-pale); margin-top: 4px; line-height: 1.5;">The pleasure of a machine that responds to your intention at the exact moment you form it. Specific enough to be BMW's alone.</div>
+      </div>
+    </div>
+    <div style="font-size: 12px; color: var(--text-white-pale); line-height: 1.6; border-top: 0.5px solid var(--border-dark); padding-top: 14px;">The language that captures this precisely will come from zone-4 drivers — the most committed long-term owners — not from the briefing room. This is the most valuable single research investment available to the brand at this moment. <span class="tag tag-fw">Framework</span></div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:35%"></div><div class="pb-est" style="width:65%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Framework 35%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 65%</div>
+    </div>
+  </div>
+
+  <div class="engagement-block">
+    <div class="engagement-label">Engagement requirement</div>
+    <div class="engagement-body">Missing evidence: deep qualitative work with BMW's most committed long-term owners — the people already in zone 4. What would supply it: 15–20 depth interviews specifically with owners who have been with BMW for 10+ years and express identity-level commitment. What the finding becomes: the zone model moves from estimated to grounded in actual owner language, and the slogan territory brief becomes a slogan candidate brief with real raw material from real drivers.</div>
+  </div>
+</div>
+
+<!-- S8: LEADERSHIP -->
+<div class="section" id="leader">
+  <div class="section-header">
+    <div class="section-number">08</div>
+    <h2 class="section-title">The new chairman</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 32px;">
+    <p>Milan Nedeljković assumed the chairmanship of BMW AG on 14 May 2026. His appointment is universally described as a bet on operational execution: the right person to deliver the Neue Klasse platform at scale, manage the factory network through electrification, and hold the line on cost discipline. That analysis is correct — and it misses the most important thing about his arrival.</p>
+    <p>He is not the wrong person for the brand's emotional story. He is the only person currently at BMW who is saying, in operational language, the thing the brand needs to say in human language. His conviction about exact response — systems that respond precisely as required, flexibility as discipline, precision as a governing value — is not adjacent to the communion principle. It is the communion principle stated from the engineering side. He has been describing the brand's soul in the language of manufacturing. He does not yet know that.</p>
+  </div>
+
+  <div class="bento bento-2eq" style="margin-bottom: 10px;">
+    <div class="card" style="padding: 28px 28px;">
+      <div class="card-label" style="margin-bottom: 12px;">What his public record contains</div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Manufacturing systems</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:95%;"></div></div>
+        <div class="score-bar-value">Very high</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Cost and efficiency</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:92%;"></div></div>
+        <div class="score-bar-value">Very high</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">EV platform delivery</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:90%;"></div></div>
+        <div class="score-bar-value">Very high</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Exact response language</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:80%;"></div></div>
+        <div class="score-bar-value">High</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">Brand narrative voice</div>
+        <div class="score-bar-track"><div class="score-bar-fill score-bar-fill-muted" style="width:10%;"></div></div>
+        <div class="score-bar-value" style="color: var(--text-white-ghost);">Not yet</div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="card-dark1" style="flex: 1;">
+        <div class="card-label">His public register</div>
+        <div class="card-body" style="font-size: 13px; line-height: 1.7;">Precise, operational, systems-oriented, proud of craft and scale. "Production follows the market." "Flexibility is in our genes." His language is the language of someone who has built things with his hands and managed humans who build things. He does not perform warmth. He performs competence — and competence, at this precision, is the brand's founding register. <span class="tag tag-pub">Public record</span></div>
+      </div>
+      <div class="card" style="flex: 1; background: var(--blue-pale-dark); border-color: rgba(95,133,255,0.20);">
+        <div class="card-label" style="color: var(--blue-on-dark);">He is von Falkenhausen</div>
+        <div class="card-body">Von Falkenhausen refused the cheaper crankshaft — not to be difficult, but because the cheaper answer interrupted the communion. Nedeljković will refuse whatever compromises the communion in the Neue Klasse. His precision is not a liability. It is the founding condition of the very thing that makes BMW different. The brand needs him to name that conviction publicly — not to soften it. <span class="tag tag-fw">Framework</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--blue-pale-dark); border: 0.5px solid rgba(95,133,255,0.25); border-radius: var(--radius-12); padding: 32px 40px; margin-bottom: 10px;">
+    <p style="font-size: 15px; color: var(--text-white); line-height: var(--lh-body); margin-bottom: 0; max-width: 680px;"><strong style="color: var(--blue-on-dark);">The reframe:</strong> The board did not make a trade between operational excellence and brand warmth. They appointed the person whose engineering conviction is the brand's founding philosophy expressed in operational language. Nedeljković does not need to become warmer. He needs to understand that what he is already saying — systems that respond exactly as required, precision as a non-negotiable — is the description of the communion principle from the inside of the factory. The argument that makes it legible to the driver is one translation away. That translation is the work. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></p>
+  </div>
+
+  <!-- Impact by archetype - reframed as opportunity not risk -->
+  <div class="card" style="margin-top: 10px; padding: 28px 32px;">
+    <div class="card-label" style="margin-bottom: 16px;">Leadership signal by audience group — opportunity read</div>
+    <div class="score-bar-row">
+      <div class="score-bar-label" style="width: 200px;">Performance Believer</div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:85%; background: var(--blue-on-dark);"></div></div>
+      <div class="score-bar-value" style="color: var(--blue-on-dark);">High resonance potential</div>
+    </div>
+    <div class="score-bar-row">
+      <div class="score-bar-label" style="width: 200px;">Status Achiever</div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:55%;"></div></div>
+      <div class="score-bar-value">Moderate — needs translation</div>
+    </div>
+    <div class="score-bar-row">
+      <div class="score-bar-label" style="width: 200px;">Progressive Premium</div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:40%;"></div></div>
+      <div class="score-bar-value">Open — communion argument is their register</div>
+    </div>
+    <div class="score-bar-row">
+      <div class="score-bar-label" style="width: 200px;">Heritage Loyalist</div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:70%;"></div></div>
+      <div class="score-bar-value">Strong — founding story resonates</div>
+    </div>
+    <div style="font-size: 11px; color: var(--text-white-pale); margin-top: 12px; font-family: var(--font-mono); letter-spacing: 0.04em;">Score indicates resonance potential if Nedeljković's precision language is translated into the communion principle publicly. The Performance Believer and Heritage Loyalist respond most directly to von Falkenhausen as the reference. <span class="tag tag-est">Estimated</span></div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:50%"></div><div class="pb-est" style="width:50%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Public record 50%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 50%</div>
+    </div>
+  </div>
+
+  <div class="engagement-block">
+    <div class="engagement-label">Engagement requirement — most valuable conversation in the report</div>
+    <div class="engagement-body">Missing evidence: a direct conversation with Nedeljković about how he thinks about the experience of driving a BMW — specifically, what the exact response of the car means to him as an engineer who has spent his career ensuring systems respond precisely as required. His profile from public material is operational. One extended conversation might reveal that his operational language is already the communion principle spoken from inside the factory. That conversation is the beginning of the brand argument.</div>
+  </div>
+</div>
+
+<!-- S9: MOVES -->
+<div class="section" id="moves">
+  <div class="section-header">
+    <div class="section-number">09</div>
+    <h2 class="section-title">What needs to happen</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 32px;">
+    <p>Three moves, in sequence. The sequence matters — the second does not work without the first, and the third does not work without the second. The window is the Neue Klasse launch period. The opportunity is the first 18–24 months of the new chairmanship — a moment when strategic direction is most open to definition.</p>
+  </div>
+
+  <div class="move-card" style="border-color: rgba(95,133,255,0.30);">
+    <div class="move-num" style="color: var(--blue-on-dark);">1</div>
+    <div>
+      <div class="move-title">Name the communion principle — publicly, from the founding story</div>
+      <div class="move-body">The first move is not a campaign brief. It is a naming act. BMW has never publicly claimed the principle it has built every car to produce: the precise, unmediated communion between driver and road that makes the driver more capable, more confident, and hungrier for more. Von Falkenhausen built it into the M10 engine in 1962. It survived every transition since. It is in the Heart of Joy. It is in the chassis tuning philosophy that BMW engineers have protected for six decades. It needs one sentence that names it — and that sentence needs to come from the chairman who is already saying it in operational language. Nedeljković's conviction that systems must respond exactly as required is the founding condition of the communion. He is already speaking the principle. It needs to be translated from factory language to human language. That translation is this move. <span class="tag tag-fw">Framework</span></div>
+    </div>
+  </div>
+  <div class="move-card">
+    <div class="move-num">2</div>
+    <div>
+      <div class="move-title">Restore the natural amplitude — and extend it to autonomous mode</div>
+      <div class="move-body">BMW's current communications are running two levels below the natural expression range for its identity. The warmth and heritage work is competent but performing the wrong register. Action imagery — the road, the driver, the communion at speed — needs to return as the dominant register, not M-series-only material. Copy that leads with the communion claim, not rescues it at the end of an obligation list. And critically: the Neue Klasse interior needs to be communicated as the new communion zone — the space where the expert passenger is fully present to precision in motion. Not a cabin. An instrument. The principle in autonomous mode needs a communication form as specific and as confident as the principle in driven mode. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+    </div>
+  </div>
+  <div class="move-card" style="border-color: rgba(95,133,255,0.20);">
+    <div class="move-num" style="color: var(--blue-on-dark);">3</div>
+    <div>
+      <div class="move-title">Adapt the communion for America and China — same principle, different cultural root</div>
+      <div class="move-body">The communion principle is not a European idea. In America it is the road as self-discovery — the driver who becomes more capable through accumulated contact with a machine that tells the truth. The argument against Tesla is precise: technology communion makes you feel more advanced. Road communion makes you more capable. In China the communion principle has an ancient root: gōngfu — the deep skill that produces perfect accord between practitioner and art. The tea master. The calligrapher. BMW's communion is gōngfu in motion. The Neue Klasse interior, in autonomous mode, is the space for the expert to be present to mastery. These are not translations of European values. They are discoveries that the principle is already present in each culture's deepest vocabulary. Both require locally co-created execution. Neither requires a different principle. <span class="tag tag-fw">Framework</span> <span class="tag tag-est">Estimated</span></div>
+    </div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:40%"></div><div class="pb-est" style="width:60%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Framework 40%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 60%</div>
+    </div>
+  </div>
+</div>
+
+<!-- S10: OUTLOOK -->
+<div class="section" id="outlook">
+  <div class="section-header">
+    <div class="section-number">10</div>
+    <h2 class="section-title">Commercial outlook</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom: 32px;">
+    <p>BMW enters 2026 structurally healthier than most European automotive peers. It preserved profitability better than Volkswagen and Mercedes. It maintained manufacturing flexibility by not over-committing to pure-BEV too early. The Neue Klasse architecture is on track. This operational credibility is a precondition for brand credibility — a brand making a claim about precision that its products cannot support is incoherent. BMW's products can support the claim. The communications are not making it.</p>
+  </div>
+
+  <div class="scenario-grid" style="margin-bottom: 10px;">
+    <div class="scenario-card scenario-bull">
+      <div class="scenario-label" style="color: var(--blue-on-dark);">Bull case</div>
+      <div class="scenario-title">BMW becomes the best-balanced premium EV brand globally</div>
+      <ul class="scenario-list">
+        <li>Neue Klasse executes on both engineering and emotional dimensions</li>
+        <li>Brand communication catches up to the design correction</li>
+        <li>Zone-4 argument is built and expressed publicly</li>
+        <li>Progressive Premium Buyer is met at brand level, not just product level</li>
+        <li>M badge governance holds through electrification</li>
+        <li>Nedeljković names the communion principle publicly — the brand argument follows his conviction</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-bear">
+      <div class="scenario-label" style="color: var(--red-on-dark);">Bear case</div>
+      <div class="scenario-title">Operationally excellent while strategically out-innovated on the emotional register</div>
+      <ul class="scenario-list">
+        <li>Neue Klasse delivers technically but the brand argument is never completed</li>
+        <li>The communion principle is never named — BMW remains a precision engineering company that cannot explain why precision matters to the person in the seat</li>
+        <li>Progressive Premium Buyer remains at functional resonance through the decade</li>
+        <li>Chinese brands accelerate faster than BMW closes the coherence gap</li>
+        <li>Brand slowly becomes prestige legacy rather than defining premium identity</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bento bento-3eq">
+    <div class="card">
+      <div class="card-label">vs. Tesla</div>
+      <div class="card-title" style="font-size: 14px;">Product gap narrowing, brand gap open</div>
+      <div class="card-body">BMW stronger in craftsmanship and luxury feel. Tesla stronger in software ecosystem and forward-identity resonance with under-40 buyers. Neue Klasse closes the product side. The brand communication gap remains. <span class="tag tag-est">Estimated</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">vs. NIO / Xiaomi</div>
+      <div class="card-title" style="font-size: 14px;">Heritage global, coherence local</div>
+      <div class="card-body">BMW has stronger brand heritage globally. Both Chinese brands have stronger digital-native perception and are not slowing. In China, BMW's heritage advantage is weakest — and these brands are winning on coherence, not features. <span class="tag tag-pub">Public record</span> <span class="tag tag-est">Estimated</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">vs. Mercedes / Audi</div>
+      <div class="card-title" style="font-size: 14px;">Clearer direction, underexpressed</div>
+      <div class="card-body">BMW currently has clearer strategic direction than Audi. Mercedes has a more developed sustainability narrative for the Progressive Premium Buyer. BMW's driving identity is more specific and more defensible long-term — but only if expressed. <span class="tag tag-pub">Public record</span> <span class="tag tag-est">Estimated</span></div>
+    </div>
+  </div>
+
+  <div class="progress-bar-block">
+    <div class="progress-bar-label">Section confidence</div>
+    <div class="progress-bar-track"><div class="pb-fw" style="width:40%"></div><div class="pb-est" style="width:60%"></div></div>
+    <div class="progress-bar-legend">
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--blue-on-dark);"></div>Public record 40%</div>
+      <div class="pb-legend-item"><div class="pb-dot" style="background:var(--text-white-ghost);"></div>Estimated 60%</div>
+    </div>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div style="padding: 72px 0 0; border-top: 0.5px solid var(--border-dark); margin-top: 72px;">
+  <div class="methodology-block">
+    <div class="methodology-title">Methodology and transparency</div>
+    <div class="methodology-body">
+      <p>This study uses a structural diagnostic approach that tests internal brand coherence — whether a brand's emotional architecture, its live communications, and its leadership signals are all pointing in the same direction. The diagnostic begins with the brand's emotional foundations and tests whether current output expresses or suppresses those foundations.</p>
+      <p>This report is built entirely from publicly available sources. No internal BMW documents, customer research data, or leadership access informed the findings. All sections carry a confidence split between framework-derived conclusions (drawn directly from the structural diagnostic model) and estimated conclusions (drawn from inference, public data extrapolation, or pattern matching without primary evidence).</p>
+      <p>Sections should be read as a layered diagnosis: the framework-derived findings are structural and stable; the estimated findings are directionally reliable but should be updated with primary research before being used as the basis for strategic decisions. Each section identifies specifically what primary access would change.</p>
+      <p style="color: var(--text-white-ghost); font-size: 12px;">Source tags used throughout: <span class="tag tag-fw">Framework</span> = structural diagnostic model · <span class="tag tag-pub">Public record</span> = verified public sources · <span class="tag tag-est">Estimated</span> = analytical inference</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- end report-body -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-mark">Design Intelligence Framework · Benjamin Cuénod</div>
+  <div class="footer-meta">Public record build · May 2026<br>BMW Brand Portrait — Self-initiated diagnostic study</div>
+</footer>
+
+</body>
+</html>

@@ -1883,6 +1883,8 @@ section {
     <a class="nav-link" href="#about">About</a>
     <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('partners')">Partners</button>
     <a class="nav-link" href="#lab">Lab</a>
+    <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('catalogue')">Services</button>
+    <button class="nav-link" style="background:none;border:none;cursor:pointer;padding:0;" onclick="openGate('clients')">Clients</button>
     <a class="nav-cta" href="mailto:b3njamin@me.com">Connect</a>
   </div>
   <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -1895,6 +1897,8 @@ section {
   <a class="nav-mobile-link" href="#about" onclick="closeMobileMenu()">About</a>
   <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('partners')">Partners</button>
   <a class="nav-mobile-link" href="#lab" onclick="closeMobileMenu()">Lab</a>
+  <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('catalogue')">Services</button>
+  <button class="nav-mobile-link" onclick="closeMobileMenu(); openGate('clients')">Clients</button>
   <a class="nav-mobile-link nav-mobile-cta" href="mailto:b3njamin@me.com">Connect</a>
 </div>
 
@@ -1965,31 +1969,52 @@ section {
       <p>Coherence compounds. A brand that is structurally itself attracts the right people, retains them, and earns the room to evolve. Not because it was marketed correctly. Because it was true.</p>
     </div>
 
-    <!-- services v2 -->
+    <!-- services v3 — reorganised, deduplicated, blue opacity hierarchy -->
+    <style>
+    /* Blue opacity hierarchy on accordion items — high to low, top to bottom */
+    .acc-grid .acc-item:nth-child(1) { background: rgba(95,133,255,0.50); border-color: rgba(95,133,255,0.60); }
+    .acc-grid .acc-item:nth-child(2) { background: rgba(95,133,255,0.44); border-color: rgba(95,133,255,0.54); }
+    .acc-grid .acc-item:nth-child(3) { background: rgba(95,133,255,0.38); border-color: rgba(95,133,255,0.48); }
+    .acc-grid .acc-item:nth-child(4) { background: rgba(95,133,255,0.32); border-color: rgba(95,133,255,0.42); }
+    .acc-grid .acc-item:nth-child(5) { background: rgba(95,133,255,0.26); border-color: rgba(95,133,255,0.36); }
+    .acc-grid .acc-item:nth-child(6) { background: rgba(95,133,255,0.20); border-color: rgba(95,133,255,0.30); }
+    .acc-grid .acc-item:nth-child(7) { background: rgba(95,133,255,0.14); border-color: rgba(95,133,255,0.24); }
+    .acc-grid .acc-item:nth-child(8) { background: rgba(95,133,255,0.08); border-color: rgba(95,133,255,0.18); }
+    /* Open state */
+    .acc-grid .acc-item.acc-open { border-color: rgba(95,133,255,0.70); }
+    </style>
+
     <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-white-pale); margin-bottom:28px;">What you can commission</div>
     <div class="services-v2">
 
-      <!-- Tier 1: Diagnostic Reports -->
+      <!-- 01: Portrait & Diagnostic -->
       <div class="svtier">
         <div class="svtier-header">
           <span class="svtier-num">01</span>
-          <span class="svtier-label">Diagnostic reports</span>
-          <span class="svtier-count">10 products</span>
+          <span class="svtier-label">Portrait &amp; Diagnostic</span>
+          <span class="svtier-count">Entry point for every engagement</span>
         </div>
-
-        <div class="acc-grid" id="acc-diagnostics">
+        <div class="acc-grid">
 
           <div class="acc-item acc-open">
             <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Core · Flagship</span>
+              <span class="acc-type">Core · External</span>
               <span class="acc-name">Brand Coherence Diagnostic</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Full report + debrief</span>
-                <span class="acc-chevron">↑</span>
-              </div>
+              <div class="acc-row-footer"><span class="acc-format">Full report + debrief</span><span class="acc-chevron">↑</span></div>
             </button>
             <div class="acc-body">
-              <p>The full structural read of your presence. Emotional engine, brand world, character, market position, audience connection, structural issues — and the directions that follow.</p>
+              <p>The structural read of your brand built from public evidence — communications, product positioning, market signals, competitive context. Maps the emotional architecture, resonance gaps, configuration, and priority intervention points. The entry point for every engagement. Prices in the confidential service catalogue.</p>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Core · Deep</span>
+              <span class="acc-name">Brand Coherence Diagnostic — Full</span>
+              <div class="acc-row-footer"><span class="acc-format">Extended report + debrief</span><span class="acc-chevron">↓</span></div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>The external diagnostic sharpened with internal data: product list with positioning and pricing, customer research, employee interviews — sales crews, front-line teams, installation staff — and client interviews. Produces validated resonance scores and precise intervention points rather than directional findings. The natural next step when the external diagnostic reveals what internal data would clarify.</p>
             </div>
           </div>
 
@@ -1997,10 +2022,7 @@ section {
             <button class="acc-row" onclick="toggleAcc(this)">
               <span class="acc-type">Intelligence</span>
               <span class="acc-name">Concurrence Report</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written report</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <div class="acc-row-footer"><span class="acc-format">Written report</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
               <p>Structural analysis of one to three competitors. Maps where they are positioned, where they are drifting, and what space exists for you to occupy distinctly.</p>
@@ -2011,10 +2033,7 @@ section {
             <button class="acc-row" onclick="toggleAcc(this)">
               <span class="acc-type">Audience</span>
               <span class="acc-name">Audience Coherence Report</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written report</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <div class="acc-row-footer"><span class="acc-format">Written report</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
               <p>Structural alignment between your brand and a specific target group. Identifies connection quality, trust gaps, and signal mismatches. Does this audience genuinely belong to us?</p>
@@ -2023,57 +2042,12 @@ section {
 
           <div class="acc-item">
             <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Expansion</span>
-              <span class="acc-name">New Market Coherence Report</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written report</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <span class="acc-type">New Element</span>
+              <span class="acc-name">New Element Coherence Test</span>
+              <div class="acc-row-footer"><span class="acc-format">Report + priority flags</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>Does your brand structure translate to a new geography, culture, or category? What holds, what distorts, and what must be re-calibrated before you enter.</p>
-            </div>
-          </div>
-
-          <div class="acc-item">
-            <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Product</span>
-              <span class="acc-name">New Product Coherence Report</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written report</span>
-                <span class="acc-chevron">↓</span>
-              </div>
-            </button>
-            <div class="acc-body" hidden>
-              <p>Assesses whether a proposed product, line extension, or service is structurally coherent with the brand's core. Prevents launches that fragment identity.</p>
-            </div>
-          </div>
-
-          <div class="acc-item">
-            <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Corporate</span>
-              <span class="acc-name">M&amp;A Brand Compatibility Report</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Report + priority actions</span>
-                <span class="acc-chevron">↓</span>
-              </div>
-            </button>
-            <div class="acc-body" hidden>
-              <p>Pre-merger or pre-acquisition analysis of brand coherence between two entities. Maps structural overlap, tension points, and post-merger identity risk.</p>
-            </div>
-          </div>
-
-          <div class="acc-item">
-            <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">People</span>
-              <span class="acc-name">Hire Resonance Report</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written report</span>
-                <span class="acc-chevron">↓</span>
-              </div>
-            </button>
-            <div class="acc-body" hidden>
-              <p>Structural alignment check for a senior hire or public-facing appointment. Maps the individual's character and communication style against the organisation's structural signature.</p>
+              <p>What happens when something new enters the brand system — a product, a market, a CEO, a customer segment, a merger target. A structured analysis of how the new element interacts with the existing identity architecture before the decision is made. Covers product launches, market entries, leadership transitions, and acquisitions in one framework.</p>
             </div>
           </div>
 
@@ -2081,68 +2055,55 @@ section {
             <button class="acc-row" onclick="toggleAcc(this)">
               <span class="acc-type">Leadership</span>
               <span class="acc-name">Brand–Leader Resonance Report</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written report</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <div class="acc-row-footer"><span class="acc-format">Written report</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>Analysis of alignment between a founder, CEO, or spokesperson and the brand they represent. Maps overlap, drift zones, and communication risk.</p>
+              <p>Analysis of alignment between a founder, CEO, or incoming leader and the brand they represent. Maps overlap, drift zones, and communication risk. Most urgent during leadership transitions, before a public-facing hire, or when a new CEO inherits a brand with a strong established character.</p>
             </div>
           </div>
 
           <div class="acc-item">
             <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Audit</span>
-              <span class="acc-name">Communications Audit</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written report</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <span class="acc-type">Corporate</span>
+              <span class="acc-name">M&amp;A Brand Compatibility Report</span>
+              <div class="acc-row-footer"><span class="acc-format">Report + priority actions</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>Existing advertising, editorial, digital, and PR mapped against the structural brand core. Shows where the voice is on-signal and where it is drifting.</p>
-            </div>
-          </div>
-
-          <div class="acc-item">
-            <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Transition</span>
-              <span class="acc-name">Rebranding Coherence Review</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Report + debrief</span>
-                <span class="acc-chevron">↓</span>
-              </div>
-            </button>
-            <div class="acc-body" hidden>
-              <p>A structural integrity check for organisations mid-rebrand. Ensures the new direction does not sever what is genuinely valuable in the existing brand structure.</p>
+              <p>Pre-merger or pre-acquisition analysis of brand coherence between two entities. Maps structural overlap, tension points, and post-merger identity risk before the deal closes.</p>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Tier 2: Creation -->
+      <!-- 02: Brand Creation -->
       <div class="svtier">
         <div class="svtier-header">
           <span class="svtier-num">02</span>
-          <span class="svtier-label">Creation</span>
-          <span class="svtier-count">4 products</span>
+          <span class="svtier-label">Brand Creation</span>
+          <span class="svtier-count">For brands built from zero</span>
         </div>
-
         <div class="acc-grid">
+
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Foundation</span>
+              <span class="acc-name">Full Brand Origination</span>
+              <div class="acc-row-footer"><span class="acc-format">Complete foundation document</span><span class="acc-chevron">↓</span></div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>All core elements defined from scratch: affective signature, brand world rules, character axes, mythic core, persona architecture, product philosophy, voice and visual governance system. For new ventures, spin-outs, or organisations that have never had a structural identity.</p>
+            </div>
+          </div>
 
           <div class="acc-item">
             <button class="acc-row" onclick="toggleAcc(this)">
               <span class="acc-type">Voice</span>
               <span class="acc-name">Communications Register</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written guide</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <div class="acc-row-footer"><span class="acc-format">Written guide</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>A practical voice and tone guide derived from the diagnostic. Sets register, sentence structure, vocabulary, and what to avoid. The operational writing tool for teams and agencies.</p>
+              <p>A practical voice and tone guide derived from the diagnostic or origination. Sets register, sentence structure, vocabulary, and what to avoid. The operational writing tool for teams and agencies. Can cover a single product line, a full brand, or a specific channel context.</p>
             </div>
           </div>
 
@@ -2150,13 +2111,10 @@ section {
             <button class="acc-row" onclick="toggleAcc(this)">
               <span class="acc-type">Position</span>
               <span class="acc-name">Positioning Statement</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written document</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <div class="acc-row-footer"><span class="acc-format">Written document</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>A single, structurally grounded market position with full written rationale. Not a tagline — a structural declaration built to hold under commercial pressure.</p>
+              <p>A single, structurally grounded market position with full written rationale. Not a tagline — a structural declaration built to hold under commercial pressure and across markets.</p>
             </div>
           </div>
 
@@ -2164,10 +2122,7 @@ section {
             <button class="acc-row" onclick="toggleAcc(this)">
               <span class="acc-type">Narrative</span>
               <span class="acc-name">Narrative Architecture</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written document</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <div class="acc-row-footer"><span class="acc-format">Written document</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
               <p>The complete story structure: founding logic, current positioning, future direction. Written, not frameworks. Built for pitches, press, and long-form communications.</p>
@@ -2176,84 +2131,112 @@ section {
 
           <div class="acc-item">
             <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Brief</span>
-              <span class="acc-name">Campaign Coherence Brief</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Written brief</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <span class="acc-type">Tool · Monthly</span>
+              <span class="acc-name">Voice Tool — Subscription</span>
+              <div class="acc-row-footer"><span class="acc-format">AI-powered · Monthly fee</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>A strategic brief for a campaign or communication built directly from diagnostic findings. Ensures creative output is structurally grounded before briefing a team.</p>
+              <p>A self-contained text production tool built on the brand's defined voice. Your team generates governed communications independently — website copy, press, social, internal. The voice definition is embedded; the AI layer produces outputs within it. Available after a completed voice or origination engagement. The methodology stays with the practitioner. You receive the governed output tool.</p>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Tier 3: Retainer -->
+      <!-- 03: Execution & Governance -->
       <div class="svtier">
         <div class="svtier-header">
           <span class="svtier-num">03</span>
-          <span class="svtier-label">Retainer</span>
-          <span class="svtier-count">4 actions</span>
+          <span class="svtier-label">Execution &amp; Governance</span>
+          <span class="svtier-count">Ongoing — requires completed diagnostic</span>
         </div>
-
         <div class="acc-grid">
 
           <div class="acc-item">
             <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Ongoing</span>
-              <span class="acc-name">Drift Monitoring</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Monthly or quarterly</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <span class="acc-type">Direction</span>
+              <span class="acc-name">Creative &amp; Strategic Direction</span>
+              <div class="acc-row-footer"><span class="acc-format">Per brief / retainer</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>Recurring structural check-ins that catch coherence loss before it compounds. Delivered as a short written note with priority flags.</p>
+              <p>Briefing and directing agencies on behalf of the brand. Translating structural findings into executable creative direction. Reviewing agency outputs for identity drift. Not execution — governance of execution. The practitioner sits between the structural read and the agency brief.</p>
             </div>
           </div>
 
           <div class="acc-item">
             <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Ongoing</span>
-              <span class="acc-name">Communications Writing</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Volume-based retainer</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <span class="acc-type">Coherence</span>
+              <span class="acc-name">Campaign &amp; Launch Coherence</span>
+              <div class="acc-row-footer"><span class="acc-format">Per engagement</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>All ongoing copy, scripts, statements, or editorial produced in alignment with the structural voice. Covers website, press, speeches, and executive communications.</p>
+              <p>Structural coherence work at the campaign or launch level. Covers two modes: a brief built from diagnostic findings before creative begins, and a fast-turnaround review of any campaign, product launch, or major public communication before it goes live. Both ensure the output does not fracture identity.</p>
             </div>
           </div>
 
           <div class="acc-item">
             <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">On-demand</span>
-              <span class="acc-name">Launch Coherence Review</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Per launch</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <span class="acc-type">Audit · Monthly</span>
+              <span class="acc-name">Presence Audit</span>
+              <div class="acc-row-footer"><span class="acc-format">Monthly report + flags</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>A fast-turnaround structural check on any campaign, product launch, or major public communication before it goes live. Ensures the output does not fracture identity.</p>
+              <p>Monthly structural check of live brand outputs across all channels. Identifies drift from the structural identity before it compounds. Live presences are pulled into the diagnostic system and checked for validity and drift. Delivered as a short written note with priority flags and a correction brief where needed.</p>
             </div>
           </div>
 
           <div class="acc-item">
             <button class="acc-row" onclick="toggleAcc(this)">
-              <span class="acc-type">Ongoing</span>
+              <span class="acc-type">Transition</span>
+              <span class="acc-name">Rebranding Coherence Review</span>
+              <div class="acc-row-footer"><span class="acc-format">Report + direction</span><span class="acc-chevron">↓</span></div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Structural review of a rebrand in progress or recently completed. Assesses whether the new identity is genuinely coherent or whether the change is cosmetic over an unresolved structural problem. Identifies what is working, what is at risk, and what the next decision needs to address.</p>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">People</span>
+              <span class="acc-name">Hire Resonance Report</span>
+              <div class="acc-row-footer"><span class="acc-format">Written report</span><span class="acc-chevron">↓</span></div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Structural alignment assessment for a senior hire — CMO, CCO, creative director, or brand lead. Evaluates whether the candidate's character, communication register, and creative instinct are coherent with the brand they will represent. Prevents the common pattern of hiring for credentials while ignoring structural fit.</p>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Retainer</span>
               <span class="acc-name">Strategic Counsel</span>
-              <div class="acc-row-footer">
-                <span class="acc-format">Monthly retainer</span>
-                <span class="acc-chevron">↓</span>
-              </div>
+              <div class="acc-row-footer"><span class="acc-format">Monthly retainer</span><span class="acc-chevron">↓</span></div>
             </button>
             <div class="acc-body" hidden>
-              <p>Regular access for live decisions. Brand, positioning, partner, hire, or market moves reviewed through the structural lens before they are made.</p>
+              <p>Regular access for live brand, positioning, partner, hire, or market decisions reviewed through the structural lens before they are made. Monthly session plus asynchronous access between sessions. Includes the monthly presence audit.</p>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Retainer · Full</span>
+              <span class="acc-name">Brand Governance Partner</span>
+              <div class="acc-row-footer"><span class="acc-format">Monthly · Min. 12 months</span><span class="acc-chevron">↓</span></div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Full governance layer during active repositioning or significant leadership transition. Agency briefings reviewed and approved. Partnership and hire decisions evaluated against the structural brief. Product and market launches stress-tested before execution. Weekly access. For organisations where the brand decisions of the next 12 months define the next decade.</p>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-row" onclick="toggleAcc(this)">
+              <span class="acc-type">Network</span>
+              <span class="acc-name">Partner Network Access</span>
+              <div class="acc-row-footer"><span class="acc-format">Coordination / referral</span><span class="acc-chevron">↓</span></div>
+            </button>
+            <div class="acc-body" hidden>
+              <p>Where the brand needs production beyond briefing — design, copy, digital, spatial — a governed partner network delivers it. Partners work within the structural brief that has been defined. The execution is theirs. The coherence is maintained.</p>
             </div>
           </div>
 
@@ -2262,25 +2245,25 @@ section {
 
     </div>
 
-    <!-- for whom -->
+        <!-- for whom -->
     <div class="for-whom">
       <div class="for-whom-title">For whom</div>
       <div class="for-whom-grid">
         <div class="for-whom-item">
-          <div class="for-whom-label">Founders at an inflection point</div>
-          <div class="for-whom-desc">Series A to post-exit, navigating the gap between what the company was and what it needs to become.</div>
+          <div class="for-whom-label">Independent founders</div>
+          <div class="for-whom-desc">Early-stage ventures and solo operators where the brand architecture needs to be right from the first decision, not retrofitted later.</div>
         </div>
         <div class="for-whom-item">
-          <div class="for-whom-label">Creative leaders</div>
-          <div class="for-whom-desc">Directors, designers, and practitioners whose work requires a coherent personal presence alongside institutional one.</div>
+          <div class="for-whom-label">Growing organisations</div>
+          <div class="for-whom-desc">Brands between €2M and €150M revenue navigating the moment when informal identity coherence is no longer enough to hold the organisation together.</div>
         </div>
         <div class="for-whom-item">
-          <div class="for-whom-label">Individuals in transition</div>
-          <div class="for-whom-desc">Professionals reinventing trajectory — between roles, between industries, or between versions of themselves.</div>
+          <div class="for-whom-label">Global brand teams</div>
+          <div class="for-whom-desc">Internal brand leaders at major organisations who need a structural read of where the brand is drifting — and a governed framework for the next phase.</div>
         </div>
         <div class="for-whom-item">
-          <div class="for-whom-label">Independent studios</div>
-          <div class="for-whom-desc">Small creative and strategic practices that need structural clarity to attract the right clients and decline the wrong ones.</div>
+          <div class="for-whom-label">Consulting partnerships</div>
+          <div class="for-whom-desc">Strategy firms and boutique consultancies who win engagements that include brand work and need a specialist diagnostic layer their own team cannot provide.</div>
         </div>
       </div>
     </div>
@@ -3110,6 +3093,1155 @@ section {
 </script>
 
 <!-- ============================================================
+     SUB-SECTION NAV STYLE (shared by catalogue, clients, client pages)
+     ============================================================ -->
+<style>
+.subnav-bar {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(17,17,16,0.95);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid var(--border-dark);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 56px;
+}
+.subnav-left { display: flex; align-items: center; gap: 20px; }
+.subnav-logo {
+  font-family: var(--font-serif); font-size: 15px; font-weight: 500;
+  color: var(--text-white); letter-spacing: -0.01em; text-decoration: none;
+}
+.subnav-logo span { color: var(--gold); }
+.subnav-section {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-white-pale);
+  padding-left: 20px; border-left: 0.5px solid var(--border-dark-mid);
+}
+.subnav-back {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--text-white-pale);
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s; padding: 0;
+}
+.subnav-back:hover { color: var(--gold); }
+.subnav-cta {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: #FAFAF8;
+  background: var(--gold); padding: 7px 16px;
+  border-radius: var(--radius-4); text-decoration: none;
+  transition: opacity 0.2s;
+}
+.subnav-cta:hover { opacity: 0.85; }
+@media (max-width: 600px) {
+  .subnav-bar { padding: 0 20px; }
+  .subnav-section { display: none; }
+}
+</style>
+
+<!-- ============================================================
+     SERVICE CATALOGUE — PASSWORD GATED
+     ============================================================ -->
+<section id="catalogue" class="locked-section">
+<style>
+.cat-section { background: var(--ink); padding: 80px 64px; }
+.cat-inner { max-width: 1080px; margin: 0 auto; }
+.tier-toggle {
+  display: flex; gap: 4px; margin-bottom: 48px;
+  background: var(--void); border: 0.5px solid var(--border-dark);
+  border-radius: var(--radius-8); padding: 4px; width: fit-content;
+}
+.tier-btn {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-white-pale);
+  padding: 8px 16px; border-radius: 6px; border: none;
+  background: transparent; cursor: pointer; transition: all 0.2s;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.tier-btn .tier-btn-name { font-size: 10px; letter-spacing: 0.08em; }
+.tier-btn .tier-btn-range { font-size: 8px; letter-spacing: 0.04em; opacity: 0.5; }
+.tier-btn.active { background: var(--charcoal); color: var(--gold); border: 0.5px solid var(--border-dark-mid); }
+.tier-btn.active .tier-btn-range { opacity: 0.7; }
+.tier-btn:hover:not(.active) { color: var(--text-white-mid); }
+
+.cat-practice { margin-bottom: 48px; }
+.cat-practice-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 0.5px solid var(--border-dark);
+}
+.cat-practice-num { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.cat-practice-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-white-pale); }
+
+.price-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--bento-gap); }
+.price-card {
+  background: var(--void); border: 0.5px solid var(--border-dark);
+  border-radius: var(--radius-10); padding: 20px 22px 18px;
+  transition: border-color 0.2s;
+}
+.price-card:hover { border-color: var(--border-dark-mid); }
+.price-card.featured { background: var(--charcoal); border-color: var(--border-dark-mid); grid-column: span 2; }
+.price-card.retainer-card { border-left: 1px solid var(--gold); background: rgba(95,133,255,0.04); }
+.price-type { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-white-pale); margin-bottom: 10px; }
+.price-name { font-size: 14px; font-weight: 500; color: var(--text-white); margin-bottom: 6px; line-height: 1.3; }
+.price-desc { font-size: 12px; font-weight: 300; color: var(--text-white-mid); line-height: 1.6; margin-bottom: 14px; }
+.price-val {
+  margin-top: auto; padding-top: 12px; border-top: 0.5px solid var(--border-dark);
+}
+.price-pill {
+  display: inline-block;
+  background: rgba(95,133,255,0.20);
+  border: 0.5px solid rgba(95,133,255,0.35);
+  color: var(--text-white);
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.05em; padding: 5px 11px; border-radius: 4px;
+}
+.price-note { font-size: 10px; color: var(--text-white-pale); letter-spacing: 0.04em; margin-top: 6px; }
+[data-tier="studio"],
+[data-tier="brand"],
+[data-tier="enterprise"] { display: none; }
+[data-tier="independent"] { display: block; }
+.price-card { display: flex; flex-direction: column; }
+.cat-intro {
+  font-size: 14px; font-weight: 300; color: var(--text-white-mid);
+  line-height: 1.75; max-width: 580px; margin-bottom: 40px;
+}
+.cat-note {
+  margin-top: 40px; padding: 20px 24px;
+  border: 0.5px solid var(--border-dark); border-left: 2px solid var(--gold);
+  border-radius: 0 var(--radius-8) var(--radius-8) 0;
+  background: rgba(95,133,255,0.04);
+  font-size: 13px; font-weight: 300; color: var(--text-white-pale); line-height: 1.7;
+}
+@media (max-width: 900px) { .price-grid { grid-template-columns: repeat(2,1fr); } .price-card.featured { grid-column: span 2; } }
+@media (max-width: 600px) { .price-grid { grid-template-columns: 1fr; } .price-card.featured { grid-column: span 1; } .cat-section { padding: 48px 20px; } }
+</style>
+<div class="cat-section">
+<div class="subnav-bar">
+  <div class="subnav-left">
+    <a class="subnav-logo" href="#home" onclick="closeSectionView()">Design Intelligence <span>Framework</span></a>
+    <span class="subnav-section">Service Catalogue</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="subnav-back" onclick="closeSectionView()">← Back to site</button>
+    <a class="subnav-cta" href="mailto:b3njamin@me.com">Connect</a>
+  </div>
+</div>
+<div class="cat-inner" style="padding-top:40px;">
+
+  <div class="section-header">
+    <span class="section-num">— Service Catalogue</span>
+    <h2 class="section-title">Engagements &amp; pricing</h2>
+  </div>
+
+  <p class="cat-intro">Pricing is structured by organisation size — not to discount the service, but to reflect the scope each engagement requires. Select your revenue tier to see the relevant pricing.</p>
+
+  <div class="tier-toggle">
+    <button class="tier-btn active" onclick="switchTier('independent',this)">
+      <span class="tier-btn-name">Independent</span>
+      <span class="tier-btn-range">Under €2M</span>
+    </button>
+    <button class="tier-btn" onclick="switchTier('studio',this)">
+      <span class="tier-btn-name">Studio</span>
+      <span class="tier-btn-range">€2M – €10M</span>
+    </button>
+    <button class="tier-btn" onclick="switchTier('brand',this)">
+      <span class="tier-btn-name">Brand</span>
+      <span class="tier-btn-range">€10M – €150M</span>
+    </button>
+    <button class="tier-btn" onclick="switchTier('enterprise',this)">
+      <span class="tier-btn-name">Enterprise</span>
+      <span class="tier-btn-range">€150M+</span>
+    </button>
+  </div>
+
+  <!-- Practice 01: Portrait & Diagnostic -->
+  <div class="cat-practice">
+    <div class="cat-practice-header">
+      <span class="cat-practice-num">01</span>
+      <span class="cat-practice-label">Portrait &amp; Diagnostic</span>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card featured">
+        <div class="price-type">Core · Entry point</div>
+        <div class="price-name">Brand Coherence Diagnostic — External</div>
+        <div class="price-desc">Full structural read from public evidence. Portrait, resonance gaps, configuration, and priority intervention points. The entry point for every engagement.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€4,500 – €8,000</span><div class="price-note">2–3 weeks · Written report + debrief</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€8,000 – €15,000</span><div class="price-note">2–3 weeks · Written report + debrief</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€18,000 – €32,000</span><div class="price-note">3–4 weeks · Written report + debrief</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€35,000 – €55,000</span><div class="price-note">3–5 weeks · Written report + debrief</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">Core · Deep</div>
+        <div class="price-name">Brand Coherence Diagnostic — Full</div>
+        <div class="price-desc">External diagnostic sharpened with internal data, interviews, and customer research. Validated scores and precise intervention points.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€9,000 – €16,000</span><div class="price-note">4–6 weeks</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€18,000 – €30,000</span><div class="price-note">5–8 weeks</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€40,000 – €70,000</span><div class="price-note">6–10 weeks</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€75,000 – €130,000</span><div class="price-note">8–14 weeks</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">Intelligence</div>
+        <div class="price-name">Concurrence Report</div>
+        <div class="price-desc">Structural analysis of 1–3 competitors. Maps positioning, drift, and space available.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€2,500 – €4,000</span><div class="price-note">Per competitor set</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€4,000 – €7,000</span><div class="price-note">Per competitor set</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€8,000 – €15,000</span><div class="price-note">Per competitor set</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€15,000 – €28,000</span><div class="price-note">Per competitor set</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">Stress Test</div>
+        <div class="price-name">New Element Coherence Test</div>
+        <div class="price-desc">How a new product, market, CEO, or audience segment interacts with existing identity — before the decision is made. Covers launches, market entries, leadership transitions, and acquisitions in one framework.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€2,000 – €4,000</span><div class="price-note">Per element</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€4,000 – €8,000</span><div class="price-note">Per element</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€9,000 – €18,000</span><div class="price-note">Per element</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€18,000 – €35,000</span><div class="price-note">Per element</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">Monthly</div>
+        <div class="price-name">Presence Audit</div>
+        <div class="price-desc">Monthly drift check across live channels. Flags and correction brief. Requires completed diagnostic foundation.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€800 / month</span><div class="price-note">Monthly · Ongoing</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€1,500 / month</span><div class="price-note">Monthly · Ongoing</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€3,000 / month</span><div class="price-note">Monthly · Ongoing</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€5,500 / month</span><div class="price-note">Monthly · Ongoing</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">Corporate</div>
+        <div class="price-name">M&amp;A Brand Compatibility</div>
+        <div class="price-desc">Pre-merger structural identity audit. Alignment distance, integration difficulty, brand dilution risk.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">On request</span><div class="price-note">Scoped per situation</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€12,000 – €20,000</span><div class="price-note">Scoped per situation</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€22,000 – €40,000</span><div class="price-note">Scoped per situation</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€40,000 – €80,000</span><div class="price-note">Scoped per situation</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Practice 02: Brand Creation -->
+  <div class="cat-practice">
+    <div class="cat-practice-header">
+      <span class="cat-practice-num">02</span>
+      <span class="cat-practice-label">Brand Creation</span>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card featured">
+        <div class="price-type">Foundation · From zero</div>
+        <div class="price-name">Full Brand Origination</div>
+        <div class="price-desc">All core elements defined from scratch: affective signature, world rules, character, mythic core, persona architecture, voice and visual governance. For new ventures and organisations that have never had a structural identity.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€8,000 – €18,000</span><div class="price-note">6–10 weeks · Complete foundation document</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€20,000 – €40,000</span><div class="price-note">6–10 weeks · Complete foundation document</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€45,000 – €85,000</span><div class="price-note">8–14 weeks · Complete foundation document</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€90,000 – €130,000</span><div class="price-note">10–16 weeks · Complete foundation document</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">Voice</div>
+        <div class="price-name">Communications Register</div>
+        <div class="price-desc">Practical voice and tone guide derived from diagnostic. Register, vocabulary, sentence logic, and what to avoid.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€2,000 – €4,000</span><div class="price-note">Written guide</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€4,000 – €7,000</span><div class="price-note">Written guide</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€8,000 – €14,000</span><div class="price-note">Written guide</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€18,000 – €28,000</span><div class="price-note">Written guide</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">Narrative</div>
+        <div class="price-name">Narrative Architecture</div>
+        <div class="price-desc">Complete story structure: founding logic, positioning, future direction. Written for pitches, press, and long-form communications.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€2,500 – €4,500</span><div class="price-note">Written document</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€4,500 – €8,000</span><div class="price-note">Written document</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€9,000 – €16,000</span><div class="price-note">Written document</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€20,000 – €32,000</span><div class="price-note">Written document</div></div>
+      </div>
+
+      <div class="price-card retainer-card">
+        <div class="price-type">Tool · Monthly</div>
+        <div class="price-name">Voice Tool — Subscription</div>
+        <div class="price-desc">AI-powered text production tool built on your defined voice. Your team generates governed communications independently. Requires completed voice engagement.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€500 / month</span><div class="price-note">After voice engagement</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€600 / month</span><div class="price-note">After voice engagement</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€1,200 / month</span><div class="price-note">After voice engagement</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€2,200 / month</span><div class="price-note">After voice engagement</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Practice 03: Execution & Governance -->
+  <div class="cat-practice">
+    <div class="cat-practice-header">
+      <span class="cat-practice-num">03</span>
+      <span class="cat-practice-label">Execution &amp; Governance</span>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card retainer-card">
+        <div class="price-type">Retainer · Monthly</div>
+        <div class="price-name">Strategic Counsel</div>
+        <div class="price-desc">Regular access for live brand, positioning, and market decisions reviewed through the structural lens before they are made.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€1,200 / month</span><div class="price-note">Monthly retainer</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€2,500 / month</span><div class="price-note">Monthly retainer</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€5,000 / month</span><div class="price-note">Monthly retainer</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€9,000 / month</span><div class="price-note">Monthly retainer</div></div>
+      </div>
+
+      <div class="price-card retainer-card">
+        <div class="price-type">Retainer · Full Governance</div>
+        <div class="price-name">Brand Governance Partner</div>
+        <div class="price-desc">Full governance layer during active repositioning or significant transition. Agency briefings reviewed. Designer and partnership decisions evaluated against the structural brief. Product and market launches stress-tested before execution. Weekly access. For organisations where the brand decisions of the next 12 months define the next decade.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">On request</span><div class="price-note">Scoped per situation</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€4,500 / month</span><div class="price-note">Min. 12 months · Weekly access</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€9,500 / month</span><div class="price-note">Min. 12 months · Weekly access</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€16,000 / month</span><div class="price-note">Min. 12 months · Weekly access</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">Direction</div>
+        <div class="price-name">Creative &amp; Strategic Direction</div>
+        <div class="price-desc">Briefing and governing agencies on behalf of the brand. Translation of structural findings into executable creative direction.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€1,500 – €3,500</span><div class="price-note">Per brief</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€3,500 – €7,000</span><div class="price-note">Per brief</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€7,000 – €15,000</span><div class="price-note">Per brief</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€14,000 – €28,000</span><div class="price-note">Per brief</div></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-type">On-demand</div>
+        <div class="price-name">Campaign &amp; Launch Coherence</div>
+        <div class="price-desc">Structural coherence work at the campaign or launch level — brief before creative begins, or fast-turnaround review before anything goes live.</div>
+        <div class="price-val" data-tier="independent"><span class="price-pill">€800 – €1,800</span><div class="price-note">Per launch</div></div>
+        <div class="price-val" data-tier="studio"><span class="price-pill">€1,800 – €3,500</span><div class="price-note">Per launch</div></div>
+        <div class="price-val" data-tier="brand"><span class="price-pill">€4,000 – €8,000</span><div class="price-note">Per launch</div></div>
+        <div class="price-val" data-tier="enterprise"><span class="price-pill">€8,000 – €16,000</span><div class="price-note">Per launch</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cat-note">All engagements begin with a conversation — not a proposal. Prices are ranges; exact scope is confirmed before any engagement starts. A completed diagnostic is required before execution or governance work is commissioned.</div>
+
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     CLIENT INDEX — PRACTITIONER ONLY
+     ============================================================ -->
+<section id="clients" class="locked-section">
+<style>
+.clients-section { background: var(--ink); padding: 80px 64px; }
+.clients-inner { max-width: 1080px; margin: 0 auto; }
+.client-index-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--bento-gap); margin-top: 40px; }
+.client-index-card {
+  background: var(--void); border: 0.5px solid var(--border-dark);
+  border-radius: var(--radius-12); padding: 24px 24px 20px;
+  cursor: pointer; transition: border-color 0.2s;
+  text-decoration: none; display: block;
+}
+.client-index-card:hover { border-color: var(--gold); }
+.cic-tier { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-white-pale); margin-bottom: 12px; }
+.cic-name { font-family: var(--font-sans); font-size: 20px; font-weight: 500; color: var(--text-white); margin-bottom: 4px; }
+.cic-sector { font-size: 12px; font-weight: 300; color: var(--text-white-pale); margin-bottom: 16px; }
+.cic-status { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.cic-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.cic-status-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+.cic-summary { font-size: 12px; font-weight: 300; color: var(--text-white-mid); line-height: 1.65; }
+.cic-footer { margin-top: 16px; padding-top: 12px; border-top: 0.5px solid var(--border-dark); display: flex; justify-content: space-between; align-items: center; }
+.cic-phase { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-white-pale); }
+.cic-arrow { color: var(--text-white-pale); font-size: 12px; }
+.client-index-card:hover .cic-arrow { color: var(--gold); }
+@media (max-width: 900px) { .client-index-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 600px) { .client-index-grid { grid-template-columns: 1fr; } .clients-section { padding: 48px 20px; } }
+</style>
+<div class="clients-section">
+<div class="subnav-bar">
+  <div class="subnav-left">
+    <a class="subnav-logo" href="#home" onclick="closeSectionView()">Design Intelligence <span>Framework</span></a>
+    <span class="subnav-section">Client Portal</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="subnav-back" onclick="closeSectionView()">← Back to site</button>
+    <a class="subnav-cta" href="mailto:b3njamin@me.com">Connect</a>
+  </div>
+</div>
+<div class="clients-inner" style="padding-top:40px;">
+  <div class="section-header">
+    <span class="section-num">— Client Portal</span>
+    <h2 class="section-title">Active engagements</h2>
+  </div>
+  <p style="font-size:14px;font-weight:300;color:var(--text-white-pale);line-height:1.7;max-width:520px;">Each client has a private page accessible only with their individual key. This index is for practitioner reference only.</p>
+
+  <div class="client-index-grid">
+    <div class="client-index-card" onclick="openGate('client-pareva')">
+      <div class="cic-tier">Engagement · Active</div>
+      <div class="cic-name">CLT-001</div>
+      <div class="cic-status"><div class="cic-dot"></div><div class="cic-status-label">Report delivered · In conversation</div></div>
+      <div class="cic-summary">Brand Coherence Diagnostic (external) completed. Three findings delivered. Full engagement proposal open.</div>
+      <div class="cic-footer">
+        <span class="cic-phase">Section I of IV delivered</span>
+        <span class="cic-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="client-index-card" onclick="openGate('client-vw')">
+      <div class="cic-tier">Engagement · Demo</div>
+      <div class="cic-name">CLT-002</div>
+      <div class="cic-status"><div class="cic-dot" style="background:var(--steel);"></div><div class="cic-status-label" style="color:var(--steel);">Demo case · Public</div></div>
+      <div class="cic-summary">Full brand intelligence report produced as public demo case. Five findings. Two structural directions developed.</div>
+      <div class="cic-footer">
+        <span class="cic-phase">Demo case complete</span>
+        <span class="cic-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="client-index-card" onclick="openGate('client-duravit')">
+      <div class="cic-tier">Engagement · Active</div>
+      <div class="cic-name">CLT-003</div>
+      <div class="cic-status"><div class="cic-dot"></div><div class="cic-status-label">Diagnostic delivered · Engagement map open</div></div>
+      <div class="cic-summary">Brand Intelligence Review and SensoWash Communications Register delivered. Full engagement map with two paths, voice architecture, and Brand Intelligence Assistant in development.</div>
+      <div class="cic-footer">
+        <span class="cic-phase">2 items delivered · Map active</span>
+        <span class="cic-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     CLIENT PAGE — PAREVA
+     ============================================================ -->
+<section id="client-pareva" class="locked-section">
+<style>
+.cp-section { background: var(--ink); padding: 80px 64px; }
+.cp-inner { max-width: 1080px; margin: 0 auto; }
+.cp-back { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-white-pale); background: none; border: none; cursor: pointer; padding: 0; margin-bottom: 32px; opacity: 0.5; transition: opacity 0.2s; }
+.cp-back:hover { opacity: 1; }
+.cp-header { margin-bottom: 48px; padding-bottom: 24px; border-bottom: 0.5px solid var(--border-dark); }
+.cp-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.cp-client-name { font-size: 36px; font-weight: 500; color: var(--text-white); letter-spacing: -0.01em; margin-bottom: 4px; }
+.cp-client-meta { font-size: 13px; font-weight: 300; color: var(--text-white-pale); }
+.cp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+.cp-block { background: var(--void); border: 0.5px solid var(--border-dark); border-radius: var(--radius-12); padding: 28px 28px 24px; }
+.cp-block.full { grid-column: span 2; }
+.cp-block.highlight { border-color: rgba(95,133,255,0.35); background: rgba(95,133,255,0.04); }
+.cp-block-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.cp-block-title { font-size: 16px; font-weight: 500; color: var(--text-white); margin-bottom: 10px; line-height: 1.35; }
+.cp-block-body { font-size: 13px; font-weight: 300; color: var(--text-white-mid); line-height: 1.7; }
+.cp-block-body p + p { margin-top: 10px; }
+.cp-finding { padding: 14px 18px; background: var(--charcoal); border-radius: var(--radius-8); margin-bottom: 8px; border-left: 2px solid var(--border-dark-mid); }
+.cp-finding.open { border-left-color: var(--gold); }
+.cp-finding.locked { border-left-color: var(--border-dark); opacity: 0.5; }
+.cp-finding-num { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-white-pale); margin-bottom: 4px; }
+.cp-finding-title { font-size: 13px; font-weight: 500; color: var(--text-white); line-height: 1.35; }
+.cp-delivered-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 0.5px solid var(--border-dark); }
+.cp-delivered-item:last-child { border-bottom: none; }
+.cp-del-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+.cp-del-body { flex: 1; }
+.cp-del-name { font-size: 13px; font-weight: 500; color: var(--text-white); margin-bottom: 2px; }
+.cp-del-meta { font-size: 11px; font-weight: 300; color: var(--text-white-pale); }
+.cp-del-link { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-top: 6px; display: inline-block; }
+.cp-del-link:hover { text-decoration: underline; }
+.cp-next-item { padding: 18px 20px; background: var(--charcoal); border: 0.5px solid var(--border-dark-mid); border-radius: var(--radius-10); margin-bottom: 8px; display: flex; align-items: flex-start; gap: 16px; }
+.cp-next-num { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); flex-shrink: 0; padding-top: 2px; }
+.cp-next-body { flex: 1; }
+.cp-next-name { font-size: 13px; font-weight: 500; color: var(--text-white); margin-bottom: 4px; }
+.cp-next-desc { font-size: 12px; font-weight: 300; color: var(--text-white-mid); line-height: 1.65; }
+.cp-next-price { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--gold); margin-top: 8px; }
+@media (max-width: 900px) { .cp-grid { grid-template-columns: 1fr; } .cp-block.full { grid-column: span 1; } }
+@media (max-width: 600px) { .cp-section { padding: 48px 20px; } }
+</style>
+<div class="cp-section">
+<div class="subnav-bar">
+  <div class="subnav-left">
+    <a class="subnav-logo" href="#home" onclick="closeSectionView()">Design Intelligence <span>Framework</span></a>
+    <span class="subnav-section">Pareva GmbH — Client Page</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="subnav-back" onclick="closeSectionView()">← Back to site</button>
+    <a class="subnav-cta" href="mailto:b3njamin@me.com">Connect</a>
+  </div>
+</div>
+<div class="cp-inner" style="padding-top:40px;">
+    <div class="cp-client-meta">IoT Smart Locker Solutions · Bruchsal, Baden-Württemberg · Founded 2018</div>
+  </div>
+
+  <div class="cp-grid">
+
+    <!-- Portrait summary -->
+    <div class="cp-block full highlight">
+      <div class="cp-block-label">Portrait — Structural summary</div>
+      <div class="cp-block-title">A platform brand communicating like a product company</div>
+      <div class="cp-block-body">
+        <p>Pareva was conceived as an access control intelligence platform — "controlled access management, connecting the real with the digital." Over seven years of commercial focus, the locker use case became the category definition. The original positioning was broader, more defensible, and still entirely true. The brand stopped saying so.</p>
+        <p>The company's deepest differentiator — the partner model, where Steelcase, BURG, dm, Charité and twenty others chose Pareva as their infrastructure layer — is framed as a commercial feature rather than a character statement. It is not evidence of invisibility. It is evidence of being chosen by experts who evaluated every option.</p>
+        <p>Operating across six countries under five domain names, the brand produces a different impression in each market without a structural identity governing any of them. Voice incoherence at this scale is not a future risk — it is an active structural condition accumulating cost in every market encounter.</p>
+      </div>
+    </div>
+
+    <!-- Findings -->
+    <div class="cp-block">
+      <div class="cp-block-label">Diagnostic findings</div>
+      <div class="cp-finding open">
+        <div class="cp-finding-num">Finding 01 · Delivered</div>
+        <div class="cp-finding-title">Platform brand communicating like a product brand</div>
+      </div>
+      <div class="cp-finding open">
+        <div class="cp-finding-num">Finding 02 · Delivered</div>
+        <div class="cp-finding-title">Strongest differentiator is the least visible</div>
+      </div>
+      <div class="cp-finding open">
+        <div class="cp-finding-num">Finding 03 · Delivered</div>
+        <div class="cp-finding-title">Six countries. No governing voice architecture.</div>
+      </div>
+      <div class="cp-finding locked">
+        <div class="cp-finding-num">Finding 04 · Full engagement</div>
+        <div class="cp-finding-title">Audience alignment: where the brand gap creates market friction</div>
+      </div>
+      <div class="cp-finding locked">
+        <div class="cp-finding-num">Finding 05 · Full engagement</div>
+        <div class="cp-finding-title">Suppressed expansion energy and what it takes to unlock it</div>
+      </div>
+    </div>
+
+    <!-- Delivered work -->
+    <div class="cp-block">
+      <div class="cp-block-label">Delivered</div>
+      <div class="cp-delivered-item">
+        <div class="cp-del-dot"></div>
+        <div class="cp-del-body">
+          <div class="cp-del-name">Brand Coherence Diagnostic — Section I of IV</div>
+          <div class="cp-del-meta">External diagnostic · May 2026 · HTML report</div>
+          <a class="cp-del-link" href="pareva_diagnostic_report.html" target="_blank">Open report →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- What comes next -->
+    <div class="cp-block full">
+      <div class="cp-block-label">What comes next</div>
+      <div class="cp-next-item">
+        <div class="cp-next-num">01</div>
+        <div class="cp-next-body">
+          <div class="cp-next-name">Brand Coherence Diagnostic — Sections II–IV</div>
+          <div class="cp-next-desc">Audience profile across six markets, brand-audience alignment score with component breakdown, and a sequenced intervention roadmap ordered by commercial return. Includes voice governance framework for international scaling.</div>
+          <div class="cp-next-price">Studio tier · €8,000 – €15,000 · 3–4 weeks</div>
+        </div>
+      </div>
+      <div class="cp-next-item">
+        <div class="cp-next-num">02</div>
+        <div class="cp-next-body">
+          <div class="cp-next-name">Communications Register — Voice Governance</div>
+          <div class="cp-next-desc">A single governing voice document for all six country entities. Defines how Pareva thinks, acts, and speaks regardless of market. Resolves the US "Pareva Locks" regression and the bilingual-within-posts incoherence.</div>
+          <div class="cp-next-price">Studio tier · €4,000 – €7,000 · Follows diagnostic</div>
+        </div>
+      </div>
+      <div class="cp-next-item">
+        <div class="cp-next-num">03</div>
+        <div class="cp-next-body">
+          <div class="cp-next-name">Positioning Statement — Platform identity</div>
+          <div class="cp-next-desc">A structurally grounded declaration that reclaims the original access intelligence positioning. Built to hold under commercial pressure and across six markets without requiring translation.</div>
+          <div class="cp-next-price">Studio tier · €4,000 – €7,000 · Follows diagnostic</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     CLIENT PAGE — DURAVIT (CLT-003)
+     ============================================================ -->
+<section id="client-duravit" class="locked-section">
+<style>
+/* ── ITEM TIMELINE ── */
+.item-feed { display: flex; flex-direction: column; gap: 0; }
+.item-card {
+  border: 0.5px solid var(--border-dark);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: var(--surface-dark-1);
+}
+.item-card-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 20px 24px 18px; gap: 16px; flex-wrap: wrap;
+  cursor: pointer; user-select: none;
+}
+.item-card-header:hover { background: rgba(255,255,255,0.015); }
+.item-card-left { flex: 1; min-width: 0; }
+.item-date {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-white-ghost); margin-bottom: 5px;
+}
+.item-title {
+  font-family: var(--font-sans); font-size: 15px; font-weight: 500;
+  color: var(--text-white); line-height: 1.3; margin-bottom: 4px;
+}
+.item-desc { font-size: 12px; color: var(--text-white-pale); line-height: 1.5; }
+.item-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.item-tag {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 4px;
+}
+.item-tag.done { background: rgba(95,133,255,0.14); color: var(--blue-on-dark); }
+.item-tag.active { background: rgba(61,158,145,0.12); color: var(--track-teal); }
+.item-tag.pending { background: rgba(255,255,255,0.06); color: var(--text-white-pale); }
+.item-tag.dev { background: rgba(196,123,62,0.12); color: var(--track-amber); }
+.item-chevron {
+  font-size: 11px; color: var(--text-white-pale); flex-shrink: 0;
+  transition: transform 0.2s; padding-top: 3px;
+}
+.item-card.item-open .item-chevron { transform: rotate(180deg); }
+.item-body {
+  border-top: 0.5px solid var(--border-dark);
+  padding: 24px 24px 20px;
+  display: none;
+}
+.item-card.item-open .item-body { display: block; }
+
+/* ── REPORT LINK ── */
+.report-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--blue-on-dark);
+  text-decoration: none; padding: 7px 14px;
+  border: 0.5px solid rgba(95,133,255,0.30);
+  border-radius: 6px; background: rgba(95,133,255,0.07);
+  transition: background 0.15s; margin-top: 12px; margin-right: 8px;
+  display: inline-flex;
+}
+.report-link:hover { background: rgba(95,133,255,0.14); }
+
+/* ── ENGAGEMENT MAP EMBED ── */
+.eng-map-section {
+  background: var(--surface-dark-0);
+  border: 0.5px solid var(--border-dark-mid);
+  border-radius: 10px; padding: 28px 28px 24px; margin-top: 16px;
+}
+.eng-map-tier {
+  margin-bottom: 28px; padding-bottom: 24px;
+  border-bottom: 0.5px solid var(--border-dark);
+}
+.eng-map-tier:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.emt-label {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blue-on-dark); margin-bottom: 6px;
+}
+.emt-title { font-size: 16px; font-weight: 500; color: var(--text-white); margin-bottom: 6px; }
+.emt-desc { font-size: 13px; color: var(--text-white-pale); line-height: 1.65; margin-bottom: 14px; max-width: 640px; }
+.emt-price {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+  color: var(--blue-on-dark); margin-bottom: 4px;
+}
+.emt-meta { font-family: var(--font-mono); font-size: 9px; color: var(--text-white-ghost); }
+.emt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.emt-item {
+  background: var(--surface-dark-2); border: 0.5px solid var(--border-dark-mid);
+  border-radius: 8px; padding: 14px 16px;
+}
+.emt-item-label { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-white-ghost); margin-bottom: 5px; }
+.emt-item-val { font-size: 13px; font-weight: 500; color: var(--text-white); }
+
+/* ── CHATBOT ── */
+.chat-container {
+  background: var(--surface-dark-0);
+  border: 0.5px solid var(--border-dark-mid);
+  border-radius: 10px; overflow: hidden;
+}
+.chat-header {
+  background: var(--surface-dark-2);
+  border-bottom: 0.5px solid var(--border-dark-mid);
+  padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.chat-title {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue-on-dark);
+}
+.chat-status-row { display: flex; align-items: center; gap: 10px; }
+.chat-dev-badge {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 4px;
+  background: rgba(196,123,62,0.14); color: var(--track-amber);
+}
+.chat-usage {
+  font-family: var(--font-mono); font-size: 9px; color: var(--text-white-ghost);
+}
+.chat-user-select {
+  display: flex; gap: 0; border: 0.5px solid var(--border-dark-mid); border-radius: 6px; overflow: hidden;
+}
+.chat-user-btn {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-white-pale);
+  background: transparent; border: none; cursor: pointer;
+  padding: 5px 12px; transition: all 0.15s;
+  border-right: 0.5px solid var(--border-dark-mid);
+}
+.chat-user-btn:last-child { border-right: none; }
+.chat-user-btn.active { background: rgba(95,133,255,0.18); color: var(--blue-on-dark); }
+.chat-context-bar {
+  background: var(--surface-dark-1);
+  border-bottom: 0.5px solid var(--border-dark);
+  padding: 10px 20px;
+  display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+}
+.chat-context-label {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--text-white-ghost); margin-right: 4px;
+}
+.chat-ctx-tag {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 2px 7px; border-radius: 3px;
+  background: rgba(95,133,255,0.08); color: var(--text-white-pale);
+  border: 0.5px solid rgba(95,133,255,0.16);
+}
+.chat-messages {
+  height: 340px; overflow-y: auto; padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  scroll-behavior: smooth;
+}
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-track { background: transparent; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border-dark-mid); border-radius: 2px; }
+.msg { display: flex; gap: 10px; max-width: 88%; }
+.msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.msg.assistant { align-self: flex-start; }
+.msg-bubble {
+  padding: 10px 14px; border-radius: 8px;
+  font-size: 13px; line-height: 1.60; color: var(--text-white-mid);
+}
+.msg.user .msg-bubble {
+  background: rgba(95,133,255,0.18); border: 0.5px solid rgba(95,133,255,0.28);
+  color: var(--text-white);
+}
+.msg.assistant .msg-bubble {
+  background: var(--surface-dark-2); border: 0.5px solid var(--border-dark-mid);
+}
+.msg-avatar {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 8px; font-weight: 500;
+  margin-top: 2px;
+}
+.msg.user .msg-avatar { background: rgba(95,133,255,0.20); color: var(--blue-on-dark); }
+.msg.assistant .msg-avatar { background: var(--surface-dark-3); color: var(--text-white-pale); }
+.chat-typing {
+  align-self: flex-start; display: flex; gap: 10px; max-width: 88%;
+}
+.chat-typing .msg-bubble { display: flex; gap: 4px; align-items: center; padding: 12px 16px; }
+.typing-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--text-white-pale); animation: blink 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%,80%,100%{opacity:0.3} 40%{opacity:1} }
+.chat-input-row {
+  border-top: 0.5px solid var(--border-dark);
+  padding: 14px 16px;
+  display: flex; gap: 10px; align-items: flex-end;
+  background: var(--surface-dark-1);
+}
+.chat-input {
+  flex: 1; background: var(--surface-dark-0);
+  border: 0.5px solid var(--border-dark-mid);
+  border-radius: 8px; padding: 10px 14px;
+  font-family: var(--font-sans); font-size: 13px;
+  color: var(--text-white-mid); resize: none; min-height: 40px; max-height: 120px;
+  outline: none; line-height: 1.5;
+}
+.chat-input:focus { border-color: rgba(95,133,255,0.40); }
+.chat-input::placeholder { color: var(--text-white-ghost); }
+.chat-send-btn {
+  background: var(--blue-on-dark); color: #111110;
+  border: none; border-radius: 8px; padding: 10px 18px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; cursor: pointer; font-weight: 500;
+  white-space: nowrap; transition: opacity 0.15s; flex-shrink: 0;
+}
+.chat-send-btn:hover { opacity: 0.85; }
+.chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.chat-disclaimer {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.06em;
+  color: var(--text-white-ghost); padding: 8px 20px 10px;
+  border-top: 0.5px solid var(--border-dark); text-align: center;
+  background: var(--surface-dark-0);
+}
+.lingo-section {
+  background: var(--surface-dark-2); border: 0.5px solid var(--border-dark-mid);
+  border-radius: 10px; padding: 20px 22px; margin-bottom: 16px;
+}
+.lingo-title {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue-on-dark); margin-bottom: 12px;
+}
+.lingo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.lingo-item { background: var(--surface-dark-3); border-radius: 6px; padding: 10px 12px; }
+.lingo-item-label { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-white-ghost); margin-bottom: 5px; }
+.lingo-item-content { font-size: 12px; color: var(--text-white-pale); line-height: 1.55; }
+.sub-info-row {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px;
+}
+.sub-info-card {
+  background: var(--surface-dark-2); border: 0.5px solid var(--border-dark-mid);
+  border-radius: 8px; padding: 14px 16px;
+}
+.sub-info-label { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-white-ghost); margin-bottom: 5px; }
+.sub-info-val { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--blue-on-dark); }
+.sub-info-note { font-size: 11px; color: var(--text-white-pale); margin-top: 3px; line-height: 1.4; }
+@media (max-width:700px) {
+  .emt-grid,.lingo-grid,.sub-info-row { grid-template-columns: 1fr; }
+  .chat-user-select { flex-wrap: wrap; }
+}
+</style>
+<div class="cp-section">
+<div class="subnav-bar">
+  <div class="subnav-left">
+    <a class="subnav-logo" href="#home" onclick="closeSectionView()">Design Intelligence <span>Framework</span></a>
+    <span class="subnav-section">CLT-003 — Client Portal</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="subnav-back" onclick="closeSectionView()">← Back to site</button>
+    <a class="subnav-cta" href="mailto:b3njamin@me.com">Connect</a>
+  </div>
+</div>
+<div class="cp-inner" style="padding-top:40px;">
+
+  <div class="cp-header">
+    <div class="cp-label">Client · Enterprise tier</div>
+    <div class="cp-client-name">CLT-003</div>
+    <div class="cp-client-meta">Premium Bathroom Solutions · Germany · Global Distribution · Engagement active May 2026</div>
+  </div>
+
+  <!-- PORTRAIT SUMMARY -->
+  <div class="cp-block full highlight" style="margin-bottom:32px;">
+    <div class="cp-block-label">Portrait — Structural summary</div>
+    <div class="cp-block-title">Design authority without emotional presence — and a leadership transition that will define the next decade</div>
+    <div class="cp-block-body">
+      <p>The brand holds a genuine structural moat — four decades of serious designer partnerships that no competitor has replicated. That moat is real, but it is not being communicated. The brand's emotional architecture operates at the level of quality and function rather than desire or transformation. In a market where V&B is gaining scale through acquisition and Chinese entrants are compressing mid-tier specification, the design authority advantage needs to be made legible and felt — not just present.</p>
+      <p>The SensoWash portfolio represents the brand's most commercially urgent voice misalignment: a product built around body experience communicating in specification language. The Canada facility — the world's first climate-neutral ceramic production site — is the brand's strongest proof point and is currently activated in no market.</p>
+      <p>An interim CEO with a transformation mandate is making brand decisions through an efficiency lens at the moment when the brand's defining structural assets require the opposite. The governance conditions of the next 12 months will determine whether the brand emerges from this period stronger or structurally diminished.</p>
+    </div>
+  </div>
+
+  <!-- ITEM FEED -->
+  <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-white-pale);margin-bottom:16px;">Engagement items</div>
+  <div class="item-feed">
+
+    <!-- ITEM 01 — Brand Review -->
+    <div class="item-card item-open" id="duravit-item-1">
+      <div class="item-card-header" onclick="toggleItem('duravit-item-1')">
+        <div class="item-card-left">
+          <div class="item-date">April 2026 · Delivered</div>
+          <div class="item-title">Brand Intelligence Review — External Diagnostic</div>
+          <div class="item-desc">Five-part structural read of the brand from public evidence. Identity, gap, system, audience, geography.</div>
+          <div class="item-tags">
+            <span class="item-tag done">Delivered</span>
+            <span class="item-tag done">Full report</span>
+            <span class="item-tag done">External sources</span>
+          </div>
+        </div>
+        <span class="item-chevron">▼</span>
+      </div>
+      <div class="item-body">
+        <p style="font-size:13px;color:var(--text-white-pale);line-height:1.65;max-width:640px;margin-bottom:16px;">Five-chapter external diagnostic covering brand identity and emotional architecture, the gap between product offer and brand communication, identity system performance layer by layer, buyer behaviour across four groups, and brand performance across five geographies. Closes with four priority recommendations.</p>
+        <div>
+          <a class="report-link" href="duravit_brand_review.html" target="_blank">Open report →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM 02 — SensoWash Register -->
+    <div class="item-card" id="duravit-item-2">
+      <div class="item-card-header" onclick="toggleItem('duravit-item-2')">
+        <div class="item-card-left">
+          <div class="item-date">April 2026 · Delivered</div>
+          <div class="item-title">SensoWash — Communications Register</div>
+          <div class="item-desc">Practical voice and tone guide derived from finding 04 of the brand review. Working draft, ready to deploy.</div>
+          <div class="item-tags">
+            <span class="item-tag done">Delivered</span>
+            <span class="item-tag done">Working draft</span>
+            <span class="item-tag done">Deploy-ready</span>
+          </div>
+        </div>
+        <span class="item-chevron">▼</span>
+      </div>
+      <div class="item-body">
+        <p style="font-size:13px;color:var(--text-white-pale);line-height:1.65;max-width:640px;margin-bottom:16px;">Five language principles specific to SensoWash. Tone calibration within the wider brand frame. Worked examples across six formats: product copy, campaign headline, retail material, press line, B2B specification context, and social. Vocabulary guide covering what to use and what to avoid. Addresses the most commercially urgent mismatch in the portfolio — sensation-first product, specification-first language.</p>
+        <div>
+          <a class="report-link" href="sensowash_communications_register.html" target="_blank">Open register →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM 03 — Engagement Map -->
+    <div class="item-card" id="duravit-item-3">
+      <div class="item-card-header" onclick="toggleItem('duravit-item-3')">
+        <div class="item-card-left">
+          <div class="item-date">May 2026 · Active</div>
+          <div class="item-title">Engagement Map — What Comes Next</div>
+          <div class="item-desc">Two engagement paths, voice architecture scope, two further steps, and retainer options. Includes immediate add-on: Brand–Leader Resonance Report.</div>
+          <div class="item-tags">
+            <span class="item-tag active">Active</span>
+            <span class="item-tag active">Decision open</span>
+          </div>
+        </div>
+        <span class="item-chevron">▼</span>
+      </div>
+      <div class="item-body">
+        <p style="font-size:13px;color:var(--text-white-pale);line-height:1.65;max-width:640px;margin-bottom:24px;">A complete map of what can follow the delivered work — two engagement paths at different depths, the voice architecture scope, geographic extension, brand foundation rebuild, and retainer options. All paths start from the same strategic question: what can the brand carry in a repositioning, and what will it cost to ask it to do something it is not built for.</p>
+
+        <div class="eng-map-section">
+
+          <div class="eng-map-tier">
+            <div class="emt-label">Immediate · No prerequisite</div>
+            <div class="emt-title">Brand–Leader Resonance Report</div>
+            <div class="emt-desc">Structural alignment between the incoming CEO and the brand he is now leading. Maps overlap, drift zones, and governance conditions. The most time-sensitive item in the engagement — brand decisions made in the next 12 months are being made without this read.</div>
+            <div class="emt-price">€18,000 – €28,000</div>
+            <div class="emt-meta">2–3 weeks · Can begin immediately</div>
+          </div>
+
+          <div class="eng-map-tier">
+            <div class="emt-label">Path B — Light engagement</div>
+            <div class="emt-title">Targeted Research + Priority Voice Register</div>
+            <div class="emt-desc">8–10 internal interviews across leadership, sales front line, and one product line manager. Targeted external intelligence. Diagnostic revision on three priority gaps. One priority voice register (SensoWash full production or ME by Starck). Revised brief and positioning note for leadership.</div>
+            <div class="emt-price">€32,000 – €48,000</div>
+            <div class="emt-meta">5–6 weeks · Europe only · Designed to inform Path A decision</div>
+            <div class="emt-grid">
+              <div class="emt-item"><div class="emt-item-label">Interviews</div><div class="emt-item-val">8–10 internal</div></div>
+              <div class="emt-item"><div class="emt-item-label">Voice registers</div><div class="emt-item-val">1 priority line</div></div>
+              <div class="emt-item"><div class="emt-item-label">Output</div><div class="emt-item-val">Revised brief + note</div></div>
+              <div class="emt-item"><div class="emt-item-label">Duration</div><div class="emt-item-val">5–6 weeks</div></div>
+            </div>
+          </div>
+
+          <div class="eng-map-tier">
+            <div class="emt-label">Path A — Full engagement</div>
+            <div class="emt-title">Complete Strategic Intelligence + Voice Architecture</div>
+            <div class="emt-desc">20–26 interviews across all five internal groups plus external buyers. Full external market intelligence. Complete diagnostic revision. Six voice registers — four product lines, internal, and PR. Leadership strategic brief delivered in person. The full picture before any repositioning decision is made.</div>
+            <div class="emt-price">€95,000 – €130,000</div>
+            <div class="emt-meta">10–12 weeks · Europe first · Gulf + Americas in Step 01</div>
+            <div class="emt-grid">
+              <div class="emt-item"><div class="emt-item-label">Interviews</div><div class="emt-item-val">20–26 total</div></div>
+              <div class="emt-item"><div class="emt-item-label">Voice registers</div><div class="emt-item-val">6 documents</div></div>
+              <div class="emt-item"><div class="emt-item-label">Output</div><div class="emt-item-val">Leadership brief</div></div>
+              <div class="emt-item"><div class="emt-item-label">Duration</div><div class="emt-item-val">10–12 weeks</div></div>
+            </div>
+          </div>
+
+          <div class="eng-map-tier">
+            <div class="emt-label">What follows — Step 01</div>
+            <div class="emt-title">Gulf + Americas Intelligence Brief</div>
+            <div class="emt-desc">Market-adapted strategic briefs and voice guidance for the two highest-growth geographies. Follows Path A or B.</div>
+            <div class="emt-price">€28,000 – €42,000</div>
+            <div class="emt-meta">6–8 weeks · Follows either path</div>
+          </div>
+
+          <div class="eng-map-tier">
+            <div class="emt-label">What follows — Step 02</div>
+            <div class="emt-title">Brand Foundation Rebuild</div>
+            <div class="emt-desc">Structural identity definition for the next phase. Requires Path A completion. Not a visual redesign — a governance framework for all brand decisions going forward.</div>
+            <div class="emt-price">€65,000 – €95,000</div>
+            <div class="emt-meta">10–14 weeks · Requires Path A</div>
+          </div>
+
+          <div class="eng-map-tier">
+            <div class="emt-label">Retainer options</div>
+            <div class="emt-title">Ongoing governance — three formats</div>
+            <div class="emt-desc">Presence Audit (€3,500/month · drift monitoring), Strategic Counsel (€6,500/month · decision access), Brand Governance Partner (€12,000/month · full governance during active repositioning). All begin after either path.</div>
+            <div class="emt-meta">Min. 6–12 months depending on format</div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:12px;">
+          <a class="report-link" href="duravit_next_steps.html" target="_blank">Open full engagement map →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM 04 — Brand Intelligence Assistant (Voice Tool) -->
+    <div class="item-card" id="duravit-item-4">
+      <div class="item-card-header" onclick="toggleItem('duravit-item-4')">
+        <div class="item-card-left">
+          <div class="item-date">Available · In development</div>
+          <div class="item-title">Brand Intelligence Assistant — Voice Tool Subscription</div>
+          <div class="item-desc">Private AI assistant trained on the diagnostic findings, voice principles, product lingo, and brand elements. Monthly subscription for your team.</div>
+          <div class="item-tags">
+            <span class="item-tag dev">In development</span>
+            <span class="item-tag pending">SSO · Q3 2026</span>
+            <span class="item-tag pending">Subscription</span>
+          </div>
+        </div>
+        <span class="item-chevron">▼</span>
+      </div>
+      <div class="item-body">
+        <p style="font-size:13px;color:var(--text-white-pale);line-height:1.65;max-width:62ch;margin-bottom:20px;">A private text interface for your team — trained on the diagnostic findings, SensoWash voice principles, competitive positioning, product line lingo, and key brand elements. Ask any brand, positioning, or communications question and receive an answer grounded in the structural read of this brand specifically. Not a generic AI assistant. This one only knows what the diagnostic found about you.</p>
+
+        <div style="background:var(--surface-dark-2);border:0.5px solid var(--border-dark-mid);border-radius:10px;padding:20px 22px;margin-bottom:16px;">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-on-dark);margin-bottom:14px;">What the assistant is trained on</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="background:var(--surface-dark-3);border-radius:6px;padding:10px 12px;">
+              <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-white-ghost);margin-bottom:5px;">Diagnostic findings</div>
+              <div style="font-size:12px;color:var(--text-white-pale);line-height:1.55;">Emotional architecture · 5 structural gaps · Competitive position · Canada facility opportunity</div>
+            </div>
+            <div style="background:var(--surface-dark-3);border-radius:6px;padding:10px 12px;">
+              <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-white-ghost);margin-bottom:5px;">Voice principles</div>
+              <div style="font-size:12px;color:var(--text-white-pale);line-height:1.55;">SensoWash register · Tone calibration · Vocabulary guide · What to avoid</div>
+            </div>
+            <div style="background:var(--surface-dark-3);border-radius:6px;padding:10px 12px;">
+              <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-white-ghost);margin-bottom:5px;">Product lingo</div>
+              <div style="font-size:12px;color:var(--text-white-pale);line-height:1.55;">All product line names · Internal terminology · Sector-specific language · Partner names</div>
+            </div>
+            <div style="background:var(--surface-dark-3);border-radius:6px;padding:10px 12px;">
+              <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-white-ghost);margin-bottom:5px;">Deepens with engagement</div>
+              <div style="font-size:12px;color:var(--text-white-pale);line-height:1.55;">Path A completion rebuilds the assistant on full primary research · More precise, more specific</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;">
+          <div style="background:var(--surface-dark-2);border:0.5px solid var(--border-dark-mid);border-radius:8px;padding:14px 16px;">
+            <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.10em;text-transform:uppercase;color:var(--text-white-ghost);margin-bottom:5px;">Subscription</div>
+            <div style="font-family:var(--font-mono);font-size:15px;font-weight:500;color:var(--blue-on-dark);">€800 / month</div>
+            <div style="font-size:11px;color:var(--text-white-pale);margin-top:3px;line-height:1.4;">3 users · 50 queries per user · Billed monthly</div>
+          </div>
+          <div style="background:var(--surface-dark-2);border:0.5px solid var(--border-dark-mid);border-radius:8px;padding:14px 16px;">
+            <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.10em;text-transform:uppercase;color:var(--text-white-ghost);margin-bottom:5px;">Access</div>
+            <div style="font-family:var(--font-mono);font-size:15px;font-weight:500;color:var(--blue-on-dark);">SSO gated</div>
+            <div style="font-size:11px;color:var(--text-white-pale);margin-top:3px;line-height:1.4;">Company login · Usage dashboard · Admin panel · Q3 2026</div>
+          </div>
+          <div style="background:var(--surface-dark-2);border:0.5px solid var(--border-dark-mid);border-radius:8px;padding:14px 16px;">
+            <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.10em;text-transform:uppercase;color:var(--text-white-ghost);margin-bottom:5px;">Requires</div>
+            <div style="font-family:var(--font-mono);font-size:15px;font-weight:500;color:var(--track-amber);">In development</div>
+            <div style="font-size:11px;color:var(--text-white-pale);margin-top:3px;line-height:1.4;">Available after lingo capture session · Activates on engagement start</div>
+          </div>
+        </div>
+
+        <div style="border-left:1px solid rgba(95,133,255,0.35);background:rgba(95,133,255,0.07);padding:14px 18px;border-radius:0 8px 8px 0;">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--blue-on-dark);margin-bottom:6px;">Lingo capture — required before activation</div>
+          <div style="font-size:13px;color:var(--text-white-pale);line-height:1.65;">Before the assistant is built, a short structured session captures the elements the diagnostic cannot see from the outside — internal product naming conventions, department-specific terminology, approved and banned vocabulary, key partner names, campaign shorthand, and any brand language that lives inside the organisation rather than in public communications. This session is included in the subscription setup. It is what makes the assistant yours rather than generic.</div>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /item-feed -->
+
+</div>
+</div>
+</section>
+
+<script>
+function toggleItem(id){const c=document.getElementById(id);if(c)c.classList.toggle('item-open');}
+</script>
+
+<!-- ============================================================
+     CLIENT PAGE — VW (demo)
+     ============================================================ -->
+<section id="client-vw" class="locked-section">
+<div class="cp-section">
+<div class="subnav-bar">
+  <div class="subnav-left">
+    <a class="subnav-logo" href="#home" onclick="closeSectionView()">Design Intelligence <span>Framework</span></a>
+    <span class="subnav-section">Volkswagen AG — Demo Case</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="subnav-back" onclick="closeSectionView()">← Back to site</button>
+    <a class="subnav-cta" href="mailto:b3njamin@me.com">Connect</a>
+  </div>
+</div>
+<div class="cp-inner" style="padding-top:40px;">
+
+  <div class="cp-header">
+    <div class="cp-label">Demo case · Enterprise tier</div>
+    <div class="cp-client-name">Volkswagen AG</div>
+    <div class="cp-client-meta">Automotive · Wolfsburg, DE · Public demo — not a live engagement</div>
+  </div>
+
+  <div class="cp-grid">
+
+    <div class="cp-block full highlight">
+      <div class="cp-block-label">Portrait — Structural summary</div>
+      <div class="cp-block-title">A care-dominant brand in a forward-energy category without a succession plan</div>
+      <div class="cp-block-body">
+        <p>VW's emotional architecture is built on Care and Continuity — historically its greatest asset. The brand's strongest connection, the Heritage Loyalist group (45–65), is aging out with no replacement. The Dieselgate trust deficit continues to suppress connection across all audience groups. No campaign resolves this — only verified behaviour documented over time.</p>
+        <p>The EV pivot is a product decision being mistaken for a brand decision. VW's care-dominant character does not carry the forward energy the EV category demands. Every major competitor is increasing their forward signal. VW's restraint reads as hesitation in this context — not as confidence.</p>
+        <p>The diagnostic also identified the strategic position available exclusively to VW: the only major automotive brand that can credibly remove aspiration from the EV register, because its Care root is the right engine for sustainability — protection of the future, not desire for the new.</p>
+      </div>
+    </div>
+
+    <div class="cp-block">
+      <div class="cp-block-label">Diagnostic findings</div>
+      <div class="cp-finding open">
+        <div class="cp-finding-num">Finding 01 · Delivered</div>
+        <div class="cp-finding-title">Brand position is nobody's aspiration — identity drift at root level</div>
+      </div>
+      <div class="cp-finding open">
+        <div class="cp-finding-num">Finding 02 · Delivered</div>
+        <div class="cp-finding-title">EV pivot: product decision mistaken for brand decision</div>
+      </div>
+      <div class="cp-finding open">
+        <div class="cp-finding-num">Finding 03 · Delivered</div>
+        <div class="cp-finding-title">Trust damage is structural cost, not a communications problem</div>
+      </div>
+      <div class="cp-finding open">
+        <div class="cp-finding-num">Finding 04 · Delivered</div>
+        <div class="cp-finding-title">Strongest audience aging out with no replacement in sight</div>
+      </div>
+      <div class="cp-finding open">
+        <div class="cp-finding-num">Finding 05 · Delivered</div>
+        <div class="cp-finding-title">Brand character in direct conflict with most important category</div>
+      </div>
+    </div>
+
+    <div class="cp-block">
+      <div class="cp-block-label">Delivered</div>
+      <div class="cp-delivered-item">
+        <div class="cp-del-dot"></div>
+        <div class="cp-del-body">
+          <div class="cp-del-name">Full Brand Intelligence Report</div>
+          <div class="cp-del-meta">Demo case · Public · Identity, audience, portfolio, leadership, competitive, solutions</div>
+          <a class="cp-del-link" href="#demo-case" onclick="closeSectionView()">View demo case →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cp-block full">
+      <div class="cp-block-label">Directions produced</div>
+      <div class="cp-next-item">
+        <div class="cp-next-num">01</div>
+        <div class="cp-next-body">
+          <div class="cp-next-name">Audience Succession — The same feeling, new materials</div>
+          <div class="cp-next-desc">Bridges the 28–40 buyer back to VW's Care root without abandoning it. Respects younger buyer scepticism of legacy brands while keeping structural character intact.</div>
+        </div>
+      </div>
+      <div class="cp-next-item">
+        <div class="cp-next-num">02</div>
+        <div class="cp-next-body">
+          <div class="cp-next-name">Category Strategy — The electric car for people who don't need to perform caring</div>
+          <div class="cp-next-desc">Removes aspiration from the EV register entirely. The only position available to VW that no competitor can credibly occupy. Restraint as structural confidence.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
      PARTNERS
      ============================================================ -->
 <section id="partners" class="locked-section">
@@ -3519,6 +4651,21 @@ section {
      ============================================================ -->
 <script>
 /* ================================================================
+   TIER TOGGLE — SERVICE CATALOGUE
+================================================================ */
+function switchTier(tier, btn) {
+  // Update button states
+  document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Show/hide price values
+  ['independent','studio','brand','enterprise'].forEach(t => {
+    document.querySelectorAll('[data-tier="' + t + '"]').forEach(el => {
+      el.style.display = (t === tier) ? 'block' : 'none';
+    });
+  });
+}
+
+/* ================================================================
    LAB TABS
 ================================================================ */
 function switchTab(event, panelId) {
@@ -3532,12 +4679,22 @@ function switchTab(event, panelId) {
    PASSWORD GATE + SECTION VIEW
 ================================================================ */
 const _PASSWORDS = {
-  partners:   'Friends?54',
-  priorities: 'Me_ Prios'
+  partners:           'Friends?54',
+  priorities:         'Me_ Prios',
+  catalogue:          'DIF-services',
+  clients:            'DIF-services',
+  'client-pareva':    'pareva-26',
+  'client-vw':        'vw-demo-26',
+  'client-duravit':   'duravit-26'
 };
 const _SECTION_NAMES = {
-  partners:   '02 — Partners',
-  priorities: '04 — Priorities'
+  partners:           '02 — Partners',
+  priorities:         '04 — Priorities',
+  catalogue:          '— Service Catalogue',
+  clients:            '— Client Portal',
+  'client-pareva':    'Client Portal',
+  'client-vw':        'Client Portal',
+  'client-duravit':   'Client Portal'
 };
 
 
